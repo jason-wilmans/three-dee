@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Core.Interface;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
@@ -15,6 +15,11 @@ public class MenuController : MonoBehaviour
 
     public void NewDiagram()
     {
-        Application.LoadLevel(1);
+        SceneManager.LoadScene(1);
+    }
+
+    public void CloseApplication()
+    {
+        Application.Quit();
     }
 }
