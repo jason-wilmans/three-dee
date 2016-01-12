@@ -1,9 +1,9 @@
 ﻿using Autofac;
-using Core.Implementation;
+using CoreFacade.Implementation;
 using DiagramLogic.Implementation;
 using DiagramLogic.Interface;
 
-namespace Core.Interface
+namespace CoreFacade.Interface
 {
     /// <summary>
     /// The only retrieval point for instances of the application core and related services.

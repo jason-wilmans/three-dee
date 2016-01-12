@@ -1,9 +1,11 @@
-﻿namespace Core.Interface
+﻿using DiagramLogic.Interface;
+
+namespace CoreFacade.Interface
 {
     /// <summary>
     /// Possible interaction with the application's core.
     /// </summary>
-    public interface IThreeDeeCore
+    public interface IThreeDeeCore : IDiagramComponent
     {
          
     }

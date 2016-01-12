@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace ZeroTypes
+﻿namespace ZeroTypes
 {
     /// <summary>
     /// Represents a tuple of 3 vectors, e.g. a 3-dimensional vector.
@@ -59,12 +57,20 @@ namespace ZeroTypes
         /// <returns></returns>
         public static Tuple3 operator *(double scalar, Tuple3 tuple)
         {
+            // Exact duplicate of the same operator with switched order (to save extra method call). Remember to adjust both, if changes occur.
             return new Tuple3(scalar * tuple.X, scalar * tuple.Y, scalar * tuple.Z);
         }
 
-        public Vector3 ToVector3()
+        /// <summary>
+        /// Multiplies all components with the scalar.
+        /// </summary>
+        /// <param name="scalar"></param>
+        /// <param name="tuple"></param>
+        /// <returns></returns>
+        public static Tuple3 operator *(Tuple3 tuple, double scalar)
         {
-            return new Vector3((float) X, (float) Y, (float) Z);
+            // Exact duplicate of the same operator with switched order (to save extra method call). Remember to adjust both, if changes occur.
+            return new Tuple3(scalar * tuple.X, scalar * tuple.Y, scalar * tuple.Z);
         }
 
         public bool Equals(Tuple3 other)

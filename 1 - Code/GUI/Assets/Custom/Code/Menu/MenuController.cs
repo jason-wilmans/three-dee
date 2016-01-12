@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-using Core.Interface;
-using UnityEngine.SceneManagement;
+﻿using System.IO;
+using CoreFacade.Interface;
+using DiagramLogic.Interface;
+using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-
     private IThreeDeeCore _threeDeeCore;
 
 	// Use this for initialization
@@ -15,7 +15,10 @@ public class MenuController : MonoBehaviour
 
     public void NewDiagram()
     {
-        SceneManager.LoadScene(1);
+        Diagram diagram = new Diagram("Test");
+        _threeDeeCore.Save(diagram, new FileInfo("test.3dd"), true);
+        Application.LoadLevel(1);
+        //SceneManager.LoadScene(1);
     }
 
     public void CloseApplication()
