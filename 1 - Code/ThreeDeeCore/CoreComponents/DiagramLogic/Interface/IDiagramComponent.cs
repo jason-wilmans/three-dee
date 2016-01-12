@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using ZeroTypes.Exceptions;
 
 [assembly: InternalsVisibleTo("CoreFacade")]
+[assembly: InternalsVisibleTo("TestDiagramLogic")]
 
 namespace DiagramLogic.Interface
 {

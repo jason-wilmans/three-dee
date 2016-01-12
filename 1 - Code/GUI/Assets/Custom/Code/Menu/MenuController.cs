@@ -16,7 +16,6 @@ public class MenuController : MonoBehaviour
     public void NewDiagram()
     {
         Diagram diagram = new Diagram("Test");
-        _threeDeeCore.Save(diagram, new FileInfo("test.3dd"), true);
         Application.LoadLevel(1);
         //SceneManager.LoadScene(1);
     }

@@ -12,7 +12,7 @@ namespace DiagramLogic.Interface
     /// This class represents a single diagram.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class Diagram : IEnumerable<IDiagramElement>
+    public class Diagram
     {
         /// <summary>
         /// A name to identify this diagram.
@@ -20,10 +20,14 @@ namespace DiagramLogic.Interface
         [JsonProperty]
         public string Name { get; set; }
 
-        [JsonProperty("Elements")]
-        private readonly ICollection<IDiagramElement> _topLevelElements;
+        [JsonProperty]
+        public IEnumerable<IDiagramElement> Elements
+        {
+            get { return _elements; }
+        }
 
         private int _nextElementId;
+        private readonly ICollection<IDiagramElement> _elements;
 
         /// <summary>
         /// Diagram constructor. A name is needed.
@@ -36,7 +40,7 @@ namespace DiagramLogic.Interface
                 throw new ArgumentException("A diagram must have a meaningful name, but the argument was: '" + name + "'", "name");
             }
             Name = name;
-            _topLevelElements = new List<IDiagramElement>();
+            _elements = new List<IDiagramElement>();
         }
 
         /// <summary>
@@ -47,7 +51,7 @@ namespace DiagramLogic.Interface
         {
             element.Parent = null;
             element.Id = _nextElementId;
-            _topLevelElements.Add(element);
+            _elements.Add(element);
 
             _nextElementId++;
         }
@@ -58,7 +62,7 @@ namespace DiagramLogic.Interface
         /// <param name="element">Not null, already contained.</param>
         public void Copy(IDiagramElement element)
         {
-            if (!_topLevelElements.Contains(element))
+            if (!_elements.Contains(element))
             {
                 throw new ArgumentException("The given element can't be copied, because it is not part of this diagram.", "element");
             }
@@ -81,40 +85,27 @@ namespace DiagramLogic.Interface
         /// <param name="element">Not null.</param>
         public void Delete(IDiagramElement element)
         {
-            _topLevelElements.Remove(element);
-        }
-
-        public IEnumerator<IDiagramElement> GetEnumerator()
-        {
-            return _topLevelElements.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
+            _elements.Remove(element);
         }
 
         protected bool Equals(Diagram other)
         {
-            return Equals(_topLevelElements, other._topLevelElements) && _nextElementId == other._nextElementId && string.Equals(Name, other.Name);
+            return Equals(_elements, other._elements) && string.Equals(Name, other.Name);
         }
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((Diagram) obj);
+            var other = obj as Diagram;
+            return other != null && Equals(other);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                var hashCode = (_topLevelElements != null ? _topLevelElements.GetHashCode() : 0);
-                hashCode = (hashCode*397) ^ _nextElementId;
-                hashCode = (hashCode*397) ^ (Name != null ? Name.GetHashCode() : 0);
-                return hashCode;
+                return ((_elements != null ? _elements.GetHashCode() : 0)*397) ^ (Name != null ? Name.GetHashCode() : 0);
             }
         }
     }
