@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Implementation\DiagramComponent.cs" />
     <Compile Include="Interface\Diagram.cs" />
+    <Compile Include="Interface\Elements\Ellipsoid.cs" />
     <Compile Include="Interface\Elements\IDiagramElement.cs" />
     <Compile Include="Interface\Exceptions\InvalidDiagramFormatException.cs" />
     <Compile Include="Interface\IDiagramComponent.cs" />
