@@ -93,5 +93,29 @@ namespace DiagramLogic.Interface
         {
             return GetEnumerator();
         }
+
+        protected bool Equals(Diagram other)
+        {
+            return Equals(_topLevelElements, other._topLevelElements) && _nextElementId == other._nextElementId && string.Equals(Name, other.Name);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Diagram) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (_topLevelElements != null ? _topLevelElements.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ _nextElementId;
+                hashCode = (hashCode*397) ^ (Name != null ? Name.GetHashCode() : 0);
+                return hashCode;
+            }
+        }
     }
 }
