@@ -3,7 +3,9 @@ using System.IO;
 using System.Linq;
 using DiagramLogic.Implementation;
 using DiagramLogic.Interface;
+using DiagramLogic.Interface.Elements;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ZeroTypes;
 
 namespace TestDiagramLogic.Component
 {
@@ -19,6 +21,9 @@ namespace TestDiagramLogic.Component
             DiagramComponent diagramComponent = new DiagramComponent();
 
             Diagram original = new Diagram("Test Diagram 1");
+            IDiagramElement ellipsoid = new Ellipsoid {Position = new Tuple3(10, 20, 30), Scale = Tuple3.One};
+            original.Add(ellipsoid);
+
             FileInfo file = new FileInfo("testFile.3dd");
             diagramComponent.Save(original, file, true);
 

@@ -1,8 +1,10 @@
 ﻿using System;
+using Newtonsoft.Json;
 using ZeroTypes;
 
 namespace DiagramLogic.Interface.Elements
 {
+    [JsonObject(MemberSerialization.OptOut)]
     public class Ellipsoid : IDiagramElement
     {
         /// <summary>
@@ -44,6 +46,23 @@ namespace DiagramLogic.Interface.Elements
                 Scale = Scale,
                 Parent = Parent
             };
+        }
+
+        protected bool Equals(IDiagramElement other)
+        {
+            return Id == other.Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return Equals((IDiagramElement) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
         }
     }
 }
