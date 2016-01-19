@@ -7,5 +7,14 @@ namespace UIToolkit
 {
     public class ContainerElement : UiElement3D
     {
+        private void Start()
+        {
+            
+        }
+
+        public void AddChild(UiElement3D element)
+        {
+            
+        }
     }
 }
