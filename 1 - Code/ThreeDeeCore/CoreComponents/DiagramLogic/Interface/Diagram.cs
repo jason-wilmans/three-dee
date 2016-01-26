@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using DiagramLogic.Interface.Elements;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using ZeroTypes;
 
 namespace DiagramLogic.Interface
@@ -11,29 +8,27 @@ namespace DiagramLogic.Interface
     /// <summary>
     /// This class represents a single diagram.
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
     public class Diagram
     {
         /// <summary>
         /// A name to identify this diagram.
         /// </summary>
-        [JsonProperty]
         public string Name { get; set; }
 
-        [JsonProperty]
-        public IEnumerable<IDiagramElement> Elements
+        public ICollection<IDiagramElement> Elements
         {
             get { return _elements; }
+            set { _elements = value; }
         }
 
         private int _nextElementId;
-        private readonly ICollection<IDiagramElement> _elements;
+        private ICollection<IDiagramElement> _elements;
 
         /// <summary>
         /// Diagram constructor. A name is needed.
         /// </summary>
         /// <param name="name"></param>
-        public Diagram(string name)
+        internal Diagram(string name)
         {
             if (string.IsNullOrEmpty(name))
             {

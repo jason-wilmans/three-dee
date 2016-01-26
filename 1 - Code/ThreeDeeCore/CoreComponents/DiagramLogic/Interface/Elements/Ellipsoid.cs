@@ -1,10 +1,7 @@
-﻿using System;
-using Newtonsoft.Json;
-using ZeroTypes;
+﻿using ZeroTypes;
 
 namespace DiagramLogic.Interface.Elements
 {
-    [JsonObject(MemberSerialization.OptOut)]
     public class Ellipsoid : IDiagramElement
     {
         /// <summary>
@@ -57,6 +54,7 @@ namespace DiagramLogic.Interface.Elements
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
+            if (!(obj is IDiagramElement)) return false;
             return Equals((IDiagramElement) obj);
         }
 
