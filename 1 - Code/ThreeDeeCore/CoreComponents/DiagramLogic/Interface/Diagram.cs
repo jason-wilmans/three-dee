@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using DiagramLogic.Interface.Elements;
 using ZeroTypes;
 
@@ -74,6 +75,23 @@ namespace DiagramLogic.Interface
             Add(copy);
         }
 
+        public Tuple3 CalculateGeometricCenter()
+        {
+            double x = 0;
+            double y = 0;
+            double z = 0;
+            
+            foreach (IDiagramElement diagramElement in Elements)
+            {
+                x += diagramElement.Position.X;
+                y += diagramElement.Position.Y;
+                z += diagramElement.Position.Z;
+            }
+
+            Tuple3 center = new Tuple3(x / Elements.Count, y / Elements.Count, z / Elements.Count);
+            return center;
+        }
+
         /// <summary>
         /// If the element was part of the diagram, removes it.
         /// </summary>
@@ -82,6 +100,8 @@ namespace DiagramLogic.Interface
         {
             _elements.Remove(element);
         }
+
+        #region Equality Members
 
         protected bool Equals(Diagram other)
         {
@@ -103,5 +123,7 @@ namespace DiagramLogic.Interface
                 return ((_elements != null ? _elements.GetHashCode() : 0)*397) ^ (Name != null ? Name.GetHashCode() : 0);
             }
         }
+
+        #endregion
     }
 }

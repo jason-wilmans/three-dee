@@ -19,7 +19,7 @@ namespace DiagramLogic.Implementation
             _encoding = Encoding.UTF8;
         }
 
-        public Diagram CurrentDiagram { get; set; }
+        public Diagram CurrentDiagram { get; internal set; }
 
         public void CreateNewDiagram(string diagramName)
         {
@@ -28,7 +28,7 @@ namespace DiagramLogic.Implementation
 
         public void Save(FileInfo file, bool overWrite)
         {
-            if (CurrentDiagram == null) throw new InvalidOperationException("There is not diagram currently loaded that could be saved.");
+            if (CurrentDiagram == null) throw new InvalidOperationException("There is no diagram currently loaded that could be saved.");
 
             file.Refresh();
             if (overWrite && file.Exists)

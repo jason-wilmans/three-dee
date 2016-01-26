@@ -4,7 +4,7 @@ using DiagramLogic.Interface;
 
 namespace CoreFacade.Implementation
 {
-    class ThreeDeeCoreFacade : IThreeDeeCore
+    internal class ThreeDeeCoreFacade : IThreeDeeCore
     {
         private readonly IDiagramComponent _diagramComponent;
 
@@ -13,14 +13,21 @@ namespace CoreFacade.Implementation
             _diagramComponent = diagramComponent;
         }
 
-        public void Save(Diagram diagram, FileInfo file, bool overWrite)
+        public Diagram CurrentDiagram => _diagramComponent.CurrentDiagram;
+
+        public void CreateNewDiagram(string diagramName)
         {
-            _diagramComponent.Save(diagram, file, overWrite);
+            _diagramComponent.CreateNewDiagram(diagramName);
         }
 
-        public Diagram Load(FileInfo file)
+        public void Save(FileInfo file, bool overWrite)
         {
-            return _diagramComponent.Load(file);
+            _diagramComponent.Save(file, overWrite);
+        }
+
+        public void Load(FileInfo file)
+        {
+            _diagramComponent.Load(file);
         }
     }
 }
