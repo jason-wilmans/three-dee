@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class CameraControl : MonoBehaviour {
@@ -21,5 +22,19 @@ public class CameraControl : MonoBehaviour {
         }
     }
 
+    public void TurnClockwise()
+    {
+        Debug.Log("Turning clockwise..");
+        Vector3 lookTarget = _transform.forward*20;
 
+        float dX = _transform.position.x - lookTarget.x;
+        float dZ = _transform.position.z - lookTarget.z;
+
+        Vector3 target = new Vector3(
+            _transform.position.x - Mathf.Sin(Mathf.PI * 0.5f) * dX,
+            _transform.position.y,
+            _transform.position.z + Mathf.Sin(0) * dZ);
+        
+        iTween.MoveTo(gameObject, target, 2.5f);
+    }
 }

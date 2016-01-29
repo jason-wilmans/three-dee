@@ -28,7 +28,7 @@ public class PopOverControl : MonoBehaviour
     {
         IDiagramElement element = new Ellipsoid();
         _core.CurrentDiagram.Add(element);
-        Vector3 targetPosition = Camera.forward*500;
+        Vector3 targetPosition = Camera.forward*20;
         Instantiate(ShapePrefab, targetPosition, Quaternion.identity);
         Hide();
     }
