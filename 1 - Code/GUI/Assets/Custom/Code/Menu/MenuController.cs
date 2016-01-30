@@ -3,7 +3,7 @@ using CoreFacade.Interface;
 using DiagramLogic.Interface;
 using UnityEngine;
 
-public class MenuController : MonoBehaviour
+public class MenuController : AController
 {
     private IThreeDeeCore _threeDeeCore;
     private string _diagramName;
@@ -21,7 +21,7 @@ public class MenuController : MonoBehaviour
     public void NewDiagram()
     {
         _threeDeeCore.CreateNewDiagram(_diagramName);
-        Application.LoadLevel(1);
+        FireClosed();
     }
 
     public void CloseApplication()

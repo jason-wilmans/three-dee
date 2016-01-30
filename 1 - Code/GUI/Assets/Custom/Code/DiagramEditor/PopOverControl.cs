@@ -4,12 +4,13 @@ using DiagramLogic.Interface.Elements;
 
 public class PopOverControl : MonoBehaviour
 {
-    public Transform Camera;
     public GameObject ShapePrefab;
     private IThreeDeeCore _core;
+    private Transform _cameraTransform;
 
     public void Start()
     {
+        _cameraTransform = Camera.main.GetComponent<Transform>();
         _core = ThreeDeeCoreFactory.GetProductionCore();
         gameObject.SetActive(false);
     }
@@ -28,8 +29,8 @@ public class PopOverControl : MonoBehaviour
     {
         IDiagramElement element = new Ellipsoid();
         _core.CurrentDiagram.Add(element);
-        Vector3 targetPosition = Camera.forward*20;
-        Instantiate(ShapePrefab, targetPosition, Quaternion.identity);
+        Vector3 targetPosition = _cameraTransform.position +_cameraTransform.forward * 20;
+        Instantiate(ShapePrefab, targetPosition, _cameraTransform.rotation);
         Hide();
     }
 }
