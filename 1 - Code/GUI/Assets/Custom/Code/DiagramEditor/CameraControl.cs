@@ -1,12 +1,17 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
-using System.Collections;
 
-public class CameraControl : MonoBehaviour {
-    private Transform _transform;
+public class CameraControl : MonoBehaviour
+{
     private const string ScrollAxisName = "Mouse ScrollWheel";
     private const float ScrollDelta = 0.005f;
     private const float ScrollingSpeed = 20;
+    private float _currentPlaneAngle;
+
+    private float _distance;
+    private Vector3 _pivot;
+    private Transform _transform;
+    private bool _zoom;
 
     public void Start()
     {
@@ -17,24 +22,63 @@ public class CameraControl : MonoBehaviour {
     {
         if (Mathf.Abs(Input.GetAxis(ScrollAxisName)) > ScrollDelta)
         {
-            Vector3 zoomDelta = _transform.forward * Input.GetAxis(ScrollAxisName) * ScrollingSpeed;
-            _transform.Translate(zoomDelta);
+            var zoomDelta = _transform.forward*Input.GetAxis(ScrollAxisName)*ScrollingSpeed;
+            _transform.position += zoomDelta;
         }
+    }
+
+    public void Update()
+    {
+        Debug.DrawLine(_transform.position, _transform.position + _transform.forward, Color.magenta);
+        Debug.DrawLine(_transform.position, _pivot, Color.green);
     }
 
     public void TurnClockwise()
     {
-        Debug.Log("Turning clockwise..");
-        Vector3 lookTarget = _transform.forward*20;
+        Turn(Mathf.PI * 0.5f);
+    }
 
-        float dX = _transform.position.x - lookTarget.x;
-        float dZ = _transform.position.z - lookTarget.z;
+    public void TurnCounterClockwise()
+    {
+        Turn(-Mathf.PI * 0.5f);
+    }
 
-        Vector3 target = new Vector3(
-            _transform.position.x - Mathf.Sin(Mathf.PI * 0.5f) * dX,
-            _transform.position.y,
-            _transform.position.z + Mathf.Sin(0) * dZ);
-        
-        iTween.MoveTo(gameObject, target, 2.5f);
+    private void Turn(float angleDelta)
+    {
+        _zoom = false;
+        _pivot = _transform.position + _transform.forward * 10;
+
+        _distance = (_transform.position - _pivot).magnitude;
+
+        var oldPlaneAngle = _currentPlaneAngle;
+        _currentPlaneAngle += angleDelta;
+
+        var tweenSettings = new Hashtable();
+
+        tweenSettings["from"] = oldPlaneAngle;
+        tweenSettings["to"] = _currentPlaneAngle;
+        tweenSettings["onupdate"] = "TurnUpdate";
+        tweenSettings["oncomplete"] = "TurnComplete";
+        tweenSettings["time"] = 5;
+        tweenSettings["easetype"] = "easeInOutCubic";
+
+        iTween.ValueTo(gameObject, tweenSettings);
+    }
+
+    private void TurnUpdate(float angle)
+    {
+        _transform.position = _pivot + new Vector3(Mathf.Sin(angle)*_distance, _transform.position.y, Mathf.Cos(angle)*_distance);
+        _transform.LookAt(_pivot);
+    }
+
+    private void TurnComplete()
+    {
+        _zoom = true;
+    }
+
+    enum Direction
+    {
+        Clockwise,
+        Counterclockwise
     }
 }
