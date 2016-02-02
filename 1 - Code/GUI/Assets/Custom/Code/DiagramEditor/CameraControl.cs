@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
@@ -7,12 +9,21 @@ public class CameraControl : MonoBehaviour
     private const float ScrollDelta = 0.005f;
     private const float ScrollingSpeed = 20;
     private const float PanAreaSize = 0.005f;
+    private const double HalfPi = Math.PI * 0.5;
+    private const double ThreeHalvesPi = Math.PI*(3.0/2.0);
+    private const double Pi = Math.PI;
+    private const double TwoPi = 2 * Math.PI;
     private float _currentPlaneAngle;
 
     private float _distance;
     private Vector3 _pivot;
     private Transform _transform;
     private bool _zoom = true;
+
+    public float CurrentPlaneAngle
+    {
+        get { return _currentPlaneAngle; }
+    }
 
     public void Start()
     {
@@ -23,7 +34,8 @@ public class CameraControl : MonoBehaviour
     {
         Scrolling();
         Panning();
-        Debug.DrawLine(_transform.position, _transform.position + _pivot);
+        _pivot = _transform.forward * 10;
+        Debug.DrawLine(_transform.position, _transform.position + _pivot, Color.magenta);
     }
 
     #region Scrolling
@@ -51,15 +63,16 @@ public class CameraControl : MonoBehaviour
         Turn(-Mathf.PI*0.5f);
     }
 
-    private void Turn(float angleDelta)
+    private void Turn(double angleDelta)
     {
         _zoom = false;
-        _pivot = _transform.position + _transform.forward*10;
 
         _distance = (_transform.position - _pivot).magnitude;
 
         var oldPlaneAngle = _currentPlaneAngle;
-        _currentPlaneAngle += angleDelta;
+        _currentPlaneAngle = CorrectAngle(_currentPlaneAngle + angleDelta);
+
+        Debug.Log(string.Format("Turning from {0} to {1}", oldPlaneAngle, _currentPlaneAngle));
 
         var tweenSettings = new Hashtable();
         tweenSettings["from"] = oldPlaneAngle;
@@ -72,9 +85,48 @@ public class CameraControl : MonoBehaviour
         iTween.ValueTo(gameObject, tweenSettings);
     }
 
+    /// <summary>
+    /// This method compensates for floating point errors by giving back<br/>
+    /// the closest of the following values: 0, 1/2*pi, pi, 3/4 pi.
+    /// </summary>
+    /// <remarks>Also considers multiples of those values,<br/>
+    ///  i.e. a closeness to 2*pi will result in pi being returned instead of 3/4pi.</remarks>
+    /// <param name="angle"></param>
+    /// <returns></returns>
+    private float CorrectAngle(double angle)
+    {
+        bool sign = angle < 0;
+
+        double absAngle = Math.Abs(angle);
+
+        double result = Pi;
+
+        if (absAngle % HalfPi < result)
+        {
+            result = HalfPi;
+        }
+
+        if (absAngle%Pi < result)
+        {
+            result = Pi;
+        }
+
+        if (absAngle % ThreeHalvesPi < result)
+        {
+            result = ThreeHalvesPi;
+        }
+
+        if (absAngle%TwoPi < result)
+        {
+            result = 0;
+        }
+
+        return (float) (sign ? -result : result);
+    }
+
     private void TurnUpdate(float angle)
     {
-        _transform.position = /*_pivot +*/
+        _transform.position = _pivot +
                               new Vector3(
                                   Mathf.Sin(angle)*_distance,
                               _transform.position.y,

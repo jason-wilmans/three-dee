@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
+[assembly: InternalsVisibleTo("TestUnityCode")]
 public class MainControl : MonoBehaviour
 {
     [SerializeField]
