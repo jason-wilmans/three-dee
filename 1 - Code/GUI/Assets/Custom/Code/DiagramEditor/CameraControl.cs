@@ -23,6 +23,7 @@ public class CameraControl : MonoBehaviour
     {
         Scrolling();
         Panning();
+        Debug.DrawLine(_transform.position, _transform.position + _pivot);
     }
 
     #region Scrolling
@@ -65,7 +66,7 @@ public class CameraControl : MonoBehaviour
         tweenSettings["to"] = _currentPlaneAngle;
         tweenSettings["onupdate"] = "TurnUpdate";
         tweenSettings["oncomplete"] = "TurnComplete";
-        tweenSettings["time"] = 5f;
+        tweenSettings["time"] = 0.3f;
         tweenSettings["easetype"] = "easeInOutCubic";
 
         iTween.ValueTo(gameObject, tweenSettings);
@@ -73,7 +74,7 @@ public class CameraControl : MonoBehaviour
 
     private void TurnUpdate(float angle)
     {
-        _transform.position = _pivot +
+        _transform.position = /*_pivot +*/
                               new Vector3(
                                   Mathf.Sin(angle)*_distance,
                               _transform.position.y,
