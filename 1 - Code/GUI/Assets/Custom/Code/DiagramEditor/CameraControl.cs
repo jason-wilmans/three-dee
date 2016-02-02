@@ -9,9 +9,8 @@ public class CameraControl : MonoBehaviour
     private const float ScrollDelta = 0.005f;
     private const float ScrollingSpeed = 20;
     private const float PanAreaSize = 0.005f;
-    private const double HalfPi = Math.PI * 0.5;
-    private const double ThreeHalvesPi = Math.PI*(3.0/2.0);
-    private const double Pi = Math.PI;
+    private const double HalfPi = 0.5 * Math.PI;
+    private const double ThreeHalfPi = 3.0/2.0 * Math.PI;
     private const double TwoPi = 2 * Math.PI;
     private float _currentPlaneAngle;
 
@@ -28,6 +27,7 @@ public class CameraControl : MonoBehaviour
     public void Start()
     {
         _transform = GetComponent<Transform>();
+        _currentPlaneAngle = (float) Math.PI;
     }
 
     public void FixedUpdate()
@@ -95,33 +95,47 @@ public class CameraControl : MonoBehaviour
     /// <returns></returns>
     private float CorrectAngle(double angle)
     {
-        bool sign = angle < 0;
-
-        double absAngle = Math.Abs(angle);
-
-        double result = Pi;
-
-        if (absAngle % HalfPi < result)
+        int scalar = (int)(angle / TwoPi);
+        double rest = angle - scalar*TwoPi;
+        if (rest > 0)
         {
-            result = HalfPi;
+            return Rasterize(rest);
+        }
+        else
+        {
+            return Rasterize(TwoPi + rest);
+        }
+    }
+
+    private float Rasterize(double angle)
+    {
+        if (angle > TwoPi || angle < 0)
+        {
+            throw new ArgumentException("Angle must be: 0 <= angle <= TwoPi.");
         }
 
-        if (absAngle%Pi < result)
+        double[] rasterPoints = {0, HalfPi, Math.PI, ThreeHalfPi, TwoPi };
+        double delta = angle;
+        int lowestIndex = 0;
+
+        for (int i = 1; i < rasterPoints.Length; i++)
         {
-            result = Pi;
+            double currentDelta = Math.Abs(angle - rasterPoints[i]);
+            if (currentDelta < delta)
+            {
+                lowestIndex = i;
+                delta = currentDelta;
+            }
         }
 
-        if (absAngle % ThreeHalvesPi < result)
+        if (lowestIndex == rasterPoints.Length - 1)
         {
-            result = ThreeHalvesPi;
+            return 0;
         }
-
-        if (absAngle%TwoPi < result)
+        else
         {
-            result = 0;
+            return (float)rasterPoints[lowestIndex];
         }
-
-        return (float) (sign ? -result : result);
     }
 
     private void TurnUpdate(float angle)
