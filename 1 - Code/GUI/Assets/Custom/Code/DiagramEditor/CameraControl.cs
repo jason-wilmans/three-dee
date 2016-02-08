@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
@@ -9,32 +8,28 @@ public class CameraControl : MonoBehaviour
     private const float ScrollDelta = 0.005f;
     private const float ScrollingSpeed = 20;
     private const float PanAreaSize = 0.005f;
-    private const double HalfPi = 0.5 * Math.PI;
-    private const double ThreeHalfPi = 3.0/2.0 * Math.PI;
-    private const double TwoPi = 2 * Math.PI;
-    private float _currentPlaneAngle;
+    private const double HalfPi = 0.5*Math.PI;
+    private const double ThreeHalfPi = 3.0/2.0*Math.PI;
+    private const double TwoPi = 2*Math.PI;
 
     private float _distance;
     private Vector3 _pivot;
     private Transform _transform;
     private bool _zoom = true;
 
-    public float CurrentPlaneAngle
-    {
-        get { return _currentPlaneAngle; }
-    }
+    public float CurrentPlaneAngle { get; private set; }
 
     public void Start()
     {
         _transform = GetComponent<Transform>();
-        _currentPlaneAngle = (float) Math.PI;
+        CurrentPlaneAngle = (float) Math.PI;
     }
 
     public void FixedUpdate()
     {
         Scrolling();
         Panning();
-        _pivot = _transform.forward * 10;
+        _pivot = _transform.forward*10;
         Debug.DrawLine(_transform.position, _transform.position + _pivot, Color.magenta);
     }
 
@@ -69,14 +64,27 @@ public class CameraControl : MonoBehaviour
 
         _distance = (_transform.position - _pivot).magnitude;
 
-        var oldPlaneAngle = _currentPlaneAngle;
-        _currentPlaneAngle = CorrectAngle(_currentPlaneAngle + angleDelta);
+        var oldPlaneAngle = CurrentPlaneAngle;
+        CurrentPlaneAngle = CorrectAngle(CurrentPlaneAngle + angleDelta);
 
-        Debug.Log(string.Format("Turning from {0} to {1}", oldPlaneAngle, _currentPlaneAngle));
+        double from = oldPlaneAngle;
+        double to = CurrentPlaneAngle;
 
         var tweenSettings = new Hashtable();
-        tweenSettings["from"] = oldPlaneAngle;
-        tweenSettings["to"] = _currentPlaneAngle;
+        if (Math.Abs(oldPlaneAngle) < Double.Epsilon && angleDelta < 0)
+        {
+            to = -HalfPi;
+            Debug.Log("Overflow < pi");
+        } else if (ThreeHalfPi - Math.Abs(oldPlaneAngle) < Double.Epsilon && angleDelta > 0)
+        {
+            to = TwoPi;
+            Debug.Log("Overflow > pi");
+        }
+
+        Debug.Log(string.Format("from: {0}, to: {1}", from, to));
+
+        tweenSettings["from"] = from;
+        tweenSettings["to"] = to;
         tweenSettings["onupdate"] = "TurnUpdate";
         tweenSettings["oncomplete"] = "TurnComplete";
         tweenSettings["time"] = 0.3f;
@@ -86,25 +94,24 @@ public class CameraControl : MonoBehaviour
     }
 
     /// <summary>
-    /// This method compensates for floating point errors by giving back<br/>
-    /// the closest of the following values: 0, 1/2*pi, pi, 3/4 pi.
+    ///     This method compensates for floating point errors by giving back<br />
+    ///     the closest of the following values: 0, 1/2*pi, pi, 3/4 pi.
     /// </summary>
-    /// <remarks>Also considers multiples of those values,<br/>
-    ///  i.e. a closeness to 2*pi will result in pi being returned instead of 3/4pi.</remarks>
+    /// <remarks>
+    ///     Also considers multiples of those values,<br />
+    ///     i.e. a closeness to 2*pi will result in pi being returned instead of 3/4pi.
+    /// </remarks>
     /// <param name="angle"></param>
     /// <returns></returns>
     private float CorrectAngle(double angle)
     {
-        int scalar = (int)(angle / TwoPi);
-        double rest = angle - scalar*TwoPi;
+        var scalar = (int) (angle/TwoPi);
+        var rest = angle - scalar*TwoPi;
         if (rest > 0)
         {
             return Rasterize(rest);
         }
-        else
-        {
-            return Rasterize(TwoPi + rest);
-        }
+        return Rasterize(TwoPi + rest);
     }
 
     private float Rasterize(double angle)
@@ -114,13 +121,13 @@ public class CameraControl : MonoBehaviour
             throw new ArgumentException("Angle must be: 0 <= angle <= TwoPi.");
         }
 
-        double[] rasterPoints = {0, HalfPi, Math.PI, ThreeHalfPi, TwoPi };
-        double delta = angle;
-        int lowestIndex = 0;
+        double[] rasterPoints = {0, HalfPi, Math.PI, ThreeHalfPi, TwoPi};
+        var delta = angle;
+        var lowestIndex = 0;
 
-        for (int i = 1; i < rasterPoints.Length; i++)
+        for (var i = 1; i < rasterPoints.Length; i++)
         {
-            double currentDelta = Math.Abs(angle - rasterPoints[i]);
+            var currentDelta = Math.Abs(angle - rasterPoints[i]);
             if (currentDelta < delta)
             {
                 lowestIndex = i;
@@ -132,10 +139,7 @@ public class CameraControl : MonoBehaviour
         {
             return 0;
         }
-        else
-        {
-            return (float)rasterPoints[lowestIndex];
-        }
+        return (float) rasterPoints[lowestIndex];
     }
 
     private void TurnUpdate(float angle)
@@ -143,8 +147,8 @@ public class CameraControl : MonoBehaviour
         _transform.position = _pivot +
                               new Vector3(
                                   Mathf.Sin(angle)*_distance,
-                              _transform.position.y,
-                              Mathf.Cos(angle)*_distance);
+                                  _transform.position.y,
+                                  Mathf.Cos(angle)*_distance);
         _transform.LookAt(_pivot);
     }
 
@@ -183,18 +187,18 @@ public class CameraControl : MonoBehaviour
     private static bool MouseInRightPanningArea()
     {
         return Input.mousePosition.x < Screen.width &&
-               Input.mousePosition.x > Screen.width - Screen.width * PanAreaSize;
+               Input.mousePosition.x > Screen.width - Screen.width*PanAreaSize;
     }
 
     private static bool MouseInLeftPanningArea()
     {
-        return Input.mousePosition.x > 0 && Input.mousePosition.x < Screen.width * PanAreaSize;
+        return Input.mousePosition.x > 0 && Input.mousePosition.x < Screen.width*PanAreaSize;
     }
 
     private bool MouseInTopPanningArea()
     {
         return Input.mousePosition.y < Screen.height &&
-         Input.mousePosition.y > Screen.height - Screen.height*PanAreaSize;
+               Input.mousePosition.y > Screen.height - Screen.height*PanAreaSize;
     }
 
     private bool MouseInBottomPanningArea()
