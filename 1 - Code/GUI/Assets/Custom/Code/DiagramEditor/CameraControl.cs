@@ -107,8 +107,8 @@ public class CameraControl : MonoBehaviour
         {
             return Rasterize(rest);
         }
-        return Rasterize(TwoPi + rest);
-    }
+            return Rasterize(TwoPi + rest);
+        }
 
     private float Rasterize(double angle)
     {
@@ -143,8 +143,8 @@ public class CameraControl : MonoBehaviour
         _transform.position = _pivot +
                               new Vector3(
                                   Mathf.Sin(angle)*_distance,
-                                  _transform.position.y,
-                                  Mathf.Cos(angle)*_distance);
+                              _transform.position.y,
+                              Mathf.Cos(angle)*_distance);
         _transform.LookAt(_pivot);
     }
 
@@ -194,7 +194,7 @@ public class CameraControl : MonoBehaviour
     private bool MouseInTopPanningArea()
     {
         return Input.mousePosition.y < Screen.height &&
-               Input.mousePosition.y > Screen.height - Screen.height*PanAreaSize;
+         Input.mousePosition.y > Screen.height - Screen.height*PanAreaSize;
     }
 
     private bool MouseInBottomPanningArea()
