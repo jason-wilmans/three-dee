@@ -17,6 +17,7 @@ namespace UIToolkit
         public MouseEventArgs(Vector3 mousePosition)
         {
             MousePosition = mousePosition;
+            IsHandled = true;
         }
     }
 }

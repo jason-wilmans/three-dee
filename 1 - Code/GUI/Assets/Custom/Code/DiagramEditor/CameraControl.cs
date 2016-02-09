@@ -7,15 +7,16 @@ public class CameraControl : MonoBehaviour
     private const string ScrollAxisName = "Mouse ScrollWheel";
     private const float ScrollDelta = 0.005f;
     private const float ScrollingSpeed = 20;
-    private const float PanAreaSize = 0.005f;
+    private const float PanAreaSize = 0.01f;
     private const double HalfPi = 0.5*Math.PI;
     private const double ThreeHalfPi = 3.0/2.0*Math.PI;
     private const double TwoPi = 2*Math.PI;
+    private const float Distance = 25;
 
     private float _distance;
-    private Vector3 _pivot;
     private Transform _transform;
     private bool _zoom = true;
+    private Vector3 _pivot;
 
     public float CurrentPlaneAngle { get; private set; }
 
@@ -29,8 +30,6 @@ public class CameraControl : MonoBehaviour
     {
         Scrolling();
         Panning();
-        _pivot = _transform.forward*10;
-        Debug.DrawLine(_transform.position, _transform.position + _pivot, Color.magenta);
     }
 
     #region Scrolling
@@ -61,8 +60,7 @@ public class CameraControl : MonoBehaviour
     private void Turn(double angleDelta)
     {
         _zoom = false;
-
-        _distance = (_transform.position - _pivot).magnitude;
+        _pivot = _transform.TransformPoint(_transform.forward*Distance);
 
         var oldPlaneAngle = CurrentPlaneAngle;
         CurrentPlaneAngle = CorrectAngle(CurrentPlaneAngle + angleDelta);
@@ -83,7 +81,7 @@ public class CameraControl : MonoBehaviour
         tweenSettings["to"] = to;
         tweenSettings["onupdate"] = "TurnUpdate";
         tweenSettings["oncomplete"] = "TurnComplete";
-        tweenSettings["time"] = 0.3f;
+        tweenSettings["time"] = 5f;
         tweenSettings["easetype"] = "easeInOutCubic";
 
         iTween.ValueTo(gameObject, tweenSettings);
@@ -140,11 +138,13 @@ public class CameraControl : MonoBehaviour
 
     private void TurnUpdate(float angle)
     {
+        Debug.DrawLine(_transform.position, _pivot, Color.magenta);
         _transform.position = _pivot +
                               new Vector3(
-                                  Mathf.Sin(angle)*_distance,
-                              _transform.position.y,
-                              Mathf.Cos(angle)*_distance);
+                                  Mathf.Sin(angle)*Distance,
+                                  0,
+                                  Mathf.Cos(angle)*Distance
+                              );
         _transform.LookAt(_pivot);
     }
 

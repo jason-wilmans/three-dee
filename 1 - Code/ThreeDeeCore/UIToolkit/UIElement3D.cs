@@ -26,6 +26,11 @@ namespace UIToolkit
         /// </summary>
         private event Action<MouseEventArgs> MouseExit;
 
+        public void Start()
+        {
+            //gameObject.pa
+        }
+
         private void OnMouseEnter()
         {
             Bubble(EventType.MouseEnter, new MouseEventArgs(Input.mousePosition));
@@ -43,6 +48,7 @@ namespace UIToolkit
 
             while (!mouseEventArgs.IsHandled && level != null)
             {
+                Debug.Log("level: " + level.gameObject.name);
                 InvokeEvent(eventType, mouseEventArgs);
                 level = level.Parent;
             }
@@ -53,7 +59,10 @@ namespace UIToolkit
             switch (eventType)
             {
                 case EventType.MouseEnter:
-                    MouseEnter?.Invoke(mouseEventArgs);
+                    if (MouseEnter != null)
+                    {
+                        MouseEnter(mouseEventArgs);
+                    }
                     break;
             }
         }

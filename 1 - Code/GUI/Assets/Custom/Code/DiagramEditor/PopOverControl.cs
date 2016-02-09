@@ -4,6 +4,7 @@ using DiagramLogic.Interface.Elements;
 
 public class PopOverControl : MonoBehaviour
 {
+    public Transform Origin; 
     public GameObject ShapePrefab;
     private IThreeDeeCore _core;
     private Transform _cameraTransform;
@@ -30,7 +31,8 @@ public class PopOverControl : MonoBehaviour
         IDiagramElement element = new Ellipsoid();
         _core.CurrentDiagram.Add(element);
         Vector3 targetPosition = _cameraTransform.position +_cameraTransform.forward * 20;
-        Instantiate(ShapePrefab, targetPosition, _cameraTransform.rotation);
+        GameObject go = Instantiate(ShapePrefab, targetPosition, _cameraTransform.rotation) as GameObject;
+        go.GetComponent<Transform>().parent = Origin;
         Hide();
     }
 }
