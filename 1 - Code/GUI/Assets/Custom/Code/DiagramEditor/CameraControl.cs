@@ -7,6 +7,7 @@ public class CameraControl : MonoBehaviour
     private const string ScrollAxisName = "Mouse ScrollWheel";
     private const float ScrollDelta = 0.005f;
     private const float ScrollingSpeed = 20;
+    private const float PanSpeed = -0.05f;
     private const float PanAreaSize = 0.01f;
     private const double HalfPi = 0.5*Math.PI;
     private const double ThreeHalfPi = 3.0/2.0*Math.PI;
@@ -17,6 +18,7 @@ public class CameraControl : MonoBehaviour
     private Transform _transform;
     private bool _zoom = true;
     private Vector3 _pivot;
+    private Vector3 _oldMousePosition;
 
     public float CurrentPlaneAngle { get; private set; }
 
@@ -81,7 +83,7 @@ public class CameraControl : MonoBehaviour
         tweenSettings["to"] = to;
         tweenSettings["onupdate"] = "TurnUpdate";
         tweenSettings["oncomplete"] = "TurnComplete";
-        tweenSettings["time"] = 5f;
+        tweenSettings["time"] = 0.03f;
         tweenSettings["easetype"] = "easeInOutCubic";
 
         iTween.ValueTo(gameObject, tweenSettings);
@@ -138,13 +140,14 @@ public class CameraControl : MonoBehaviour
 
     private void TurnUpdate(float angle)
     {
-        Debug.DrawLine(_transform.position, _pivot, Color.magenta);
-        _transform.position = _pivot +
+        Debug.DrawLine(_transform.position, _pivot, Color.yellow);
+        Vector3 absoluteCirclePosition =
                               new Vector3(
                                   Mathf.Sin(angle)*Distance,
                                   0,
                                   Mathf.Cos(angle)*Distance
                               );
+        _transform.position = _pivot + absoluteCirclePosition;
         _transform.LookAt(_pivot);
     }
 
@@ -159,25 +162,12 @@ public class CameraControl : MonoBehaviour
 
     private void Panning()
     {
-        // Horizontal
-        if (MouseInLeftPanningArea())
+        if (Input.GetMouseButton(1))
         {
-            _transform.Translate(Vector3.left);
+            Vector3 delta = Input.mousePosition - _oldMousePosition;
+            _transform.Translate(PanSpeed * delta);
         }
-        else if (MouseInRightPanningArea())
-        {
-            _transform.Translate(Vector3.right);
-        }
-
-        // Vertical
-        if (MouseInTopPanningArea())
-        {
-            _transform.Translate(Vector3.up);
-        }
-        else if (MouseInBottomPanningArea())
-        {
-            _transform.Translate(Vector3.down);
-        }
+        _oldMousePosition = Input.mousePosition;
     }
 
     private static bool MouseInRightPanningArea()
