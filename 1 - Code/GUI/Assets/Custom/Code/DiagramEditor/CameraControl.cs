@@ -13,6 +13,7 @@ public class CameraControl : MonoBehaviour
     private const double ThreeHalfPi = 3.0/2.0*Math.PI;
     private const double TwoPi = 2*Math.PI;
     private const float Distance = 25;
+    private float TurnSpeed = 0.4f;
 
     private float _distance;
     private Transform _transform;
@@ -62,7 +63,8 @@ public class CameraControl : MonoBehaviour
     private void Turn(double angleDelta)
     {
         _zoom = false;
-        _pivot = _transform.TransformPoint(_transform.forward*Distance);
+
+        _pivot = _transform.position + _transform.forward * Distance;
 
         var oldPlaneAngle = CurrentPlaneAngle;
         CurrentPlaneAngle = CorrectAngle(CurrentPlaneAngle + angleDelta);
@@ -83,7 +85,7 @@ public class CameraControl : MonoBehaviour
         tweenSettings["to"] = to;
         tweenSettings["onupdate"] = "TurnUpdate";
         tweenSettings["oncomplete"] = "TurnComplete";
-        tweenSettings["time"] = 0.03f;
+        tweenSettings["time"] = TurnSpeed;
         tweenSettings["easetype"] = "easeInOutCubic";
 
         iTween.ValueTo(gameObject, tweenSettings);
@@ -140,7 +142,6 @@ public class CameraControl : MonoBehaviour
 
     private void TurnUpdate(float angle)
     {
-        Debug.DrawLine(_transform.position, _pivot, Color.yellow);
         Vector3 absoluteCirclePosition =
                               new Vector3(
                                   Mathf.Sin(angle)*Distance,
