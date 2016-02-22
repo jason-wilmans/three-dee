@@ -13,7 +13,6 @@ namespace UIToolkit
         /// <summary>
         ///     This 3D UI element's parent element.
         /// </summary>
-        /// <remarks>If this element is the root of a visual tree, it is of type <see cref="DefaultElement" /></remarks>
         public UiElement3D Parent { get; protected set; }
 
         /// <summary>
@@ -26,12 +25,35 @@ namespace UIToolkit
         /// </summary>
         private event Action<MouseEventArgs> MouseExit;
 
-        public void Start()
+        public void OnEnable()
         {
-            //gameObject.pa
+            Transform current = GetComponent<Transform>().parent;
+            while (current != null)
+            {
+                UiElement3D[] elements = current.GetComponents<UiElement3D>();
+                if (elements == null || elements.Length == 0)
+                {
+                    current = current.parent;
+                }
+                else
+                {
+                    if (elements.Length > 1)
+                    {
+                        Debug.LogError("Multiple ui elements on same go");
+                        throw new InvalidOperationException("You can't have more than one UIElement3D script on one GameObject: " + transform.gameObject.name);
+                    }
+
+                    Parent = elements[0];
+                }
+            }
         }
 
         private void OnMouseEnter()
+        {
+            Bubble(EventType.MouseEnter, new MouseEventArgs(Input.mousePosition));
+        }
+
+        private void OnMouseExit()
         {
             Bubble(EventType.MouseEnter, new MouseEventArgs(Input.mousePosition));
         }
@@ -62,6 +84,13 @@ namespace UIToolkit
                     if (MouseEnter != null)
                     {
                         MouseEnter(mouseEventArgs);
+                    }
+                    break;
+
+                case EventType.MouseExit:
+                    if (MouseExit != null)
+                    {
+                        MouseExit(mouseEventArgs);
                     }
                     break;
             }

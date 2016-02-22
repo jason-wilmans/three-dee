@@ -4,6 +4,6 @@
     {
         MouseClick,
         MouseEnter,
-        MouseLeave
+        MouseExit
     }
 }
