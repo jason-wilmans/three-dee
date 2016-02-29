@@ -1,0 +1,45 @@
+!Package
+Id: 78af5b8a-ceab-43c6-a986-95984941dfa8
+SerializedVersion: {Assets: 0.0.2}
+Tags: []
+Meta:
+    Name: ThreeDee
+    Version: 1.0.0.0
+    Authors: []
+    Owners: []
+    RootNamespace: ThreeDee
+    Dependencies:
+        -   Name: Xenko
+            Version: 1.5.3-beta
+            RootAssets: []
+LocalDependencies: []
+Profiles:
+    -   Name: Shared
+        Platform: Shared
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Shared
+            -   Path: ThreeDee.Game/Effects
+        OutputGroupDirectories: {}
+        Properties: {}
+        ProjectReferences:
+            -   Id: 58b2b24a-c22b-4fdb-815a-47eaa5848535
+                Location: ThreeDee.Game/ThreeDee.Game.csproj
+                Type: Library
+    -   Name: Windows
+        Platform: Windows
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Windows
+        OutputGroupDirectories: {}
+        Properties: {}
+        ProjectReferences:
+            -   Id: f4d3f81f-0aa2-4bd3-800b-3f71351b13a3
+                Location: ThreeDee.Windows/ThreeDee.Windows.csproj
+                Type: Executable
+ExplicitFolders: []
+Bundles: []
+TemplateFolders: []
+RootAssets:
+    - 177c6b51-ada4-48b2-878e-8291d36631a2:shapes/cuboid/cuboidModel
+    - 6cdcfb13-baf1-41db-94b8-62dae1b5d927:shapes/RawShapeMaterial
