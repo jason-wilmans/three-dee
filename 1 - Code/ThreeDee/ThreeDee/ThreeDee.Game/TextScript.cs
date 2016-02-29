@@ -1,4 +1,5 @@
-﻿using SiliconStudio.Core.Mathematics;
+﻿using SiliconStudio.Core;
+using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.Rendering;
