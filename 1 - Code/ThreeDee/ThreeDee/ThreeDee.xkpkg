@@ -43,3 +43,4 @@ TemplateFolders: []
 RootAssets:
     - 177c6b51-ada4-48b2-878e-8291d36631a2:shapes/cuboid/cuboidModel
     - 6cdcfb13-baf1-41db-94b8-62dae1b5d927:shapes/RawShapeMaterial
+    - c1b73101-179a-4ed1-b5a5-ca82894be1d1:fonts/RobotoFont
