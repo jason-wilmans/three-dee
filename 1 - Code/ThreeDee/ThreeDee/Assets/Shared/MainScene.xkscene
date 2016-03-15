@@ -6,10 +6,10 @@ Hierarchy:
     ~Id: 0a4e03d8-5a94-475e-b397-089c2e221c4a
     RootEntities:
         - 959345e9-d56b-458d-8efb-48fadc34d43b
+        - 6145f358-f13c-4f90-b8c5-35c886163773
         - 859f491e-b73b-4acf-a6c7-205483c30ca4
         - c5721988-5b4c-4815-8f3b-baca26299b30
-        - 1dbd09ea-409a-4554-b1d4-d6856632de76
-        - 6145f358-f13c-4f90-b8c5-35c886163773
+        - 6c4d81e3-37e6-4607-89b3-be8f49119be1
     Entities:
         -   Entity:
                 Id: 1dbd09ea-409a-4554-b1d4-d6856632de76
@@ -19,6 +19,7 @@ Hierarchy:
                         ~Id: 4b9df749-a94a-48f6-8695-32f64e66fbf9
                         IsFullScreen: false
                         VirtualResolution: {X: 256.0, Y: 256.0, Z: 1.0}
+                        VirtualResolutionMode: FixedWidthFixedHeight
                         IsBillboard: false
                     ScriptComponent.Key:
                         ~Id: 555e7639-625e-47fe-b43e-c41b43491be8
@@ -28,20 +29,20 @@ Hierarchy:
                                 Font: c1b73101-179a-4ed1-b5a5-ca82894be1d1:fonts/RobotoFont
                     TransformComponent.Key:
                         ~Id: b7091fb7-0f5b-48bc-874a-d30a11e31d1f
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Position: {X: 13.0127258, Y: 3.35988069, Z: -8.057108}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
             Design: {}
         -   Entity:
                 Id: 6145f358-f13c-4f90-b8c5-35c886163773
-                Name: cuboidModel
+                Name: Ground
                 Components:
                     ModelComponent.Key:
                         ~Id: bb36adf8-9372-433d-9b9b-e4557eba374f
                         Model: 177c6b51-ada4-48b2-878e-8291d36631a2:shapes/cuboid/cuboidModel
                         Materials:
-                            - null
+                            - e793f3a2-dfba-43a1-9914-e55a81f9cfaf:shapes/Ground
                     TransformComponent.Key:
                         ~Id: 07b9b5cc-2fac-4f4c-8cab-f2a95ebf9db8
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
@@ -50,24 +51,19 @@ Hierarchy:
                         Children: []
             Design: {}
         -   Entity:
-                Id: 7de96c9f-d55a-4bda-a10f-48409065b97f
-                Name: Sprite
+                Id: 6c4d81e3-37e6-4607-89b3-be8f49119be1
+                Name: Scribble
                 Components:
                     SpriteComponent.Key:
-                        ~Id: 17082030-4f68-4906-9ceb-a2955c12efe5
-                        SpriteProvider: !SpriteFromSheet
-                            ~Id: 6adfa5f1-8148-4d81-a74b-0cb0ea63b8b5
-                            Sheet: null
+                        ~Id: 890e5f08-14b7-4fa9-b31a-b41d10cc9e13
+                        SpriteProvider: !SpriteFromTexture
+                            ~Id: 1fd2d931-6f69-4e68-a1a5-051d326f730f
+                            Texture: b27a5131-b4e6-4342-8ff5-1fcb2c1cee17:Scribble
+                            Center: {X: 0.0, Y: 0.0}
                         Color: {R: 1.0, G: 1.0, B: 1.0, A: 1.0}
-                    ScriptComponent.Key:
-                        ~Id: 7207de9b-aaf6-4338-9d7e-bfd07b4023a2
-                        Scripts:
-                            - !ThreeDee.TextScript,ThreeDee.Game
-                                Id: b5cb7e83-9410-40c2-b1a9-6c03890b4a5f
-                                Font: 68500f89-b128-4a6b-a2fe-5570406a107c:fonts/SpriteFont
                     TransformComponent.Key:
-                        ~Id: ac103cad-3eee-4636-bcb7-84d678468393
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        ~Id: beb6f097-5b01-4ed8-8b70-ccc0f889ec80
+                        Position: {X: -6.456051, Y: 2.15734744, Z: -0.916996}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
@@ -113,9 +109,12 @@ Hierarchy:
                         Projection: Perspective
                     ScriptComponent.Key:
                         ~Id: 50c4dc52-ac6a-4d44-8186-218aa212295a
-                        Scripts:
-                            - !ThreeDee.MouseLookScript,ThreeDee.Game
-                                Id: 2fce5b47-8049-41df-a020-e262e4a8edb1
+                        Scripts: []
+                    AnimationComponent.Key:
+                        ~Id: 2e15ba35-c508-437a-9665-bf6e0c36175e
+                        Animations:
+                            TestI: null
+                        PlayingAnimations: []
                     TransformComponent.Key:
                         ~Id: 38720457-0fbf-4078-b4e7-111305b2c40a
                         Position: {X: 0.0, Y: 2.36528444, Z: 12.3511734}
@@ -133,9 +132,9 @@ Hierarchy:
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children:
-                            -   Entity: {Id: ff5e7ab8-2fe3-490c-8390-b7da65a03a9c}
+                            -   Entity: {Id: 1dbd09ea-409a-4554-b1d4-d6856632de76}
                                 Component: TransformComponent.Key
-                            -   Entity: {Id: 7de96c9f-d55a-4bda-a10f-48409065b97f}
+                            -   Entity: {Id: ff5e7ab8-2fe3-490c-8390-b7da65a03a9c}
                                 Component: TransformComponent.Key
             Design: {}
         -   Entity:
@@ -149,7 +148,7 @@ Hierarchy:
                             - null
                     TransformComponent.Key:
                         ~Id: a152895f-4674-4aab-baec-51baac404d6c
-                        Position: {X: 13.5353336, Y: 2.96755624, Z: -7.92763853}
+                        Position: {X: 13.5353336, Y: 1.58547759, Z: -7.92763853}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []

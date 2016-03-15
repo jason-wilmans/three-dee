@@ -1,0 +1,15 @@
+!Texture
+Id: b27a5131-b4e6-4342-8ff5-1fcb2c1cee17
+SerializedVersion: {Xenko: 1.4.0-beta}
+Tags: []
+Source: ../../RawAssets/Scribble.png
+ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}
+~Base:
+    ~Id: 03c12108-cab8-4c21-9c3b-83a9a19a82db
+    Location: --import--
+    Asset: !Texture
+        Id: 00000000-0000-0000-0000-000000000000
+        SerializedVersion: {Xenko: 1.4.0-beta}
+        Tags: []
+        ImporterId: a60986f3-a594-4278-bd9d-68ea172f0558
+        ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}

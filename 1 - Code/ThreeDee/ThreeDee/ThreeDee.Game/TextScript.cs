@@ -37,7 +37,7 @@ namespace ThreeDee
         {
             batch.Begin();
             var text = "None - This is a sample sentence.";
-            //batch.DrawString(Font, text, Vector2.One, Color4.White);
+            batch.DrawString(Font, text, Vector2.One, Color4.White);
             batch.End();
         }
 

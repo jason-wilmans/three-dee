@@ -10,7 +10,7 @@ using SiliconStudio.Xenko.UI.Panels;
 
 namespace ThreeDee
 {
-    public class BillboardText : SyncScript
+    public class BillboardText : StartupScript
     {
         private SpriteBatch batch;
         private Vector2 screenSize;
@@ -27,7 +27,6 @@ namespace ThreeDee
 
             _uiComponent = Entity.GetOrCreate<UIComponent>();
 
-            // Create a simple UI composed of two buttons arranged in a stack panel.
             var font = Asset.Load<SpriteFont>("fonts/SpriteFont");
             var firstButton = new Button { Content = new TextBlock { Text = "First Button", Font = font, TextSize = 10} };
             _uiComponent.RootElement = new StackPanel { HorizontalAlignment = HorizontalAlignment.Left, Children = { firstButton } };
@@ -44,11 +43,6 @@ namespace ThreeDee
             var compositor = (SceneGraphicsCompositorLayers)scene.Settings.GraphicsCompositor;
             fontRenderer = new SceneDelegateRenderer(DrawFont);
             compositor.Master.Renderers.Add(fontRenderer);
-        }
-
-        public override void Update()
-        {
-            Entity.Transform.Position.Z -= 0.1f;
         }
 
         private void DrawFont(RenderContext arg1, RenderFrame arg2)

@@ -72,7 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillboardText.cs" />
-    <Compile Include="MouseLookScript.cs" />
+    <Compile Include="CameraInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextScript.cs" />
   </ItemGroup>
