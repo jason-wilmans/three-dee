@@ -1,280 +1,241 @@
 !SceneAsset
-Id: cc251a57-07ef-43d7-a65e-e6c219c900f0
-SerializedVersion: {Xenko: 1.5.0-alpha02}
+Id: de9bb73a-4f3e-476a-9478-29df90596aea
+SerializedVersion: {Xenko: 1.6.0-beta03}
 Tags: []
 Hierarchy:
-    ~Id: 0a4e03d8-5a94-475e-b397-089c2e221c4a
+    ~Id: 9e1b746d-5ad5-4b5b-ab92-8aa1612e3877
     RootEntities:
-        - 959345e9-d56b-458d-8efb-48fadc34d43b
-        - 6145f358-f13c-4f90-b8c5-35c886163773
-        - 859f491e-b73b-4acf-a6c7-205483c30ca4
-        - c5721988-5b4c-4815-8f3b-baca26299b30
-        - 6c4d81e3-37e6-4607-89b3-be8f49119be1
+        - c20c1d29-bd9a-4715-9e6b-81934ab701da
+        - 75ee3599-b1a5-45d7-a919-206db21bddc0
+        - 71b3b184-7b05-4323-a164-bcf0ecd23768
+        - 4561ccfe-617c-47a9-a823-9c50c6aa3542
+        - 84175fdd-139b-4559-a273-29ca998fcf37
     Entities:
         -   Entity:
-                Id: 1dbd09ea-409a-4554-b1d4-d6856632de76
-                Name: UI
-                Components:
-                    UIComponent.Key:
-                        ~Id: 4b9df749-a94a-48f6-8695-32f64e66fbf9
-                        IsFullScreen: false
-                        VirtualResolution: {X: 256.0, Y: 256.0, Z: 1.0}
-                        VirtualResolutionMode: FixedWidthFixedHeight
-                        IsBillboard: false
-                    ScriptComponent.Key:
-                        ~Id: 555e7639-625e-47fe-b43e-c41b43491be8
-                        Scripts:
-                            - !ThreeDee.BillboardText,ThreeDee.Game
-                                Id: 136706f8-0af3-4329-a5a2-a59404c06666
-                                Font: c1b73101-179a-4ed1-b5a5-ca82894be1d1:fonts/RobotoFont
-                    TransformComponent.Key:
-                        ~Id: b7091fb7-0f5b-48bc-874a-d30a11e31d1f
-                        Position: {X: 13.0127258, Y: 3.35988069, Z: -8.057108}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-            Design: {}
-        -   Entity:
-                Id: 6145f358-f13c-4f90-b8c5-35c886163773
-                Name: Ground
-                Components:
-                    ModelComponent.Key:
-                        ~Id: bb36adf8-9372-433d-9b9b-e4557eba374f
-                        Model: 177c6b51-ada4-48b2-878e-8291d36631a2:shapes/cuboid/cuboidModel
-                        Materials:
-                            - e793f3a2-dfba-43a1-9914-e55a81f9cfaf:shapes/Ground
-                    TransformComponent.Key:
-                        ~Id: 07b9b5cc-2fac-4f4c-8cab-f2a95ebf9db8
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 100.0, Y: 0.2, Z: 100.0}
-                        Children: []
-            Design: {}
-        -   Entity:
-                Id: 6c4d81e3-37e6-4607-89b3-be8f49119be1
-                Name: Scribble
-                Components:
-                    SpriteComponent.Key:
-                        ~Id: 890e5f08-14b7-4fa9-b31a-b41d10cc9e13
-                        SpriteProvider: !SpriteFromTexture
-                            ~Id: 1fd2d931-6f69-4e68-a1a5-051d326f730f
-                            Texture: b27a5131-b4e6-4342-8ff5-1fcb2c1cee17:Scribble
-                            Center: {X: 0.0, Y: 0.0}
-                        Color: {R: 1.0, G: 1.0, B: 1.0, A: 1.0}
-                    TransformComponent.Key:
-                        ~Id: beb6f097-5b01-4ed8-8b70-ccc0f889ec80
-                        Position: {X: -6.456051, Y: 2.15734744, Z: -0.916996}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-            Design: {}
-        -   Entity:
-                Id: 859f491e-b73b-4acf-a6c7-205483c30ca4
+                Id: 4561ccfe-617c-47a9-a823-9c50c6aa3542
                 Name: Directional light
                 Components:
-                    LightComponent.Key:
-                        ~Id: 0d9f8f88-3e16-4a54-a2b1-544fd66fd8ff
-                        Type: !LightDirectional
-                            ~Id: edfece23-6b09-4bfd-8df7-11253214021b
-                            Color: !ColorRgbProvider
-                                ~Id: 39054968-d7dd-4b4a-8c02-b3afc46ca7ef
-                                Value: {R: 1.0, G: 1.0, B: 1.0}
-                            Shadow:
-                                ~Id: 6e73ef23-dc26-43a7-ba31-922d134201eb
-                                Enabled: true
-                                Filter: !LightShadowMapFilterTypePcf
-                                    ~Id: 402d8348-ff96-465c-8ee3-58fd8e9b4dbe
-                                    FilterSize: Filter5x5
-                                Size: XLarge
-                                DepthRange:
-                                    ~Id: 68c947f3-32ed-43be-9d46-cc2fc64dbe7d
-                                PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic
-                                    ~Id: ab2430d6-2deb-4f31-828d-0de2be9e6f2d
-                                BiasParameters:
-                                    ~Id: bc4bc443-e2c9-43d7-bff8-264da742382d
-                        Intensity: 0.5
-                    TransformComponent.Key:
-                        ~Id: 0d68e9ad-817b-4130-9805-ff8954dffd16
+                    - !TransformComponent
+                        ~Id: e0c11a95-41a3-4baa-b8da-cf52167eb309
                         Position: {X: 0.0, Y: 2.0, Z: 0.0}
                         Rotation: {W: 0.7912401, X: -0.5540323, Y: 0.212012157, Z: 0.1484525}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
+                    - !LightComponent
+                        ~Id: 14ef9170-1f44-413d-8db4-281c9852d864
+                        Type: !LightDirectional
+                            ~Id: 8ce96996-afa7-4d7b-b180-aa2c5cb8f14e
+                            Color: !ColorRgbProvider
+                                ~Id: 1046b1a8-b5b0-404f-92c8-c9c65e987c94
+                                Value: {R: 1.0, G: 1.0, B: 1.0}
+                            Shadow:
+                                ~Id: 0ed91638-4d2f-47ac-b101-0ed244351fa1
+                                Enabled: true
+                                Filter: !LightShadowMapFilterTypePcf
+                                    ~Id: 5348c73b-bf07-43a7-97c1-aba32d6356b5
+                                    FilterSize: Filter5x5
+                                Size: XLarge
+                                DepthRange:
+                                    ~Id: 2b89e04b-14e5-4094-980f-fff68052021c
+                                PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic
+                                    ~Id: f4cd34cd-b1db-43eb-bc10-a8089e8281ed
+                                BiasParameters:
+                                    ~Id: 547d2a41-ef94-4a27-b4e5-f79a8e49e834
+                        Intensity: 5.0
             Design: {}
         -   Entity:
-                Id: 959345e9-d56b-458d-8efb-48fadc34d43b
+                Id: 71b3b184-7b05-4323-a164-bcf0ecd23768
                 Name: Camera
                 Components:
-                    CameraComponent.Key:
-                        ~Id: bd738741-cd9e-4a0b-9c1f-dccf9ed52bfd
+                    - !TransformComponent
+                        ~Id: 9816fdcc-c1ad-4171-9b3a-9d078208b71c
+                        Position: {X: -1.0, Y: 1.2, Z: 2.7}
+                        Rotation: {W: 0.981060266, X: -0.08583164, Y: -0.1729874, Z: -0.0151344351}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !CameraComponent
+                        ~Id: 73364cfd-4bc4-4410-bfff-9d33bb48cdbb
                         Projection: Perspective
-                    ScriptComponent.Key:
-                        ~Id: 50c4dc52-ac6a-4d44-8186-218aa212295a
-                        Scripts: []
-                    AnimationComponent.Key:
-                        ~Id: 2e15ba35-c508-437a-9665-bf6e0c36175e
-                        Animations:
-                            TestI: null
-                        PlayingAnimations: []
-                    TransformComponent.Key:
-                        ~Id: 38720457-0fbf-4078-b4e7-111305b2c40a
-                        Position: {X: 0.0, Y: 2.36528444, Z: 12.3511734}
+                    - !ThreeDee.CameraControl,ThreeDee.Game
+                        ~Id: 94e8965c-a0b9-4603-96e1-eb60e24bc816
+            Design: {}
+        -   Entity:
+                Id: 75ee3599-b1a5-45d7-a919-206db21bddc0
+                Name: Ground
+                Components:
+                    - !TransformComponent
+                        ~Id: 6fc45343-e397-43b8-812c-bd565b84e93c
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
-            Design: {}
-        -   Entity:
-                Id: c5721988-5b4c-4815-8f3b-baca26299b30
-                Name: Shape
-                Components:
-                    TransformComponent.Key:
-                        ~Id: a69c5e91-a035-41b7-9cce-7a995ab63130
-                        Position: {X: 0.0, Y: 0.0, Z: -5.0}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children:
-                            -   Entity: {Id: 1dbd09ea-409a-4554-b1d4-d6856632de76}
-                                Component: TransformComponent.Key
-                            -   Entity: {Id: ff5e7ab8-2fe3-490c-8390-b7da65a03a9c}
-                                Component: TransformComponent.Key
-            Design: {}
-        -   Entity:
-                Id: ff5e7ab8-2fe3-490c-8390-b7da65a03a9c
-                Name: CuboidModel
-                Components:
-                    ModelComponent.Key:
-                        ~Id: 35cd14ab-ca36-4b64-a2c9-eedb12afb77e
-                        Model: 177c6b51-ada4-48b2-878e-8291d36631a2:shapes/cuboid/cuboidModel
+                    - !ModelComponent
+                        ~Id: 3b481a95-9c22-468e-aeb5-a2a7bcd6f278
+                        Model: c058ae63-9b36-48f0-a5ee-036bbab7008d/32b235e2-6390-494d-a21c-e754f6d19b11:Ground
                         Materials:
                             - null
-                    TransformComponent.Key:
-                        ~Id: a152895f-4674-4aab-baec-51baac404d6c
-                        Position: {X: 13.5353336, Y: 1.58547759, Z: -7.92763853}
+            Design: {}
+        -   Entity:
+                Id: 84175fdd-139b-4559-a273-29ca998fcf37
+                Name: Skybox
+                Components:
+                    - !TransformComponent
+                        ~Id: a4ed69aa-6f2b-4584-a41d-bb5959d074d6
+                        Position: {X: 0.0, Y: 2.0, Z: -2.0}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
+                    - !SkyboxComponent
+                        ~Id: 80291a2b-026d-4b03-9808-efd4231a2081
+                        Skybox: c499d82e-534b-42f9-b90b-8036fce6865e/f53a3180-d96d-42c1-bada-45c8893bf20c:Skybox
+                        Intensity: 3.0
+                    - !LightComponent
+                        ~Id: 70313c5a-87df-461a-8b7e-0e8fc4fdea53
+                        Type: !LightSkybox
+                            ~Id: 6ea44460-619a-4393-93c2-fa55e8648378
+                        Intensity: 0.25
+            Design: {}
+        -   Entity:
+                Id: c20c1d29-bd9a-4715-9e6b-81934ab701da
+                Name: Sphere
+                Components:
+                    - !TransformComponent
+                        ~Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
+                        Position: {X: 0.0, Y: 0.5, Z: 0.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !ModelComponent
+                        ~Id: acfdde74-30b4-4d14-a276-26bb82cc645d
+                        Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
+                        Materials:
+                            - null
             Design: {}
 SceneSettings:
-    ~Id: 6c207419-29ee-4015-a902-a4cccb449419
+    ~Id: 39d2cf00-4767-4c82-a76a-f49dcf006e34
     GraphicsCompositor: !SceneGraphicsCompositorLayers
-        ~Id: 905f35a7-d960-4b51-b608-ddecb41bc223
+        ~Id: 1f0bfbb4-cf05-4b13-9d5b-f1822844f7a8
         Cameras:
-            -   ~Id: 7a6d92a4-ca41-4ba6-abf0-f8f766bbc969
+            -   ~Id: 78927eae-348b-4c7d-b2b8-961473d68def
                 Name: null
                 Camera:
-                    Entity: {Id: 959345e9-d56b-458d-8efb-48fadc34d43b}
-                    Component: CameraComponent.Key
+                    Entity: {Id: 71b3b184-7b05-4323-a164-bcf0ecd23768}
+                    Id: 73364cfd-4bc4-4410-bfff-9d33bb48cdbb
         Layers:
-            -   ~Id: de7dd401-b719-49b0-af4a-2fbc0ec8f10c
+            -   ~Id: 283742cd-c94c-4409-b3af-2a464f9923ea
                 Name: SceneGraphicsLayer
                 Output: !LocalRenderFrameProvider
                     Descriptor:
                         Format: HDR
                 Renderers:
                     - !ClearRenderFrameRenderer
-                        ~Id: c435296a-f894-4d8f-ba10-220f23aef912
+                        ~Id: e2b7531b-73a5-4b72-8971-5b7a2f7d0245
                         Color: {R: 0.392156869, G: 0.58431375, B: 0.929411769, A: 1.0}
                         Output: !CurrentRenderFrameProvider {}
                     - !SceneCameraRenderer
-                        ~Id: be2c210f-a610-4c7d-96e9-3cb186968e13
+                        ~Id: 660edf9f-52c6-4295-a4b1-b909064e1afe
                         Mode: !CameraRendererModeForward
-                            ~Id: d54aaab1-3339-4542-a3a4-df325d70e2bf
+                            ~Id: f8168859-91b7-47a4-a3c1-4ee4380b3e3d
                         Camera:
+                            ~Id: 60697405-f982-47f1-bd8a-5903292e7147
                             Index: 0
                         Output: !CurrentRenderFrameProvider {}
                         Viewport: {X: 0.0, Y: 0.0, Width: 100.0, Height: 100.0}
         Master:
-            ~Id: 94fd12ca-f09d-4041-987b-8644cfc6037e
+            ~Id: 2785963c-b1a9-4fcb-8dbc-982278a0b8df
             Name: SceneGraphicsLayer
             Output: !MasterRenderFrameProvider {}
             Renderers:
                 - !SceneEffectRenderer
-                    ~Id: 54027ae9-a677-4dae-bc53-bb33313f6278
+                    ~Id: c76b3359-d17d-4823-aef0-1a3047bc50e7
                     Input: !ImageEffectRendererInput.LayerInput {}
                     Effect: !PostProcessingEffects
-                        ~Id: c54677a8-a5fa-4c30-89e6-2c167b6e2608
+                        ~Id: af27535d-a28f-41fc-aef2-511a180c42e6
                         Camera:
+                            ~Id: 2c72f7e5-c982-4bd2-af12-d5ed67054472
                             Index: 0
                         DepthOfField:
-                            ~Id: 98f5bc74-54d3-4297-8b50-c269d128ac41
+                            ~Id: e93e447d-2e48-4ccf-9f7a-e19a7e55229b
                             Enabled: false
                             DOFAreas: {X: 0.5, Y: 6.0, Z: 50.0, W: 200.0}
                         BrightFilter:
-                            ~Id: 367f0913-d059-4ac8-bf21-27a13c86a344
+                            ~Id: 8b1a03b9-5f15-4d1b-8d05-445a17dce303
                             Color: {R: 1.0, G: 1.0, B: 1.0}
                         Bloom:
-                            ~Id: ecca3799-4c60-462d-86ba-1028cf76b002
+                            ~Id: 947747a0-e0de-4b24-b8aa-92282f685d77
                             Distortion: {X: 1.0, Y: 1.0}
                             Afterimage:
-                                ~Id: 87e2c6cb-b4bf-40c2-8916-66ebb62f746e
+                                ~Id: d4f2a85f-6639-4f43-8df8-eb96a632822d
                                 Enabled: false
                         LightStreak:
-                            ~Id: 42edb366-7c8d-407a-9451-62af978b1f4c
+                            ~Id: eee601d6-6f1c-41bf-8e01-a87c26fdc762
                             Attenuation: 0.7
                         LensFlare:
-                            ~Id: 029cab81-7123-4f3e-83cb-572ef70ba96a
+                            ~Id: 3d0284f4-f000-40cd-b18f-1a98d6e3b779
                         ColorTransforms:
-                            ~Id: 05114471-28cf-4bae-a09d-641f4ec6d2f3
+                            ~Id: 598e9e0c-9bed-4717-8fb6-2b6e7ea6b1ee
                             Transforms:
                                 - !ToneMap
-                                    ~Id: ad62f1f4-b7ae-46f3-9640-b352797abee8
+                                    ~Id: a5138a80-872d-4c2f-bb7c-0a3666dbb71d
                                     Operator: !ToneMapHejl2Operator
-                                        ~Id: 16edc71c-5ecd-4d5b-8732-89f382438692
+                                        ~Id: ad785d65-e3fa-47db-b4e8-ff2aeabb79df
                                 - !FilmGrain
-                                    ~Id: 1ae15851-3de1-41af-94be-4bf8202143d6
+                                    ~Id: 1ef42f56-4b92-420b-b851-b642062597da
                                     Enabled: false
                                 - !Vignetting
-                                    ~Id: cbe7ad23-134b-4761-a785-2eb4ed7230ac
+                                    ~Id: cf5f7ad2-c85f-43a8-810a-e7b21892b668
                                     Enabled: false
                                     Color: {R: 0.0, G: 0.0, B: 0.0}
                         Antialiasing: !FXAAEffect
-                            ~Id: 615bb3bd-35fa-4e8d-91b8-83d509198ea4
+                            ~Id: 5a28bd5f-521e-48ca-937b-8529d391f31a
                     Output: !CurrentRenderFrameProvider {}
     EditorSettings:
-        ~Id: f5ffd389-c7e6-469e-828f-97182518e4c5
+        ~Id: 373fff43-bbd1-41c9-9bf0-cb237b7f0a03
         GridColor: {R: 0.7058824, G: 0.7058824, B: 0.7058824}
         SceneUnit: 1.0
         Mode: !SceneEditorGraphicsModeHDRSettings
-            ~Id: 13dcfd8b-1963-4e18-9397-95a0bcc82e8e
+            ~Id: f82545c4-d0d7-4811-b258-97e67e692d20
             BackgroundColor: {R: 0.470588237, G: 0.470588237, B: 0.470588237}
             PostProcessingEffects:
-                ~Id: ee01d5bf-4ad2-4aba-a22a-96fdfbf6a9de
+                ~Id: c5c8fb19-0cbf-44d8-9c90-916d42f4faba
                 Camera:
+                    ~Id: 0953818e-c2f3-46ab-9b50-f93a650c7439
                     Index: 0
                 DepthOfField:
-                    ~Id: c165d084-6f95-4e60-99a1-99ce2f321fd6
+                    ~Id: 514204b2-96f3-4b45-8708-f7a0a7a2c2a3
                     Enabled: false
                     DOFAreas: {X: 0.5, Y: 6.0, Z: 50.0, W: 200.0}
                 BrightFilter:
-                    ~Id: 22c1d828-2776-4480-939d-a605280a76c0
+                    ~Id: b7a1e0cb-967f-4534-a4d2-f95065e2b986
                     Color: {R: 1.0, G: 1.0, B: 1.0}
                 Bloom:
-                    ~Id: 436324d4-a2a3-4e8a-8a5d-da2c9815b278
+                    ~Id: 06fcb1e6-9ace-45bb-9e32-26fe6849fdb0
                     Enabled: false
                     Distortion: {X: 1.0, Y: 1.0}
                     Afterimage:
-                        ~Id: 7a52baf4-cd5e-4c38-b7ec-2d53749fe2dd
+                        ~Id: 62b9ff23-4b3b-40bb-b317-abc6f0957e14
                         Enabled: false
                 LightStreak:
-                    ~Id: 248f9018-ec85-49bb-9c8e-eec76e985e9a
+                    ~Id: 2c6f96e7-bf4b-404d-bfd3-47c4808a7bc5
                     Enabled: false
                     Attenuation: 0.7
                 LensFlare:
-                    ~Id: 18f55148-a607-4076-b4f5-bda9ec884cfd
+                    ~Id: b0b9fda2-8c0a-419d-8a1e-8df1f5b78828
                     Enabled: false
                 ColorTransforms:
-                    ~Id: d9a50c9d-3fd7-458d-8acb-4e1e677d64ee
+                    ~Id: d3d6821a-0f10-4328-91f8-1b4303f28731
                     Transforms:
                         - !ToneMap
-                            ~Id: 25e6c2f4-6fb2-495b-ae34-4f2600ae062e
+                            ~Id: 102ca452-0ca3-4d95-91f2-605b572d7952
                             Operator: !ToneMapHejl2Operator
-                                ~Id: 8fd238b1-f4c4-43dd-94ff-ab0724f425b0
+                                ~Id: 62bd20d8-d3e6-47e1-9785-899464ddd63d
                         - !FilmGrain
-                            ~Id: 9059eb74-37b8-4939-a404-2ab3ee15d724
+                            ~Id: 12d2eade-56f7-4f69-953f-500b0acc6cf6
                             Enabled: false
                         - !Vignetting
-                            ~Id: 233a1925-c4b3-4e47-949e-81d87635c839
+                            ~Id: 3e6af194-73f6-4af2-9e52-1e0c0a7d40b3
                             Enabled: false
                             Color: {R: 0.0, G: 0.0, B: 0.0}
                 Antialiasing: !FXAAEffect
-                    ~Id: 5cf6d194-34c1-470d-b510-8494be7eede8
+                    ~Id: 30b635cc-39d9-4160-b5dd-a608f30b2822
                     Enabled: false

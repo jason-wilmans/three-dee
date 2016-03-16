@@ -1,5 +1,5 @@
 !Package
-Id: 78af5b8a-ceab-43c6-a986-95984941dfa8
+Id: e54864e0-779a-476e-8a1e-4385213637da
 SerializedVersion: {Assets: 0.0.2}
 Tags: []
 Meta:
@@ -10,7 +10,7 @@ Meta:
     RootNamespace: ThreeDee
     Dependencies:
         -   Name: Xenko
-            Version: 1.5.3-beta
+            Version: 1.6.0-beta
             RootAssets: []
 LocalDependencies: []
 Profiles:
@@ -23,7 +23,7 @@ Profiles:
         OutputGroupDirectories: {}
         Properties: {}
         ProjectReferences:
-            -   Id: 58b2b24a-c22b-4fdb-815a-47eaa5848535
+            -   Id: 00d1ce8d-e929-41f5-85e3-b1115d8cc56b
                 Location: ThreeDee.Game/ThreeDee.Game.csproj
                 Type: Library
     -   Name: Windows
@@ -34,13 +34,10 @@ Profiles:
         OutputGroupDirectories: {}
         Properties: {}
         ProjectReferences:
-            -   Id: f4d3f81f-0aa2-4bd3-800b-3f71351b13a3
+            -   Id: bf1f2c68-98b6-4773-8cca-48ba70d2ffcd
                 Location: ThreeDee.Windows/ThreeDee.Windows.csproj
                 Type: Executable
 ExplicitFolders: []
 Bundles: []
 TemplateFolders: []
-RootAssets:
-    - 177c6b51-ada4-48b2-878e-8291d36631a2:shapes/cuboid/cuboidModel
-    - 6cdcfb13-baf1-41db-94b8-62dae1b5d927:shapes/RawShapeMaterial
-    - c1b73101-179a-4ed1-b5a5-ca82894be1d1:fonts/RobotoFont
+RootAssets: []

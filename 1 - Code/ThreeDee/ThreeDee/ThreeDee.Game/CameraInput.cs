@@ -1,11 +1,14 @@
-﻿using System;
+﻿using SiliconStudio.Xenko.Engine;
+using System;
+using System.Collections;
 using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.Engine;
+using SiliconStudio.Xenko.Animations;
 using SiliconStudio.Xenko.Input;
 
 namespace ThreeDee
 {
-    public class CameraInput : SyncScript
+
+    public class CameraControl : SyncScript
     {
         private const string ScrollAxisName = "Mouse ScrollWheel";
         private const float ScrollDelta = 0.005f;
@@ -23,13 +26,47 @@ namespace ThreeDee
         private bool _zoom = true;
         private Vector3 _pivot;
         private Vector2 _oldMousePosition;
+        private AnimationComponent _animation;
+        private AnimationClip[] _turnAnimations;
 
         public float CurrentPlaneAngle { get; private set; }
 
-        public void Start()
+        public override void Start()
         {
             _transform = Entity.GetOrCreate<TransformComponent>();
+            _animation = Entity.GetOrCreate<AnimationComponent>();
+
+            PrepareTurnAnimations();
+
             CurrentPlaneAngle = (float)Math.PI;
+        }
+
+        private void PrepareTurnAnimations()
+        {
+            _turnAnimations = new AnimationClip[4];
+            _turnAnimations[0] = CreateTurnCurve(0, HalfPi);
+            _turnAnimations[1] = CreateTurnCurve(HalfPi, Math.PI);
+            _turnAnimations[2] = CreateTurnCurve(Math.PI, ThreeHalfPi);
+            _turnAnimations[3] = CreateTurnCurve(ThreeHalfPi, TwoPi);
+        }
+
+        private AnimationClip CreateTurnCurve(double start, double end)
+        {
+            var animationClip = new AnimationClip { Duration = TimeSpan.FromSeconds(TurnSpeed) };
+            
+            AnimationCurve curve = new AnimationCurve<float>
+            {
+                InterpolationType = AnimationCurveInterpolationType.Cubic,
+                KeyFrames =
+                {
+                    new KeyFrameData<float>((CompressedTimeSpan) TimeSpan.FromSeconds(0.0f), (float) start),
+                    new KeyFrameData<float>((CompressedTimeSpan) TimeSpan.FromSeconds(0.5f), (float) end)
+                }
+            };
+
+            animationClip.AddCurve("[TransformComponent.Key].Position", curve);
+
+            return animationClip;
         }
 
         public override void Update()
@@ -74,6 +111,7 @@ namespace ThreeDee
 
             double from = oldPlaneAngle;
             double to = CurrentPlaneAngle;
+
             
             if (Math.Abs(oldPlaneAngle) < Double.Epsilon && angleDelta < 0)
             {
@@ -84,7 +122,14 @@ namespace ThreeDee
                 to = TwoPi;
             }
 
-            //iTween.ValueTo(gameObject, tweenSettings);
+            TurnUpdate((float) to);
+
+            StartTurnAnimation(from, to);
+        }
+
+        private void StartTurnAnimation(double from, double to)
+        {
+            
         }
 
         /// <summary>
@@ -93,7 +138,7 @@ namespace ThreeDee
         /// </summary>
         /// <remarks>
         ///     Also considers multiples of those values,<br />
-        ///     i.e. a closeness to 2*pi will result in pi being returned instead of 3/4pi.
+        ///     i.e. a closeness end 2*pi will result in pi being returned instead of 3/4pi.
         /// </remarks>
         /// <param name="angle"></param>
         /// <returns></returns>
@@ -159,10 +204,11 @@ namespace ThreeDee
 
         private void Panning()
         {
-            if (Input.IsMouseButtonPressed(MouseButton.Left))
+            if (Input.IsMouseButtonDown(MouseButton.Left) && Input.IsMouseButtonDown(MouseButton.Right))
             {
                 Vector2 delta = Input.MousePosition - _oldMousePosition;
-                //_transform.Translate(PanSpeed * delta);
+                _transform.Position.X += delta.X;
+                _transform.Position.Y += delta.Y;
             }
             _oldMousePosition = Input.MousePosition;
         }

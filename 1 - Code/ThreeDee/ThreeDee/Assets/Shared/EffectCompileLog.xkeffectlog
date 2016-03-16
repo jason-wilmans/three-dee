@@ -1,978 +1,204 @@
 ---
 !EffectCompileRequest
-~Id: b9aade51-28df-423f-bde0-c6da56686e8d
-EffectName: XenkoForwardShadingEffect.ShadowMapCaster
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    Material.HasNormalMap: false
-    Material.HasSkinningPosition: false
-    Material.TessellationShader: null
-    Material.VertexStageSurfaceShaders: null
-    XenkoEffectBase.ExtensionPostVertexStageShader: !ShaderMixinGeneratorSource
-        ~Id: 8132425b-b0ec-4720-9c54-3e40b0deb91b
-        Name: ShadowMapCaster
----
-!EffectCompileRequest
-~Id: 4feba9b0-1f82-4604-beb2-f1cb08a29f49
 EffectName: XenkoForwardShadingEffect
 UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    Lighting.DirectLightGroups:
-        - !ShaderMixinSource
-            ~Id: cb56f076-db29-4a76-883b-9e67857c44b2
-            Compositions: {}
-            Macros: []
-            Mixins:
-                -   ~Id: 0c6c2339-6559-4821-bcf6-1244e702321e
-                    ClassName: LightDirectionalGroup
-                    GenericArguments:
-                        - 8
-                -   ~Id: c82b0cfa-a49c-4127-8ba1-7e86777b3ad5
-                    ClassName: ShadowMapReceiverDirectional
-                    GenericArguments:
-                        - 4
-                        - 8
-                        - false
-                        - true
-                        - false
-                -   ~Id: d4a8eeba-7cfd-4b2f-a7fe-b77db7a14c2e
-                    ClassName: ShadowMapFilterPcf
-                    GenericArguments:
-                        - 5
-            Name: null
-    Lighting.EnvironmentLights: []
-    Material.HasNormalMap: false
-    Material.HasSkinningPosition: false
-    Material.PixelStageStreamInitializer: !ShaderMixinSource
-        ~Id: 081301ce-3676-4fc5-a766-d19c1c68ec33
-        Compositions: {}
-        Macros: []
-        Mixins:
-            -   ~Id: dc32c44e-6ae3-49cb-8ce4-b1690d9c6041
-                ClassName: MaterialStream
-            -   ~Id: b58aa724-f4c0-4582-a07b-71ce5d653788
-                ClassName: MaterialPixelShadingStream
-        Name: null
-    Material.PixelStageSurfaceFilter: null
     Material.PixelStageSurfaceShaders: !ShaderMixinSource
-        ~Id: 2da0e671-d91f-477f-97dd-e03ebd004112
         Compositions:
             layers: !ShaderArraySource
-                ~Id: c15a3b5d-5938-4fd5-b922-ed9408a5585a
                 Values:
                     - !ShaderMixinSource
-                        ~Id: c34b8a71-df3d-42a1-9562-0a7b17d5957e
                         Compositions:
                             diffuseMap: !ShaderClassSource
-                                ~Id: 6cdac843-5a39-41ac-a4e5-cffe64bc4090
                                 ClassName: ComputeColorConstantColorLink
-                                GenericArguments:
-                                    - Material.DiffuseValue
-                        Macros: []
+                                GenericArguments: [Material.DiffuseValue]
                         Mixins:
-                            -   ~Id: dc4ff3bd-13b3-40a8-a41e-5f9731e31c8b
-                                ClassName: MaterialSurfaceDiffuse
-                        Name: null
+                            -   ClassName: MaterialSurfaceDiffuse
                     - !ShaderMixinSource
-                        ~Id: f204d23e-52b6-4ffc-8b92-feb423d3c30e
                         Compositions:
-                            surfaces: !ShaderArraySource
-                                ~Id: 78fe8b8d-049f-4d63-83c7-cb6b112e0cfc
-                                Values:
-                                    - !ShaderClassSource
-                                        ~Id: cd00aa97-b0b4-4e9e-ad72-a62fb4d1989e
-                                        ClassName: MaterialSurfaceShadingDiffuseLambert
-                                        GenericArguments:
-                                            - false
-                        Macros: []
-                        Mixins:
-                            -   ~Id: 8ce6604d-07f4-4a36-b597-3c3b38bfcf2e
-                                ClassName: MaterialSurfaceLightingAndShading
-                        Name: null
-        Macros: []
-        Mixins:
-            -   ~Id: a725cb85-1ea9-4d86-8c4e-cc6157dc53ec
-                ClassName: MaterialSurfaceArray
-        Name: null
-    Material.TessellationShader: null
-    Material.VertexStageSurfaceShaders: null
-    XenkoEffectBase.ExtensionPostVertexStageShader: null
----
-!EffectCompileRequest
-~Id: 8034739a-3baf-4806-ac15-af9ba8258db9
-EffectName: DepthMinMaxEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    DepthMinMax.IsFirstPassKey: true
----
-!EffectCompileRequest
-~Id: 153dc4f6-b44d-4636-8d8b-0dcd6a6cf8a5
-EffectName: DepthMinMaxEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    DepthMinMax.IsFirstPassKey: false
----
-!EffectCompileRequest
-~Id: 89e3d4d5-4ad7-490c-a2fa-854065c9984a
-EffectName: LuminanceLogShader
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
----
-!EffectCompileRequest
-~Id: d7eb9225-7156-4bdd-9dee-7502e06f3d8d
-EffectName: ImageScalerEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
----
-!EffectCompileRequest
-~Id: 6c22cbb4-f370-48a0-9d0a-82783af323e8
-EffectName: GaussianBlurEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    GaussianBlur.Count: 3
-    GaussianBlur.VerticalBlur: false
----
-!EffectCompileRequest
-~Id: b55b9481-dc1a-4cf7-ae47-fd47f851671d
-EffectName: GaussianBlurEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    GaussianBlur.Count: 3
-    GaussianBlur.VerticalBlur: true
----
-!EffectCompileRequest
-~Id: 78037e99-bcc5-4cb8-a76c-f7b0931e6062
-EffectName: BrightFilterShader
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
----
-!EffectCompileRequest
-~Id: f24461bd-bd48-4262-8da2-2df240fb90e4
-EffectName: GaussianBlurEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    GaussianBlur.Count: 5
-    GaussianBlur.VerticalBlur: false
----
-!EffectCompileRequest
-~Id: a6b68b31-196d-4ba0-8d97-2fb90d9e8dd5
-EffectName: GaussianBlurEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    GaussianBlur.Count: 5
-    GaussianBlur.VerticalBlur: true
----
-!EffectCompileRequest
-~Id: 92598a8f-6bce-4945-8dd4-f7e87476d78d
-EffectName: LightStreakEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    LightStreak.AnamorphicCount: 1
-    LightStreak.Count: 4
----
-!EffectCompileRequest
-~Id: 34906c37-8271-4d6f-abf4-784fa1be51b8
-EffectName: ColorCombinerEffect
-UsedParameters:
-    ColorCombiner.FactorCount: 1
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
----
-!EffectCompileRequest
-~Id: cd61746d-aa16-437d-875c-edeee9605a6e
-EffectName: FlareArtifactEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    FlareArtifact.Count: 8
----
-!EffectCompileRequest
-~Id: 906abf4b-f0b4-45bb-9224-11dbdda22c07
-EffectName: FlareReplicate
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
----
-!EffectCompileRequest
-~Id: 1da6304c-ef33-42fe-9ee1-4d183c90ccc5
-EffectName: ColorTransformGroupEffect
-UsedParameters:
-    ColorTransform.Enabled.Transforms[0]: true
-    ColorTransform.Enabled.Transforms[1]: false
-    ColorTransform.Enabled.Transforms[2]: false
-    ColorTransform.Enabled.Transforms[3]: true
-    ColorTransform.GenericArguments.Transforms[0]: null
-    ColorTransform.GenericArguments.Transforms[3]:
-        - a
-    ColorTransform.Shader.ToneMapOperator.Transforms[0]: ToneMapHejl2OperatorShader
-    ColorTransform.Shader.Transforms[0]: ToneMapEffect
-    ColorTransform.Shader.Transforms[3]: LuminanceToChannelShader
-    ColorTransformGroup.Transforms:
-        - !ToneMap
-            ~Id: 075a7a7f-919d-4e76-946d-926c263d386c
-            Operator: !ToneMapHejl2Operator
-                ~Id: 972ac7aa-413a-4c73-bb26-5ba5ad3a1de5
-            KeyValue: 0.0299999714
-        - !FilmGrain
-            ~Id: 24015169-b434-442c-b3dd-b76ac3d63fe9
-            Enabled: false
-        - !Vignetting
-            ~Id: 2c2b1221-31ec-4391-821b-69913956ed97
-            Enabled: false
-            Color: {R: 0.0, G: 0.0, B: 0.0}
-        - !LuminanceToChannelTransform
-            ~Id: 60ea8a3e-0433-4c9f-87b4-53caf5ec3314
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    ToneMap.AutoExposure.ToneMapOperator.Transforms[0]: false
-    ToneMap.AutoExposure.Transforms[0]: true
-    ToneMap.AutoKey.ToneMapOperator.Transforms[0]: false
-    ToneMap.AutoKey.Transforms[0]: true
----
-!EffectCompileRequest
-~Id: 01b2799b-c025-433c-8e52-c03af0da97fc
-EffectName: FXAAShaderEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    FXAAEffect.GreenAsLumaKey: 0
-    FXAAEffect.QualityKey: 15
----
-!EffectCompileRequest
-~Id: 8ab307af-5c65-4ed8-8a19-cb921cbd550b
-EffectName: XenkoForwardShadingEffect.ShadowMapCaster
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    Material.HasNormalMap: false
-    Material.HasSkinningPosition: false
-    Material.TessellationShader: null
-    Material.VertexStageSurfaceShaders: null
-    XenkoEffectBase.ExtensionPostVertexStageShader: !ShaderMixinGeneratorSource
-        ~Id: 130b1870-fa13-40b2-b1e3-a426f6434c6e
-        Name: ShadowMapCaster
----
-!EffectCompileRequest
-~Id: 4cd3eef8-5ce0-4343-b602-c5a26c424dc7
-EffectName: XenkoForwardShadingEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    Lighting.DirectLightGroups:
-        - !ShaderMixinSource
-            ~Id: 8b4b226b-df0d-4053-a349-d52a83b47fb1
-            Compositions: {}
-            Macros: []
-            Mixins:
-                -   ~Id: bc93390a-6d09-490a-b680-6c3bfcc2c509
-                    ClassName: LightDirectionalGroup
-                    GenericArguments:
-                        - 8
-                -   ~Id: 9abd75cf-0d2c-410f-8277-b0cbb93019bc
-                    ClassName: ShadowMapReceiverDirectional
-                    GenericArguments:
-                        - 4
-                        - 8
-                        - false
-                        - true
-                        - false
-                -   ~Id: a6b15d5f-793d-446c-b58c-141a5c47f222
-                    ClassName: ShadowMapFilterPcf
-                    GenericArguments:
-                        - 5
-            Name: null
-    Lighting.EnvironmentLights: []
-    Material.HasNormalMap: false
-    Material.HasSkinningPosition: false
-    Material.PixelStageStreamInitializer: !ShaderMixinSource
-        ~Id: c391cfe7-77bd-4609-99ff-bd180d86fdd6
-        Compositions: {}
-        Macros: []
-        Mixins:
-            -   ~Id: 01b7f2cb-944a-4f06-8ed5-5ebcb22885cf
-                ClassName: MaterialStream
-            -   ~Id: dc641fbb-1ea3-4827-ba60-4337e8990f4f
-                ClassName: MaterialPixelShadingStream
-        Name: null
-    Material.PixelStageSurfaceFilter: null
-    Material.PixelStageSurfaceShaders: !ShaderMixinSource
-        ~Id: e1f88a2b-7a87-48a5-89ca-8832fd90ba47
-        Compositions:
-            layers: !ShaderArraySource
-                ~Id: ebe6d69f-8065-44dd-84ae-133dadcb27e6
-                Values:
-                    - !ShaderMixinSource
-                        ~Id: c345ebfc-f459-4c90-ad86-db228d3f8faa
-                        Compositions:
-                            diffuseMap: !ShaderClassSource
-                                ~Id: beb6e855-897a-48a4-8788-2fa211bbc887
-                                ClassName: ComputeColorConstantColorLink
-                                GenericArguments:
-                                    - Material.DiffuseValue
-                        Macros: []
-                        Mixins:
-                            -   ~Id: b41dd3bc-d31b-4bd7-883a-054ce1f5e80d
-                                ClassName: MaterialSurfaceDiffuse
-                        Name: null
-                    - !ShaderMixinSource
-                        ~Id: 533f3f37-3657-4b00-b12f-0fa8a4551dd8
-                        Compositions:
-                            surfaces: !ShaderArraySource
-                                ~Id: be859130-9583-41c6-b857-6a5c375ea1c7
-                                Values:
-                                    - !ShaderClassSource
-                                        ~Id: 19790342-617d-43f5-afac-5391cbfc7791
-                                        ClassName: MaterialSurfaceShadingDiffuseLambert
-                                        GenericArguments:
-                                            - false
-                        Macros: []
-                        Mixins:
-                            -   ~Id: ec7738c1-50af-4cd4-adbc-642af7d7878c
-                                ClassName: MaterialSurfaceLightingAndShading
-                        Name: null
-        Macros: []
-        Mixins:
-            -   ~Id: bdbee2a0-2be2-4848-9b65-119c14f97cf2
-                ClassName: MaterialSurfaceArray
-        Name: null
-    Material.TessellationShader: null
-    Material.VertexStageSurfaceShaders: null
-    XenkoEffectBase.ExtensionPostVertexStageShader: null
----
-!EffectCompileRequest
-~Id: 555d0a66-b31b-4f35-8dd6-ab9a32850426
-EffectName: DepthMinMaxEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    DepthMinMax.IsFirstPassKey: true
----
-!EffectCompileRequest
-~Id: b120eb7a-3ec2-4abb-8827-d184691e8446
-EffectName: DepthMinMaxEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    DepthMinMax.IsFirstPassKey: false
----
-!EffectCompileRequest
-~Id: 4e95c399-c755-43ec-ae03-fa73a8c89022
-EffectName: LuminanceLogShader
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
----
-!EffectCompileRequest
-~Id: 8bb2f4fe-43fa-436a-836c-afbe1a823f7b
-EffectName: ImageScalerEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
----
-!EffectCompileRequest
-~Id: 0207a4ef-6561-428e-a300-5c667bd5faa6
-EffectName: GaussianBlurEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    GaussianBlur.Count: 3
-    GaussianBlur.VerticalBlur: false
----
-!EffectCompileRequest
-~Id: eda72a2a-b587-4961-ba2e-168d09ea60e3
-EffectName: GaussianBlurEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    GaussianBlur.Count: 3
-    GaussianBlur.VerticalBlur: true
----
-!EffectCompileRequest
-~Id: 40714f4e-cb8a-4296-ad45-1552709e2a3d
-EffectName: BrightFilterShader
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
----
-!EffectCompileRequest
-~Id: 65a1a26d-76b3-4daf-b49e-d2363c752902
-EffectName: GaussianBlurEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    GaussianBlur.Count: 5
-    GaussianBlur.VerticalBlur: false
----
-!EffectCompileRequest
-~Id: cebc2427-b03f-4c68-a235-604cbf42a915
-EffectName: GaussianBlurEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    GaussianBlur.Count: 5
-    GaussianBlur.VerticalBlur: true
----
-!EffectCompileRequest
-~Id: 4b25ecbf-3ec5-4943-8a93-61af87ff5eb5
-EffectName: LightStreakEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    LightStreak.AnamorphicCount: 1
-    LightStreak.Count: 4
----
-!EffectCompileRequest
-~Id: 6f78be69-9b70-4d8f-aeea-d4ea39ac0c2b
-EffectName: ColorCombinerEffect
-UsedParameters:
-    ColorCombiner.FactorCount: 1
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
----
-!EffectCompileRequest
-~Id: 9181d032-2a7c-44e4-b3c4-f0dbf8f78c1b
-EffectName: FlareArtifactEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    FlareArtifact.Count: 8
----
-!EffectCompileRequest
-~Id: 2a5a8032-641e-42da-9686-2b73fc34cf2e
-EffectName: FlareReplicate
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
----
-!EffectCompileRequest
-~Id: 6dd47e2f-05a3-4596-8f22-53ff8952b789
-EffectName: ColorTransformGroupEffect
-UsedParameters:
-    ColorTransform.Enabled.Transforms[0]: true
-    ColorTransform.Enabled.Transforms[1]: false
-    ColorTransform.Enabled.Transforms[2]: false
-    ColorTransform.Enabled.Transforms[3]: true
-    ColorTransform.GenericArguments.Transforms[0]: null
-    ColorTransform.GenericArguments.Transforms[3]:
-        - a
-    ColorTransform.Shader.ToneMapOperator.Transforms[0]: ToneMapHejl2OperatorShader
-    ColorTransform.Shader.Transforms[0]: ToneMapEffect
-    ColorTransform.Shader.Transforms[3]: LuminanceToChannelShader
-    ColorTransformGroup.Transforms:
-        - !ToneMap
-            ~Id: ed1e9fab-bcd9-47a8-a037-91a644f24da3
-            Operator: !ToneMapHejl2Operator
-                ~Id: 9a09ded6-c38f-438a-b54e-19e55b7cfae2
-            KeyValue: 0.0299999714
-        - !FilmGrain
-            ~Id: 80199b19-3f68-459e-adb2-feca7b404440
-            Enabled: false
-        - !Vignetting
-            ~Id: 31642546-961a-4bcd-80a9-1292ffcf287d
-            Enabled: false
-            Color: {R: 0.0, G: 0.0, B: 0.0}
-        - !LuminanceToChannelTransform
-            ~Id: 9f77ae06-acf0-48ce-86e2-a4336e45c4ae
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    ToneMap.AutoExposure.ToneMapOperator.Transforms[0]: false
-    ToneMap.AutoExposure.Transforms[0]: true
-    ToneMap.AutoKey.ToneMapOperator.Transforms[0]: false
-    ToneMap.AutoKey.Transforms[0]: true
----
-!EffectCompileRequest
-~Id: e27d49c0-8f5c-40be-939e-c064d7758127
-EffectName: FXAAShaderEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    FXAAEffect.GreenAsLumaKey: 0
-    FXAAEffect.QualityKey: 15
----
-!EffectCompileRequest
-~Id: bfd5bd1e-be28-41a1-a437-b38591b836bc
-EffectName: ColorTransformGroupEffect
-UsedParameters:
-    ColorTransform.Enabled.Transforms[0]: true
-    ColorTransform.Enabled.Transforms[1]: false
-    ColorTransform.Enabled.Transforms[2]: false
-    ColorTransform.Enabled.Transforms[3]: true
-    ColorTransform.GenericArguments.Transforms[0]: null
-    ColorTransform.GenericArguments.Transforms[3]:
-        - a
-    ColorTransform.Shader.ToneMapOperator.Transforms[0]: ToneMapHejl2OperatorShader
-    ColorTransform.Shader.Transforms[0]: ToneMapEffect
-    ColorTransform.Shader.Transforms[3]: LuminanceToChannelShader
-    ColorTransformGroup.Transforms:
-        - !ToneMap
-            ~Id: 2b6da742-5a46-4fcc-a0cc-584f3cc17eea
-            Operator: !ToneMapHejl2Operator
-                ~Id: c7f0ac2a-b7ca-499a-ad7a-8328d0ab759f
-            KeyValue: 0.03288626
-        - !FilmGrain
-            ~Id: fb8b3ebc-5b18-4eaa-837e-6917918be1de
-            Enabled: false
-        - !Vignetting
-            ~Id: b283523b-9ddb-4bb1-86fe-1cb0421ba76a
-            Enabled: false
-            Color: {R: 0.0, G: 0.0, B: 0.0}
-        - !LuminanceToChannelTransform
-            ~Id: db75e16f-2e71-4c9c-a847-fdd40172e373
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    ToneMap.AutoExposure.ToneMapOperator.Transforms[0]: false
-    ToneMap.AutoExposure.Transforms[0]: true
-    ToneMap.AutoKey.ToneMapOperator.Transforms[0]: false
-    ToneMap.AutoKey.Transforms[0]: true
----
-!EffectCompileRequest
-~Id: 98a48a95-bc43-44ad-acb5-053b03cb5699
-EffectName: XenkoForwardShadingEffect.ShadowMapCaster
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    Material.HasNormalMap: false
-    Material.HasSkinningPosition: false
-    Material.TessellationShader: null
-    Material.VertexStageSurfaceShaders: null
-    XenkoEffectBase.ExtensionPostVertexStageShader: !ShaderMixinGeneratorSource
-        ~Id: 38a6f0aa-dc0b-44ab-8180-b6584a5a9cb0
-        Name: ShadowMapCaster
----
-!EffectCompileRequest
-~Id: ca499542-9890-42f5-89ba-3d09f71bcdfa
-EffectName: XenkoForwardShadingEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    Lighting.DirectLightGroups:
-        - !ShaderMixinSource
-            ~Id: 89f09b05-b46b-4a01-a2ba-6091dddd9d64
-            Compositions: {}
-            Macros: []
-            Mixins:
-                -   ~Id: e828ea81-c179-4a65-8542-783c71a88036
-                    ClassName: LightDirectionalGroup
-                    GenericArguments:
-                        - 8
-                -   ~Id: 1cf1b658-cb07-41bd-a32f-6e4fc59e6b55
-                    ClassName: ShadowMapReceiverDirectional
-                    GenericArguments:
-                        - 4
-                        - 8
-                        - false
-                        - true
-                        - false
-                -   ~Id: cdd47224-b18b-4f98-a9b5-5495e0e783b8
-                    ClassName: ShadowMapFilterPcf
-                    GenericArguments:
-                        - 5
-            Name: null
-    Lighting.EnvironmentLights: []
-    Material.HasNormalMap: false
-    Material.HasSkinningPosition: false
-    Material.PixelStageStreamInitializer: !ShaderMixinSource
-        ~Id: ccc30029-99e6-490b-95ce-9111cd111269
-        Compositions: {}
-        Macros: []
-        Mixins:
-            -   ~Id: bb0c2847-df7f-4bf7-9d7e-cf624163f9db
-                ClassName: MaterialStream
-            -   ~Id: 3b493e2d-b0f9-4088-b7c7-0205d9173e17
-                ClassName: MaterialPixelShadingStream
-        Name: null
-    Material.PixelStageSurfaceFilter: null
-    Material.PixelStageSurfaceShaders: !ShaderMixinSource
-        ~Id: 38d331ee-3621-41b2-bc2b-947b282726a6
-        Compositions:
-            layers: !ShaderArraySource
-                ~Id: 01101cbc-1b5f-4088-ae10-7a245e85af39
-                Values:
-                    - !ShaderMixinSource
-                        ~Id: 5154dbd2-4592-4c38-9482-fad00dcf6e47
-                        Compositions:
-                            diffuseMap: !ShaderClassSource
-                                ~Id: e5015051-678e-4fd7-97ad-df9649fadaf1
-                                ClassName: ComputeColorConstantColorLink
-                                GenericArguments:
-                                    - Material.DiffuseValue
-                        Macros: []
-                        Mixins:
-                            -   ~Id: ccf30150-170f-469b-aead-c40b48f449a5
-                                ClassName: MaterialSurfaceDiffuse
-                        Name: null
-                    - !ShaderMixinSource
-                        ~Id: 412b5d4f-d635-4195-b900-d5e36ed68fa4
-                        Compositions:
-                            computeColorSource: !ShaderClassSource
-                                ~Id: 6b466ec2-d570-4c28-98ee-9b8a23eefe44
-                                ClassName: ComputeColorConstantColorLink
-                                GenericArguments:
-                                    - Material.SpecularValue
-                        Macros: []
-                        Mixins:
-                            -   ~Id: dd750d7e-d350-44c7-9b12-009e2ddccdb2
-                                ClassName: MaterialSurfaceSetStreamFromComputeColor
-                                GenericArguments:
-                                    - matSpecular
-                                    - rgb
-                        Name: null
-                    - !ShaderMixinSource
-                        ~Id: 16b3abb4-473b-4378-a987-a49f4a8b16a3
-                        Compositions:
-                            computeColorSource: !ShaderClassSource
-                                ~Id: 1ec059b4-cb9e-4ec5-813a-bfc70be59d4d
+                            glossinessMap: !ShaderClassSource
                                 ClassName: ComputeColorConstantFloatLink
-                                GenericArguments:
-                                    - Material.SpecularIntensityValue
-                        Macros: []
+                                GenericArguments: [Material.GlossinessValue]
                         Mixins:
-                            -   ~Id: a085d198-6ce6-46fa-a8ef-8e4905a3807b
-                                ClassName: MaterialSurfaceSetStreamFromComputeColor
-                                GenericArguments:
-                                    - matSpecularIntensity
-                                    - r
-                        Name: null
+                            -   ClassName: MaterialSurfaceGlossinessMap
+                                GenericArguments: [false]
                     - !ShaderMixinSource
-                        ~Id: dd296960-177d-40cb-97b4-a052d67dbcf0
+                        Compositions:
+                            metalnessMap: !ShaderClassSource
+                                ClassName: ComputeColorConstantFloatLink
+                                GenericArguments: [Material.MetalnessValue]
+                        Mixins:
+                            -   ClassName: MaterialSurfaceMetalness
+                    - !ShaderMixinSource
                         Compositions:
                             surfaces: !ShaderArraySource
-                                ~Id: 3c00c5d1-ab7e-423b-81f6-d5920f2382a2
                                 Values:
                                     - !ShaderClassSource
-                                        ~Id: d2a4ca29-5e13-47f4-93ab-b48d7f4e9bce
                                         ClassName: MaterialSurfaceShadingDiffuseLambert
-                                        GenericArguments:
-                                            - false
+                                        GenericArguments: [false]
                                     - !ShaderMixinSource
-                                        ~Id: 384e8095-916e-49e8-8f1a-074537b2c509
                                         Compositions:
                                             fresnelFunction: !ShaderClassSource
-                                                ~Id: 4a57ec6d-fcbc-4762-806d-49b5c4faf825
                                                 ClassName: MaterialSpecularMicrofacetFresnelSchlick
                                             geometricShadowingFunction: !ShaderClassSource
-                                                ~Id: dc81a896-692c-4b64-b9be-2b6232a7db32
                                                 ClassName: MaterialSpecularMicrofacetVisibilitySmithSchlickGGX
                                             normalDistributionFunction: !ShaderClassSource
-                                                ~Id: 205d76b3-edcd-4113-ab41-7fa9a7cda7fa
                                                 ClassName: MaterialSpecularMicrofacetNormalDistributionGGX
-                                        Macros: []
                                         Mixins:
-                                            -   ~Id: 9bc74603-a5d6-4cd5-9556-080d6b9bafd7
-                                                ClassName: MaterialSurfaceShadingSpecularMicrofacet
-                                        Name: null
-                        Macros: []
+                                            -   ClassName: MaterialSurfaceShadingSpecularMicrofacet
                         Mixins:
-                            -   ~Id: c944f8d6-f546-4584-aeac-610804985f22
-                                ClassName: MaterialSurfaceLightingAndShading
-                        Name: null
-        Macros: []
+                            -   ClassName: MaterialSurfaceLightingAndShading
         Mixins:
-            -   ~Id: becbaf94-603e-4bb5-850c-0dbbb8e30d63
-                ClassName: MaterialSurfaceArray
-        Name: null
-    Material.TessellationShader: null
-    Material.VertexStageSurfaceShaders: null
-    XenkoEffectBase.ExtensionPostVertexStageShader: null
----
-!EffectCompileRequest
-~Id: 50d79f38-ac0e-495d-a41b-dddef77aeb0a
-EffectName: XenkoForwardShadingEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
+            -   ClassName: MaterialSurfaceArray
+    Material.PixelStageStreamInitializer: !ShaderMixinSource
+        Mixins:
+            -   ClassName: MaterialStream
+            -   ClassName: MaterialPixelShadingStream
+    LightSkyboxShader.LightDiffuseColor.environmentLights[0]: !ShaderClassSource
+        ClassName: SphericalHarmonicsEnvironmentColor
+        GenericArguments: [3]
+    LightSkyboxShader.LightSpecularColor.environmentLights[0]: !ShaderClassSource
+        ClassName: RoughnessCubeMapEnvironmentColor
     Lighting.DirectLightGroups:
         - !ShaderMixinSource
-            ~Id: 1b5c57b4-c646-447c-8f00-44ea8dbab0ed
-            Compositions: {}
-            Macros: []
             Mixins:
-                -   ~Id: af9e6d17-728b-478a-96a2-390cb5a25472
-                    ClassName: LightDirectionalGroup
-                    GenericArguments:
-                        - 8
-                -   ~Id: fa63e7a7-c365-4633-850d-53db4208405d
-                    ClassName: ShadowMapReceiverDirectional
-                    GenericArguments:
-                        - 4
-                        - 8
-                        - false
-                        - true
-                        - false
-                -   ~Id: 351606bb-2029-48c2-ab6d-1acaca23d2be
-                    ClassName: ShadowMapFilterPcf
-                    GenericArguments:
-                        - 5
-            Name: null
-    Lighting.EnvironmentLights: []
-    Material.HasNormalMap: false
-    Material.HasSkinningPosition: false
-    Material.PixelStageStreamInitializer: !ShaderMixinSource
-        ~Id: 3a2b1530-0c3a-4ab6-8fe6-aff63f7ae607
-        Compositions: {}
-        Macros: []
-        Mixins:
-            -   ~Id: 4aba6397-e94c-49a3-88cb-c112a0aa1f53
-                ClassName: MaterialStream
-            -   ~Id: 41a2dcde-de5f-4c42-adc4-46df286b9cce
-                ClassName: MaterialPixelShadingStream
-        Name: null
-    Material.PixelStageSurfaceFilter: null
+                -   ClassName: LightDirectionalGroup
+                    GenericArguments: [8]
+                -   ClassName: ShadowMapReceiverDirectional
+                    GenericArguments: [4, 8, false, true, false]
+                -   ClassName: ShadowMapFilterPcf
+                    GenericArguments: [5]
+    Lighting.EnvironmentLights:
+        - !ShaderMixinGeneratorSource
+            Name: LightSkyboxEffect
+---
+!EffectCompileRequest
+EffectName: XenkoForwardShadingEffect.ShadowMapCaster
+UsedParameters:
     Material.PixelStageSurfaceShaders: !ShaderMixinSource
-        ~Id: 11dafd3a-50a1-4cc3-88a6-bf7c67fe558e
         Compositions:
             layers: !ShaderArraySource
-                ~Id: b3cc12dc-d6a5-4439-990a-29b533966e06
                 Values:
                     - !ShaderMixinSource
-                        ~Id: 333a0f8f-b0ab-4b6f-a317-01d334b0def1
                         Compositions:
                             diffuseMap: !ShaderClassSource
-                                ~Id: e484f087-d2e4-47ee-a420-6da42c7b3ccc
                                 ClassName: ComputeColorConstantColorLink
-                                GenericArguments:
-                                    - Material.DiffuseValue
-                        Macros: []
+                                GenericArguments: [Material.DiffuseValue]
                         Mixins:
-                            -   ~Id: 9641cb69-b191-46e5-aaf3-7782ad501253
-                                ClassName: MaterialSurfaceDiffuse
-                        Name: null
+                            -   ClassName: MaterialSurfaceDiffuse
                     - !ShaderMixinSource
-                        ~Id: 6abf9f70-ca4f-42d2-9a79-9ad0278e3833
+                        Compositions:
+                            glossinessMap: !ShaderClassSource
+                                ClassName: ComputeColorConstantFloatLink
+                                GenericArguments: [Material.GlossinessValue]
+                        Mixins:
+                            -   ClassName: MaterialSurfaceGlossinessMap
+                                GenericArguments: [false]
+                    - !ShaderMixinSource
+                        Compositions:
+                            metalnessMap: !ShaderClassSource
+                                ClassName: ComputeColorConstantFloatLink
+                                GenericArguments: [Material.MetalnessValue]
+                        Mixins:
+                            -   ClassName: MaterialSurfaceMetalness
+                    - !ShaderMixinSource
                         Compositions:
                             surfaces: !ShaderArraySource
-                                ~Id: cd27076a-4fb1-4f94-b4b9-49a60b2a9c56
                                 Values:
                                     - !ShaderClassSource
-                                        ~Id: cc30232f-9320-4fc9-a874-fb78620fb3f0
                                         ClassName: MaterialSurfaceShadingDiffuseLambert
-                                        GenericArguments:
-                                            - false
-                        Macros: []
+                                        GenericArguments: [false]
+                                    - !ShaderMixinSource
+                                        Compositions:
+                                            fresnelFunction: !ShaderClassSource
+                                                ClassName: MaterialSpecularMicrofacetFresnelSchlick
+                                            geometricShadowingFunction: !ShaderClassSource
+                                                ClassName: MaterialSpecularMicrofacetVisibilitySmithSchlickGGX
+                                            normalDistributionFunction: !ShaderClassSource
+                                                ClassName: MaterialSpecularMicrofacetNormalDistributionGGX
+                                        Mixins:
+                                            -   ClassName: MaterialSurfaceShadingSpecularMicrofacet
                         Mixins:
-                            -   ~Id: a916ac82-d968-4abf-9be2-9aaeff7792db
-                                ClassName: MaterialSurfaceLightingAndShading
-                        Name: null
-        Macros: []
+                            -   ClassName: MaterialSurfaceLightingAndShading
         Mixins:
-            -   ~Id: 4629d896-4121-4355-a56e-e07b6198fde8
-                ClassName: MaterialSurfaceArray
-        Name: null
-    Material.TessellationShader: null
-    Material.VertexStageSurfaceShaders: null
-    XenkoEffectBase.ExtensionPostVertexStageShader: null
+            -   ClassName: MaterialSurfaceArray
+    Material.PixelStageStreamInitializer: !ShaderMixinSource
+        Mixins:
+            -   ClassName: MaterialStream
+            -   ClassName: MaterialPixelShadingStream
 ---
 !EffectCompileRequest
-~Id: 4abaeac4-02b6-4e18-820f-70fcbf224d51
-EffectName: DepthMinMaxEffect
+EffectName: SkyboxEffect
 UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    DepthMinMax.IsFirstPassKey: true
+    Skybox.Shader: !ShaderClassSource
+        ClassName: ComputeSkyboxCubeMapColor
+        GenericArguments: [Skybox.CubeMap]
 ---
 !EffectCompileRequest
-~Id: 8931ecfd-86e5-49b9-9068-9410cb57ec5f
-EffectName: DepthMinMaxEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    DepthMinMax.IsFirstPassKey: false
----
-!EffectCompileRequest
-~Id: 9261f6b4-10e9-485b-975d-881ce21da42a
 EffectName: LuminanceLogShader
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
+UsedParameters: {}
 ---
 !EffectCompileRequest
-~Id: 73d9efae-a77c-4371-9a6c-590c4279ce33
 EffectName: ImageScalerEffect
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
+UsedParameters: {}
 ---
 !EffectCompileRequest
-~Id: 1872f329-2ccf-45d7-b427-ea8daa01ec92
 EffectName: GaussianBlurEffect
 UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    GaussianBlur.Count: 3
     GaussianBlur.VerticalBlur: false
+    GaussianBlur.Count: 3
 ---
 !EffectCompileRequest
-~Id: ebdfbd9a-fa49-4d60-91e4-737ab67591cb
 EffectName: GaussianBlurEffect
 UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    GaussianBlur.Count: 3
     GaussianBlur.VerticalBlur: true
+    GaussianBlur.Count: 3
 ---
 !EffectCompileRequest
-~Id: 87643657-1cc9-447a-98b5-cd364c7520ff
 EffectName: BrightFilterShader
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
+UsedParameters: {}
 ---
 !EffectCompileRequest
-~Id: 845dae4d-b27a-4462-a180-2ea6269ad4e9
 EffectName: GaussianBlurEffect
 UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    GaussianBlur.Count: 5
     GaussianBlur.VerticalBlur: false
+    GaussianBlur.Count: 5
 ---
 !EffectCompileRequest
-~Id: 9dc327b1-1d68-4a6e-8c49-b4a59002308c
 EffectName: GaussianBlurEffect
 UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    GaussianBlur.Count: 5
     GaussianBlur.VerticalBlur: true
+    GaussianBlur.Count: 5
 ---
 !EffectCompileRequest
-~Id: ea385dc6-67da-46bf-902e-ef914503a2b1
 EffectName: LightStreakEffect
 UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    LightStreak.AnamorphicCount: 1
     LightStreak.Count: 4
+    LightStreak.AnamorphicCount: 1
 ---
 !EffectCompileRequest
-~Id: 067735ad-c695-4af5-8a56-654673262a6a
 EffectName: ColorCombinerEffect
 UsedParameters:
     ColorCombiner.FactorCount: 1
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
 ---
 !EffectCompileRequest
-~Id: 4f441b3d-19ec-49f8-9506-59813b0c4459
 EffectName: FlareArtifactEffect
 UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
     FlareArtifact.Count: 8
 ---
 !EffectCompileRequest
-~Id: 65410cad-e9e1-44a2-99a0-deb6d25457e2
 EffectName: FlareReplicate
-UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
+UsedParameters: {}
 ---
 !EffectCompileRequest
-~Id: e850a7a5-ddf0-4949-b7cb-ca67350ab7d2
 EffectName: ColorTransformGroupEffect
 UsedParameters:
-    ColorTransform.Enabled.Transforms[0]: true
-    ColorTransform.Enabled.Transforms[1]: false
-    ColorTransform.Enabled.Transforms[2]: false
-    ColorTransform.Enabled.Transforms[3]: true
-    ColorTransform.GenericArguments.Transforms[0]: null
-    ColorTransform.GenericArguments.Transforms[3]:
-        - a
-    ColorTransform.Shader.ToneMapOperator.Transforms[0]: ToneMapHejl2OperatorShader
-    ColorTransform.Shader.Transforms[0]: ToneMapEffect
-    ColorTransform.Shader.Transforms[3]: LuminanceToChannelShader
     ColorTransformGroup.Transforms:
         - !ToneMap
-            ~Id: 6410b398-0000-4605-89d5-d1ff51cf4907
-            Operator: !ToneMapHejl2Operator
-                ~Id: b5b2accf-0133-4d4b-a17b-b1e926328bf7
-            KeyValue: 0.0299999714
-        - !FilmGrain
-            ~Id: 69573d87-94d8-4fc6-b5c9-4ccda84ad454
-            Enabled: false
-        - !Vignetting
-            ~Id: c45d0f2a-dd4a-4dbc-9b4e-fbd5923f48f6
-            Enabled: false
-            Color: {R: 0.0, G: 0.0, B: 0.0}
-        - !LuminanceToChannelTransform
-            ~Id: 4bca29ee-c09e-4ef7-8494-56e1c55ed2f3
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
-    ToneMap.AutoExposure.ToneMapOperator.Transforms[0]: false
-    ToneMap.AutoExposure.Transforms[0]: true
-    ToneMap.AutoKey.ToneMapOperator.Transforms[0]: false
-    ToneMap.AutoKey.Transforms[0]: true
+            Operator: !ToneMapHejl2Operator {}
+        - !LuminanceToChannelTransform {}
 ---
 !EffectCompileRequest
-~Id: a2ee24d4-75ed-4625-b9db-968bc6155b18
 EffectName: FXAAShaderEffect
 UsedParameters:
-    CompilerParameters.DebugKey: true
-    CompilerParameters.GraphicsPlatformKey: Direct3D11
-    CompilerParameters.GraphicsProfileKey: Level_11_0
     FXAAEffect.GreenAsLumaKey: 0
     FXAAEffect.QualityKey: 15

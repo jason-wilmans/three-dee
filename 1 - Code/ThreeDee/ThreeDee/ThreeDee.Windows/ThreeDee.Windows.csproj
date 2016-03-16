@@ -4,17 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F4D3F81F-0AA2-4BD3-800B-3F71351B13A3}</ProjectGuid>
+    <ProjectGuid>{BF1F2C68-98B6-4773-8CCA-48BA70D2FFCD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ThreeDee</RootNamespace>
     <AssemblyName>ThreeDee</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
-    <SiliconStudioPackageGuid>{78af5b8a-ceab-43c6-a986-95984941dfa8}</SiliconStudioPackageGuid>
+    <SiliconStudioPackageGuid>{e54864e0-779a-476e-8a1e-4385213637da}</SiliconStudioPackageGuid>
     <!-- Force msbuild to check to rebuild this assembly instead of letting VS IDE guess -->
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+	<SiliconStudioRuntime></SiliconStudioRuntime>
   </PropertyGroup>
   <PropertyGroup>
     <SiliconStudioCurrentPackagePath>$(MSBuildThisFileDirectory)..\ThreeDee.xkpkg</SiliconStudioCurrentPackagePath>
@@ -32,6 +33,7 @@
     <IntermediateOutputPath>obj\Windows\Debug\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,6 +43,7 @@
     <IntermediateOutputPath>obj\Windows\Release\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Testing|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -50,6 +53,7 @@
     <IntermediateOutputPath>obj\Windows\Testing\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,17 +63,18 @@
     <IntermediateOutputPath>obj\Windows\AppStore\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Condition="'$(SiliconStudioRuntime)' == ''" Include="System" />
+    <Reference Condition="'$(SiliconStudioRuntime)' == ''" Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ThreeDee.Game\ThreeDee.Game.csproj">
-      <Project>{58b2b24a-c22b-4fdb-815a-47eaa5848535}</Project>
+      <Project>{00d1ce8d-e929-41f5-85e3-b1115d8cc56b}</Project>
       <Name>ThreeDee.Game</Name>
       <Private>False</Private>
     </ProjectReference>
@@ -81,7 +86,7 @@
   <ItemGroup>
     <Content Include="Resources\Icon.ico" />
   </ItemGroup>  
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Condition="'$(SiliconStudioRuntime)' == ''" Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SiliconStudioPackageProps)" Condition="Exists('$(SiliconStudioPackageProps)')" />
   <Import Project="$(SiliconStudioXenkoDir)\Targets\SiliconStudio.Common.targets" Condition="Exists('$(SiliconStudioXenkoDir)\Targets\SiliconStudio.Common.targets')" />
   <Target Name="EnsureSiliconStudioXenkoInstalled" BeforeTargets="PrepareForBuild">
