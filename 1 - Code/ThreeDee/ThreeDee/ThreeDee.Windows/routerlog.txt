@@ -1,0 +1,11 @@
+[Router]: Info: Start to listen on port 31254
+[Router]: Info: Client :0 connected, with message ClientRequestServer
+[SiliconStudio.Xenko.EffectCompilerServer:8836]: Info: Process started
+[Router]: Info: Client :0 connected, with message ServiceProvideServer
+[Router]: Info: Client :0 connected, with message ServerStarted
+[SiliconStudio.Xenko.EffectCompilerServer:8836]: Info: GameStudio mode started!
+[Router]: Info: Client :0 disconnected with exception: Von der Übertragungsverbindung können keine Daten gelesen werden: Eine vorhandene Verbindung wurde vom Remotehost geschlossen.
+[Router]: Info: Client :0 connected, with message ClientRequestServer
+[SiliconStudio.Xenko.EffectCompilerServer:8836]: Info: GameStudio mode started!
+[Router]: Info: Client :0 connected, with message ServerStarted
+[Router]: Info: Client :0 disconnected with exception: Von der Übertragungsverbindung können keine Daten gelesen werden: Eine vorhandene Verbindung wurde vom Remotehost geschlossen.
