@@ -49,7 +49,7 @@ Hierarchy:
                 Components:
                     - !TransformComponent
                         ~Id: 9816fdcc-c1ad-4171-9b3a-9d078208b71c
-                        Position: {X: -1.0, Y: 1.2, Z: 2.7}
+                        Position: {X: -1.0, Y: 1.2, Z: 8.398197}
                         Rotation: {W: 0.981060266, X: -0.08583164, Y: -0.1729874, Z: -0.0151344351}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
@@ -111,6 +111,9 @@ Hierarchy:
                         Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
                         Materials:
                             - null
+                    - !ThreeDee.CameraInputScript,ThreeDee.Game
+                        ~Id: 99c63e50-4387-4722-9d5b-0454454f24b7
+                        Test: 0
             Design: {}
 SceneSettings:
     ~Id: 39d2cf00-4767-4c82-a76a-f49dcf006e34

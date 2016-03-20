@@ -14,7 +14,7 @@ namespace ThreeDee
         private const float ScrollingSpeed = 20;
         private const float PanSpeed = -0.05f;
         private const float PanAreaSize = 0.01f;
-        private const float Distance = 25;
+        private const float Distance = 2;
         private float TurnSpeed = 1.0f;
 
         private float _distance;
