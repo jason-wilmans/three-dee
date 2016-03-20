@@ -9,3 +9,5 @@
 [SiliconStudio.Xenko.EffectCompilerServer:8836]: Info: GameStudio mode started!
 [Router]: Info: Client :0 connected, with message ServerStarted
 [Router]: Info: Client :0 disconnected with exception: Von der Übertragungsverbindung können keine Daten gelesen werden: Eine vorhandene Verbindung wurde vom Remotehost geschlossen.
+[SiliconStudio.Xenko.EffectCompilerServer:8836]: Info: 
+[SiliconStudio.Xenko.EffectCompilerServer:8836]: Error: 

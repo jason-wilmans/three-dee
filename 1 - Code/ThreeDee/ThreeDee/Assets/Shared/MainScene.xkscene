@@ -56,8 +56,9 @@ Hierarchy:
                     - !CameraComponent
                         ~Id: 73364cfd-4bc4-4410-bfff-9d33bb48cdbb
                         Projection: Perspective
-                    - !ThreeDee.CameraControl,ThreeDee.Game
-                        ~Id: 94e8965c-a0b9-4603-96e1-eb60e24bc816
+                    - !ThreeDee.CameraInputScript,ThreeDee.Game
+                        ~Id: eaf4d631-4eca-4eb5-b12c-e4e9dbc0a51a
+                        Test: 0
             Design: {}
         -   Entity:
                 Id: 75ee3599-b1a5-45d7-a919-206db21bddc0
