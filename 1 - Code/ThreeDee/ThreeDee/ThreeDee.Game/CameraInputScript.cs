@@ -17,7 +17,7 @@ namespace ThreeDee
         private const float PanSpeed = -0.05f;
         private const float PanAreaSize = 0.01f;
         private const float Distance = 2;
-        private float TurnSpeed = 3.0f;
+        private float TurnSpeed = 1.5f;
 
         private float _distance;
         private TransformComponent _transform;
@@ -72,7 +72,7 @@ namespace ThreeDee
         {
             if (Input.IsKeyPressed(Keys.Left))
             {
-                StartTurnAnimation(_angles[_currentAngle].RightAnimation);
+                StartTurnAnimation(_angles[_currentAngle].LeftAnimation);
                 _currentAngle = (_currentAngle + 1)% _angles.Length;
             }
             else if (Input.IsKeyPressed(Keys.Right))
@@ -81,8 +81,13 @@ namespace ThreeDee
                 _currentAngle = _currentAngle == 0 ? _angles.Length - 1 : _currentAngle - 1;
             }
 
-            _transform.Position = _pivot + Distance*
-                                  new Vector3((float) Math.Sin(CurrentAngle), 0, (float) Math.Cos(CurrentAngle));
+            Vector3 absoluteCirclePosition =
+                      new Vector3(
+                          (float) (Math.Sin(CurrentAngle) * Distance),
+                          0,
+                          (float) (Math.Cos(CurrentAngle) * Distance)
+                      );
+            _transform.Position = _pivot + absoluteCirclePosition;
         }
 
         #region Scrolling

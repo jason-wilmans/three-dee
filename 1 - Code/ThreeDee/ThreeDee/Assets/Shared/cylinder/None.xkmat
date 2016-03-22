@@ -1,0 +1,50 @@
+!MaterialAsset
+Id: 2a25443a-0acf-43d4-9d67-774fd9a06a64
+SerializedVersion: {Xenko: 1.4.0-beta}
+Tags: []
+Attributes:
+    Diffuse: !MaterialDiffuseMapFeature
+        DiffuseMap: !ComputeColor
+            Value: {R: 0.8, G: 0.8, B: 0.8, A: 1.0}
+    DiffuseModel: !MaterialDiffuseLambertModelFeature {}
+    Specular: !MaterialSpecularMapFeature
+        SpecularMap: !ComputeColor
+            Value: {R: 0.8, G: 0.8, B: 0.8, A: 1.0}
+        Intensity: !ComputeFloat
+            Value: 1.0
+    SpecularModel: !MaterialSpecularMicrofacetModelFeature
+        Fresnel: !MaterialSpecularMicrofacetFresnelSchlick
+            ~Id: eab86231-b2fa-4225-a94e-0eeda87ac36e
+        Visibility: !MaterialSpecularMicrofacetVisibilityImplicit
+            ~Id: de5cfc2d-454f-45c9-b1b2-bd0dd5a3c93b
+        NormalDistribution: !MaterialSpecularMicrofacetNormalDistributionBlinnPhong
+            ~Id: 81ec3fa3-d617-46df-ba50-c3a02da44f7c
+    Overrides:
+        UVScale: {X: 1.0, Y: 1.0}
+Layers: []
+~Base:
+    Location: --import--
+    Asset: !MaterialAsset
+        Id: 00000000-0000-0000-0000-000000000000
+        SerializedVersion: {Xenko: 1.4.0-beta}
+        Tags: []
+        Attributes:
+            Diffuse: !MaterialDiffuseMapFeature
+                DiffuseMap: !ComputeColor
+                    Value: {R: 0.8, G: 0.8, B: 0.8, A: 1.0}
+            DiffuseModel: !MaterialDiffuseLambertModelFeature {}
+            Specular: !MaterialSpecularMapFeature
+                SpecularMap: !ComputeColor
+                    Value: {R: 0.8, G: 0.8, B: 0.8, A: 1.0}
+                Intensity: !ComputeFloat
+                    Value: 1.0
+            SpecularModel: !MaterialSpecularMicrofacetModelFeature
+                Fresnel: !MaterialSpecularMicrofacetFresnelSchlick
+                    ~Id: eab86231-b2fa-4225-a94e-0eeda87ac36e
+                Visibility: !MaterialSpecularMicrofacetVisibilityImplicit
+                    ~Id: de5cfc2d-454f-45c9-b1b2-bd0dd5a3c93b
+                NormalDistribution: !MaterialSpecularMicrofacetNormalDistributionBlinnPhong
+                    ~Id: 81ec3fa3-d617-46df-ba50-c3a02da44f7c
+            Overrides:
+                UVScale: {X: 1.0, Y: 1.0}
+        Layers: []

@@ -1,0 +1,27 @@
+!Model
+Id: 9ca8525f-6ea2-4b46-b522-1b33acf900be
+SerializedVersion: {Xenko: 1.5.0-alpha02}
+Tags: []
+Source: ../../../../../../3 - Assets/cylinder.obj
+SourceHash: 44bb67e30a3bed7c7db3ddc5a04dcd86
+Materials:
+    -   ~Id: 3046ba8b-58e6-4cbc-e658-bc4ce658bc4c
+        Name: None
+        MaterialInstance:
+            ~Id: 3a84571c-b154-4d0e-af24-17c1dbc2ce07
+            Material: 15f32c41-ca0c-41a4-8327-a1f185d1480e/2a25443a-0acf-43d4-9d67-774fd9a06a64:cylinder/None
+Skeleton: null
+~Base:
+    Location: --import--
+    Asset: !Model
+        Id: 00000000-0000-0000-0000-000000000000
+        SerializedVersion: {Xenko: 1.5.0-alpha02}
+        Tags: []
+        ImporterId: 30243fc0-cec7-4433-977e-95dca29d846e
+        Materials:
+            -   ~Id: 3046ba8b-58e6-4cbc-e658-bc4ce658bc4c
+                Name: None
+                MaterialInstance:
+                    ~Id: 3a84571c-b154-4d0e-af24-17c1dbc2ce07
+                    Material: 15f32c41-ca0c-41a4-8327-a1f185d1480e/2a25443a-0acf-43d4-9d67-774fd9a06a64:None
+        Skeleton: null

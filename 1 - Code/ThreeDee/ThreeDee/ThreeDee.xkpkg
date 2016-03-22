@@ -40,4 +40,5 @@ Profiles:
 ExplicitFolders: []
 Bundles: []
 TemplateFolders: []
-RootAssets: []
+RootAssets:
+    - 9ca8525f-6ea2-4b46-b522-1b33acf900be:cylinder/cylinder

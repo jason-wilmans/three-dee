@@ -10,6 +10,7 @@ Hierarchy:
         - 71b3b184-7b05-4323-a164-bcf0ecd23768
         - 4561ccfe-617c-47a9-a823-9c50c6aa3542
         - 84175fdd-139b-4559-a273-29ca998fcf37
+        - 565acd4a-5e66-4f14-8df4-39ec8cf39938
     Entities:
         -   Entity:
                 Id: 4561ccfe-617c-47a9-a823-9c50c6aa3542
@@ -44,6 +45,22 @@ Hierarchy:
                         Intensity: 5.0
             Design: {}
         -   Entity:
+                Id: 565acd4a-5e66-4f14-8df4-39ec8cf39938
+                Name: cylinder
+                Components:
+                    - !TransformComponent
+                        ~Id: 496744fe-6d0d-4f6b-a186-dc48485bf04b
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !ModelComponent
+                        ~Id: b134f8d2-a26d-406c-a3ea-4a859b0a7478
+                        Model: 3d4c770c-6f32-497a-a19d-3613f6840301/9ca8525f-6ea2-4b46-b522-1b33acf900be:cylinder/cylinder
+                        Materials:
+                            - null
+            Design: {}
+        -   Entity:
                 Id: 71b3b184-7b05-4323-a164-bcf0ecd23768
                 Name: Camera
                 Components:
@@ -56,9 +73,9 @@ Hierarchy:
                     - !CameraComponent
                         ~Id: 73364cfd-4bc4-4410-bfff-9d33bb48cdbb
                         Projection: Perspective
-                    - !ThreeDee.CameraInputScript,ThreeDee.Game
+                    - !CameraInputScript
                         ~Id: eaf4d631-4eca-4eb5-b12c-e4e9dbc0a51a
-                        Test: 0
+                        CurrentAngle: 0.0
             Design: {}
         -   Entity:
                 Id: 75ee3599-b1a5-45d7-a919-206db21bddc0
@@ -102,7 +119,7 @@ Hierarchy:
                 Components:
                     - !TransformComponent
                         ~Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
-                        Position: {X: 0.0, Y: 0.5, Z: 0.0}
+                        Position: {X: 1.99822688, Y: 0.5, Z: 0.0}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
@@ -111,9 +128,6 @@ Hierarchy:
                         Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
                         Materials:
                             - null
-                    - !ThreeDee.CameraInputScript,ThreeDee.Game
-                        ~Id: 99c63e50-4387-4722-9d5b-0454454f24b7
-                        Test: 0
             Design: {}
 SceneSettings:
     ~Id: 39d2cf00-4767-4c82-a76a-f49dcf006e34

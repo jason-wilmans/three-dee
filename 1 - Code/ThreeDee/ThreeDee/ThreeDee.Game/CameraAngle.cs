@@ -57,11 +57,11 @@ namespace ThreeDee
 
         private void CalculateAnimations()
         {
-            double leftNeighbour = _angle > 0.000001f ? _angle - _angleDelta : 2 * Math.PI - _angleDelta;
-            double rightNeighbour = _angle + _angleDelta <= 2 * Math.PI ? _angle + _angleDelta : _angleDelta;
+            double leftNeighbour = _angle - _angleDelta;
+            double rightNeighbour = _angle + _angleDelta;
 
-            LeftAnimation = CreateTurnCurve((float) _angle, (float) leftNeighbour);
-            RightAnimation = CreateTurnCurve((float) _angleDelta, (float) rightNeighbour);
+            LeftAnimation = CreateTurnCurve((float)leftNeighbour, (float) _angle);
+            RightAnimation = CreateTurnCurve((float)rightNeighbour, (float) _angle);
         }
 
 
@@ -74,8 +74,8 @@ namespace ThreeDee
                 InterpolationType = AnimationCurveInterpolationType.Linear,
                 KeyFrames =
                 {
-                    new KeyFrameData<float>((CompressedTimeSpan) TimeSpan.FromSeconds(0.0f), 0),
-                    new KeyFrameData<float>((CompressedTimeSpan) TimeSpan.FromSeconds(TurnSpeed), (float) Math.PI)
+                    new KeyFrameData<float>((CompressedTimeSpan) TimeSpan.FromSeconds(0.0f), start),
+                    new KeyFrameData<float>((CompressedTimeSpan) TimeSpan.FromSeconds(TurnSpeed), end)
                 }
             };
             
