@@ -5,13 +5,81 @@ Tags: []
 Hierarchy:
     ~Id: 9e1b746d-5ad5-4b5b-ab92-8aa1612e3877
     RootEntities:
-        - c20c1d29-bd9a-4715-9e6b-81934ab701da
+        - 3540e495-493d-4f02-b569-559503ec502d
         - 75ee3599-b1a5-45d7-a919-206db21bddc0
-        - 71b3b184-7b05-4323-a164-bcf0ecd23768
         - 4561ccfe-617c-47a9-a823-9c50c6aa3542
         - 84175fdd-139b-4559-a273-29ca998fcf37
-        - 565acd4a-5e66-4f14-8df4-39ec8cf39938
+        - 1cfd6aba-7e9b-421f-b927-11d6536ebad7
+        - c20c1d29-bd9a-4715-9e6b-81934ab701da
+        - ea1c80d7-8963-44dd-9497-c7a41c9e14ea
+        - 4c96aaaf-c983-4748-bfbc-3f1281ef88b9
+        - 22593ec7-f895-424f-be14-45a8068431c5
     Entities:
+        -   Entity:
+                Id: 1cfd6aba-7e9b-421f-b927-11d6536ebad7
+                Name: CameraRig
+                Components:
+                    - !TransformComponent
+                        ~Id: 3cfe7f94-5211-486a-a980-f2a0d1cd70db
+                        Position: {X: 0.0, Y: 1.0, Z: 0.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children:
+                            -   Entity: {Id: 88747919-c62e-404f-b00c-b08fab3e4fd9}
+                                Id: f71d1947-931d-4499-b522-b4249006efe9
+                    - !CameraInputScript
+                        ~Id: 95248a2a-d4e0-4723-a1fe-e4d9403c850e
+                        CurrentAngle: 0.0
+            Design: {}
+        -   Entity:
+                Id: 22593ec7-f895-424f-be14-45a8068431c5
+                Name: Green Sphere
+                Components:
+                    - !TransformComponent
+                        ~Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
+                        Position: {X: -5.0, Y: 0.5, Z: 0.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !ModelComponent
+                        ~Id: acfdde74-30b4-4d14-a276-26bb82cc645d
+                        Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
+                        Materials:
+                            - 3823589f-3912-40d0-8400-42e1a6f15f16/56c36ca2-4276-46ff-bd21-99ba2931470f:materials/D
+            Design:
+                Folder: Spheres
+        -   Entity:
+                Id: 32d70a1f-55e6-4068-be0c-fde731cf7897
+                Name: CameraProxy
+                Components:
+                    - !TransformComponent
+                        ~Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.5, Y: 0.5, Z: 0.5}
+                        Children: []
+                    - !ModelComponent
+                        ~Id: acfdde74-30b4-4d14-a276-26bb82cc645d
+                        Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
+                        Materials:
+                            - null
+            Design: {}
+        -   Entity:
+                Id: 3540e495-493d-4f02-b569-559503ec502d
+                Name: cylinder
+                Components:
+                    - !TransformComponent
+                        ~Id: 361af44f-8780-46aa-a341-d170f876b11d
+                        Position: {X: 0.0, Y: 1.0, Z: 0.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.3, Y: 0.1, Z: 1.0}
+                        Children: []
+                    - !ModelComponent
+                        ~Id: c059a295-399c-4d01-9f06-98f6b4baeb58
+                        Model: 34a4eb64-5137-4e15-b626-9786203ab869/9ca8525f-6ea2-4b46-b522-1b33acf900be:cylinder/cylinder
+                        Materials:
+                            - null
+            Design: {}
         -   Entity:
                 Id: 4561ccfe-617c-47a9-a823-9c50c6aa3542
                 Name: Directional light
@@ -45,37 +113,35 @@ Hierarchy:
                         Intensity: 5.0
             Design: {}
         -   Entity:
-                Id: 565acd4a-5e66-4f14-8df4-39ec8cf39938
-                Name: cylinder
+                Id: 4c96aaaf-c983-4748-bfbc-3f1281ef88b9
+                Name: Yellow Sphere
                 Components:
                     - !TransformComponent
-                        ~Id: 496744fe-6d0d-4f6b-a186-dc48485bf04b
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        ~Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
+                        Position: {X: 0.0, Y: 0.5, Z: -5.0}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
                     - !ModelComponent
-                        ~Id: b134f8d2-a26d-406c-a3ea-4a859b0a7478
-                        Model: 3d4c770c-6f32-497a-a19d-3613f6840301/9ca8525f-6ea2-4b46-b522-1b33acf900be:cylinder/cylinder
+                        ~Id: acfdde74-30b4-4d14-a276-26bb82cc645d
+                        Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
                         Materials:
-                            - null
-            Design: {}
+                            - 37d7e717-1e56-4c6e-9986-48e6401fc213/df219043-9d47-424c-88bb-304e42d65978:materials/C
+            Design:
+                Folder: Spheres
         -   Entity:
                 Id: 71b3b184-7b05-4323-a164-bcf0ecd23768
                 Name: Camera
                 Components:
                     - !TransformComponent
                         ~Id: 9816fdcc-c1ad-4171-9b3a-9d078208b71c
-                        Position: {X: -1.0, Y: 1.2, Z: 8.398197}
-                        Rotation: {W: 0.981060266, X: -0.08583164, Y: -0.1729874, Z: -0.0151344351}
+                        Position: {X: 0.0, Y: 0.0, Z: 10.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
                     - !CameraComponent
                         ~Id: 73364cfd-4bc4-4410-bfff-9d33bb48cdbb
                         Projection: Perspective
-                    - !CameraInputScript
-                        ~Id: eaf4d631-4eca-4eb5-b12c-e4e9dbc0a51a
-                        CurrentAngle: 0.0
             Design: {}
         -   Entity:
                 Id: 75ee3599-b1a5-45d7-a919-206db21bddc0
@@ -85,7 +151,7 @@ Hierarchy:
                         ~Id: 6fc45343-e397-43b8-812c-bd565b84e93c
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Scale: {X: 5.0, Y: 5.0, Z: 5.0}
                         Children: []
                     - !ModelComponent
                         ~Id: 3b481a95-9c22-468e-aeb5-a2a7bcd6f278
@@ -114,12 +180,32 @@ Hierarchy:
                         Intensity: 0.25
             Design: {}
         -   Entity:
+                Id: 88747919-c62e-404f-b00c-b08fab3e4fd9
+                Name: Joint
+                Components:
+                    - !TransformComponent
+                        ~Id: f71d1947-931d-4499-b522-b4249006efe9
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children:
+                            -   Entity: {Id: 32d70a1f-55e6-4068-be0c-fde731cf7897}
+                                Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
+                            -   Entity: {Id: 71b3b184-7b05-4323-a164-bcf0ecd23768}
+                                Id: 9816fdcc-c1ad-4171-9b3a-9d078208b71c
+                    - !JointRotationScript
+                        ~Id: 31377328-c3dc-4493-abd6-22184217bfa8
+                        CurrentAngle: 0.0
+                        Distance: 0.0
+                        TurnSpeed: 2.0
+            Design: {}
+        -   Entity:
                 Id: c20c1d29-bd9a-4715-9e6b-81934ab701da
-                Name: Sphere
+                Name: Red Sphere
                 Components:
                     - !TransformComponent
                         ~Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
-                        Position: {X: 1.99822688, Y: 0.5, Z: 0.0}
+                        Position: {X: 5.0, Y: 0.5, Z: 0.0}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
@@ -128,7 +214,25 @@ Hierarchy:
                         Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
                         Materials:
                             - null
-            Design: {}
+            Design:
+                Folder: Spheres
+        -   Entity:
+                Id: ea1c80d7-8963-44dd-9497-c7a41c9e14ea
+                Name: Blue Sphere
+                Components:
+                    - !TransformComponent
+                        ~Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
+                        Position: {X: 0.0, Y: 0.5, Z: 5.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !ModelComponent
+                        ~Id: acfdde74-30b4-4d14-a276-26bb82cc645d
+                        Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
+                        Materials:
+                            - 74ca3c9f-f34b-4162-a0b9-f60bb958a883/21c40669-f5a7-4c59-a634-3dd1354d1335:materials/A
+            Design:
+                Folder: Spheres
 SceneSettings:
     ~Id: 39d2cf00-4767-4c82-a76a-f49dcf006e34
     GraphicsCompositor: !SceneGraphicsCompositorLayers

@@ -331,3 +331,56 @@ UsedParameters:
         Mixins:
             -   ClassName: MaterialStream
             -   ClassName: MaterialPixelShadingStream
+---
+!EffectCompileRequest
+EffectName: CoCLinearDepthShader
+UsedParameters: {}
+---
+!EffectCompileRequest
+EffectName: PointDepth
+UsedParameters: {}
+---
+!EffectCompileRequest
+EffectName: CoCMapBlurEffect
+UsedParameters:
+    DepthAwareDirectionalBlur.Count: 7
+---
+!EffectCompileRequest
+EffectName: ThresholdAlphaCoC
+UsedParameters: {}
+---
+!EffectCompileRequest
+EffectName: DepthAwareDirectionalBlurEffect
+UsedParameters:
+    DepthAwareDirectionalBlur.Count: 2
+    DepthAwareDirectionalBlur.TotalTap: 3
+---
+!EffectCompileRequest
+EffectName: TripleRhombiCombineShader
+UsedParameters: {}
+---
+!EffectCompileRequest
+EffectName: ThresholdAlphaCoCFront
+UsedParameters: {}
+---
+!EffectCompileRequest
+EffectName: DepthAwareDirectionalBlurEffect
+UsedParameters:
+    DepthAwareDirectionalBlur.Count: 3
+    DepthAwareDirectionalBlur.TotalTap: 5
+---
+!EffectCompileRequest
+EffectName: DepthAwareDirectionalBlurEffect
+UsedParameters:
+    DepthAwareDirectionalBlur.Count: 4
+    DepthAwareDirectionalBlur.TotalTap: 7
+---
+!EffectCompileRequest
+EffectName: CombineLevelsFromCoCEffect
+UsedParameters:
+    CombineLevelsFromCoC.LevelCount: 4
+---
+!EffectCompileRequest
+EffectName: CombineFrontCoCEffect
+UsedParameters:
+    CombineLevelsFromCoC.LevelCount: 4

@@ -78,6 +78,7 @@
     <Compile Include="CameraAngle.cs" />
     <Compile Include="CameraAngles.cs" />
     <Compile Include="CameraInputScript.cs" />
+    <Compile Include="JointRotationScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

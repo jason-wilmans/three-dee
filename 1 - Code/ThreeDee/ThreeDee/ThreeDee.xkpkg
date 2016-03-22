@@ -41,4 +41,8 @@ ExplicitFolders: []
 Bundles: []
 TemplateFolders: []
 RootAssets:
+    - 21c40669-f5a7-4c59-a634-3dd1354d1335:materials/A
+    - 56c36ca2-4276-46ff-bd21-99ba2931470f:materials/D
     - 9ca8525f-6ea2-4b46-b522-1b33acf900be:cylinder/cylinder
+    - a01d8ee2-f7bf-4c45-a1da-ade45b1ec259:materials/B
+    - df219043-9d47-424c-88bb-304e42d65978:materials/C

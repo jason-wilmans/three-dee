@@ -69,7 +69,7 @@ namespace ThreeDee
         {
             var animationClip = new AnimationClip { Duration = TimeSpan.FromSeconds(TurnSpeed) };
 
-            AnimationCurve curve2 = new AnimationCurve<float>
+            AnimationCurve curve = new AnimationCurve<float>
             {
                 InterpolationType = AnimationCurveInterpolationType.Linear,
                 KeyFrames =
@@ -79,7 +79,7 @@ namespace ThreeDee
                 }
             };
             
-            animationClip.AddCurve("[CameraInputScript.Key].CurrentAngle", curve2);
+            animationClip.AddCurve($"[{nameof(JointRotationScript)}.Key].CurrentAngle", curve);
             animationClip.Optimize();
 
             return animationClip;
