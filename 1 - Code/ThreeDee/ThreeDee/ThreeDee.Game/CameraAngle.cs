@@ -67,23 +67,19 @@ namespace ThreeDee
 
         private AnimationClip CreateTurnCurve(float start, float end)
         {
-            Vector3 startVector = Position + (Distance * new Vector3((float) Math.Sin(start), 0, (float) Math.Cos(start)));
-            Vector3 endVector = Position + (Distance * new Vector3((float) Math.Sin(end), 0, (float) Math.Cos(end)));
-
             var animationClip = new AnimationClip { Duration = TimeSpan.FromSeconds(TurnSpeed) };
 
-            AnimationCurve curve = new AnimationCurve<Vector3>
+            AnimationCurve curve2 = new AnimationCurve<float>
             {
                 InterpolationType = AnimationCurveInterpolationType.Linear,
                 KeyFrames =
                 {
-                    new KeyFrameData<Vector3>((CompressedTimeSpan) TimeSpan.FromSeconds(0.0f), startVector),
-                    new KeyFrameData<Vector3>((CompressedTimeSpan) TimeSpan.FromSeconds(TurnSpeed), endVector)
+                    new KeyFrameData<float>((CompressedTimeSpan) TimeSpan.FromSeconds(0.0f), 0),
+                    new KeyFrameData<float>((CompressedTimeSpan) TimeSpan.FromSeconds(TurnSpeed), (float) Math.PI)
                 }
             };
-
-            animationClip.AddCurve("[TransformComponent.Key].Position", curve);
-
+            
+            animationClip.AddCurve("[CameraInputScript.Key].CurrentAngle", curve2);
             animationClip.Optimize();
 
             return animationClip;

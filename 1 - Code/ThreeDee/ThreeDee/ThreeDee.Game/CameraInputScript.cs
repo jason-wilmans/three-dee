@@ -1,21 +1,23 @@
 ﻿using SiliconStudio.Xenko.Engine;
 using System;
+using SiliconStudio.Core;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Animations;
 using SiliconStudio.Xenko.Input;
 
 namespace ThreeDee
 {
-
+    [DataContract("CameraInputScript")]
     public class CameraInputScript : SyncScript
     {
-        public int Test;
+        [DataMember]
+        public float CurrentAngle;
         private const float ScrollDelta = 0.005f;
         private const float ScrollingSpeed = 20;
         private const float PanSpeed = -0.05f;
         private const float PanAreaSize = 0.01f;
         private const float Distance = 2;
-        private float TurnSpeed = 1.0f;
+        private float TurnSpeed = 3.0f;
 
         private float _distance;
         private TransformComponent _transform;
@@ -78,6 +80,9 @@ namespace ThreeDee
                 StartTurnAnimation(_angles[_currentAngle].RightAnimation);
                 _currentAngle = _currentAngle == 0 ? _angles.Length - 1 : _currentAngle - 1;
             }
+
+            _transform.Position = _pivot + Distance*
+                                  new Vector3((float) Math.Sin(CurrentAngle), 0, (float) Math.Cos(CurrentAngle));
         }
 
         #region Scrolling
