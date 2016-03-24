@@ -5,15 +5,16 @@ Tags: []
 Hierarchy:
     ~Id: 9e1b746d-5ad5-4b5b-ab92-8aa1612e3877
     RootEntities:
-        - 3540e495-493d-4f02-b569-559503ec502d
         - 75ee3599-b1a5-45d7-a919-206db21bddc0
         - 4561ccfe-617c-47a9-a823-9c50c6aa3542
         - 84175fdd-139b-4559-a273-29ca998fcf37
         - 1cfd6aba-7e9b-421f-b927-11d6536ebad7
+        - 307fa4dc-5502-4be6-b352-3b3a68a72594
         - c20c1d29-bd9a-4715-9e6b-81934ab701da
         - ea1c80d7-8963-44dd-9497-c7a41c9e14ea
         - 4c96aaaf-c983-4748-bfbc-3f1281ef88b9
         - 22593ec7-f895-424f-be14-45a8068431c5
+        - e879df9f-d381-4dcf-8796-06c727f8372b
     Entities:
         -   Entity:
                 Id: 1cfd6aba-7e9b-421f-b927-11d6536ebad7
@@ -21,15 +22,17 @@ Hierarchy:
                 Components:
                     - !TransformComponent
                         ~Id: 3cfe7f94-5211-486a-a980-f2a0d1cd70db
-                        Position: {X: 0.0, Y: 1.0, Z: 0.0}
+                        Position: {X: 0.0, Y: 0.5, Z: -4.28613}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children:
                             -   Entity: {Id: 88747919-c62e-404f-b00c-b08fab3e4fd9}
                                 Id: f71d1947-931d-4499-b522-b4249006efe9
-                    - !CameraInputScript
-                        ~Id: 95248a2a-d4e0-4723-a1fe-e4d9403c850e
-                        CurrentAngle: 0.0
+                    - !ThreeDee.CameraRigScript,ThreeDee.Game
+                        ~Id: 4f4c2bf6-34f1-43ca-a7a9-c1416e903a51
+                        JointTransform:
+                            Entity: {Id: 88747919-c62e-404f-b00c-b08fab3e4fd9}
+                            Id: f71d1947-931d-4499-b522-b4249006efe9
             Design: {}
         -   Entity:
                 Id: 22593ec7-f895-424f-be14-45a8068431c5
@@ -49,34 +52,18 @@ Hierarchy:
             Design:
                 Folder: Spheres
         -   Entity:
-                Id: 32d70a1f-55e6-4068-be0c-fde731cf7897
-                Name: CameraProxy
+                Id: 307fa4dc-5502-4be6-b352-3b3a68a72594
+                Name: tube
                 Components:
                     - !TransformComponent
-                        ~Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 0.5, Y: 0.5, Z: 0.5}
+                        ~Id: 63ea66f9-4528-4dc5-bc48-148bb5fa7025
+                        Position: {X: 2.592395, Y: 0.5, Z: -2.5}
+                        Rotation: {W: 0.65328145, X: -0.65328145, Y: 0.270598054, Z: 0.270598054}
+                        Scale: {X: 0.25, Y: 3.5, Z: 0.25}
                         Children: []
                     - !ModelComponent
-                        ~Id: acfdde74-30b4-4d14-a276-26bb82cc645d
-                        Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
-                        Materials:
-                            - null
-            Design: {}
-        -   Entity:
-                Id: 3540e495-493d-4f02-b569-559503ec502d
-                Name: cylinder
-                Components:
-                    - !TransformComponent
-                        ~Id: 361af44f-8780-46aa-a341-d170f876b11d
-                        Position: {X: 0.0, Y: 1.0, Z: 0.0}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 0.3, Y: 0.1, Z: 1.0}
-                        Children: []
-                    - !ModelComponent
-                        ~Id: c059a295-399c-4d01-9f06-98f6b4baeb58
-                        Model: 34a4eb64-5137-4e15-b626-9786203ab869/9ca8525f-6ea2-4b46-b522-1b33acf900be:cylinder/cylinder
+                        ~Id: 67b214cd-8e16-44b7-809f-a0581e1b7eca
+                        Model: d68627c3-7e40-46c9-82b6-211e3cb90762/137a748d-924f-402f-acb7-a637c642ec21:primitives/tube/tube (2)
                         Materials:
                             - null
             Design: {}
@@ -142,6 +129,8 @@ Hierarchy:
                     - !CameraComponent
                         ~Id: 73364cfd-4bc4-4410-bfff-9d33bb48cdbb
                         Projection: Perspective
+                    - !ThreeDee.CameraTranslationScript,ThreeDee.Game
+                        ~Id: d4f34f47-d687-4a2c-a152-c812481fda4d
             Design: {}
         -   Entity:
                 Id: 75ee3599-b1a5-45d7-a919-206db21bddc0
@@ -189,12 +178,10 @@ Hierarchy:
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children:
-                            -   Entity: {Id: 32d70a1f-55e6-4068-be0c-fde731cf7897}
-                                Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
                             -   Entity: {Id: 71b3b184-7b05-4323-a164-bcf0ecd23768}
                                 Id: 9816fdcc-c1ad-4171-9b3a-9d078208b71c
                     - !JointRotationScript
-                        ~Id: 31377328-c3dc-4493-abd6-22184217bfa8
+                        ~Id: 536727d0-98ce-4e6a-9c04-30b11bc8d853
                         CurrentAngle: 0.0
                         Distance: 0.0
                         TurnSpeed: 2.0
@@ -216,6 +203,22 @@ Hierarchy:
                             - null
             Design:
                 Folder: Spheres
+        -   Entity:
+                Id: e879df9f-d381-4dcf-8796-06c727f8372b
+                Name: tube (2)
+                Components:
+                    - !TransformComponent
+                        ~Id: 63ea66f9-4528-4dc5-bc48-148bb5fa7025
+                        Position: {X: -2.5, Y: 0.5, Z: 2.5}
+                        Rotation: {W: 0.65328145, X: -0.65328145, Y: 0.270598054, Z: 0.270598054}
+                        Scale: {X: 0.25, Y: 3.5, Z: 0.25}
+                        Children: []
+                    - !ModelComponent
+                        ~Id: 67b214cd-8e16-44b7-809f-a0581e1b7eca
+                        Model: d68627c3-7e40-46c9-82b6-211e3cb90762/137a748d-924f-402f-acb7-a637c642ec21:primitives/tube/tube (2)
+                        Materials:
+                            - null
+            Design: {}
         -   Entity:
                 Id: ea1c80d7-8963-44dd-9497-c7a41c9e14ea
                 Name: Blue Sphere
@@ -278,7 +281,6 @@ SceneSettings:
                             Index: 0
                         DepthOfField:
                             ~Id: e93e447d-2e48-4ccf-9f7a-e19a7e55229b
-                            Enabled: false
                             DOFAreas: {X: 0.5, Y: 6.0, Z: 50.0, W: 200.0}
                         BrightFilter:
                             ~Id: 8b1a03b9-5f15-4d1b-8d05-445a17dce303

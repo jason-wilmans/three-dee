@@ -1,24 +1,24 @@
 !MaterialAsset
-Id: 2a25443a-0acf-43d4-9d67-774fd9a06a64
+Id: cf197e85-b969-419d-a786-e1a78d7878cd
 SerializedVersion: {Xenko: 1.4.0-beta}
 Tags: []
 Attributes:
     Diffuse: !MaterialDiffuseMapFeature
         DiffuseMap: !ComputeColor
-            Value: {R: 0.8, G: 0.8, B: 0.8, A: 1.0}
+            Value: {R: 0.64, G: 0.64, B: 0.64, A: 1.0}
     DiffuseModel: !MaterialDiffuseLambertModelFeature {}
     Specular: !MaterialSpecularMapFeature
         SpecularMap: !ComputeColor
-            Value: {R: 0.8, G: 0.8, B: 0.8, A: 1.0}
+            Value: {R: 0.5, G: 0.5, B: 0.5, A: 1.0}
         Intensity: !ComputeFloat
             Value: 1.0
     SpecularModel: !MaterialSpecularMicrofacetModelFeature
         Fresnel: !MaterialSpecularMicrofacetFresnelSchlick
-            ~Id: eab86231-b2fa-4225-a94e-0eeda87ac36e
+            ~Id: f622d670-838c-44d2-823d-894fe712299e
         Visibility: !MaterialSpecularMicrofacetVisibilityImplicit
-            ~Id: de5cfc2d-454f-45c9-b1b2-bd0dd5a3c93b
+            ~Id: 061d0ebb-466a-4f5c-ad74-38dff65ba68c
         NormalDistribution: !MaterialSpecularMicrofacetNormalDistributionBlinnPhong
-            ~Id: 81ec3fa3-d617-46df-ba50-c3a02da44f7c
+            ~Id: 21053ac4-5b4e-4a1e-9b6f-d13ed3cc5aac
     Overrides:
         UVScale: {X: 1.0, Y: 1.0}
 Layers: []
@@ -31,20 +31,20 @@ Layers: []
         Attributes:
             Diffuse: !MaterialDiffuseMapFeature
                 DiffuseMap: !ComputeColor
-                    Value: {R: 0.8, G: 0.8, B: 0.8, A: 1.0}
+                    Value: {R: 0.64, G: 0.64, B: 0.64, A: 1.0}
             DiffuseModel: !MaterialDiffuseLambertModelFeature {}
             Specular: !MaterialSpecularMapFeature
                 SpecularMap: !ComputeColor
-                    Value: {R: 0.8, G: 0.8, B: 0.8, A: 1.0}
+                    Value: {R: 0.5, G: 0.5, B: 0.5, A: 1.0}
                 Intensity: !ComputeFloat
                     Value: 1.0
             SpecularModel: !MaterialSpecularMicrofacetModelFeature
                 Fresnel: !MaterialSpecularMicrofacetFresnelSchlick
-                    ~Id: eab86231-b2fa-4225-a94e-0eeda87ac36e
+                    ~Id: f622d670-838c-44d2-823d-894fe712299e
                 Visibility: !MaterialSpecularMicrofacetVisibilityImplicit
-                    ~Id: de5cfc2d-454f-45c9-b1b2-bd0dd5a3c93b
+                    ~Id: 061d0ebb-466a-4f5c-ad74-38dff65ba68c
                 NormalDistribution: !MaterialSpecularMicrofacetNormalDistributionBlinnPhong
-                    ~Id: 81ec3fa3-d617-46df-ba50-c3a02da44f7c
+                    ~Id: 21053ac4-5b4e-4a1e-9b6f-d13ed3cc5aac
             Overrides:
                 UVScale: {X: 1.0, Y: 1.0}
         Layers: []

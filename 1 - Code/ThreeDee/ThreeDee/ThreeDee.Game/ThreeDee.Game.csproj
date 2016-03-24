@@ -77,7 +77,7 @@
   <ItemGroup>
     <Compile Include="CameraAngle.cs" />
     <Compile Include="CameraAngles.cs" />
-    <Compile Include="CameraInputScript.cs" />
+    <Compile Include="CameraRigScript.cs" />
     <Compile Include="JointRotationScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

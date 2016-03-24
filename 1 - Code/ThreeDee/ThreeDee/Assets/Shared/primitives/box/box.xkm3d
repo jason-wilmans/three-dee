@@ -1,0 +1,27 @@
+!Model
+Id: b6307ab3-21e5-4980-9b35-122bed61f79d
+SerializedVersion: {Xenko: 1.5.0-alpha02}
+Tags: []
+Source: ../../../../../../../3 - Assets/primitives/box/box.obj
+SourceHash: cdca0efa0cb299996fffe244b8b23d29
+Materials:
+    -   ~Id: 2b720ffe-c528-ae64-0442-89ea044289ea
+        Name: Material
+        MaterialInstance:
+            ~Id: a2d47d44-48da-4e0c-a11e-d6d6ab84bf17
+            Material: 20add31e-800d-463d-99a9-2586a5a98bee/cf197e85-b969-419d-a786-e1a78d7878cd:primitives/box/Material
+Skeleton: null
+~Base:
+    Location: --import--
+    Asset: !Model
+        Id: 00000000-0000-0000-0000-000000000000
+        SerializedVersion: {Xenko: 1.5.0-alpha02}
+        Tags: []
+        ImporterId: 30243fc0-cec7-4433-977e-95dca29d846e
+        Materials:
+            -   ~Id: 2b720ffe-c528-ae64-0442-89ea044289ea
+                Name: Material
+                MaterialInstance:
+                    ~Id: a2d47d44-48da-4e0c-a11e-d6d6ab84bf17
+                    Material: 20add31e-800d-463d-99a9-2586a5a98bee/cf197e85-b969-419d-a786-e1a78d7878cd:Material
+        Skeleton: null
