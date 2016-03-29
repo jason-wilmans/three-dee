@@ -36,32 +36,34 @@ namespace ThreeDee
             }
         }
 
-        public AnimationClip LeftAnimation { get; private set; }
         public AnimationClip RightAnimation { get; private set; }
+        public AnimationClip LeftAnimation { get; private set; }
 
-        private readonly double _angle;
+        public readonly double Angle;
         private readonly double _angleDelta;
         private float _distance;
         private Vector3 _position;
         private float _turnSpeed;
+        private double _leftNeighbour;
+        private double _rightNeighbour;
 
         public CameraAngle(double angle, double angleDelta, Vector3 position, float distance, float turnSpeed)
         {
             Position = position;
             Distance = distance;
             TurnSpeed = turnSpeed;
-            _angle = angle;
+            Angle = angle;
             _angleDelta = angleDelta;
             CalculateAnimations();
         }
 
         private void CalculateAnimations()
         {
-            double leftNeighbour = _angle - _angleDelta;
-            double rightNeighbour = _angle + _angleDelta;
+            _leftNeighbour = Angle - _angleDelta;
+            _rightNeighbour = Angle + _angleDelta;
 
-            LeftAnimation = CreateTurnCurve((float)leftNeighbour, (float) _angle);
-            RightAnimation = CreateTurnCurve((float)rightNeighbour, (float) _angle);
+            RightAnimation = CreateTurnCurve((float)_leftNeighbour, (float) Angle);
+            LeftAnimation = CreateTurnCurve((float)_rightNeighbour, (float) Angle);
         }
 
 

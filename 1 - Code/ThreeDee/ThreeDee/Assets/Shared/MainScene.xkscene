@@ -129,8 +129,6 @@ Hierarchy:
                     - !CameraComponent
                         ~Id: 73364cfd-4bc4-4410-bfff-9d33bb48cdbb
                         Projection: Perspective
-                    - !ThreeDee.CameraTranslationScript,ThreeDee.Game
-                        ~Id: d4f34f47-d687-4a2c-a152-c812481fda4d
             Design: {}
         -   Entity:
                 Id: 75ee3599-b1a5-45d7-a919-206db21bddc0
@@ -184,7 +182,7 @@ Hierarchy:
                         ~Id: 536727d0-98ce-4e6a-9c04-30b11bc8d853
                         CurrentAngle: 0.0
                         Distance: 0.0
-                        TurnSpeed: 2.0
+                        TurnSpeed: 1.0
             Design: {}
         -   Entity:
                 Id: c20c1d29-bd9a-4715-9e6b-81934ab701da

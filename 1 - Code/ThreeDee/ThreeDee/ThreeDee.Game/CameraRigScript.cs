@@ -50,8 +50,8 @@ namespace ThreeDee
             if (Input.IsMouseButtonDown(MouseButton.Left) && Input.IsMouseButtonDown(MouseButton.Right))
             {
                 Vector2 delta = (Input.MousePosition - _oldMousePosition) * PanSpeed;
-                _transform.Position += JointTransform.WorldMatrix.Right*delta.X;
-                _transform.Position += JointTransform.WorldMatrix.Up* delta.Y;
+                _transform.Position += JointTransform.WorldMatrix.Right * delta.X;
+                _transform.Position += JointTransform.WorldMatrix.Up * delta.Y;
             }
 
             _oldMousePosition = Input.MousePosition;

@@ -20,7 +20,7 @@ namespace ThreeDee
         private TransformComponent _transform;
         private AnimationComponent _animation;
         private CameraAngle[] _angles;
-        private int _currentAngleIndex = 1;
+        private int _currentAngleIndex;
 
         public override void Start()
         {
@@ -36,6 +36,7 @@ namespace ThreeDee
                 new CameraAngle(Math.PI, MathUtil.PiOverTwo, _transform.Position, Distance, TurnSpeed),
                 new CameraAngle(1.5*Math.PI, MathUtil.PiOverTwo, _transform.Position, Distance, TurnSpeed)
             };
+            CurrentAngle = (float) _angles[_currentAngleIndex].Angle;
         }
 
         public override void Update()
@@ -51,13 +52,13 @@ namespace ThreeDee
         {
             if (Input.IsKeyPressed(Keys.Right))
             {
-                StartTurnAnimation(_angles[_currentAngleIndex].LeftAnimation);
+                StartTurnAnimation(_angles[_currentAngleIndex].RightAnimation);
                 _currentAngleIndex = (_currentAngleIndex + 1) % _angles.Length;
             }
             else if (Input.IsKeyPressed(Keys.Left))
             {
-                StartTurnAnimation(_angles[_currentAngleIndex].RightAnimation);
-                _currentAngleIndex = _currentAngleIndex == 0 ? _angles.Length - 1 : _currentAngleIndex - 1;
+                StartTurnAnimation(_angles[_currentAngleIndex].LeftAnimation);
+                _currentAngleIndex = _currentAngleIndex > 0 ? _currentAngleIndex - 1 : _angles.Length - 1;
             }
         }
 
