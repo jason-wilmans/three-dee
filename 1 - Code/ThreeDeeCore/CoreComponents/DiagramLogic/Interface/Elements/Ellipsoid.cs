@@ -1,5 +1,4 @@
-﻿using System;
-using ZeroTypes;
+﻿using ZeroTypes;
 
 namespace DiagramLogic.Interface.Elements
 {
@@ -44,6 +43,24 @@ namespace DiagramLogic.Interface.Elements
                 Scale = Scale,
                 Parent = Parent
             };
+        }
+
+        protected bool Equals(IDiagramElement other)
+        {
+            return Id == other.Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (!(obj is IDiagramElement)) return false;
+            return Equals((IDiagramElement) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
         }
     }
 }

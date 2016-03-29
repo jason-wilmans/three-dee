@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using DiagramLogic.Interface.Elements;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using ZeroTypes;
 
 namespace DiagramLogic.Interface
@@ -11,29 +9,27 @@ namespace DiagramLogic.Interface
     /// <summary>
     /// This class represents a single diagram.
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
     public class Diagram
     {
         /// <summary>
         /// A name to identify this diagram.
         /// </summary>
-        [JsonProperty]
         public string Name { get; set; }
 
-        [JsonProperty]
-        public IEnumerable<IDiagramElement> Elements
+        public ICollection<IDiagramElement> Elements
         {
             get { return _elements; }
+            set { _elements = value; }
         }
 
         private int _nextElementId;
-        private readonly ICollection<IDiagramElement> _elements;
+        private ICollection<IDiagramElement> _elements;
 
         /// <summary>
         /// Diagram constructor. A name is needed.
         /// </summary>
         /// <param name="name"></param>
-        public Diagram(string name)
+        internal Diagram(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -79,6 +75,23 @@ namespace DiagramLogic.Interface
             Add(copy);
         }
 
+        public Tuple3 CalculateGeometricCenter()
+        {
+            double x = 0;
+            double y = 0;
+            double z = 0;
+            
+            foreach (IDiagramElement diagramElement in Elements)
+            {
+                x += diagramElement.Position.X;
+                y += diagramElement.Position.Y;
+                z += diagramElement.Position.Z;
+            }
+
+            Tuple3 center = new Tuple3(x / Elements.Count, y / Elements.Count, z / Elements.Count);
+            return center;
+        }
+
         /// <summary>
         /// If the element was part of the diagram, removes it.
         /// </summary>
@@ -87,6 +100,8 @@ namespace DiagramLogic.Interface
         {
             _elements.Remove(element);
         }
+
+        #region Equality Members
 
         protected bool Equals(Diagram other)
         {
@@ -108,5 +123,7 @@ namespace DiagramLogic.Interface
                 return ((_elements != null ? _elements.GetHashCode() : 0)*397) ^ (Name != null ? Name.GetHashCode() : 0);
             }
         }
+
+        #endregion
     }
 }

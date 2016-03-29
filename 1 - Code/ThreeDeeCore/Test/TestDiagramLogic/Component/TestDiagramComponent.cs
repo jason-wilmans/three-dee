@@ -3,7 +3,9 @@ using System.IO;
 using System.Linq;
 using DiagramLogic.Implementation;
 using DiagramLogic.Interface;
+using DiagramLogic.Interface.Elements;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ZeroTypes;
 
 namespace TestDiagramLogic.Component
 {
@@ -17,12 +19,20 @@ namespace TestDiagramLogic.Component
         public void SimpleSavingAndLoading()
         {
             DiagramComponent diagramComponent = new DiagramComponent();
+            diagramComponent.CreateNewDiagram("Test Diagram 1");
 
-            Diagram original = new Diagram("Test Diagram 1");
+            IDiagramElement ellipsoid = new Ellipsoid
+            {
+                Position = new Tuple3(10, 20, 30),
+                Scale = Tuple3.One
+            };
+            diagramComponent.CurrentDiagram.Add(ellipsoid);
+            Diagram original = diagramComponent.CurrentDiagram;
             FileInfo file = new FileInfo("testFile.3dd");
-            diagramComponent.Save(original, file, true);
+            diagramComponent.Save(file, true);
 
-            Diagram diagram = diagramComponent.Load(file);
+            diagramComponent.Load(file);
+            Diagram diagram = diagramComponent.CurrentDiagram;
 
             Assert.IsTrue(original.Name.Equals(diagram.Name), "Name was not correctly transported.");
             Assert.IsTrue(original.Elements.All(elem => diagram.Elements.Contains(elem)), "Not every element was transported.");
