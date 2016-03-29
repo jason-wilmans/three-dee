@@ -1,26 +1,35 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Text;
 using DiagramLogic.Interface;
-using Newtonsoft.Json;
+using ServiceStack.Text;
 using ZeroTypes.Exceptions;
 
 namespace DiagramLogic.Implementation
 {
     internal class DiagramComponent : IDiagramComponent
     {
-        private readonly JsonSerializerSettings _settings;
+        
         private readonly Encoding _encoding;
 
         public DiagramComponent()
         {
-            _settings = new JsonSerializerSettings();
-            _settings.Formatting = Formatting.Indented;
+            
             _encoding = Encoding.UTF8;
         }
 
-        public void Save(Diagram diagram, FileInfo file, bool overWrite)
+        public Diagram CurrentDiagram { get; internal set; }
+
+        public void CreateNewDiagram(string diagramName)
         {
+            CurrentDiagram = new Diagram(diagramName);
+        }
+
+        public void Save(FileInfo file, bool overWrite)
+        {
+            if (CurrentDiagram == null) throw new InvalidOperationException("There is no diagram currently loaded that could be saved.");
+
             file.Refresh();
             if (overWrite && file.Exists)
             {
@@ -35,9 +44,8 @@ namespace DiagramLogic.Implementation
             {
                 try
                 {
-                    string json = JsonConvert.SerializeObject(diagram, _settings);
-                    byte[] bytes = _encoding.GetBytes(json);
-                    fileStream.Write(bytes, 0, bytes.Length);
+                    byte[] jsonBytes = Serialize(CurrentDiagram);
+                    fileStream.Write(jsonBytes, 0, jsonBytes.Length);
                     fileStream.Flush();
                     fileStream.Close();
                 }
@@ -48,13 +56,31 @@ namespace DiagramLogic.Implementation
             }
         }
 
-        public Diagram Load(FileInfo file)
+        private byte[] Serialize(Diagram diagram)
         {
+            try
+            {
+                string json = TypeSerializer.SerializeToString(diagram);
+                byte[] bytes = _encoding.GetBytes(json);
+                return bytes;
+            }
+            catch (Exception exception)
+            {
+                throw new SerializationException("An error occurred while serializing this diagram.", exception);
+            }
+        }
+
+        public void Load(FileInfo file)
+        {
+            file.Refresh();
+            if (!file.Exists)
+            {
+                throw new ArgumentException($"The file '{file.FullName}' does not exist.");
+            }
             using (StreamReader fileStream = file.OpenText())
             {
                 string json = fileStream.ReadToEnd();
-                Diagram diagram = JsonConvert.DeserializeObject<Diagram>(json);
-                return diagram;
+                CurrentDiagram = TypeSerializer.DeserializeFromString<Diagram>(json);
             }
         }
     }

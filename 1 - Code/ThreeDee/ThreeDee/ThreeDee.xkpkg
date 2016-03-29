@@ -1,0 +1,50 @@
+!Package
+Id: e54864e0-779a-476e-8a1e-4385213637da
+SerializedVersion: {Assets: 0.0.2}
+Tags: []
+Meta:
+    Name: ThreeDee
+    Version: 1.0.0.0
+    Authors: []
+    Owners: []
+    RootNamespace: ThreeDee
+    Dependencies:
+        -   Name: Xenko
+            Version: 1.6.0-beta
+            RootAssets: []
+LocalDependencies: []
+Profiles:
+    -   Name: Shared
+        Platform: Shared
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Shared
+            -   Path: ThreeDee.Game/Effects
+        OutputGroupDirectories: {}
+        Properties: {}
+        ProjectReferences:
+            -   Id: 00d1ce8d-e929-41f5-85e3-b1115d8cc56b
+                Location: ThreeDee.Game/ThreeDee.Game.csproj
+                Type: Library
+    -   Name: Windows
+        Platform: Windows
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Windows
+        OutputGroupDirectories: {}
+        Properties: {}
+        ProjectReferences:
+            -   Id: bf1f2c68-98b6-4773-8cca-48ba70d2ffcd
+                Location: ThreeDee.Windows/ThreeDee.Windows.csproj
+                Type: Executable
+ExplicitFolders: []
+Bundles: []
+TemplateFolders: []
+RootAssets:
+    - 137a748d-924f-402f-acb7-a637c642ec21:primitives/tube/tube (2)
+    - 21c40669-f5a7-4c59-a634-3dd1354d1335:materials/A
+    - 56c36ca2-4276-46ff-bd21-99ba2931470f:materials/D
+    - a0135730-bc02-4689-a3d8-6c7b2a118878:primitives/tube/tubeMaterial
+    - a01d8ee2-f7bf-4c45-a1da-ade45b1ec259:materials/B
+    - b6307ab3-21e5-4980-9b35-122bed61f79d:primitives/box/box
+    - df219043-9d47-424c-88bb-304e42d65978:materials/C

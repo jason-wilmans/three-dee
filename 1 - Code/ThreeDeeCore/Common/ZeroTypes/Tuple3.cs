@@ -20,6 +20,18 @@
         /// </summary>
         public double Z { get; }
 
+        #region Constants
+        /// <summary>
+        /// A tuple with all components being 0.
+        /// </summary>
+        public static readonly Tuple3 Zero = new Tuple3(0, 0, 0);
+
+        /// <summary>
+        /// A tuple with all components being 1.
+        /// </summary>
+        public static readonly Tuple3 One = new Tuple3(1, 1, 1);
+        #endregion
+
         public Tuple3(double x, double y, double z)
         {
             X = x;
