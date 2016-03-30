@@ -4,6 +4,7 @@ using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Animations;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Input;
+using XenkoUtilities;
 
 namespace ThreeDee
 {
@@ -23,6 +24,8 @@ namespace ThreeDee
         [DataMember]
         public float CurrentAngle;
 
+        private Vector3 _pivot;
+
         public float Distance { get; set; }
 
         public float TurnSpeed { get; set; }
@@ -36,10 +39,10 @@ namespace ThreeDee
 
             _angles = new[]
             {
-                new CameraAngle(0, MathUtil.PiOverTwo, _transform.Position, Distance, TurnSpeed),
-                new CameraAngle(MathUtil.PiOverTwo, MathUtil.PiOverTwo, _transform.Position, Distance, TurnSpeed),
-                new CameraAngle(Math.PI, MathUtil.PiOverTwo, _transform.Position, Distance, TurnSpeed),
-                new CameraAngle(1.5*Math.PI, MathUtil.PiOverTwo, _transform.Position, Distance, TurnSpeed)
+                new CameraAngle(0, MathUtil.PiOverTwo, TurnSpeed),
+                new CameraAngle(MathUtil.PiOverTwo, MathUtil.PiOverTwo, TurnSpeed),
+                new CameraAngle(Math.PI, MathUtil.PiOverTwo, TurnSpeed),
+                new CameraAngle(1.5*Math.PI, MathUtil.PiOverTwo, TurnSpeed)
             };
 
             CurrentAngle = (float)_angles[_currentAngleIndex].Angle;
@@ -58,11 +61,18 @@ namespace ThreeDee
                 _currentAngleIndex = _currentAngleIndex > 0 ? _currentAngleIndex - 1 : _angles.Length - 1;
             }
 
-            _transform.Rotation = Quaternion.RotationY(CurrentAngle);
+            _transform.Position = new Vector3(
+                (float) (Math.Sin(CurrentAngle) * Distance),
+                _transform.Position.Y,
+                (float) (Math.Cos(CurrentAngle) * Distance)
+                );
+            _transform.LookAt(_pivot);
         }
 
         private void StartTurnAnimation(AnimationClip clip)
         {
+            _pivot = _transform.Position + _transform.LocalMatrix.Forward*Distance;
+
             const string animationName = "MyCustomAnimation";
             _animation.Animations.Clear();
             _animation.Animations.Add(animationName, clip);

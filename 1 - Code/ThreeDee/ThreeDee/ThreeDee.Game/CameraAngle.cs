@@ -47,10 +47,8 @@ namespace ThreeDee
         private double _leftNeighbour;
         private double _rightNeighbour;
 
-        public CameraAngle(double angle, double angleDelta, Vector3 position, float distance, float turnSpeed)
+        public CameraAngle(double angle, double angleDelta, float turnSpeed)
         {
-            Position = position;
-            Distance = distance;
             TurnSpeed = turnSpeed;
             Angle = angle;
             _angleDelta = angleDelta;
