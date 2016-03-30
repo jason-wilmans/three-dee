@@ -71,7 +71,6 @@ Hierarchy:
                         TurnSpeed: 1.0
                     - !ThreeDee.Focus,ThreeDee.Game
                         ~Id: 1ef748dd-126b-4897-8353-2245dac8f484
-                        Font: 381529e5-4232-4161-b43c-becb1649d7a3/001bf765-4ddd-4c7c-b93d-6f08bd95483c:SpriteFont
                         Target:
                             Entity: {Id: d58363ca-1a4e-4f2f-9c92-88df15a44496}
                             Id: 85de43af-bbfd-4693-931d-352be5b56130

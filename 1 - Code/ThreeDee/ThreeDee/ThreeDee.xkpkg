@@ -26,6 +26,9 @@ Profiles:
             -   Id: 00d1ce8d-e929-41f5-85e3-b1115d8cc56b
                 Location: ThreeDee.Game/ThreeDee.Game.csproj
                 Type: Library
+            -   Id: 302c3b81-b98d-4a29-8c42-91e69ad6622f
+                Location: XenkoUtilities/XenkoUtilities.csproj
+                Type: Library
     -   Name: Windows
         Platform: Windows
         InheritProfiles: []
