@@ -69,6 +69,12 @@ Hierarchy:
                         CurrentAngle: 0.0
                         Distance: 5.0
                         TurnSpeed: 1.0
+                    - !ThreeDee.Focus,ThreeDee.Game
+                        ~Id: 1ef748dd-126b-4897-8353-2245dac8f484
+                        Font: 381529e5-4232-4161-b43c-becb1649d7a3/001bf765-4ddd-4c7c-b93d-6f08bd95483c:SpriteFont
+                        Target:
+                            Entity: {Id: d58363ca-1a4e-4f2f-9c92-88df15a44496}
+                            Id: 85de43af-bbfd-4693-931d-352be5b56130
             Design: {}
         -   Entity:
                 Id: 3d6dafdc-15f9-406b-9d72-2d3f4dee005e
@@ -152,12 +158,6 @@ Hierarchy:
                         Model: f15014f5-6444-4ff4-a822-ea8e9f1ac2e6/b6307ab3-21e5-4980-9b35-122bed61f79d:primitives/box/box
                         Materials:
                             - null
-                    - !ThreeDee.Focus,ThreeDee.Game
-                        ~Id: 07a14106-ddd5-4be1-8634-219d6e2391a0
-                        Font: 381529e5-4232-4161-b43c-becb1649d7a3/001bf765-4ddd-4c7c-b93d-6f08bd95483c:SpriteFont
-                        Target:
-                            Entity: {Id: d58363ca-1a4e-4f2f-9c92-88df15a44496}
-                            Id: 85de43af-bbfd-4693-931d-352be5b56130
             Design: {}
         -   Entity:
                 Id: 75ee3599-b1a5-45d7-a919-206db21bddc0
