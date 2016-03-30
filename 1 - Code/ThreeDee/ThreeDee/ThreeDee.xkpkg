@@ -41,6 +41,7 @@ ExplicitFolders: []
 Bundles: []
 TemplateFolders: []
 RootAssets:
+    - 001bf765-4ddd-4c7c-b93d-6f08bd95483c:SpriteFont
     - 137a748d-924f-402f-acb7-a637c642ec21:primitives/tube/tube (2)
     - 21c40669-f5a7-4c59-a634-3dd1354d1335:materials/A
     - 56c36ca2-4276-46ff-bd21-99ba2931470f:materials/D

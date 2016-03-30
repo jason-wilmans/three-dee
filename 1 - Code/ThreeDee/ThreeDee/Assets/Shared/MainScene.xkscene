@@ -8,32 +8,15 @@ Hierarchy:
         - 75ee3599-b1a5-45d7-a919-206db21bddc0
         - 4561ccfe-617c-47a9-a823-9c50c6aa3542
         - 84175fdd-139b-4559-a273-29ca998fcf37
-        - 1cfd6aba-7e9b-421f-b927-11d6536ebad7
         - 307fa4dc-5502-4be6-b352-3b3a68a72594
         - c20c1d29-bd9a-4715-9e6b-81934ab701da
         - ea1c80d7-8963-44dd-9497-c7a41c9e14ea
         - 4c96aaaf-c983-4748-bfbc-3f1281ef88b9
         - 22593ec7-f895-424f-be14-45a8068431c5
         - e879df9f-d381-4dcf-8796-06c727f8372b
+        - 36f590df-e936-467d-8c4f-5a49ff972f7c
+        - d58363ca-1a4e-4f2f-9c92-88df15a44496
     Entities:
-        -   Entity:
-                Id: 1cfd6aba-7e9b-421f-b927-11d6536ebad7
-                Name: CameraRig
-                Components:
-                    - !TransformComponent
-                        ~Id: 3cfe7f94-5211-486a-a980-f2a0d1cd70db
-                        Position: {X: 0.0, Y: 0.5, Z: -4.28613}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children:
-                            -   Entity: {Id: 88747919-c62e-404f-b00c-b08fab3e4fd9}
-                                Id: f71d1947-931d-4499-b522-b4249006efe9
-                    - !ThreeDee.CameraRigScript,ThreeDee.Game
-                        ~Id: 4f4c2bf6-34f1-43ca-a7a9-c1416e903a51
-                        JointTransform:
-                            Entity: {Id: 88747919-c62e-404f-b00c-b08fab3e4fd9}
-                            Id: f71d1947-931d-4499-b522-b4249006efe9
-            Design: {}
         -   Entity:
                 Id: 22593ec7-f895-424f-be14-45a8068431c5
                 Name: Green Sphere
@@ -66,6 +49,31 @@ Hierarchy:
                         Model: d68627c3-7e40-46c9-82b6-211e3cb90762/137a748d-924f-402f-acb7-a637c642ec21:primitives/tube/tube (2)
                         Materials:
                             - null
+            Design: {}
+        -   Entity:
+                Id: 36f590df-e936-467d-8c4f-5a49ff972f7c
+                Name: Camera
+                Components:
+                    - !TransformComponent
+                        ~Id: 00507840-c672-4f82-958b-4b24dc753ddd
+                        Position: {X: 0.0, Y: 2.0, Z: 14.500391}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !CameraComponent
+                        ~Id: b24ad86e-093e-4272-8ec4-01149f5f0f7e
+                        Projection: Perspective
+                    - !CameraMovementScript
+                        ~Id: 3a536d3b-e80e-43c4-8e60-9b60bc6c724a
+                        CurrentAngle: 0.0
+                        Distance: 5.0
+                        TurnSpeed: 1.0
+                    - !ThreeDee.Focus,ThreeDee.Game
+                        ~Id: b0692e17-4d63-414b-b381-f10ca074b95a
+                        Font: da9b812d-1e23-4ce0-9b77-2b908015c2ea/001bf765-4ddd-4c7c-b93d-6f08bd95483c:SpriteFont
+                        Target:
+                            Entity: {Id: d58363ca-1a4e-4f2f-9c92-88df15a44496}
+                            Id: 85de43af-bbfd-4693-931d-352be5b56130
             Design: {}
         -   Entity:
                 Id: 4561ccfe-617c-47a9-a823-9c50c6aa3542
@@ -117,20 +125,6 @@ Hierarchy:
             Design:
                 Folder: Spheres
         -   Entity:
-                Id: 71b3b184-7b05-4323-a164-bcf0ecd23768
-                Name: Camera
-                Components:
-                    - !TransformComponent
-                        ~Id: 9816fdcc-c1ad-4171-9b3a-9d078208b71c
-                        Position: {X: 0.0, Y: 0.0, Z: 10.0}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !CameraComponent
-                        ~Id: 73364cfd-4bc4-4410-bfff-9d33bb48cdbb
-                        Projection: Perspective
-            Design: {}
-        -   Entity:
                 Id: 75ee3599-b1a5-45d7-a919-206db21bddc0
                 Name: Ground
                 Components:
@@ -167,24 +161,6 @@ Hierarchy:
                         Intensity: 0.25
             Design: {}
         -   Entity:
-                Id: 88747919-c62e-404f-b00c-b08fab3e4fd9
-                Name: Joint
-                Components:
-                    - !TransformComponent
-                        ~Id: f71d1947-931d-4499-b522-b4249006efe9
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children:
-                            -   Entity: {Id: 71b3b184-7b05-4323-a164-bcf0ecd23768}
-                                Id: 9816fdcc-c1ad-4171-9b3a-9d078208b71c
-                    - !JointRotationScript
-                        ~Id: 536727d0-98ce-4e6a-9c04-30b11bc8d853
-                        CurrentAngle: 0.0
-                        Distance: 0.0
-                        TurnSpeed: 1.0
-            Design: {}
-        -   Entity:
                 Id: c20c1d29-bd9a-4715-9e6b-81934ab701da
                 Name: Red Sphere
                 Components:
@@ -201,6 +177,24 @@ Hierarchy:
                             - null
             Design:
                 Folder: Spheres
+        -   Entity:
+                Id: d58363ca-1a4e-4f2f-9c92-88df15a44496
+                Name: box
+                Components:
+                    - !TransformComponent
+                        ~Id: 85de43af-bbfd-4693-931d-352be5b56130
+                        Position: {X: 0.0, Y: 2.0, Z: 0.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !ModelComponent
+                        ~Id: d7c2746e-05ff-4da5-af10-8beb81b22428
+                        Model: f15014f5-6444-4ff4-a822-ea8e9f1ac2e6/b6307ab3-21e5-4980-9b35-122bed61f79d:primitives/box/box
+                        Materials:
+                            - null
+                    - !ThreeDee.MovingBox,ThreeDee.Game
+                        ~Id: 628cd2b0-5861-467b-a48d-ce618e70b362
+            Design: {}
         -   Entity:
                 Id: e879df9f-d381-4dcf-8796-06c727f8372b
                 Name: tube (2)
@@ -242,8 +236,8 @@ SceneSettings:
             -   ~Id: 78927eae-348b-4c7d-b2b8-961473d68def
                 Name: null
                 Camera:
-                    Entity: {Id: 71b3b184-7b05-4323-a164-bcf0ecd23768}
-                    Id: 73364cfd-4bc4-4410-bfff-9d33bb48cdbb
+                    Entity: {Id: 36f590df-e936-467d-8c4f-5a49ff972f7c}
+                    Id: b24ad86e-093e-4272-8ec4-01149f5f0f7e
         Layers:
             -   ~Id: 283742cd-c94c-4409-b3af-2a464f9923ea
                 Name: SceneGraphicsLayer
@@ -279,6 +273,7 @@ SceneSettings:
                             Index: 0
                         DepthOfField:
                             ~Id: e93e447d-2e48-4ccf-9f7a-e19a7e55229b
+                            Enabled: false
                             DOFAreas: {X: 0.5, Y: 6.0, Z: 50.0, W: 200.0}
                         BrightFilter:
                             ~Id: 8b1a03b9-5f15-4d1b-8d05-445a17dce303

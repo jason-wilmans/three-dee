@@ -3,14 +3,14 @@ Id: b6307ab3-21e5-4980-9b35-122bed61f79d
 SerializedVersion: {Xenko: 1.5.0-alpha02}
 Tags: []
 Source: ../../../../../../../3 - Assets/primitives/box/box.obj
-SourceHash: cdca0efa0cb299996fffe244b8b23d29
+SourceHash: 6649f7465262c195a145f88f945ec9fe
 Materials:
     -   ~Id: 2b720ffe-c528-ae64-0442-89ea044289ea
         Name: Material
         MaterialInstance:
             ~Id: a2d47d44-48da-4e0c-a11e-d6d6ab84bf17
-            Material: 20add31e-800d-463d-99a9-2586a5a98bee/cf197e85-b969-419d-a786-e1a78d7878cd:primitives/box/Material
-Skeleton: null
+            Material: 54a11c3f-c131-4d30-bf06-afc2b189d3d4/cf197e85-b969-419d-a786-e1a78d7878cd:primitives/box/Material
+Skeleton: 02b1ffe4-e499-4806-b6e5-a2c1e552b3a9/7a9a0917-abf2-49c8-b1e7-43ae73dac2d5:box Skeleton
 ~Base:
     Location: --import--
     Asset: !Model
@@ -22,6 +22,6 @@ Skeleton: null
             -   ~Id: 2b720ffe-c528-ae64-0442-89ea044289ea
                 Name: Material
                 MaterialInstance:
-                    ~Id: a2d47d44-48da-4e0c-a11e-d6d6ab84bf17
-                    Material: 20add31e-800d-463d-99a9-2586a5a98bee/cf197e85-b969-419d-a786-e1a78d7878cd:Material
-        Skeleton: null
+                    ~Id: 4178b728-d1f6-4890-9252-bf88884e1189
+                    Material: 54a11c3f-c131-4d30-bf06-afc2b189d3d4/cf197e85-b969-419d-a786-e1a78d7878cd:primitives/box/Material
+        Skeleton: 02b1ffe4-e499-4806-b6e5-a2c1e552b3a9/7a9a0917-abf2-49c8-b1e7-43ae73dac2d5:box Skeleton

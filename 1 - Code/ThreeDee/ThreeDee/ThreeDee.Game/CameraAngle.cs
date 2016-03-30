@@ -80,8 +80,8 @@ namespace ThreeDee
                     new KeyFrameData<float>((CompressedTimeSpan) TimeSpan.FromSeconds(TurnSpeed), end)
                 }
             };
-            
-            animationClip.AddCurve($"[{nameof(JointRotationScript)}.Key].CurrentAngle", curve);
+
+            animationClip.AddCurve($"[{nameof(CameraMovementScript)}.Key].CurrentAngle", curve);
             animationClip.Optimize();
 
             return animationClip;

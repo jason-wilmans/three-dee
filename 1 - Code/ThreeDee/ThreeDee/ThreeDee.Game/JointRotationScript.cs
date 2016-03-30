@@ -41,7 +41,6 @@ namespace ThreeDee
 
         public override void Update()
         {
-
             //_transform.Rotation = new Quaternion(Vector3.UnitY, CurrentAngle);
             _transform.Rotation = Quaternion.RotationY(CurrentAngle);
 

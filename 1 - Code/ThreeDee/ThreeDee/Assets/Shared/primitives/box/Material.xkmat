@@ -40,11 +40,11 @@ Layers: []
                     Value: 1.0
             SpecularModel: !MaterialSpecularMicrofacetModelFeature
                 Fresnel: !MaterialSpecularMicrofacetFresnelSchlick
-                    ~Id: f622d670-838c-44d2-823d-894fe712299e
+                    ~Id: 80a602a0-7fab-48dd-945d-30fd8f44e755
                 Visibility: !MaterialSpecularMicrofacetVisibilityImplicit
-                    ~Id: 061d0ebb-466a-4f5c-ad74-38dff65ba68c
+                    ~Id: 6046eea8-cb07-459c-a5f4-4a986c3c8043
                 NormalDistribution: !MaterialSpecularMicrofacetNormalDistributionBlinnPhong
-                    ~Id: 21053ac4-5b4e-4a1e-9b6f-d13ed3cc5aac
+                    ~Id: bed7f307-bddd-4406-8c69-314e1ad8a9a2
             Overrides:
                 UVScale: {X: 1.0, Y: 1.0}
         Layers: []

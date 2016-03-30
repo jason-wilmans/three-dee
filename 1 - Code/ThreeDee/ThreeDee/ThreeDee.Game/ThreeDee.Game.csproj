@@ -76,8 +76,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraAngle.cs" />
+    <Compile Include="CameraMovementScript.cs" />
     <Compile Include="CameraRigScript.cs" />
+    <Compile Include="Focus.cs" />
     <Compile Include="JointRotationScript.cs" />
+    <Compile Include="MovingBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
