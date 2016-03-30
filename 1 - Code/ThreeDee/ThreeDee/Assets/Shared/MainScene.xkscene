@@ -16,6 +16,7 @@ Hierarchy:
         - e879df9f-d381-4dcf-8796-06c727f8372b
         - 36f590df-e936-467d-8c4f-5a49ff972f7c
         - d58363ca-1a4e-4f2f-9c92-88df15a44496
+        - 64920051-8b86-4713-96c2-a28fc5cef3cf
     Entities:
         -   Entity:
                 Id: 22593ec7-f895-424f-be14-45a8068431c5
@@ -68,12 +69,22 @@ Hierarchy:
                         CurrentAngle: 0.0
                         Distance: 5.0
                         TurnSpeed: 1.0
-                    - !ThreeDee.Focus,ThreeDee.Game
-                        ~Id: b0692e17-4d63-414b-b381-f10ca074b95a
-                        Font: da9b812d-1e23-4ce0-9b77-2b908015c2ea/001bf765-4ddd-4c7c-b93d-6f08bd95483c:SpriteFont
-                        Target:
-                            Entity: {Id: d58363ca-1a4e-4f2f-9c92-88df15a44496}
-                            Id: 85de43af-bbfd-4693-931d-352be5b56130
+            Design: {}
+        -   Entity:
+                Id: 3d6dafdc-15f9-406b-9d72-2d3f4dee005e
+                Name: Green Sphere (2)
+                Components:
+                    - !TransformComponent
+                        ~Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
+                        Position: {X: 0.0, Y: 0.0, Z: 1.39341593}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !ModelComponent
+                        ~Id: acfdde74-30b4-4d14-a276-26bb82cc645d
+                        Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
+                        Materials:
+                            - 3823589f-3912-40d0-8400-42e1a6f15f16/56c36ca2-4276-46ff-bd21-99ba2931470f:materials/D
             Design: {}
         -   Entity:
                 Id: 4561ccfe-617c-47a9-a823-9c50c6aa3542
@@ -124,6 +135,30 @@ Hierarchy:
                             - 37d7e717-1e56-4c6e-9986-48e6401fc213/df219043-9d47-424c-88bb-304e42d65978:materials/C
             Design:
                 Folder: Spheres
+        -   Entity:
+                Id: 64920051-8b86-4713-96c2-a28fc5cef3cf
+                Name: Looker
+                Components:
+                    - !TransformComponent
+                        ~Id: 85de43af-bbfd-4693-931d-352be5b56130
+                        Position: {X: 2.0, Y: 1.5, Z: 8.5}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 0.25, Y: 0.25, Z: 0.25}
+                        Children:
+                            -   Entity: {Id: 3d6dafdc-15f9-406b-9d72-2d3f4dee005e}
+                                Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
+                    - !ModelComponent
+                        ~Id: d7c2746e-05ff-4da5-af10-8beb81b22428
+                        Model: f15014f5-6444-4ff4-a822-ea8e9f1ac2e6/b6307ab3-21e5-4980-9b35-122bed61f79d:primitives/box/box
+                        Materials:
+                            - null
+                    - !ThreeDee.Focus,ThreeDee.Game
+                        ~Id: 07a14106-ddd5-4be1-8634-219d6e2391a0
+                        Font: 381529e5-4232-4161-b43c-becb1649d7a3/001bf765-4ddd-4c7c-b93d-6f08bd95483c:SpriteFont
+                        Target:
+                            Entity: {Id: d58363ca-1a4e-4f2f-9c92-88df15a44496}
+                            Id: 85de43af-bbfd-4693-931d-352be5b56130
+            Design: {}
         -   Entity:
                 Id: 75ee3599-b1a5-45d7-a919-206db21bddc0
                 Name: Ground
@@ -179,11 +214,11 @@ Hierarchy:
                 Folder: Spheres
         -   Entity:
                 Id: d58363ca-1a4e-4f2f-9c92-88df15a44496
-                Name: box
+                Name: Target
                 Components:
                     - !TransformComponent
                         ~Id: 85de43af-bbfd-4693-931d-352be5b56130
-                        Position: {X: 0.0, Y: 2.0, Z: 0.0}
+                        Position: {X: 0.0, Y: 2.0, Z: 3.83031559}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
@@ -193,7 +228,7 @@ Hierarchy:
                         Materials:
                             - null
                     - !ThreeDee.MovingBox,ThreeDee.Game
-                        ~Id: 628cd2b0-5861-467b-a48d-ce618e70b362
+                        ~Id: d74b6fc3-593c-43a9-bc87-99a388ccd94a
             Design: {}
         -   Entity:
                 Id: e879df9f-d381-4dcf-8796-06c727f8372b

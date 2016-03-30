@@ -10,6 +10,7 @@ using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.Graphics.Font;
 using SiliconStudio.Xenko.UI;
 using SiliconStudio.Xenko.UI.Controls;
+using SiliconStudio.Xenko.UI.Panels;
 
 namespace ThreeDee
 {
@@ -18,29 +19,65 @@ namespace ThreeDee
         public SpriteFont Font { get; set; }
         public TransformComponent Target;
         private UIComponent _ui;
-        private TextBlock _label;
+        private TextBlock _angle;
+        private TextBlock _dot;
+        private TextBlock _over;
 
         public override void Start()
         {
             base.Start();
 
-            _ui = Entity.GetOrCreate<UIComponent>();
-            _label = new TextBlock
+            //StackPanel panel = new StackPanel
+            //{
+            //    Orientation = Orientation.Horizontal
+            //};
+
+            //_ui.RootElement = panel;
+
+            //SetupLabels(panel);
+        }
+
+        public override void Update()
+        {
+            Vector3 lookDirection = Target.Position - Entity.Transform.Position;
+            double horizontalAngle = Math.Atan2(lookDirection.Z, lookDirection.X);
+            double verticalAngle = Math.Atan2(lookDirection.Y, lookDirection.X);
+
+            Quaternion combined = Quaternion.RotationY((float) -horizontalAngle - MathUtil.PiOverTwo);
+
+            Entity.Transform.Rotation = combined;
+        }
+
+        private double Clamp(double f)
+        {
+            return Math.Min(1f, Math.Max(-1, f));
+        }
+
+        private void SetupLabels(StackPanel panel)
+        {
+            _dot = new TextBlock
             {
                 Font = Font,
                 TextColor = Color.Magenta,
                 Margin = new Thickness(20, 20, 0, 0)
             };
-            _ui.RootElement = _label;
-        }
-        
-        public override void Update()
-        {
-            Vector3 lookDirection = Target.Position - Entity.Transform.Position;
-            var a = Entity.Transform.LocalMatrix.Forward / Entity.Transform.LocalMatrix.Forward.Length();
-            var b = lookDirection / lookDirection.Length();
-            float angle = (float) Math.Acos(Vector3.Dot(a, b));
-            _label.Text = angle.ToString();
+            panel.Children.Add(_dot);
+
+            _over = new TextBlock
+            {
+                Font = Font,
+                TextColor = Color.Magenta,
+                Margin = new Thickness(20, 20, 0, 0)
+            };
+            panel.Children.Add(_over);
+
+            _angle = new TextBlock
+            {
+                Font = Font,
+                TextColor = Color.Magenta,
+                Margin = new Thickness(20, 20, 0, 0)
+            };
+            panel.Children.Add(_angle);
         }
     }
 }
