@@ -3,7 +3,9 @@ using SiliconStudio.Core;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Animations;
 using SiliconStudio.Xenko.Engine;
+using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.Input;
+using SiliconStudio.Xenko.UI.Controls;
 using XenkoUtilities;
 
 namespace ThreeDee
@@ -11,6 +13,15 @@ namespace ThreeDee
     [DataContract(nameof(CameraMovementScript))]
     public class CameraMovementScript : SyncScript
     {
+        public float Distance { get; set; }
+
+        public float TurnSpeed { get; set; }
+
+        [DataMember]
+        public float CurrentAngle;
+
+        public TransformComponent PivotTransform;
+
         private const float ScrollDelta = 0.005f;
         private const float ScrollingSpeed = 0.05f;
         private const float PanSpeed = 1.0f;
@@ -20,15 +31,7 @@ namespace ThreeDee
         private Vector2 _oldMousePosition;
 
         private TransformComponent _transform;
-
-        [DataMember]
-        public float CurrentAngle;
-
         private Vector3 _pivot;
-
-        public float Distance { get; set; }
-
-        public float TurnSpeed { get; set; }
 
         public override void Start()
         {
@@ -36,7 +39,7 @@ namespace ThreeDee
 
             _transform = Entity.GetOrCreate<TransformComponent>();
             _animation = Entity.GetOrCreate<AnimationComponent>();
-
+            
             _angles = new[]
             {
                 new CameraAngle(0, MathUtil.PiOverTwo, TurnSpeed),
@@ -45,33 +48,33 @@ namespace ThreeDee
                 new CameraAngle(1.5*Math.PI, MathUtil.PiOverTwo, TurnSpeed)
             };
 
-            CurrentAngle = (float)_angles[_currentAngleIndex].Angle;
+            UpdatePivot();
         }
 
         private void Turning()
         {
             if (Input.IsKeyPressed(Keys.Right))
             {
-                StartTurnAnimation(_angles[_currentAngleIndex].LeftAnimation);
+                StartTurnAnimation(_angles[_currentAngleIndex].RightAnimation);
                 _currentAngleIndex = (_currentAngleIndex + 1) % _angles.Length;
             }
             else if (Input.IsKeyPressed(Keys.Left))
             {
-                StartTurnAnimation(_angles[_currentAngleIndex].RightAnimation);
+                StartTurnAnimation(_angles[_currentAngleIndex].LeftAnimation);
                 _currentAngleIndex = _currentAngleIndex > 0 ? _currentAngleIndex - 1 : _angles.Length - 1;
             }
 
-            _transform.Position = new Vector3(
-                (float) (Math.Sin(CurrentAngle) * Distance),
-                _transform.Position.Y,
-                (float) (Math.Cos(CurrentAngle) * Distance)
-                );
+            _transform.Position = _pivot + Distance * new Vector3(
+                (float) Math.Sin(CurrentAngle),
+                0,
+                (float) Math.Cos(CurrentAngle)
+            );
             _transform.LookAt(_pivot);
         }
 
         private void StartTurnAnimation(AnimationClip clip)
         {
-            _pivot = _transform.Position + _transform.LocalMatrix.Forward*Distance;
+            UpdatePivot();
 
             const string animationName = "MyCustomAnimation";
             _animation.Animations.Clear();
@@ -79,6 +82,12 @@ namespace ThreeDee
 
             var playingAnimation = _animation.Play(animationName);
             playingAnimation.RepeatMode = AnimationRepeatMode.PlayOnce;
+        }
+
+        private void UpdatePivot()
+        {
+            _pivot = _transform.Position + _transform.LocalMatrix.Backward * Distance;
+            PivotTransform.Position = _pivot;
         }
 
         public override void Update()
@@ -94,7 +103,7 @@ namespace ThreeDee
         {
             if (Math.Abs(Input.MouseWheelDelta) > ScrollDelta)
             {
-                var zoomDelta = _transform.WorldMatrix.Forward * Input.MouseWheelDelta * ScrollingSpeed;
+                var zoomDelta = _transform.LocalMatrix.Forward * Input.MouseWheelDelta * ScrollingSpeed;
                 _transform.Position += zoomDelta * ScrollingSpeed;
             }
         }

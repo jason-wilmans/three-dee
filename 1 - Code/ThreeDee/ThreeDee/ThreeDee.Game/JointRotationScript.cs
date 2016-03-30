@@ -21,7 +21,6 @@ namespace ThreeDee
         private AnimationComponent _animation;
         private CameraAngle[] _angles;
         private int _currentAngleIndex;
-        private Vector3 _pivot;
 
         public override void Start()
         {
@@ -42,6 +41,9 @@ namespace ThreeDee
 
         public override void Update()
         {
+            //_transform.Rotation = new Quaternion(Vector3.UnitY, CurrentAngle);
+            _transform.Rotation = Quaternion.RotationY(CurrentAngle);
+
             Turning();
         }
 
@@ -49,22 +51,18 @@ namespace ThreeDee
         {
             if (Input.IsKeyPressed(Keys.Right))
             {
-                StartTurnAnimation(_angles[_currentAngleIndex].RightAnimation);
+                StartTurnAnimation(_angles[_currentAngleIndex].LeftAnimation);
                 _currentAngleIndex = (_currentAngleIndex + 1) % _angles.Length;
             }
             else if (Input.IsKeyPressed(Keys.Left))
             {
-                StartTurnAnimation(_angles[_currentAngleIndex].LeftAnimation);
+                StartTurnAnimation(_angles[_currentAngleIndex].RightAnimation);
                 _currentAngleIndex = _currentAngleIndex > 0 ? _currentAngleIndex - 1 : _angles.Length - 1;
             }
-
-            _transform.Position = new Vector3((float) (Math.Sin(CurrentAngle) * Distance), _transform.Position.Y, (float) (Math.Cos(CurrentAngle) * Distance));
         }
 
         private void StartTurnAnimation(AnimationClip clip)
         {
-            _pivot = _transform.Position + _transform.WorldMatrix.Forward*Distance;
-
             const string animationName = "MyCustomAnimation";
             _animation.Animations.Clear();
             _animation.Animations.Add(animationName, clip);
