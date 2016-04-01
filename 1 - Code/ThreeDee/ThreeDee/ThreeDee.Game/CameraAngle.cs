@@ -61,7 +61,7 @@ namespace ThreeDee
             _rightNeighbour = Angle + _angleDelta;
 
             LeftAnimation = CreateTurnCurve((float)_leftNeighbour, (float) Angle);
-            RightAnimation = CreateTurnCurve((float) Angle, (float)_rightNeighbour);
+            RightAnimation = CreateTurnCurve((float)_rightNeighbour, (float)Angle);
         }
 
 

@@ -64,10 +64,10 @@ namespace ThreeDee
                 _currentAngleIndex = _currentAngleIndex > 0 ? _currentAngleIndex - 1 : _angles.Length - 1;
             }
 
-            _transform.Position = _pivot + Distance * new Vector3(
-                (float) Math.Sin(CurrentAngle),
+            _transform.Position = new Vector3(
+                 Distance * (float) Math.Sin(CurrentAngle),
                 0,
-                (float) Math.Cos(CurrentAngle)
+                 Distance * (float) Math.Cos(CurrentAngle)
             );
             _transform.LookAt(_pivot);
         }
