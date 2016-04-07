@@ -18,6 +18,7 @@ Hierarchy:
         - 36f590df-e936-467d-8c4f-5a49ff972f7c
         - 039048c8-5d7b-485a-873e-7c333a9aaa79
         - 64920051-8b86-4713-96c2-a28fc5cef3cf
+        - 87a2a892-61e0-4f57-8ede-61f08eeb205f
     Entities:
         -   Entity:
                 Id: 039048c8-5d7b-485a-873e-7c333a9aaa79
@@ -74,13 +75,35 @@ Hierarchy:
                 Components:
                     - !TransformComponent
                         ~Id: 00507840-c672-4f82-958b-4b24dc753ddd
-                        Position: {X: 0.0, Y: 25.0, Z: 0.0}
-                        Rotation: {W: 0.707106769, X: -0.707106769, Y: 0.0, Z: 0.0}
+                        Position: {X: 0.0, Y: 5.15514374, Z: 9.133482}
+                        Rotation: {W: 0.9552226, X: -0.2958881, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
                     - !CameraComponent
                         ~Id: b24ad86e-093e-4272-8ec4-01149f5f0f7e
                         Projection: Perspective
+                    - !RigidbodyComponent
+                        ~Id: 85e6394d-d2cf-4a0f-83fb-2a5ac8c0b0df
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        IsTrigger: false
+                        IsKinematic: false
+                        Mass: 1.0
+                        LinearDamping: 0.0
+                        AngularDamping: 0.0
+                        OverrideGravity: false
+                        Gravity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        NodeName: null
+                        ColliderShapes: []
+                    - !ThreeDee.ClickTest,ThreeDee.Game
+                        ~Id: decf03fd-1cbb-4dae-aac2-80771003f09b
+                        TargetIndicator:
+                            Entity: {Id: df0ace41-16ce-4df9-9273-1a0ad33fa51a}
+                            Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
             Design: {}
         -   Entity:
                 Id: 3d6dafdc-15f9-406b-9d72-2d3f4dee005e
@@ -153,8 +176,8 @@ Hierarchy:
                 Components:
                     - !TransformComponent
                         ~Id: 85de43af-bbfd-4693-931d-352be5b56130
-                        Position: {X: 0.0, Y: 1.0, Z: 0.0}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Position: {X: 2.0, Y: 1.0, Z: 0.0}
+                        Rotation: {W: 0.707106769, X: 0.0, Y: 0.707106769, Z: 0.0}
                         Scale: {X: 0.25, Y: 0.25, Z: 0.25}
                         Children:
                             -   Entity: {Id: 3d6dafdc-15f9-406b-9d72-2d3f4dee005e}
@@ -165,13 +188,13 @@ Hierarchy:
                         Materials:
                             - null
                     - !CameraMovementScript
-                        ~Id: fba4741b-bc29-427a-8da4-a741cc457803
+                        ~Id: cffb7a54-a5da-4eef-8413-868a33be068d
                         CurrentAngle: 0.0
                         Distance: 2.0
                         PivotTransform:
                             Entity: {Id: 039048c8-5d7b-485a-873e-7c333a9aaa79}
                             Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
-                        TurnSpeed: 1.0
+                        TurnSpeed: 0.0005
             Design: {}
         -   Entity:
                 Id: 75ee3599-b1a5-45d7-a919-206db21bddc0
@@ -188,9 +211,6 @@ Hierarchy:
                         Model: c058ae63-9b36-48f0-a5ee-036bbab7008d/32b235e2-6390-494d-a21c-e754f6d19b11:Ground
                         Materials:
                             - null
-                    - !UIComponent
-                        ~Id: 79cbd847-fb20-4cfb-9083-f43d7da44306
-                        VirtualResolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
             Design: {}
         -   Entity:
                 Id: 84175fdd-139b-4559-a273-29ca998fcf37
@@ -211,6 +231,20 @@ Hierarchy:
                         Type: !LightSkybox
                             ~Id: 6ea44460-619a-4393-93c2-fa55e8648378
                         Intensity: 0.25
+            Design: {}
+        -   Entity:
+                Id: 87a2a892-61e0-4f57-8ede-61f08eeb205f
+                Name: UI
+                Components:
+                    - !TransformComponent
+                        ~Id: 885d7602-5f93-40c7-9a4a-672d3cf0f16c
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !UIComponent
+                        ~Id: 47200a02-71be-45b7-9189-46bdda8a503d
+                        VirtualResolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
             Design: {}
         -   Entity:
                 Id: c20c1d29-bd9a-4715-9e6b-81934ab701da

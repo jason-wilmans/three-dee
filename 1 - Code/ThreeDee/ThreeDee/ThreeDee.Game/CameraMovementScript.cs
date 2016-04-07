@@ -3,9 +3,7 @@ using SiliconStudio.Core;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Animations;
 using SiliconStudio.Xenko.Engine;
-using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.Input;
-using SiliconStudio.Xenko.UI.Controls;
 using XenkoUtilities;
 
 namespace ThreeDee
@@ -64,7 +62,7 @@ namespace ThreeDee
                 _currentAngleIndex = _currentAngleIndex > 0 ? _currentAngleIndex - 1 : _angles.Length - 1;
             }
 
-            _transform.Position = new Vector3(
+            _transform.Position = _pivot + new Vector3(
                  Distance * (float) Math.Sin(CurrentAngle),
                 0,
                  Distance * (float) Math.Cos(CurrentAngle)
