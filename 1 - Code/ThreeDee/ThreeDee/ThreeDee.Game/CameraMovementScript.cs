@@ -16,9 +16,18 @@ namespace ThreeDee
         public float TurnSpeed { get; set; }
 
         [DataMember]
-        public float CurrentAngle;
-
-        public TransformComponent PivotTransform;
+        public float CurrentAngle
+        {
+            get { return _currentAngle; }
+            set
+            {
+                _currentAngle = value;
+                if (Log != null)
+                {
+                    Log.Error(value.ToString());
+                }
+            }
+        }
 
         private const float ScrollDelta = 0.005f;
         private const float ScrollingSpeed = 0.05f;
@@ -30,6 +39,7 @@ namespace ThreeDee
 
         private TransformComponent _transform;
         private Vector3 _pivot;
+        private float _currentAngle;
 
         public override void Start()
         {
@@ -47,25 +57,35 @@ namespace ThreeDee
             };
             
             CurrentAngle = (float) _angles[_currentAngleIndex].Angle;
-            PositionFromAngle();
-
             UpdatePivot();
+            PositionFromAngle();
+        }
+
+        public override void Update()
+        {
+            if (_animation.PlayingAnimations.Count == 0)
+            {
+                Scrolling();
+                Panning();
+            }
+
+            Turning();
+            PositionFromAngle();
         }
 
         private void Turning()
         {
-            if (Input.IsKeyPressed(Keys.Right))
+            if (Input.IsKeyPressed(Keys.Left))
             {
-                StartTurnAnimation(_angles[_currentAngleIndex].RightAnimation);
+                StartTurnAnimation(_angles[_currentAngleIndex].HigherAnimation);
                 _currentAngleIndex = (_currentAngleIndex + 1) % _angles.Length;
             }
-            else if (Input.IsKeyPressed(Keys.Left))
+            else if (Input.IsKeyPressed(Keys.Right))
             {
-                StartTurnAnimation(_angles[_currentAngleIndex].LeftAnimation);
+                StartTurnAnimation(_angles[_currentAngleIndex].LowerAnimation);
                 _currentAngleIndex = _currentAngleIndex > 0 ? _currentAngleIndex - 1 : _angles.Length - 1;
             }
-
-            PositionFromAngle();
+            
             _transform.LookAt(_pivot);
         }
 
@@ -91,15 +111,8 @@ namespace ThreeDee
         private void UpdatePivot()
         {
             _pivot = _transform.Position + _transform.LocalMatrix.Backward * Distance;
-            PivotTransform.Position = _pivot;
         }
 
-        public override void Update()
-        {
-            Scrolling();
-            Panning();
-            Turning();
-        }
 
         #region Scrolling
 
@@ -126,7 +139,7 @@ namespace ThreeDee
                 _transform.Position += _transform.WorldMatrix.Right * delta.X;
                 _transform.Position += _transform.WorldMatrix.Up * delta.Y;
 
-                UpdatePivot();
+                _pivot.Y = _transform.Position.Y;
             }
 
             _oldMousePosition = Input.MousePosition;

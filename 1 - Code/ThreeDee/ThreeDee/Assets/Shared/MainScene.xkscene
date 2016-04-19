@@ -13,26 +13,8 @@ Hierarchy:
         - 4c96aaaf-c983-4748-bfbc-3f1281ef88b9
         - 22593ec7-f895-424f-be14-45a8068431c5
         - 36f590df-e936-467d-8c4f-5a49ff972f7c
-        - 039048c8-5d7b-485a-873e-7c333a9aaa79
-        - 64920051-8b86-4713-96c2-a28fc5cef3cf
         - 87a2a892-61e0-4f57-8ede-61f08eeb205f
     Entities:
-        -   Entity:
-                Id: 039048c8-5d7b-485a-873e-7c333a9aaa79
-                Name: Pivot
-                Components:
-                    - !TransformComponent
-                        ~Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
-                        Position: {X: 0.0, Y: 0.5, Z: -5.0}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 0.2, Y: 0.2, Z: 0.2}
-                        Children: []
-                    - !ModelComponent
-                        ~Id: acfdde74-30b4-4d14-a276-26bb82cc645d
-                        Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
-                        Materials:
-                            - 37d7e717-1e56-4c6e-9986-48e6401fc213/df219043-9d47-424c-88bb-304e42d65978:materials/C
-            Design: {}
         -   Entity:
                 Id: 22593ec7-f895-424f-be14-45a8068431c5
                 Name: Green Sphere
@@ -56,49 +38,18 @@ Hierarchy:
                 Components:
                     - !TransformComponent
                         ~Id: 00507840-c672-4f82-958b-4b24dc753ddd
-                        Position: {X: 0.0, Y: 25.0, Z: 0.0}
-                        Rotation: {W: 0.707106769, X: -0.707106769, Y: 0.0, Z: 0.0}
+                        Position: {X: 0.0, Y: 1.0, Z: 0.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
                     - !CameraComponent
                         ~Id: b24ad86e-093e-4272-8ec4-01149f5f0f7e
                         Projection: Perspective
-                    - !RigidbodyComponent
-                        ~Id: 85e6394d-d2cf-4a0f-83fb-2a5ac8c0b0df
-                        CanSleep: false
-                        Restitution: 0.0
-                        Friction: 0.5
-                        RollingFriction: 0.0
-                        CcdMotionThreshold: 0.0
-                        CcdSweptSphereRadius: 0.0
-                        IsTrigger: false
-                        IsKinematic: false
-                        Mass: 1.0
-                        LinearDamping: 0.0
-                        AngularDamping: 0.0
-                        OverrideGravity: false
-                        Gravity: {X: 0.0, Y: 0.0, Z: 0.0}
-                        NodeName: null
-                        ColliderShapes: []
-                    - !ThreeDee.ClickTest,ThreeDee.Game
-                        ~Id: decf03fd-1cbb-4dae-aac2-80771003f09b
-                        TargetIndicator: null
-            Design: {}
-        -   Entity:
-                Id: 3d6dafdc-15f9-406b-9d72-2d3f4dee005e
-                Name: Green Sphere (2)
-                Components:
-                    - !TransformComponent
-                        ~Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
-                        Position: {X: 0.0, Y: 0.0, Z: 1.39341593}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !ModelComponent
-                        ~Id: acfdde74-30b4-4d14-a276-26bb82cc645d
-                        Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
-                        Materials:
-                            - 3823589f-3912-40d0-8400-42e1a6f15f16/56c36ca2-4276-46ff-bd21-99ba2931470f:materials/D
+                    - !CameraMovementScript
+                        ~Id: f5c8a6c0-f285-4dab-b20f-25225efd9d14
+                        CurrentAngle: 0.0
+                        Distance: 2.0
+                        TurnSpeed: 0.25
             Design: {}
         -   Entity:
                 Id: 4561ccfe-617c-47a9-a823-9c50c6aa3542
@@ -149,32 +100,6 @@ Hierarchy:
                             - 37d7e717-1e56-4c6e-9986-48e6401fc213/df219043-9d47-424c-88bb-304e42d65978:materials/C
             Design:
                 Folder: Spheres
-        -   Entity:
-                Id: 64920051-8b86-4713-96c2-a28fc5cef3cf
-                Name: Looker
-                Components:
-                    - !TransformComponent
-                        ~Id: 85de43af-bbfd-4693-931d-352be5b56130
-                        Position: {X: 0.0, Y: 1.0, Z: 0.0}
-                        Rotation: {W: 0.707106769, X: 0.0, Y: 0.707106769, Z: 0.0}
-                        Scale: {X: 0.25, Y: 0.25, Z: 0.25}
-                        Children:
-                            -   Entity: {Id: 3d6dafdc-15f9-406b-9d72-2d3f4dee005e}
-                                Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
-                    - !ModelComponent
-                        ~Id: d7c2746e-05ff-4da5-af10-8beb81b22428
-                        Model: f15014f5-6444-4ff4-a822-ea8e9f1ac2e6/b6307ab3-21e5-4980-9b35-122bed61f79d:primitives/box/box
-                        Materials:
-                            - null
-                    - !CameraMovementScript
-                        ~Id: cffb7a54-a5da-4eef-8413-868a33be068d
-                        CurrentAngle: 0.0
-                        Distance: 2.0
-                        PivotTransform:
-                            Entity: {Id: 039048c8-5d7b-485a-873e-7c333a9aaa79}
-                            Id: ab2b88d1-6936-400a-b7c6-af3aa5c3d7b6
-                        TurnSpeed: 0.5
-            Design: {}
         -   Entity:
                 Id: 75ee3599-b1a5-45d7-a919-206db21bddc0
                 Name: Ground

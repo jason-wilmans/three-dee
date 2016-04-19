@@ -12,7 +12,11 @@ namespace XenkoUtilities
             double horizontalAngle = Math.Atan2(lookDirection.Z, lookDirection.X);
             double verticalAngle = Math.Atan2(lookDirection.Y, lookDirection.Z);
             
-            transform.Rotation = Quaternion.RotationYawPitchRoll((float)-horizontalAngle - MathUtil.PiOverTwo, (float)(-verticalAngle + Math.PI), 0);
+            transform.Rotation = Quaternion.RotationYawPitchRoll(
+                (float)-horizontalAngle - MathUtil.PiOverTwo,
+                (float)(-verticalAngle + Math.PI),
+                0
+            );
         }
     }
 }

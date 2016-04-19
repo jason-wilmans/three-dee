@@ -36,8 +36,8 @@ namespace ThreeDee
             }
         }
 
-        public AnimationClip LeftAnimation { get; private set; }
-        public AnimationClip RightAnimation { get; private set; }
+        public AnimationClip LowerAnimation { get; private set; }
+        public AnimationClip HigherAnimation { get; private set; }
 
         public readonly double Angle;
         private readonly double _angleDelta;
@@ -60,8 +60,8 @@ namespace ThreeDee
             _leftNeighbour = Angle - _angleDelta;
             _rightNeighbour = Angle + _angleDelta;
 
-            LeftAnimation = CreateTurnCurve((float) Angle, (float)_leftNeighbour);
-            RightAnimation = CreateTurnCurve((float)Angle, (float)_rightNeighbour);
+            LowerAnimation = CreateTurnCurve((float) Angle, (float)_leftNeighbour);
+            HigherAnimation = CreateTurnCurve((float)Angle, (float)_rightNeighbour);
         }
 
 
@@ -74,7 +74,7 @@ namespace ThreeDee
 
             AnimationCurve curve = new AnimationCurve<float>
             {
-                InterpolationType = AnimationCurveInterpolationType.Linear,
+                InterpolationType = AnimationCurveInterpolationType.Cubic,
                 KeyFrames =
                 {
                     new KeyFrameData<float>((CompressedTimeSpan) TimeSpan.FromSeconds(0.0f), start),

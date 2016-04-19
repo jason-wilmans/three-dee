@@ -50,12 +50,12 @@ namespace ThreeDee
         {
             if (Input.IsKeyPressed(Keys.Right))
             {
-                StartTurnAnimation(_angles[_currentAngleIndex].LeftAnimation);
+                StartTurnAnimation(_angles[_currentAngleIndex].LowerAnimation);
                 _currentAngleIndex = (_currentAngleIndex + 1) % _angles.Length;
             }
             else if (Input.IsKeyPressed(Keys.Left))
             {
-                StartTurnAnimation(_angles[_currentAngleIndex].RightAnimation);
+                StartTurnAnimation(_angles[_currentAngleIndex].HigherAnimation);
                 _currentAngleIndex = _currentAngleIndex > 0 ? _currentAngleIndex - 1 : _angles.Length - 1;
             }
         }
