@@ -45,6 +45,9 @@ namespace ThreeDee
                 new CameraAngle(Math.PI, MathUtil.PiOverTwo, TurnSpeed),
                 new CameraAngle(1.5*Math.PI, MathUtil.PiOverTwo, TurnSpeed)
             };
+            
+            CurrentAngle = (float) _angles[_currentAngleIndex].Angle;
+            PositionFromAngle();
 
             UpdatePivot();
         }
@@ -62,18 +65,21 @@ namespace ThreeDee
                 _currentAngleIndex = _currentAngleIndex > 0 ? _currentAngleIndex - 1 : _angles.Length - 1;
             }
 
-            _transform.Position = _pivot + new Vector3(
-                 Distance * (float) Math.Sin(CurrentAngle),
-                0,
-                 Distance * (float) Math.Cos(CurrentAngle)
-            );
+            PositionFromAngle();
             _transform.LookAt(_pivot);
+        }
+
+        private void PositionFromAngle()
+        {
+            _transform.Position = _pivot + new Vector3(
+                Distance*(float) Math.Sin(CurrentAngle),
+                0,
+                Distance*(float) Math.Cos(CurrentAngle)
+                );
         }
 
         private void StartTurnAnimation(AnimationClip clip)
         {
-            UpdatePivot();
-
             const string animationName = "MyCustomAnimation";
             _animation.Animations.Clear();
             _animation.Animations.Add(animationName, clip);
@@ -103,6 +109,8 @@ namespace ThreeDee
             {
                 var zoomDelta = _transform.LocalMatrix.Forward * Input.MouseWheelDelta * ScrollingSpeed;
                 _transform.Position += zoomDelta * ScrollingSpeed;
+
+                UpdatePivot();
             }
         }
 
@@ -117,6 +125,8 @@ namespace ThreeDee
                 var delta = (Input.MousePosition - _oldMousePosition) * PanSpeed;
                 _transform.Position += _transform.WorldMatrix.Right * delta.X;
                 _transform.Position += _transform.WorldMatrix.Up * delta.Y;
+
+                UpdatePivot();
             }
 
             _oldMousePosition = Input.MousePosition;
