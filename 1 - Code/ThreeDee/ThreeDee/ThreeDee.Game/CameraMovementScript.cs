@@ -22,10 +22,10 @@ namespace ThreeDee
             set
             {
                 _currentAngle = value;
-                if (Log != null)
-                {
-                    Log.Error(value.ToString());
-                }
+                //if (Log != null)
+                //{
+                //    Log.Error(value.ToString());
+                //}
             }
         }
 
@@ -63,6 +63,7 @@ namespace ThreeDee
 
         public override void Update()
         {
+            Log.Error(CurrentAngle.ToString());
             if (_animation.PlayingAnimations.Count == 0)
             {
                 Scrolling();
