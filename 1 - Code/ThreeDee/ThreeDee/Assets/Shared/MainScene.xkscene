@@ -48,7 +48,9 @@ Hierarchy:
                     - !CameraMovementScript
                         ~Id: f5c8a6c0-f285-4dab-b20f-25225efd9d14
                         CurrentAngle: 0.0
-                        Distance: 2.0
+                        Distance: 5.0
+                        PanSpeed: 2.5
+                        ScrollingSpeed: 0.25
                         TurnSpeed: 0.25
             Design: {}
         -   Entity:

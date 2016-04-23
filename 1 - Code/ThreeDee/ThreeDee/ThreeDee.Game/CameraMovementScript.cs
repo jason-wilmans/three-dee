@@ -15,23 +15,13 @@ namespace ThreeDee
 
         public float TurnSpeed { get; set; }
 
-        [DataMember]
-        public float CurrentAngle
-        {
-            get { return _currentAngle; }
-            set
-            {
-                _currentAngle = value;
-                //if (Log != null)
-                //{
-                //    Log.Error(value.ToString());
-                //}
-            }
-        }
+        public float ScrollingSpeed = 0.25f;
+        public float PanSpeed = 1.0f;
 
-        private const float ScrollDelta = 0.005f;
-        private const float ScrollingSpeed = 0.05f;
-        private const float PanSpeed = 1.0f;
+        [DataMember] public float CurrentAngle;
+
+
+        private const float ScrollDelta = 0.00005f;
         private CameraAngle[] _angles;
         private AnimationComponent _animation;
         private int _currentAngleIndex;
@@ -39,7 +29,7 @@ namespace ThreeDee
 
         private TransformComponent _transform;
         private Vector3 _pivot;
-        private float _currentAngle;
+        private bool _isTurning;
 
         public override void Start()
         {
@@ -63,31 +53,47 @@ namespace ThreeDee
 
         public override void Update()
         {
-            Log.Error(CurrentAngle.ToString());
-            if (_animation.PlayingAnimations.Count == 0)
+            Turning();
+            
+            if (!_isTurning)
             {
                 Scrolling();
                 Panning();
             }
-
-            Turning();
-            PositionFromAngle();
         }
 
         private void Turning()
         {
+            _isTurning = _animation.PlayingAnimations.Count > 0;
+
+            if (_isTurning)
+            {
+                PositionFromAngle();
+                _transform.LookAt(_pivot);
+            }
+
+            _isTurning = CheckAndTurn();
+        }
+
+        private bool CheckAndTurn()
+        {
             if (Input.IsKeyPressed(Keys.Left))
             {
+                UpdatePivot();
                 StartTurnAnimation(_angles[_currentAngleIndex].HigherAnimation);
-                _currentAngleIndex = (_currentAngleIndex + 1) % _angles.Length;
+                _currentAngleIndex = (_currentAngleIndex + 1)%_angles.Length;
+                return true;
             }
-            else if (Input.IsKeyPressed(Keys.Right))
+
+            if (Input.IsKeyPressed(Keys.Right))
             {
+                UpdatePivot();
                 StartTurnAnimation(_angles[_currentAngleIndex].LowerAnimation);
                 _currentAngleIndex = _currentAngleIndex > 0 ? _currentAngleIndex - 1 : _angles.Length - 1;
+                return true;
             }
-            
-            _transform.LookAt(_pivot);
+
+            return false;
         }
 
         private void PositionFromAngle()
@@ -111,7 +117,7 @@ namespace ThreeDee
 
         private void UpdatePivot()
         {
-            _pivot = _transform.Position + _transform.LocalMatrix.Backward * Distance;
+            _pivot = _transform.Position + _transform.LocalMatrix.Forward * Distance;
         }
 
 
@@ -121,10 +127,11 @@ namespace ThreeDee
         {
             if (Math.Abs(Input.MouseWheelDelta) > ScrollDelta)
             {
-                var zoomDelta = _transform.LocalMatrix.Forward * Input.MouseWheelDelta * ScrollingSpeed;
-                _transform.Position += zoomDelta * ScrollingSpeed;
-
-                UpdatePivot();
+                var direction = Input.MouseWheelDelta > 0
+                    ? _transform.LocalMatrix.Forward
+                    : _transform.LocalMatrix.Backward;
+                
+                _transform.Position += direction * ScrollingSpeed;
             }
         }
 
@@ -137,10 +144,8 @@ namespace ThreeDee
             if (Input.IsMouseButtonDown(MouseButton.Left) && Input.IsMouseButtonDown(MouseButton.Right))
             {
                 var delta = (Input.MousePosition - _oldMousePosition) * PanSpeed;
-                _transform.Position += _transform.WorldMatrix.Right * delta.X;
+                _transform.Position += _transform.WorldMatrix.Left * delta.X;
                 _transform.Position += _transform.WorldMatrix.Up * delta.Y;
-
-                _pivot.Y = _transform.Position.Y;
             }
 
             _oldMousePosition = Input.MousePosition;
