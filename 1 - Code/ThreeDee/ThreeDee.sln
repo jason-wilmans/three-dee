@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreeDee.Game", "ThreeDee\T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XenkoUtilities", "ThreeDee\XenkoUtilities\XenkoUtilities.csproj", "{302C3B81-B98D-4A29-8C42-91E69AD6622F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreeDee.UI", "ThreeDee\ThreeDee.UI\ThreeDee.UI.csproj", "{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppStore|Any CPU = AppStore|Any CPU
@@ -114,10 +116,35 @@ Global
 		{302C3B81-B98D-4A29-8C42-91E69AD6622F}.Testing|Mixed Platforms.Build.0 = Testing|Any CPU
 		{302C3B81-B98D-4A29-8C42-91E69AD6622F}.Testing|Windows.ActiveCfg = Testing|Any CPU
 		{302C3B81-B98D-4A29-8C42-91E69AD6622F}.Testing|Windows.Build.0 = Testing|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.AppStore|Any CPU.Build.0 = AppStore|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.AppStore|Mixed Platforms.ActiveCfg = AppStore|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.AppStore|Mixed Platforms.Build.0 = AppStore|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.AppStore|Windows.ActiveCfg = AppStore|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.AppStore|Windows.Build.0 = AppStore|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Debug|Windows.ActiveCfg = Debug|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Debug|Windows.Build.0 = Debug|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Release|Windows.ActiveCfg = Release|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Release|Windows.Build.0 = Release|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Testing|Mixed Platforms.ActiveCfg = Testing|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Testing|Mixed Platforms.Build.0 = Testing|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Testing|Windows.ActiveCfg = Testing|Any CPU
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87}.Testing|Windows.Build.0 = Testing|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BF1F2C68-98B6-4773-8CCA-48BA70D2FFCD} = {E54864E0-779A-476E-8A1E-4385213637DA}
 		{00D1CE8D-E929-41F5-85E3-B1115D8CC56B} = {E54864E0-779A-476E-8A1E-4385213637DA}
 		{302C3B81-B98D-4A29-8C42-91E69AD6622F} = {E54864E0-779A-476E-8A1E-4385213637DA}
+		{0AEF87F1-0AF7-49CF-A51F-FABD52DCEE87} = {E54864E0-779A-476E-8A1E-4385213637DA}
 	EndGlobalSection
 EndGlobal

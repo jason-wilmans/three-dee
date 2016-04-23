@@ -3,7 +3,7 @@ using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.Physics;
 
-namespace ThreeDee
+namespace ThreeDee.UI.Camera
 {
     public class ClickTest : SyncScript
     {
@@ -16,7 +16,7 @@ namespace ThreeDee
             base.Start();
 
             Camera = Entity.Get<CameraComponent>();
-            _simulation = Entity.Get<RigidbodyComponent>().Simulation;
+            _simulation = Entity.GetOrCreate<RigidbodyComponent>().Simulation;
         }
 
         public override void Update()

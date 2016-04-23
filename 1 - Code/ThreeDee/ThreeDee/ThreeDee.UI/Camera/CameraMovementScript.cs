@@ -6,7 +6,7 @@ using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Input;
 using XenkoUtilities;
 
-namespace ThreeDee
+namespace ThreeDee.UI.Camera
 {
     [DataContract(nameof(CameraMovementScript))]
     public class CameraMovementScript : SyncScript

@@ -45,13 +45,6 @@ Hierarchy:
                     - !CameraComponent
                         ~Id: b24ad86e-093e-4272-8ec4-01149f5f0f7e
                         Projection: Perspective
-                    - !CameraMovementScript
-                        ~Id: f5c8a6c0-f285-4dab-b20f-25225efd9d14
-                        CurrentAngle: 0.0
-                        Distance: 5.0
-                        PanSpeed: 2.5
-                        ScrollingSpeed: 0.25
-                        TurnSpeed: 0.25
             Design: {}
         -   Entity:
                 Id: 4561ccfe-617c-47a9-a823-9c50c6aa3542
@@ -166,7 +159,7 @@ Hierarchy:
                         ~Id: acfdde74-30b4-4d14-a276-26bb82cc645d
                         Model: e2c2bcfb-a5cd-4590-bd5a-ca02c0fb8b96/9184f233-80df-4bea-a3e7-a2595fca575c:Sphere
                         Materials:
-                            - null
+                            - ec782b00-e956-4aea-84bc-755374862cf2/a01d8ee2-f7bf-4c45-a1da-ade45b1ec259:materials/B
             Design:
                 Folder: Spheres
         -   Entity:
