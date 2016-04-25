@@ -1,0 +1,47 @@
+!Package
+Id: a36489f3-76c1-4de1-9d22-99b90bce9fea
+SerializedVersion: {Assets: 0.0.2}
+Tags: []
+Meta:
+    Name: ThreeDeeUi
+    Version: 1.0.0.0
+    Authors: []
+    Owners: []
+    RootNamespace: ThreeDeeUi
+    Dependencies:
+        -   Name: Xenko
+            Version: 1.6.2-beta
+            RootAssets: []
+LocalDependencies: []
+Profiles:
+    -   Name: Shared
+        Platform: Shared
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Shared
+            -   Path: ThreeDeeUi.Game/Effects
+        OutputGroupDirectories: {}
+        Properties: {}
+        ProjectReferences:
+            -   Id: 6484308a-4dc7-40c7-ab30-edaaea37779a
+                Location: ThreeDeeUi.Game/ThreeDeeUi.Game.csproj
+                Type: Library
+            -   Id: 281bcbbe-56fc-4378-8c44-3108e38d921e
+                Location: XenkoUilities/XenkoUilities.csproj
+                Type: Library
+    -   Name: Windows
+        Platform: Windows
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Windows
+        OutputGroupDirectories: {}
+        Properties: {}
+        ProjectReferences:
+            -   Id: 183d48a0-dce6-4656-b4f1-34c03e894a63
+                Location: ThreeDeeUi.Windows/ThreeDeeUi.Windows.csproj
+                Type: Executable
+ExplicitFolders: []
+Bundles: []
+TemplateFolders: []
+RootAssets:
+    - 49883d3e-ea7a-46f7-bd04-f5ef7cef8b7a:models/sphere/Sphere

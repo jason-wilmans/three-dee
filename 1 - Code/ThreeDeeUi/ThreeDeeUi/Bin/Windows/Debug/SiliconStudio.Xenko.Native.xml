@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SiliconStudio.Xenko.Native</name>
+    </assembly>
+    <members>
+        <member name="T:SiliconStudio.XenkoVersion">
+            <summary>
+            Internal version used to identify Xenko version.
+            </summary>
+            <remarks>
+            Note: When modifying the version here, it must be modified also in the Xenko.xkpkg 
+            </remarks>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.CurrentAssemblyAsText">
+            <summary>
+            The .NET current assembly version as text, not including pre-release (alpha, beta...) information.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.XenkoVersion.CurrentAsText">
+            <summary>
+            The Store current version as text, including pre-release (alpha, beta...) information
+            </summary>
+            <remarks>
+            Version number as described in http://docs.nuget.org/docs/reference/versioning
+            When using pre-release (alpha, beta, rc...etc.) and because the order of the release is in alphabetical order,
+            please use a double digit like alpha00 alpha01...etc. in order to make sure that we will follow the correct
+            order for the versions.
+            </remarks>
+        </member>
+    </members>
+</doc>
