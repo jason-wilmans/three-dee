@@ -78,7 +78,7 @@ namespace ThreeDeeUi.UI.Screens
 
         private void OnNewDiagramClicked(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            _screenManager.ChangeTo(Screen.Editor);
         }
 
         private void OnLoadDiagramClicked(object sender, RoutedEventArgs e)
