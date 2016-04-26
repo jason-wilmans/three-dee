@@ -12,7 +12,24 @@ Hierarchy:
         - 91955303-16eb-450b-93cf-66ef10615bf0
         - c267b985-f1a5-4567-ae65-bbb465b28c15
         - 66e37e83-6dcb-451a-8ebf-1e2f73b9e2d0
+        - 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
     Entities:
+        -   Entity:
+                Id: 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
+                Name: UI
+                Components:
+                    - !TransformComponent
+                        ~Id: 9fc7e171-2ddf-4942-be62-a834e0dd4d2d
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !UIComponent
+                        ~Id: 4b0d0518-eab6-4f5e-ab81-bc5b027f91e0
+                        VirtualResolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
+                    - !ThreeDeeUi.UI.Screens.ScreenManager,ThreeDeeUi.Game
+                        ~Id: 035bafdd-4e6e-4696-9cd4-c8caa6bc5a7f
+            Design: {}
         -   Entity:
                 Id: 66e37e83-6dcb-451a-8ebf-1e2f73b9e2d0
                 Name: Sphere (4)
@@ -142,13 +159,8 @@ Hierarchy:
                         Children: []
                     - !SkyboxComponent
                         ~Id: a70a2035-ee35-4740-8018-e4a67c9751ca
-                        Skybox: c9f43a2f-6b7e-40ec-997b-9a59632f7bb6/61a96efc-57f5-4fa4-b725-612a7170e3ca:Skybox
-                        Intensity: 3.0
-                    - !LightComponent
-                        ~Id: 7012951b-8ef3-41f8-938a-9b4cf0e761d8
-                        Type: !LightSkybox
-                            ~Id: a7117e48-4af0-4b66-a6d3-875d7c7671c0
-                        Intensity: 0.25
+                        Skybox: c6a24fe9-7d91-4a89-8a29-f9f79bdc4f91/61a96efc-57f5-4fa4-b725-612a7170e3ca:Skybox
+                        Intensity: 0.5
             Design: {}
 SceneSettings:
     ~Id: f0556744-ec0c-4c2d-a3cf-1ab109150a00

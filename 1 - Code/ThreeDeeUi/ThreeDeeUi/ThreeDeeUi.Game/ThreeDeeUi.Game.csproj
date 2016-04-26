@@ -80,8 +80,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\CameraAngle.cs" />
-    <Compile Include="UI\CameraMovementScript.cs" />
+    <Compile Include="UI\Camera\CameraAngle.cs" />
+    <Compile Include="UI\Camera\CameraMovementScript.cs" />
+    <Compile Include="UI\Screens\EditorScreen.cs" />
+    <Compile Include="UI\Screens\FileLoadingScreen.cs" />
+    <Compile Include="UI\Screens\IScreenManager.cs" />
+    <Compile Include="UI\Screens\MainMenuScreen.cs" />
+    <Compile Include="UI\Screens\ScreenManager.cs" />
+    <Compile Include="UI\Screens\Screen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SiliconStudioPackageProps)" Condition="Exists('$(SiliconStudioPackageProps)')" />
