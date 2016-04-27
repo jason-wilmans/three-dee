@@ -48,13 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementation\Diagram.cs" />
     <Compile Include="Implementation\DiagramComponent.cs" />
-    <Compile Include="Interface\Diagram.cs" />
+    <Compile Include="Implementation\DiagramElementInstanceFactory.cs" />
+    <Compile Include="Implementation\IDiagramElementInstanceFactory.cs" />
     <Compile Include="Interface\DiagramElementType.cs" />
+    <Compile Include="Interface\Elements\Cuboid.cs" />
     <Compile Include="Interface\Elements\Ellipsoid.cs" />
     <Compile Include="Interface\Elements\IDiagramElement.cs" />
     <Compile Include="Interface\Exceptions\InvalidDiagramFormatException.cs" />
     <Compile Include="Interface\Exceptions\UnsavedChangesException.cs" />
+    <Compile Include="Interface\IDiagram.cs" />
     <Compile Include="Interface\IDiagramComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

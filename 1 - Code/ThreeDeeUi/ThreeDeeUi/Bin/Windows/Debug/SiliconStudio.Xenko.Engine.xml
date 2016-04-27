@@ -6399,6 +6399,11 @@
             Take color for the first texture but alpha from the second
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.BinaryOperator.Threshold">
+            <summary>
+            Threshold, resulting in a black-white texture for grayscale against a set threshold
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeBinaryBase`1">
             <summary>
             A node that describe a binary operation between two <see cref="T:SiliconStudio.Xenko.Rendering.Materials.IComputeNode"/>
@@ -10368,6 +10373,12 @@
             <param name="renderContext">The render context.</param>
             <param name="enableDepth">if set to <c>true</c> [enable depth].</param>
             <exception cref="T:System.ArgumentNullException">renderContext</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.RenderFrame.GetRenderOutputDescription">
+            <summary>
+            Gets a <see cref="T:SiliconStudio.Xenko.Graphics.RenderOutputDescription"/> that matches current depth stencil and render target formats.
+            </summary>
+            <returns>The <see cref="T:SiliconStudio.Xenko.Graphics.RenderOutputDescription"/>.</returns>
         </member>
         <member name="M:SiliconStudio.Xenko.Rendering.RenderFrame.op_Implicit(SiliconStudio.Xenko.Rendering.RenderFrame)~SiliconStudio.Xenko.Graphics.Texture">
             <summary>

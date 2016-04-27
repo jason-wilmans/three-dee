@@ -50,11 +50,15 @@ namespace ThreeDeeUi.UI.Screens
 
             foreach (var diagramElementType in elementTypes)
             {
-                CreateElementButton(diagramElementType, elementsMenu);
+                int count = elementsMenu.Children.Count;
+                UIElement elementButton = CreateElementButton(diagramElementType);
+                elementButton.SetGridColumn(count%2);
+                elementButton.SetGridRow(count/2);
+                elementsMenu.Children.Add(elementButton);
             }
         }
 
-        private void CreateElementButton(DiagramElementType elementType, UniformGrid elementsMenu)
+        private UIElement CreateElementButton(DiagramElementType elementType)
         {
             Button button = new Button
             {
@@ -67,13 +71,13 @@ namespace ThreeDeeUi.UI.Screens
 
             button.Click += (sender, args) => AddElement(elementType);
 
-            elementsMenu.Children.Add(button);
+            return button;
         }
 
         private void AddElement(DiagramElementType elementType)
         {
             // TODO: Get IDiagramElement from DiagramElementType
-            _core.CurrentDiagram.Add(new Ellipsoid());
+            _core.CurrentDiagram.Add(elementType);
         }
     }
 }

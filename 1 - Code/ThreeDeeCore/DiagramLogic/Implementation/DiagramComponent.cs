@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
 using DiagramLogic.Interface;
+using DiagramLogic.Interface.Elements;
 using ServiceStack.Text;
 using ZeroTypes.Exceptions;
 
@@ -13,6 +14,7 @@ namespace DiagramLogic.Implementation
     {
         
         private readonly Encoding _encoding;
+        private IDiagram _currentDiagram;
 
         public DiagramComponent()
         {
@@ -24,15 +26,26 @@ namespace DiagramLogic.Implementation
         {
             return new List<DiagramElementType>
             {
-                new DiagramElementType("Ellipsoid")
+                new DiagramElementType("Ellipsoid", typeof(Ellipsoid)),
+                new DiagramElementType("Cuboid", typeof(Cuboid))
             };
         }
 
-        public Diagram CurrentDiagram { get; internal set; }
+        public IDiagram CurrentDiagram
+        {
+            get { return _currentDiagram; }
+            private set
+            {
+                _currentDiagram = value;
+                DiagramChanged?.Invoke(_currentDiagram);
+            }
+        }
+
+        public event Action<IDiagram> DiagramChanged;
 
         public void CreateNewDiagram(string diagramName)
         {
-            CurrentDiagram = new Diagram(diagramName);
+            CurrentDiagram = new Diagram(diagramName, new DiagramElementInstanceFactory());
         }
 
         public void Save(FileInfo file, bool overWrite)
@@ -53,7 +66,7 @@ namespace DiagramLogic.Implementation
             {
                 try
                 {
-                    byte[] jsonBytes = Serialize(CurrentDiagram);
+                    byte[] jsonBytes = Serialize(CurrentDiagram as Diagram);
                     fileStream.Write(jsonBytes, 0, jsonBytes.Length);
                     fileStream.Flush();
                     fileStream.Close();

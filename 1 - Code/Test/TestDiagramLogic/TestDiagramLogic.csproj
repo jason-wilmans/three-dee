@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Component\TestDiagramComponent.cs" />
+    <Compile Include="Component\TestDiagram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

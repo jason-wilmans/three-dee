@@ -3847,6 +3847,7 @@
             </summary>
             <param name="width"></param>
             <param name="height"></param>
+            <param name="format"></param>
         </member>
         <member name="M:SiliconStudio.Xenko.Graphics.GraphicsPresenter.OnDestroyed">
             <summary>
@@ -7381,9 +7382,9 @@
             Enable scissor-rectangle culling. All pixels ouside an active scissor rectangle are culled.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.RasterizerStateDescription.MultiSampleAntiAlias">
+        <member name="F:SiliconStudio.Xenko.Graphics.RasterizerStateDescription.MultiSampleLevel">
             <summary>
-            Enable multisample antialiasing.
+            Multisample level.
             </summary>
         </member>
         <member name="F:SiliconStudio.Xenko.Graphics.RasterizerStateDescription.MultiSampleAntiAliasLine">
@@ -7897,7 +7898,7 @@
               Gets or sets a value indicating whether the application is in full screen mode.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.PresentationParameters.MultiSampleCount">
+        <member name="F:SiliconStudio.Xenko.Graphics.PresentationParameters.MultiSampleLevel">
             <summary>
               Gets or sets a value indicating the number of sample locations during multisampling.
             </summary>

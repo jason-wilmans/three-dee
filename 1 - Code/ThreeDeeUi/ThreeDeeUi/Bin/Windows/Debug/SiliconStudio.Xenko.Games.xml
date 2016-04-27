@@ -715,7 +715,7 @@
             The preferred refresh rate
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Games.GameGraphicsParameters.PreferMultiSampling">
+        <member name="F:SiliconStudio.Xenko.Games.GameGraphicsParameters.PreferredMultiSampleLevel">
             <summary>
               Gets or sets a value indicating the number of sample locations during multisampling.
             </summary>
@@ -1230,7 +1230,7 @@
             </summary>
             <value><c>true</c> if this instance is full screen; otherwise, <c>false</c>.</value>
         </member>
-        <member name="P:SiliconStudio.Xenko.Games.GraphicsDeviceManager.PreferMultiSampling">
+        <member name="P:SiliconStudio.Xenko.Games.GraphicsDeviceManager.PreferredMultiSampleLevel">
             <summary>
             Gets or sets a value indicating whether [prefer multi sampling].
             </summary>

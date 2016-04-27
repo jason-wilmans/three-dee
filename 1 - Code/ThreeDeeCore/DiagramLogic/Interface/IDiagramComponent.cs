@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
+using DiagramLogic.Implementation;
 using DiagramLogic.Interface.Elements;
 using DiagramLogic.Interface.Exceptions;
 using ZeroTypes.Exceptions;
@@ -24,7 +26,9 @@ namespace DiagramLogic.Interface
         /// <summary>
         /// The diagram currently worked with.
         /// </summary>
-        Diagram CurrentDiagram { get; }
+        IDiagram CurrentDiagram { get; }
+
+        event Action<IDiagram> DiagramChanged;
 
         /// <summary>
         /// Creates a new diagram 

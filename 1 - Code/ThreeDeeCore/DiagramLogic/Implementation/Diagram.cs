@@ -1,24 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using DiagramLogic.Interface;
 using DiagramLogic.Interface.Elements;
 using ZeroTypes;
 
-namespace DiagramLogic.Interface
+namespace DiagramLogic.Implementation
 {
     /// <summary>
     /// This class represents a single diagram.
     /// </summary>
-    public class Diagram
+    public class Diagram : IDiagram
     {
+        private readonly IDiagramElementInstanceFactory _instanceFactory;
+
         /// <summary>
         /// A name to identify this diagram.
         /// </summary>
         public string Name { get; set; }
 
+        public event Action<IDiagramElement> ElementAdded;
+
         public ICollection<IDiagramElement> Elements
         {
             get { return _elements; }
-            set { _elements = value; }
+            private set { _elements = value; }
         }
 
         private int _nextElementId;
@@ -27,12 +32,14 @@ namespace DiagramLogic.Interface
         /// <summary>
         /// Diagram constructor. A name is needed.
         /// </summary>
-        /// <param name="name"></param>
-        internal Diagram(string name)
+        /// <param name="name">Not null, not only whitespaces</param>
+        /// <param name="instanceFactory">!= null</param>
+        internal Diagram(string name, IDiagramElementInstanceFactory instanceFactory)
         {
+            _instanceFactory = instanceFactory;
             if (string.IsNullOrEmpty(name))
             {
-                throw new ArgumentException("A diagram must have a meaningful name, but the argument was: '" + name + "'", "name");
+                throw new ArgumentException("A diagram must have a meaningful name, but the argument was: '" + name + "'", nameof(name));
             }
             Name = name;
             _elements = new List<IDiagramElement>();
@@ -48,18 +55,28 @@ namespace DiagramLogic.Interface
             element.Id = _nextElementId;
             _elements.Add(element);
 
+            element.Position = CalculateGeometricCenter();
+
             _nextElementId++;
+
+            ElementAdded?.Invoke(element);
+        }
+        
+        public void Add(DiagramElementType elementType)
+        {
+            IDiagramElement element = _instanceFactory.GetInstanceForType(elementType);
+            Add(element);
         }
 
         /// <summary>
-        /// Copies the element and places it i this diagram (with a slightly offsetted position).
+        /// Copies the element and places it in this diagram (with a slightly offsetted position).
         /// </summary>
         /// <param name="element">Not null, already contained.</param>
         public void Copy(IDiagramElement element)
         {
             if (!_elements.Contains(element))
             {
-                throw new ArgumentException("The given element can't be copied, because it is not part of this diagram.", "element");
+                throw new ArgumentException("The given element can't be copied, because it is not part of this diagram.", nameof(element));
             }
 
             Tuple3 offset = new Tuple3(
@@ -124,5 +141,6 @@ namespace DiagramLogic.Interface
         }
 
         #endregion
+
     }
 }

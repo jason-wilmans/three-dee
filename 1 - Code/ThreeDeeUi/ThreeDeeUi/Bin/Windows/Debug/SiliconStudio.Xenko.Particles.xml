@@ -2605,7 +2605,7 @@
               <c>true</c> if enabled; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="F:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.LoopCondition">
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.LoopCondition">
             <summary>
             Indicates if the spawner should loop, and if there is a delay every time it loops
             </summary>
@@ -2613,7 +2613,7 @@
             Indicates if the spawner should loop, and if there is a delay every time it loops
             </userdoc>
         </member>
-        <member name="F:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.Delay">
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.Delay">
             <summary>
             The minimum and maximum time the spawner should wait before starting to emit particles
             </summary>
@@ -2621,7 +2621,7 @@
             The minimum and maximum time the spawner should wait before starting to emit particles
             </userdoc>
         </member>
-        <member name="F:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.Duration">
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.Duration">
             <summary>
             The minimum and maximum duration the spawner will be active once it starts spawning particles
             </summary>

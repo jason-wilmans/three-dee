@@ -27,12 +27,12 @@ namespace TestDiagramLogic.Component
                 Scale = Tuple3.One
             };
             diagramComponent.CurrentDiagram.Add(ellipsoid);
-            Diagram original = diagramComponent.CurrentDiagram;
+            IDiagram original = diagramComponent.CurrentDiagram;
             FileInfo file = new FileInfo("testFile.3dd");
             diagramComponent.Save(file, true);
 
             diagramComponent.Load(file);
-            Diagram diagram = diagramComponent.CurrentDiagram;
+            IDiagram diagram = diagramComponent.CurrentDiagram;
 
             Assert.IsTrue(original.Name.Equals(diagram.Name), "Name was not correctly transported.");
             Assert.IsTrue(original.Elements.All(elem => diagram.Elements.Contains(elem)), "Not every element was transported.");

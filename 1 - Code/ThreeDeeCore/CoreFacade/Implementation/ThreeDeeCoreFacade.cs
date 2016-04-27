@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using CoreFacade.Interface;
+using DiagramLogic.Implementation;
 using DiagramLogic.Interface;
 
 namespace CoreFacade.Implementation
@@ -19,7 +21,8 @@ namespace CoreFacade.Implementation
             return _diagramComponent.GetAvailableElementTypes();
         }
 
-        public Diagram CurrentDiagram => _diagramComponent.CurrentDiagram;
+        public IDiagram CurrentDiagram => _diagramComponent.CurrentDiagram;
+        public event Action<IDiagram> DiagramChanged;
 
         public void CreateNewDiagram(string diagramName)
         {

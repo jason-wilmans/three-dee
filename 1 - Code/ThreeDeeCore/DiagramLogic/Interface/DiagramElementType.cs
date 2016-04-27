@@ -1,4 +1,6 @@
-﻿namespace DiagramLogic.Interface
+﻿using System;
+
+namespace DiagramLogic.Interface
 {
     /// <summary>
     /// Describes an available diagram element type.
@@ -10,9 +12,15 @@
         /// </summary>
         public string DisplayName { get; }
 
-        public DiagramElementType(string displayName)
+        /// <summary>
+        /// the CLR type of this element type.
+        /// </summary>
+        public Type Type { get; }
+
+        internal DiagramElementType(string displayName, Type type)
         {
             DisplayName = displayName;
+            Type = type;
         }
     }
 }
