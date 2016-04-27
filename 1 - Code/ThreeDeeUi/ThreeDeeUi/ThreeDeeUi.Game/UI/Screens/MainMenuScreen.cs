@@ -1,4 +1,5 @@
 ﻿using System;
+using CoreFacade.Interface;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Core.Serialization.Assets;
 using SiliconStudio.Xenko.Graphics;
@@ -11,8 +12,9 @@ namespace ThreeDeeUi.UI.Screens
 {
     internal class MainMenuScreen : Canvas
     {
-        private IScreenManager _screenManager;
+        private readonly IScreenManager _screenManager;
         private readonly SpriteFont _titleFont;
+        private IThreeDeeCore _core;
 
         public MainMenuScreen(IScreenManager screenManager, ContentManager contentManager)
         {
@@ -21,6 +23,7 @@ namespace ThreeDeeUi.UI.Screens
 
             SetupTitle();
             SetupMenu();
+            _core = ThreeDeeCoreFactory.GetProductionCore();
         }
         
         private void SetupTitle()
@@ -78,6 +81,7 @@ namespace ThreeDeeUi.UI.Screens
 
         private void OnNewDiagramClicked(object sender, RoutedEventArgs e)
         {
+            //_core.CreateNewDiagram();
             _screenManager.ChangeTo(Screen.Editor);
         }
 
