@@ -20,14 +20,9 @@ namespace DiagramLogic.Implementation
 
         public event Action<IDiagramElement> ElementAdded;
 
-        public ICollection<IDiagramElement> Elements
-        {
-            get { return _elements; }
-            private set { _elements = value; }
-        }
+        public ICollection<IDiagramElement> Elements { get; private set; }
 
         private int _nextElementId;
-        private ICollection<IDiagramElement> _elements;
 
         /// <summary>
         /// Diagram constructor. A name is needed.
@@ -42,7 +37,7 @@ namespace DiagramLogic.Implementation
                 throw new ArgumentException("A diagram must have a meaningful name, but the argument was: '" + name + "'", nameof(name));
             }
             Name = name;
-            _elements = new List<IDiagramElement>();
+            Elements = new List<IDiagramElement>();
         }
 
         /// <summary>
@@ -53,7 +48,7 @@ namespace DiagramLogic.Implementation
         {
             element.Parent = null;
             element.Id = _nextElementId;
-            _elements.Add(element);
+            Elements.Add(element);
 
             element.Position = CalculateGeometricCenter();
 
@@ -74,7 +69,7 @@ namespace DiagramLogic.Implementation
         /// <param name="element">Not null, already contained.</param>
         public void Copy(IDiagramElement element)
         {
-            if (!_elements.Contains(element))
+            if (!Elements.Contains(element))
             {
                 throw new ArgumentException("The given element can't be copied, because it is not part of this diagram.", nameof(element));
             }
@@ -114,14 +109,14 @@ namespace DiagramLogic.Implementation
         /// <param name="element">Not null.</param>
         public void Delete(IDiagramElement element)
         {
-            _elements.Remove(element);
+            Elements.Remove(element);
         }
 
         #region Equality Members
 
         protected bool Equals(Diagram other)
         {
-            return Equals(_elements, other._elements) && string.Equals(Name, other.Name);
+            return Equals(Elements, other.Elements) && string.Equals(Name, other.Name);
         }
 
         public override bool Equals(object obj)
@@ -136,7 +131,7 @@ namespace DiagramLogic.Implementation
         {
             unchecked
             {
-                return ((_elements != null ? _elements.GetHashCode() : 0)*397) ^ (Name != null ? Name.GetHashCode() : 0);
+                return ((Elements != null ? Elements.GetHashCode() : 0)*397) ^ (Name != null ? Name.GetHashCode() : 0);
             }
         }
 

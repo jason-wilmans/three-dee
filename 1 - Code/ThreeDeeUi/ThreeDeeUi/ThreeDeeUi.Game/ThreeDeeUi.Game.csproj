@@ -91,6 +91,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Camera\CameraAngle.cs" />
     <Compile Include="UI\Camera\CameraMovementScript.cs" />
+    <Compile Include="UI\Diagrams\DiagramVertexComponent.cs" />
     <Compile Include="UI\Diagrams\DiagramViewComponent.cs" />
     <Compile Include="UI\Screens\EditorScreen.cs" />
     <Compile Include="UI\Screens\FileLoadingScreen.cs" />

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using CoreFacade.Interface;
 using DiagramLogic.Interface;
 using DiagramLogic.Interface.Elements;
@@ -8,7 +8,7 @@ namespace ThreeDeeUi.UI.Diagrams
 {
     public class DiagramViewComponent : StartupScript
     {
-        private IThreeDeeCore _core;
+        private readonly IThreeDeeCore _core;
 
         public DiagramViewComponent()
         {
@@ -26,18 +26,29 @@ namespace ThreeDeeUi.UI.Diagrams
 
         private void OnDiagramChanged(IDiagram diagram)
         {
-            InitializeVisualScene(diagram);
             diagram.ElementAdded += AddVisualElement;
+            InitializeVisualScene(diagram);
         }
 
         private void AddVisualElement(IDiagramElement diagramElement)
         {
-            throw new NotImplementedException();
+            DiagramVertexComponent vertex = new DiagramVertexComponent(diagramElement);
+            Entity entity = new Entity { vertex };
+            //entity.Transform.Parent = Entity.Transform;
+            SceneSystem.SceneInstance.Scene.Entities.Add(entity);
         }
 
         private void InitializeVisualScene(IDiagram diagram)
         {
-            throw new NotImplementedException();
+            foreach (var child in Entity.Transform.Children.Select(transform => transform.Entity))
+            {
+                SceneSystem.SceneInstance.Scene.Entities.Remove(child);
+            }
+
+            foreach (var element in diagram.Elements)
+            {
+                AddVisualElement(element);
+            }
         }
     }
 }

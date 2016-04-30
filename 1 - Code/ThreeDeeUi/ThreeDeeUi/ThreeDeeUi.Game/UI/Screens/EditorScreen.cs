@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using CoreFacade.Interface;
 using DiagramLogic.Interface;
-using DiagramLogic.Interface.Elements;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Core.Serialization.Assets;
 using SiliconStudio.Xenko.Graphics;
@@ -76,7 +75,6 @@ namespace ThreeDeeUi.UI.Screens
 
         private void AddElement(DiagramElementType elementType)
         {
-            // TODO: Get IDiagramElement from DiagramElementType
             _core.CurrentDiagram.Add(elementType);
         }
     }

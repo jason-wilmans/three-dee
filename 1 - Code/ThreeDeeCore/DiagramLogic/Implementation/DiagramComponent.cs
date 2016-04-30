@@ -12,7 +12,6 @@ namespace DiagramLogic.Implementation
 {
     internal class DiagramComponent : IDiagramComponent
     {
-        
         private readonly Encoding _encoding;
         private IDiagram _currentDiagram;
 
@@ -37,7 +36,10 @@ namespace DiagramLogic.Implementation
             private set
             {
                 _currentDiagram = value;
-                DiagramChanged?.Invoke(_currentDiagram);
+                if (DiagramChanged != null)
+                {
+                    DiagramChanged(_currentDiagram);
+                }
             }
         }
 

@@ -81,7 +81,7 @@ namespace ThreeDeeUi.UI.Screens
 
         private void OnNewDiagramClicked(object sender, RoutedEventArgs e)
         {
-            //_core.CreateNewDiagram();
+            _core.CreateNewDiagram("Test");
             _screenManager.ChangeTo(Screen.Editor);
         }
 

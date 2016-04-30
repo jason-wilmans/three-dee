@@ -14,6 +14,7 @@ namespace CoreFacade.Implementation
         public ThreeDeeCoreFacade(IDiagramComponent diagramComponent)
         {
             _diagramComponent = diagramComponent;
+            _diagramComponent.DiagramChanged += diagram => DiagramChanged?.Invoke(diagram);
         }
 
         public IEnumerable<DiagramElementType> GetAvailableElementTypes()

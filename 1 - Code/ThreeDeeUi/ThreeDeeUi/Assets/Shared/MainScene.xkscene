@@ -8,11 +8,8 @@ Hierarchy:
         - d92ada62-7103-49b6-a97a-d9ffbb465945
         - 91fdba0c-444d-4270-94d8-57a8bb0d0e7c
         - f418757a-f5d1-4b9d-af05-5158700ed862
-        - 6e8d4a13-b54d-4d05-b3be-bb353ec02c6a
-        - 91955303-16eb-450b-93cf-66ef10615bf0
-        - c267b985-f1a5-4567-ae65-bbb465b28c15
-        - 66e37e83-6dcb-451a-8ebf-1e2f73b9e2d0
         - 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
+        - d7425857-7229-4eae-b6ca-e59b88b615e4
     Entities:
         -   Entity:
                 Id: 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
@@ -29,54 +26,6 @@ Hierarchy:
                         VirtualResolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
                     - !ThreeDeeUi.UI.Screens.ScreenManagerComponent,ThreeDeeUi.Game
                         ~Id: 15ee2dd4-4047-412b-9efb-1cc0dc37a3e2
-            Design: {}
-        -   Entity:
-                Id: 66e37e83-6dcb-451a-8ebf-1e2f73b9e2d0
-                Name: Sphere (4)
-                Components:
-                    - !TransformComponent
-                        ~Id: 5f82e9b6-fc0d-40f2-93b0-601de09c19cd
-                        Position: {X: 2.368731, Y: -2.38418579E-07, Z: 0.4938426}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !ModelComponent
-                        ~Id: 03ef847f-22d1-43dd-bbe9-d90ac5534ae3
-                        Model: 580204d5-fdd4-4baa-beb7-5ba2aeef36a1/49883d3e-ea7a-46f7-bd04-f5ef7cef8b7a:models/sphere/Sphere
-                        Materials:
-                            - null
-            Design: {}
-        -   Entity:
-                Id: 6e8d4a13-b54d-4d05-b3be-bb353ec02c6a
-                Name: Sphere
-                Components:
-                    - !TransformComponent
-                        ~Id: fa2e6752-782f-434f-8050-38c196472609
-                        Position: {X: 0.471731424, Y: 2.38418579E-07, Z: -2.74877357}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !ModelComponent
-                        ~Id: b96a9005-556a-42a6-9ae3-a0df26d8b22c
-                        Model: 580204d5-fdd4-4baa-beb7-5ba2aeef36a1/49883d3e-ea7a-46f7-bd04-f5ef7cef8b7a:models/sphere/Sphere
-                        Materials:
-                            - null
-            Design: {}
-        -   Entity:
-                Id: 91955303-16eb-450b-93cf-66ef10615bf0
-                Name: Sphere (2)
-                Components:
-                    - !TransformComponent
-                        ~Id: faa0e8d6-d920-41f8-82ee-1945754d2071
-                        Position: {X: -12.3661022, Y: -2.38418579E-07, Z: 1.27036881}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !ModelComponent
-                        ~Id: 2f7f198b-8a75-4a07-8b5b-1d7c962d32e3
-                        Model: 580204d5-fdd4-4baa-beb7-5ba2aeef36a1/49883d3e-ea7a-46f7-bd04-f5ef7cef8b7a:models/sphere/Sphere
-                        Materials:
-                            - null
             Design: {}
         -   Entity:
                 Id: 91fdba0c-444d-4270-94d8-57a8bb0d0e7c
@@ -111,20 +60,17 @@ Hierarchy:
                         Intensity: 5.0
             Design: {}
         -   Entity:
-                Id: c267b985-f1a5-4567-ae65-bbb465b28c15
-                Name: Sphere (3)
+                Id: d7425857-7229-4eae-b6ca-e59b88b615e4
+                Name: Entity
                 Components:
                     - !TransformComponent
-                        ~Id: e4e0a556-2346-42e9-a30b-d2045ba2a619
-                        Position: {X: -2.17532682, Y: 0.0, Z: 3.11525917}
+                        ~Id: 75493a11-c330-4697-b683-0112affb042c
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
-                    - !ModelComponent
-                        ~Id: 80644858-f1e5-4b2a-ae74-436f631ef93c
-                        Model: 580204d5-fdd4-4baa-beb7-5ba2aeef36a1/49883d3e-ea7a-46f7-bd04-f5ef7cef8b7a:models/sphere/Sphere
-                        Materials:
-                            - null
+                    - !ThreeDeeUi.UI.Diagrams.DiagramViewComponent,ThreeDeeUi.Game
+                        ~Id: bb004816-70a3-4e2e-8a63-096b00d49a45
             Design: {}
         -   Entity:
                 Id: d92ada62-7103-49b6-a97a-d9ffbb465945
@@ -132,7 +78,7 @@ Hierarchy:
                 Components:
                     - !TransformComponent
                         ~Id: 3387e39b-1d53-40a1-bb75-f2d64910db35
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Position: {X: 0.0, Y: 0.0, Z: 7.93149328}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
