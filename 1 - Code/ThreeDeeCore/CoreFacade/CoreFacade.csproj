@@ -51,6 +51,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\ZeroTypes\ZeroTypes.csproj">
+      <Project>{C7603723-713F-4B30-B93D-ED01E5B7C00A}</Project>
+      <Name>ZeroTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DiagramLogic\DiagramLogic.csproj">
       <Project>{e3041d35-ae6f-4ad0-b2e8-466324025d85}</Project>
       <Name>DiagramLogic</Name>

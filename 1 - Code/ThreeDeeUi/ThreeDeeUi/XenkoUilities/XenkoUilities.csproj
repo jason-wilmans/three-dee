@@ -391,11 +391,18 @@
     <MtouchArch>i386, x86_64</MtouchArch>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="ConversionTools.cs" />
     <Compile Include="TransformComponentExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\ZeroTypes\ZeroTypes.csproj">
+      <Project>{C7603723-713F-4B30-B93D-ED01E5B7C00A}</Project>
+      <Name>ZeroTypes</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Condition="'$(SiliconStudioRuntime)' == ''" Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!--  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" /> -->

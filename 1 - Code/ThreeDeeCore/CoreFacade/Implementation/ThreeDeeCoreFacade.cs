@@ -4,6 +4,7 @@ using System.IO;
 using CoreFacade.Interface;
 using DiagramLogic.Implementation;
 using DiagramLogic.Interface;
+using ZeroTypes;
 
 namespace CoreFacade.Implementation
 {
@@ -23,6 +24,13 @@ namespace CoreFacade.Implementation
         }
 
         public IDiagram CurrentDiagram => _diagramComponent.CurrentDiagram;
+
+        public Tuple3 RecommendedSpawnPosition
+        {
+            get { return _diagramComponent.RecommendedSpawnPosition; }
+            set { _diagramComponent.RecommendedSpawnPosition = value; }
+        }
+
         public event Action<IDiagram> DiagramChanged;
 
         public void CreateNewDiagram(string diagramName)

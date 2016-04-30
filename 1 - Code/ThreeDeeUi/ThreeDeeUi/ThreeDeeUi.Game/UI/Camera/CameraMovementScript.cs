@@ -1,6 +1,8 @@
 ﻿using System;
+using CoreFacade.Interface;
 using SiliconStudio.Core;
 using SiliconStudio.Core.Mathematics;
+using SiliconStudio.DataSerializers;
 using SiliconStudio.Xenko.Animations;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Input;
@@ -32,6 +34,13 @@ namespace ThreeDeeUi.UI.Camera
         private Vector3 _pivot;
         private bool _isTurning;
 
+        private IThreeDeeCore _core;
+
+        public CameraMovementScript()
+        {
+            _core = ThreeDeeCoreFactory.GetProductionCore();
+        }
+
         public override void Start()
         {
             base.Start();
@@ -61,6 +70,14 @@ namespace ThreeDeeUi.UI.Camera
                 Scrolling();
                 Panning();
             }
+
+            RecommendSpawnPosition();
+        }
+
+        private void RecommendSpawnPosition()
+        {
+            Vector3 recommendedPosition = _transform.Position + _transform.LocalMatrix.Forward*Distance;
+            _core.RecommendedSpawnPosition = ConversionTools.ToModel(recommendedPosition);
         }
 
         private void Turning()
@@ -78,7 +95,7 @@ namespace ThreeDeeUi.UI.Camera
 
         private bool CheckAndTurn()
         {
-            if (Input.IsKeyPressed(Keys.Left))
+            if (Input.IsKeyPressed(Keys.Right))
             {
                 UpdatePivot();
                 StartTurnAnimation(_angles[_currentAngleIndex].HigherAnimation);
@@ -86,7 +103,7 @@ namespace ThreeDeeUi.UI.Camera
                 return true;
             }
 
-            if (Input.IsKeyPressed(Keys.Right))
+            if (Input.IsKeyPressed(Keys.Left))
             {
                 UpdatePivot();
                 StartTurnAnimation(_angles[_currentAngleIndex].LowerAnimation);
@@ -142,7 +159,7 @@ namespace ThreeDeeUi.UI.Camera
 
         private void Panning()
         {
-            if (Input.IsMouseButtonDown(MouseButton.Left) && Input.IsMouseButtonDown(MouseButton.Right))
+            if (Input.IsMouseButtonDown(MouseButton.Right))
             {
                 var delta = (Input.MousePosition - _oldMousePosition) * PanSpeed;
                 _transform.Position += _transform.WorldMatrix.Left * delta.X;

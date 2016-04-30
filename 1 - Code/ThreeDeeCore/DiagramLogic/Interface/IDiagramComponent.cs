@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using DiagramLogic.Implementation;
 using DiagramLogic.Interface.Elements;
 using DiagramLogic.Interface.Exceptions;
+using ZeroTypes;
 using ZeroTypes.Exceptions;
 
 [assembly: InternalsVisibleTo("CoreFacade")]
@@ -28,6 +29,15 @@ namespace DiagramLogic.Interface
         /// </summary>
         IDiagram CurrentDiagram { get; }
 
+        /// <summary>
+        /// The position, the GUI recommends the model to spawn new elements at.
+        /// </summary> 
+        /// <remarks>It is based on the current camera position. It may not be followed 100%.</remarks>
+        Tuple3 RecommendedSpawnPosition { get; set; }
+
+        /// <summary>
+        /// Called, if the currently loaded diagram is changed. Can be null.
+        /// </summary>
         event Action<IDiagram> DiagramChanged;
 
         /// <summary>

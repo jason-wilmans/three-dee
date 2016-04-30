@@ -44,23 +44,25 @@ namespace DiagramLogic.Implementation
         /// Adds the element to this diagram.
         /// </summary>
         /// <param name="element">Not null</param>
-        public void Add(IDiagramElement element)
+        /// <param name="position">Optional starting position. <br/>
+        /// If null, the diagram's geometric center is used.</param>
+        public void Add(IDiagramElement element, Tuple3? position = null)
         {
             element.Parent = null;
             element.Id = _nextElementId;
             Elements.Add(element);
 
-            element.Position = CalculateGeometricCenter();
+            element.Position = position ?? CalculateGeometricCenter();
 
             _nextElementId++;
 
             ElementAdded?.Invoke(element);
         }
         
-        public void Add(DiagramElementType elementType)
+        public void Add(DiagramElementType elementType, Tuple3? position = null)
         {
             IDiagramElement element = _instanceFactory.GetInstanceForType(elementType);
-            Add(element);
+            Add(element, position);
         }
 
         /// <summary>

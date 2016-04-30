@@ -6,6 +6,7 @@ using System.Text;
 using DiagramLogic.Interface;
 using DiagramLogic.Interface.Elements;
 using ServiceStack.Text;
+using ZeroTypes;
 using ZeroTypes.Exceptions;
 
 namespace DiagramLogic.Implementation
@@ -36,12 +37,11 @@ namespace DiagramLogic.Implementation
             private set
             {
                 _currentDiagram = value;
-                if (DiagramChanged != null)
-                {
-                    DiagramChanged(_currentDiagram);
-                }
+                DiagramChanged?.Invoke(_currentDiagram);
             }
         }
+
+        public Tuple3 RecommendedSpawnPosition { get; set; }
 
         public event Action<IDiagram> DiagramChanged;
 

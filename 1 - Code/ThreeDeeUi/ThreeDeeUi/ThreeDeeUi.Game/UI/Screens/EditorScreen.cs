@@ -75,7 +75,7 @@ namespace ThreeDeeUi.UI.Screens
 
         private void AddElement(DiagramElementType elementType)
         {
-            _core.CurrentDiagram.Add(elementType);
+            _core.CurrentDiagram.Add(elementType, _core.RecommendedSpawnPosition);
         }
     }
 }

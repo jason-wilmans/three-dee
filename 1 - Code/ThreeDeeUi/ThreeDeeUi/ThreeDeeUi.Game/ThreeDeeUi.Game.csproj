@@ -74,6 +74,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\..\..\Common\ZeroTypes\ZeroTypes.csproj">
+      <Project>{C7603723-713F-4B30-B93D-ED01E5B7C00A}</Project>
+      <Name>ZeroTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\ThreeDeeCore\CoreFacade\CoreFacade.csproj">
       <Project>{04942782-942C-4B03-9641-5E6868CA2A82}</Project>
       <Name>CoreFacade</Name>

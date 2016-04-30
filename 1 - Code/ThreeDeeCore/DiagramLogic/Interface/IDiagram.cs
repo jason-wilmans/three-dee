@@ -20,9 +20,10 @@ namespace DiagramLogic.Interface
         /// Adds the element to this diagram.
         /// </summary>
         /// <param name="element">Not null</param>
-        void Add(IDiagramElement element);
+        /// <param name="recommendedSpawnPosition">see other overload</param>
+        void Add(IDiagramElement element, Tuple3? recommendedSpawnPosition = null);
 
-        void Add(DiagramElementType elementType);
+        void Add(DiagramElementType elementType, Tuple3? recommendedSpawnPosition = null);
 
         /// <summary>
         /// Copies the element and places it i this diagram (with a slightly offsetted position).
