@@ -1,18 +1,27 @@
 ﻿using System;
 using DiagramLogic.Interface.Elements;
 using SiliconStudio.Xenko.Engine;
-using SiliconStudio.Xenko.Rendering;
 using XenkoUtilities;
 
 namespace ThreeDeeUi.UI.Diagrams
 {
-    internal class DiagramVertexComponent : StartupScript
+    public class DiagramVertexComponent : StartupScript
     {
-        private IDiagramElement _element;
+        private readonly IDiagramElement _element;
         private ModelComponent _modelComponent;
         private TransformComponent _transform;
-        private const string Url = "models/sphere/Sphere";
+        private IDiagramElement _currentElement;
 
+        public IDiagramElement CurrentElement
+        {
+            get { return _currentElement; }
+            set
+            {
+                _currentElement = value;
+                UpdateVisuals();
+            }
+        }
+        
         public DiagramVertexComponent(IDiagramElement element = null)
         {
             if (element != null)
@@ -28,16 +37,13 @@ namespace ThreeDeeUi.UI.Diagrams
         public override void Start()
         {
             base.Start();
-            
-            if (!Content.IsLoaded(Url))
-            {
-                Content.Load<Model>(Url);
-            }
-
+            _modelComponent = Entity.Get<ModelComponent>();
             _transform = Entity.Transform;
+        }
+        
+        private void UpdateVisuals()
+        {
             _transform.Position = ConversionTools.ToXenko(_element.Position);
-            _modelComponent = Entity.GetOrCreate<ModelComponent>();
-            _modelComponent.Model = Content.Get<Model>(Url);
         }
     }
 }

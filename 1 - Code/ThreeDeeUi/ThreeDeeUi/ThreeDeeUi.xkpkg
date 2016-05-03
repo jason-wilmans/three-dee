@@ -45,5 +45,6 @@ Bundles: []
 TemplateFolders: []
 RootAssets:
     - 49883d3e-ea7a-46f7-bd04-f5ef7cef8b7a:models/sphere/Sphere
+    - b5afc7ae-90fc-46ac-9bba-f9adaafaa637:prefabs/DiagramVertex
     - bbddc5fc-10e6-4a9a-8c35-a49711ef2cbd:fonts/elements
     - ed0cb57b-1d86-47fb-9f59-dc1a436a2dd1:fonts/title
