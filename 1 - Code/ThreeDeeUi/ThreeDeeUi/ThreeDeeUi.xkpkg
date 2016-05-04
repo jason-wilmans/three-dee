@@ -46,5 +46,7 @@ TemplateFolders: []
 RootAssets:
     - 49883d3e-ea7a-46f7-bd04-f5ef7cef8b7a:models/sphere/Sphere
     - b5afc7ae-90fc-46ac-9bba-f9adaafaa637:prefabs/DiagramVertex
+    - b9c594be-1284-4e9f-91e8-59f83324ccd4:models/cuboid/CuboidMaterial
     - bbddc5fc-10e6-4a9a-8c35-a49711ef2cbd:fonts/elements
     - ed0cb57b-1d86-47fb-9f59-dc1a436a2dd1:fonts/title
+    - f7bd7746-a3d1-4ed2-b072-ab8a0a830c4a:models/cuboid/Cuboid

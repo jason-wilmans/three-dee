@@ -1,6 +1,7 @@
 using System;
 using DiagramLogic.Interface.Elements;
 using SiliconStudio.Xenko.Engine;
+using SiliconStudio.Xenko.Rendering;
 using XenkoUtilities;
 
 namespace ThreeDeeUi.UI.Diagrams
@@ -32,10 +33,31 @@ namespace ThreeDeeUi.UI.Diagrams
 
         private void UpdateVisuals()
         {
-            if (_currentElement != null && _transform != null)
+            if (_currentElement != null && _transform != null && _modelComponent != null)
             {
                 _transform.Position = ConversionTools.ToXenko(_currentElement.Position);
+
+                Model model = GetModelForType(_currentElement);
+                _modelComponent.Model = model;
             }
+        }
+
+        private Model GetModelForType(IDiagramElement currentElement)
+        {
+            string url;
+            switch (currentElement.GetType().Name)
+            {
+                case nameof(Ellipsoid):
+                    url = "models/sphere/Sphere";
+                    break;
+                case nameof(Cuboid):
+                    url = "models/cuboid/Cuboid";
+                    break;
+                default:
+                    return null;
+            }
+
+            return !Content.IsLoaded(url) ? Content.Load<Model>(url) : Content.Get<Model>(url);
         }
     }
 }

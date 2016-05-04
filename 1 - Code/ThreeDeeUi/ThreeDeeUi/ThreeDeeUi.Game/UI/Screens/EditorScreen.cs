@@ -43,7 +43,7 @@ namespace ThreeDeeUi.UI.Screens
             return menu;
         }
 
-        private void SetupElements(UniformGrid elementsMenu)
+        private void SetupElements(Panel elementsMenu)
         {
             IEnumerable<DiagramElementType> elementTypes = _core.GetAvailableElementTypes();
 
