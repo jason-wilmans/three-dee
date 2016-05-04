@@ -21,4 +21,7 @@ Hierarchy:
                         Model: 81fa77c4-f01c-4e8b-a3d7-d333241c47b6/49883d3e-ea7a-46f7-bd04-f5ef7cef8b7a:models/sphere/Sphere
                         Materials:
                             - null
+                    - !ThreeDeeUi.UI.Diagrams.DiagramVertexComponent,ThreeDeeUi.Game
+                        ~Id: 3c1ad686-dc1c-4812-96ea-93092abe54a0
+                        CurrentElement: null
             Design: {}

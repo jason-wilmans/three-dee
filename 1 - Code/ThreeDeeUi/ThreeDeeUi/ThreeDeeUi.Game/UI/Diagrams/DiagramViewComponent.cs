@@ -47,14 +47,19 @@ namespace ThreeDeeUi.UI.Diagrams
 
         private void InitializeVisualScene(IDiagram diagram)
         {
-            foreach (var child in Entity.Transform.Children.Select(transform => transform.Entity))
-            {
-                SceneSystem.SceneInstance.Scene.Entities.Remove(child);
-            }
+            Clear();
 
             foreach (var element in diagram.Elements)
             {
                 AddVisualElement(element);
+            }
+        }
+
+        public void Clear()
+        {
+            foreach (var child in Entity.Transform.Children.Select(transform => transform.Entity))
+            {
+                SceneSystem.SceneInstance.Scene.Entities.Remove(child);
             }
         }
     }
