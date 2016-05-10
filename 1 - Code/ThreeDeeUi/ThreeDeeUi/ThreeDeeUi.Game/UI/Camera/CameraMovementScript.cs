@@ -2,7 +2,6 @@
 using CoreFacade.Interface;
 using SiliconStudio.Core;
 using SiliconStudio.Core.Mathematics;
-using SiliconStudio.DataSerializers;
 using SiliconStudio.Xenko.Animations;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Input;

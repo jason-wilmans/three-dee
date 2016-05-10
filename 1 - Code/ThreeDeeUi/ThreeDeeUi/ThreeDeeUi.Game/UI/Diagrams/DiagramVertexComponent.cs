@@ -1,4 +1,3 @@
-using System;
 using DiagramLogic.Interface.Elements;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Rendering;
@@ -33,13 +32,12 @@ namespace ThreeDeeUi.UI.Diagrams
 
         private void UpdateVisuals()
         {
-            if (_currentElement != null && _transform != null && _modelComponent != null)
-            {
-                _transform.Position = ConversionTools.ToXenko(_currentElement.Position);
+            if (_currentElement == null || _transform == null || _modelComponent == null) return;
 
-                Model model = GetModelForType(_currentElement);
-                _modelComponent.Model = model;
-            }
+            _transform.Position = ConversionTools.ToXenko(_currentElement.Position);
+
+            Model model = GetModelForType(_currentElement);
+            _modelComponent.Model = model;
         }
 
         private Model GetModelForType(IDiagramElement currentElement)

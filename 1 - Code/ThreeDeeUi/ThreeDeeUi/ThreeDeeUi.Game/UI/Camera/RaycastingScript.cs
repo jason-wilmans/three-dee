@@ -6,11 +6,7 @@
 
 #region
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using Prototype_1.GameBoard;
-using SiliconStudio.Core.Collections;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Graphics;
@@ -19,33 +15,32 @@ using SiliconStudio.Xenko.Physics;
 
 #endregion
 
-namespace Prototype_1
+namespace ThreeDeeUi.UI.Camera
 {
     public class RaycastingScript : SyncScript
     {
         private Simulation _simulation;
         private CameraComponent _camera;
-        private Prefab _explosionPrefab;
-        private Prefab _explosionPrefab2;
-        private readonly WorldToHexCoordsProjection _worldToHexCoordsProjection = new WorldToHexCoordsProjection();
 
         public override void Start()
         {
             _camera = Entity.Get<CameraComponent>();
             _simulation = this.GetSimulation();
-            _explosionPrefab = Content.Load<Prefab>("ExplosionPfb");
-            _explosionPrefab2 = Content.Load<Prefab>("Explosion2Pfb");
         }
 
         public override void Update()
         {
             foreach (var pointerEvent in Input.PointerEvents.Where(x => x.State == PointerState.Down))
             {
-                Raycast(pointerEvent.Position);
+                Entity hitEntity = Raycast(pointerEvent.Position);
+                if (hitEntity != null)
+                {
+                    Log.Error($"entity hit: '{hitEntity.Name}' at position {hitEntity.Transform.Position}");
+                }
             }
         }
 
-        private void Raycast(Vector2 screenPos)
+        private Entity Raycast(Vector2 screenPos)
         {
             Texture backBuffer = GraphicsDevice.Presenter.BackBuffer;
             screenPos.X *= backBuffer.Width;
@@ -68,21 +63,14 @@ namespace Prototype_1
                     Matrix.Identity);
 
             HitResult hitResult = _simulation.Raycast(unprojectedNear, unprojectedFar);
-            if (!hitResult.Succeeded || hitResult.Collider == null) return;
+            if (!hitResult.Succeeded || hitResult.Collider == null)
+            {
+                return null;
+            }
 
-            SpawnExplosionPrefab(hitResult.Point);
+            return hitResult.Collider.Entity;
         }
 
-        private void SpawnExplosionPrefab(Vector3 point)
-        {
-            FastCollection<Entity> explosion = _explosionPrefab.Instantiate();
-            SceneSystem.SceneInstance.Scene.Entities.AddRange(explosion);
-            Vector2 hexGuiCenter2D = _worldToHexCoordsProjection.ToHex(new Vector2(point.X, point.Z));
-            explosion[0].Transform.Position = new Vector3(hexGuiCenter2D.X, point.Y, hexGuiCenter2D.Y);
 
-            FastCollection<Entity> explosion2 = _explosionPrefab2.Instantiate();
-            SceneSystem.SceneInstance.Scene.Entities.AddRange(explosion2);
-            explosion2[0].Transform.Position = point;
-        }
     }
 }

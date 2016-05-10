@@ -24,4 +24,25 @@ Hierarchy:
                     - !ThreeDeeUi.UI.Diagrams.DiagramVertexComponent,ThreeDeeUi.Game
                         ~Id: 3c1ad686-dc1c-4812-96ea-93092abe54a0
                         CurrentElement: null
+                    - !RigidbodyComponent
+                        ~Id: 49d80dda-13d9-436e-99c5-2b28ba179df6
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        IsTrigger: false
+                        IsKinematic: false
+                        Mass: 1.0
+                        LinearDamping: 0.0
+                        AngularDamping: 0.0
+                        OverrideGravity: true
+                        Gravity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        NodeName: null
+                        ColliderShapes:
+                            - !SphereColliderShapeDesc
+                                ~Id: 858b4082-bfe3-4697-a5ee-4deabfa61b69
+                                Is2D: false
+                                LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
             Design: {}

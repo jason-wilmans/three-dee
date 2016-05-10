@@ -11,6 +11,7 @@ Hierarchy:
         - 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
         - d7425857-7229-4eae-b6ca-e59b88b615e4
         - b3d3bff6-17fb-400d-95eb-235e5044fc5c
+        - a1f32447-f1ff-4f5e-b909-6b7b1b92cb7c
     Entities:
         -   Entity:
                 Id: 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
@@ -61,13 +62,29 @@ Hierarchy:
                         Intensity: 5.0
             Design: {}
         -   Entity:
+                Id: a1f32447-f1ff-4f5e-b909-6b7b1b92cb7c
+                Name: Sphere
+                Components:
+                    - !TransformComponent
+                        ~Id: 2161def7-f605-4eb4-955a-85157837526b
+                        Position: {X: 0.062721014, Y: 0.6120898, Z: 0.9296968}
+                        Rotation: {W: 0.834069252, X: 0.0, Y: -0.5516597, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !ModelComponent
+                        ~Id: e047a217-0c8a-4a88-bd34-be45d6ff4ed4
+                        Model: 98f35b36-3642-4af9-a14b-e79ad8837b22/49883d3e-ea7a-46f7-bd04-f5ef7cef8b7a:models/sphere/Sphere
+                        Materials:
+                            - null
+            Design: {}
+        -   Entity:
                 Id: b3d3bff6-17fb-400d-95eb-235e5044fc5c
                 Name: Cuboid
                 Components:
                     - !TransformComponent
                         ~Id: 0b2f00ef-652e-468a-8788-88f519ef2460
-                        Position: {X: -1.890451, Y: 0.0, Z: 4.259017}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Position: {X: 0.5, Y: 0.0, Z: 0.5}
+                        Rotation: {W: 0.834069252, X: 0.0, Y: -0.5516597, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
                     - !ModelComponent
@@ -95,7 +112,7 @@ Hierarchy:
                 Components:
                     - !TransformComponent
                         ~Id: 3387e39b-1d53-40a1-bb75-f2d64910db35
-                        Position: {X: 0.0, Y: 0.0, Z: 7.93149328}
+                        Position: {X: 0.0, Y: 0.0, Z: 9.700351}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
@@ -109,6 +126,30 @@ Hierarchy:
                         PanSpeed: 1.5
                         ScrollingSpeed: 0.25
                         TurnSpeed: 0.25
+                    - !ThreeDeeUi.UI.Camera.RaycastingScript,ThreeDeeUi.Game
+                        ~Id: 24fc1aaa-1149-442f-8e5b-00feac756ee5
+                    - !RigidbodyComponent
+                        ~Id: 0943050a-4602-459c-88c0-745537f69463
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        IsTrigger: false
+                        IsKinematic: true
+                        Mass: 1.0
+                        LinearDamping: 0.0
+                        AngularDamping: 0.0
+                        OverrideGravity: false
+                        Gravity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        NodeName: null
+                        ColliderShapes:
+                            - !SphereColliderShapeDesc
+                                ~Id: da6468da-6f93-43cb-8261-941bbb3aa3e8
+                                Is2D: false
+                                Radius: 0.01
+                                LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
             Design: {}
         -   Entity:
                 Id: f418757a-f5d1-4b9d-af05-5158700ed862
