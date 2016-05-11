@@ -29,6 +29,9 @@ Profiles:
             -   Id: 281bcbbe-56fc-4378-8c44-3108e38d921e
                 Location: XenkoUilities/XenkoUilities.csproj
                 Type: Library
+            -   Id: 5072b6dd-56dc-4853-b145-c3547b47b073
+                Location: Ui3DToolkit/Ui3DToolkit.csproj
+                Type: Library
     -   Name: Windows
         Platform: Windows
         InheritProfiles: []

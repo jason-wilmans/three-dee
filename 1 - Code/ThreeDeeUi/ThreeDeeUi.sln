@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9C36ED80
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDiagramLogic", "..\Test\TestDiagramLogic\TestDiagramLogic.csproj", "{2133E457-6D4C-4EEB-B813-6C446ADC7B77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui3DToolkit", "ThreeDeeUi\Ui3DToolkit\Ui3DToolkit.csproj", "{5072B6DD-56DC-4853-B145-C3547B47B073}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		AppStore|Any CPU = AppStore|Any CPU
@@ -224,6 +226,30 @@ Global
 		{2133E457-6D4C-4EEB-B813-6C446ADC7B77}.Testing|Mixed Platforms.Build.0 = Release|Any CPU
 		{2133E457-6D4C-4EEB-B813-6C446ADC7B77}.Testing|Windows.ActiveCfg = Release|Any CPU
 		{2133E457-6D4C-4EEB-B813-6C446ADC7B77}.Testing|Windows.Build.0 = Release|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.AppStore|Any CPU.Build.0 = AppStore|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.AppStore|Mixed Platforms.ActiveCfg = AppStore|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.AppStore|Mixed Platforms.Build.0 = AppStore|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.AppStore|Windows.ActiveCfg = AppStore|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.AppStore|Windows.Build.0 = AppStore|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Debug|Windows.ActiveCfg = Debug|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Debug|Windows.Build.0 = Debug|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Release|Windows.ActiveCfg = Release|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Release|Windows.Build.0 = Release|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Testing|Mixed Platforms.ActiveCfg = Testing|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Testing|Mixed Platforms.Build.0 = Testing|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Testing|Windows.ActiveCfg = Testing|Any CPU
+		{5072B6DD-56DC-4853-B145-C3547B47B073}.Testing|Windows.Build.0 = Testing|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -236,5 +262,6 @@ Global
 		{E3041D35-AE6F-4AD0-B2E8-466324025D85} = {E8886F34-82B3-41F2-87C2-AB4C1A1F2657}
 		{04942782-942C-4B03-9641-5E6868CA2A82} = {E8886F34-82B3-41F2-87C2-AB4C1A1F2657}
 		{2133E457-6D4C-4EEB-B813-6C446ADC7B77} = {9C36ED80-4202-4685-8258-292588C3F7A2}
+		{5072B6DD-56DC-4853-B145-C3547B47B073} = {A36489F3-76C1-4DE1-9D22-99B90BCE9FEA}
 	EndGlobalSection
 EndGlobal
