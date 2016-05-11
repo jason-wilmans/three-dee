@@ -7,7 +7,6 @@ Hierarchy:
     RootEntities:
         - d92ada62-7103-49b6-a97a-d9ffbb465945
         - 91fdba0c-444d-4270-94d8-57a8bb0d0e7c
-        - f418757a-f5d1-4b9d-af05-5158700ed862
         - 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
         - d7425857-7229-4eae-b6ca-e59b88b615e4
     Entities:
@@ -118,21 +117,6 @@ Hierarchy:
                                 Is2D: false
                                 Radius: 0.05
                                 LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
-            Design: {}
-        -   Entity:
-                Id: f418757a-f5d1-4b9d-af05-5158700ed862
-                Name: Skybox
-                Components:
-                    - !TransformComponent
-                        ~Id: a48fd998-4868-462d-8e05-f32045abf6e4
-                        Position: {X: 0.0, Y: 2.0, Z: -2.0}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !SkyboxComponent
-                        ~Id: a70a2035-ee35-4740-8018-e4a67c9751ca
-                        Skybox: c6a24fe9-7d91-4a89-8a29-f9f79bdc4f91/61a96efc-57f5-4fa4-b725-612a7170e3ca:Skybox
-                        Intensity: 0.5
             Design: {}
 SceneSettings:
     ~Id: f0556744-ec0c-4c2d-a3cf-1ab109150a00

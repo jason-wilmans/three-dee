@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using DiagramLogic.Interface.Elements;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
