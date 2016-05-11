@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DiagramLogic.Interface.Elements;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
@@ -7,14 +8,14 @@ using XenkoUtilities;
 
 namespace ThreeDeeUi.UI.Diagrams
 {
-    public class DiagramVertexComponent : StartupScript
+    public class DiagramVertexComponent : SyncScript
     {
         private ModelComponent _modelComponent;
         private TransformComponent _transform;
         private IDiagramElement _currentElement;
         private bool _selected;
         private static readonly Color4 DarkColor = new Color4(new Color3(0.025f, 0.025f, 0.025f), 1.0f);
-
+        
         public IDiagramElement CurrentElement
         {
             get { return _currentElement; }
@@ -32,6 +33,15 @@ namespace ThreeDeeUi.UI.Diagrams
             _modelComponent = Entity.Get<ModelComponent>();
             _transform = Entity.Transform;
             UpdateVisuals();
+        }
+
+        public override void Update()
+        {
+            //TODO: What the fuck, why does position get overridden in first update?
+            if (Game.GameSystems.IsFirstUpdateDone)
+            {
+                UpdateVisuals();
+            }
         }
 
         private void UpdateVisuals()

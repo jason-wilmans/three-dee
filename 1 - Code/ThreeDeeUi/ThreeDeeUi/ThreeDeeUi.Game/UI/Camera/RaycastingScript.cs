@@ -36,7 +36,6 @@ namespace ThreeDeeUi.UI.Camera
                 Entity hitEntity = Raycast(pointerEvent.Position);
                 if (hitEntity != null)
                 {
-                    Log.Error($"entity hit: '{hitEntity.Name}' at position {hitEntity.Transform.Position}");
                     DiagramVertexComponent vertex = hitEntity.Get<DiagramVertexComponent>();
                     vertex.ToggleColor();
                 }
