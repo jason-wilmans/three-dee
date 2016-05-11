@@ -26,7 +26,9 @@ Hierarchy:
                         CurrentElement: null
                     - !RigidbodyComponent
                         ~Id: 49d80dda-13d9-436e-99c5-2b28ba179df6
-                        CanSleep: false
+                        CollisionGroup: KinematicFilter
+                        CanCollideWith: DefaultFilter
+                        CanSleep: true
                         Restitution: 0.0
                         Friction: 0.5
                         RollingFriction: 0.0

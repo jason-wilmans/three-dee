@@ -67,7 +67,7 @@ Hierarchy:
                 Components:
                     - !TransformComponent
                         ~Id: 2161def7-f605-4eb4-955a-85157837526b
-                        Position: {X: 0.062721014, Y: 0.6120898, Z: 0.9296968}
+                        Position: {X: -1.094902, Y: 0.6120898, Z: 0.9296968}
                         Rotation: {W: 0.834069252, X: 0.0, Y: -0.5516597, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
@@ -130,6 +130,7 @@ Hierarchy:
                         ~Id: 24fc1aaa-1149-442f-8e5b-00feac756ee5
                     - !RigidbodyComponent
                         ~Id: 0943050a-4602-459c-88c0-745537f69463
+                        CanCollideWith: 0
                         CanSleep: false
                         Restitution: 0.0
                         Friction: 0.5
@@ -146,9 +147,9 @@ Hierarchy:
                         NodeName: null
                         ColliderShapes:
                             - !SphereColliderShapeDesc
-                                ~Id: da6468da-6f93-43cb-8261-941bbb3aa3e8
+                                ~Id: 6c3321bb-49d3-4ea6-8253-2e41f847e1b0
                                 Is2D: false
-                                Radius: 0.01
+                                Radius: 0.05
                                 LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
             Design: {}
         -   Entity:

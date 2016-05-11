@@ -1,6 +1,8 @@
 using DiagramLogic.Interface.Elements;
+using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Rendering;
+using SiliconStudio.Xenko.Rendering.Materials;
 using XenkoUtilities;
 
 namespace ThreeDeeUi.UI.Diagrams
@@ -10,6 +12,8 @@ namespace ThreeDeeUi.UI.Diagrams
         private ModelComponent _modelComponent;
         private TransformComponent _transform;
         private IDiagramElement _currentElement;
+        private bool _selected;
+        private static readonly Color4 DarkColor = new Color4(new Color3(0.025f, 0.025f, 0.025f), 1.0f);
 
         public IDiagramElement CurrentElement
         {
@@ -32,12 +36,13 @@ namespace ThreeDeeUi.UI.Diagrams
 
         private void UpdateVisuals()
         {
-            if (_currentElement == null || _transform == null || _modelComponent == null) return;
+            if (_currentElement != null && _transform != null && _modelComponent != null)
+            {
+                _transform.Position = ConversionTools.ToXenko(_currentElement.Position);
 
-            _transform.Position = ConversionTools.ToXenko(_currentElement.Position);
-
-            Model model = GetModelForType(_currentElement);
-            _modelComponent.Model = model;
+                Model model = GetModelForType(_currentElement);
+                _modelComponent.Model = model;
+            }
         }
 
         private Model GetModelForType(IDiagramElement currentElement)
@@ -56,6 +61,22 @@ namespace ThreeDeeUi.UI.Diagrams
             }
 
             return !Content.IsLoaded(url) ? Content.Load<Model>(url) : Content.Get<Model>(url);
+        }
+
+        public void ToggleColor()
+        {
+            Material material = _modelComponent.GetMaterial(0);
+
+            if (_selected)
+            {
+                material.Parameters.Set(MaterialKeys.DiffuseValue, Color4.White);
+            }
+            else
+            {
+                material.Parameters.Set(MaterialKeys.DiffuseValue, DarkColor);
+            }
+
+            _selected = !_selected;
         }
     }
 }

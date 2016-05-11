@@ -1,4 +1,4 @@
-﻿// <copyright file="RaycastingScript.cs" year="2016" owner="Fritz Oscar S. Berngruber & Jason Wilmans">
+// <copyright file="RaycastingScript.cs" year="2016" owner="Fritz Oscar S. Berngruber & Jason Wilmans">
 // All rights are reserved. Reproduction or transmission in whole or in part, in
 // any form or by any means, electronic, mechanical or otherwise, is prohibited
 // without the prior written consent of the copyright owner.
@@ -12,6 +12,7 @@ using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.Input;
 using SiliconStudio.Xenko.Physics;
+using ThreeDeeUi.UI.Diagrams;
 
 #endregion
 
@@ -36,6 +37,8 @@ namespace ThreeDeeUi.UI.Camera
                 if (hitEntity != null)
                 {
                     Log.Error($"entity hit: '{hitEntity.Name}' at position {hitEntity.Transform.Position}");
+                    DiagramVertexComponent vertex = hitEntity.Get<DiagramVertexComponent>();
+                    vertex.ToggleColor();
                 }
             }
         }

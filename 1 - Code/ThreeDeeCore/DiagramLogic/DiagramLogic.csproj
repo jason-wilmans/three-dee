@@ -38,7 +38,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SiliconStudio.Core">
-      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Silicon Studio\Xenko\GamePackages\Xenko.1.6.2-beta\Bin\Windows-Direct3D11\SiliconStudio.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Silicon Studio\Xenko\GamePackages\Xenko.1.6.4-beta\Bin\Windows-Direct3D11\SiliconStudio.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
