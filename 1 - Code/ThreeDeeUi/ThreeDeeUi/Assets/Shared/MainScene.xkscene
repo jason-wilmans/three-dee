@@ -7,8 +7,10 @@ Hierarchy:
     RootEntities:
         - d92ada62-7103-49b6-a97a-d9ffbb465945
         - 91fdba0c-444d-4270-94d8-57a8bb0d0e7c
+        - f418757a-f5d1-4b9d-af05-5158700ed862
         - 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
         - d7425857-7229-4eae-b6ca-e59b88b615e4
+        - b3d3bff6-17fb-400d-95eb-235e5044fc5c
     Entities:
         -   Entity:
                 Id: 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
@@ -59,6 +61,22 @@ Hierarchy:
                         Intensity: 5.0
             Design: {}
         -   Entity:
+                Id: b3d3bff6-17fb-400d-95eb-235e5044fc5c
+                Name: Cuboid
+                Components:
+                    - !TransformComponent
+                        ~Id: 0b2f00ef-652e-468a-8788-88f519ef2460
+                        Position: {X: -1.890451, Y: 0.0, Z: 4.259017}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !ModelComponent
+                        ~Id: 32269963-3fec-4881-8f42-8f7217c49f3a
+                        Model: 53cbe5bd-956b-4341-8c80-cc314bd14ea8/f7bd7746-a3d1-4ed2-b072-ab8a0a830c4a:models/cuboid/Cuboid
+                        Materials:
+                            - null
+            Design: {}
+        -   Entity:
                 Id: d7425857-7229-4eae-b6ca-e59b88b615e4
                 Name: Entity
                 Components:
@@ -77,7 +95,7 @@ Hierarchy:
                 Components:
                     - !TransformComponent
                         ~Id: 3387e39b-1d53-40a1-bb75-f2d64910db35
-                        Position: {X: 0.0, Y: 0.0, Z: 9.700351}
+                        Position: {X: 0.0, Y: 0.0, Z: 7.93149328}
                         Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                         Children: []
@@ -91,32 +109,21 @@ Hierarchy:
                         PanSpeed: 1.5
                         ScrollingSpeed: 0.25
                         TurnSpeed: 0.25
-                    - !ThreeDeeUi.UI.Camera.RaycastingScript,ThreeDeeUi.Game
-                        ~Id: 24fc1aaa-1149-442f-8e5b-00feac756ee5
-                    - !RigidbodyComponent
-                        ~Id: 0943050a-4602-459c-88c0-745537f69463
-                        CollisionGroup: KinematicFilter
-                        CanCollideWith: 0
-                        CanSleep: false
-                        Restitution: 0.0
-                        Friction: 0.5
-                        RollingFriction: 0.0
-                        CcdMotionThreshold: 0.0
-                        CcdSweptSphereRadius: 0.0
-                        IsTrigger: false
-                        IsKinematic: true
-                        Mass: 1.0
-                        LinearDamping: 0.0
-                        AngularDamping: 0.0
-                        OverrideGravity: false
-                        Gravity: {X: 0.0, Y: 0.0, Z: 0.0}
-                        NodeName: null
-                        ColliderShapes:
-                            - !SphereColliderShapeDesc
-                                ~Id: 6c3321bb-49d3-4ea6-8253-2e41f847e1b0
-                                Is2D: false
-                                Radius: 0.05
-                                LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
+            Design: {}
+        -   Entity:
+                Id: f418757a-f5d1-4b9d-af05-5158700ed862
+                Name: Skybox
+                Components:
+                    - !TransformComponent
+                        ~Id: a48fd998-4868-462d-8e05-f32045abf6e4
+                        Position: {X: 0.0, Y: 2.0, Z: -2.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !SkyboxComponent
+                        ~Id: a70a2035-ee35-4740-8018-e4a67c9751ca
+                        Skybox: c6a24fe9-7d91-4a89-8a29-f9f79bdc4f91/61a96efc-57f5-4fa4-b725-612a7170e3ca:Skybox
+                        Intensity: 0.5
             Design: {}
 SceneSettings:
     ~Id: f0556744-ec0c-4c2d-a3cf-1ab109150a00

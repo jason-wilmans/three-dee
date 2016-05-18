@@ -104,6 +104,7 @@
     <Compile Include="UI\Screens\MainMenuScreen.cs" />
     <Compile Include="UI\Screens\ScreenManagerComponent.cs" />
     <Compile Include="UI\Screens\Screen.cs" />
+    <Compile Include="UI\Screens\VertexManipulationTool.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

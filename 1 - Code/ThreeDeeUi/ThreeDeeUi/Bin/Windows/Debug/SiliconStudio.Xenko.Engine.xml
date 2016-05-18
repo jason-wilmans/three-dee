@@ -1924,6 +1924,11 @@
             The controller that have been added or removed to the component.
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Engine.AudioEmitterComponent.ControllerCollectionChangedEventArgs.EmitterComponent">
+            <summary>
+            The AudioEmitterComponent itself
+            </summary>
+        </member>
         <member name="F:SiliconStudio.Xenko.Engine.AudioEmitterComponent.ControllerCollectionChangedEventArgs.Action">
             <summary>
             Action indication if the controller has been added or removed.

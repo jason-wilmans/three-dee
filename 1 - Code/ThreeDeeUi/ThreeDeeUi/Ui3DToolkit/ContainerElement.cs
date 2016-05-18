@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace UIToolkit
+﻿namespace Ui3DToolkit
 {
     public class ContainerElement : UiElement3D
     {
