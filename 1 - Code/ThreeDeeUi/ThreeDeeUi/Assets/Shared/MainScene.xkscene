@@ -163,6 +163,23 @@ Hierarchy:
                     - !GameClient.GUI.Ui3D.Ui3DEventSystem,Ui3DToolkit
                         ~Id: 14003781-ab58-4ceb-a85d-a63c2f93412f
                         Camera: d92ada62-7103-49b6-a97a-d9ffbb465945/8090d6b6-7d8c-486d-872a-aff33ee54e16
+                    - !RigidbodyComponent
+                        ~Id: d08147d7-a4d8-4a8f-9526-0bee98625a2c
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        IsTrigger: false
+                        IsKinematic: true
+                        Mass: 1.0
+                        LinearDamping: 0.0
+                        AngularDamping: 0.0
+                        OverrideGravity: true
+                        Gravity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        NodeName: null
+                        ColliderShapes: []
         -   Entity:
                 Id: 91fdba0c-444d-4270-94d8-57a8bb0d0e7c
                 Name: Directional light

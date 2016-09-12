@@ -12,12 +12,12 @@ namespace ThreeDeeUi.UI.Diagrams
 {
     public class DiagramVertexComponent : AViewElement3D
     {
-        //private ModelComponent _modelComponent;
+        private ModelComponent _modelComponent;
         //private TransformComponent _transform;
         //private IDiagramElement _currentElement;
         //private bool _selected;
         //private static readonly Color4 DarkColor = new Color4(new Color3(0.025f, 0.025f, 0.025f), 1.0f);
-        
+
         //public IDiagramElement CurrentElement
         //{
         //    get { return _currentElement; }
@@ -32,7 +32,7 @@ namespace ThreeDeeUi.UI.Diagrams
         {
             base.Start();
 
-            //_modelComponent = Entity.Get<ModelComponent>();
+            _modelComponent = Entity.Get<ModelComponent>();
             //_transform = Entity.Transform;
             //UpdateVisuals();
             //Clicked += OnClicked;
