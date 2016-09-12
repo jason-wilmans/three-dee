@@ -59,6 +59,11 @@
             Gets or sets the order value of the category.
             </summary>
         </member>
+        <member name="P:SiliconStudio.Core.Annotations.CategoryOrderAttribute.Expand">
+            <summary>
+            Gets or sets whether to expand the category in the UI.
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Core.Annotations.MemberCollectionAttribute">
             <summary>
             This attributes provides additional information on a member collection.
@@ -103,6 +108,11 @@
             <summary>
             This attribute indicates that the associated property should be inlined in its container presentation
             when displayed in a property grid.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Core.Annotations.InlinePropertyAttribute.Expand">
+            <summary>
+            Gets or sets whether to expand the inline property in the UI. The default is <see cref="F:SiliconStudio.Core.ExpandRule.Never"/>.
             </summary>
         </member>
         <member name="T:SiliconStudio.Core.Annotations.NonInstantiableAttribute">
@@ -322,7 +332,7 @@
         </member>
         <member name="T:SiliconStudio.Core.Collections.FastCollection`1">
             <summary>
-            Faster and lightter implementation of <see cref="T:System.Collections.ObjectModel.Collection`1"/> with value types enumerators to avoid allocation in foreach loops, and various helper functions.
+            Faster and lighter implementation of <see cref="T:System.Collections.ObjectModel.Collection`1"/> with value types enumerators to avoid allocation in foreach loops, and various helper functions.
             </summary>
             <typeparam name="T">Type of elements of this collection </typeparam>
         </member>
@@ -1528,6 +1538,11 @@
             </summary>
             <value>The text.</value>
         </member>
+        <member name="P:SiliconStudio.Core.Diagnostics.ILogMessage.ExceptionInfo">
+            <summary>
+            Gets or sets the exception info.
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Core.Diagnostics.IProgressStatus">
             <summary>
             Provides progress of an operation.
@@ -2634,7 +2649,7 @@
         </member>
         <member name="M:SiliconStudio.Core.Diagnostics.LogListener.ShouldFlush(SiliconStudio.Core.Diagnostics.ILogMessage)">
             <summary>
-            Returns a boolean indicating whether the log should be flushed. By default, flushing is occuring if the message has a higher level than <see cref="F:SiliconStudio.Core.Diagnostics.LogMessageType.Info"/>
+            Returns a boolean indicating whether the log should be flushed. By default, flushing is occurring if the message has a higher level than <see cref="F:SiliconStudio.Core.Diagnostics.LogMessageType.Info"/>
             </summary>
             <param name="logMessage">The log message.</param>
             <returns><c>true</c> if the log should be flushed, <c>false</c> otherwise</returns>
@@ -2733,6 +2748,9 @@
             Gets or sets the caller information.
             </summary>
             <value>The caller information.</value>
+        </member>
+        <member name="P:SiliconStudio.Core.Diagnostics.LogMessage.ExceptionInfo">
+            <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Core.Diagnostics.LogMessage.ToString">
             <summary>
@@ -3386,7 +3404,7 @@
         </member>
         <member name="M:SiliconStudio.Core.Reflection.ObjectFactory.RegisterFactory(System.Type)">
             <summary>
-            Registers the factory.
+            Registers the factory declared with the <see cref="T:SiliconStudio.Core.Reflection.ObjectFactoryAttribute"/> for the specified object type.
             </summary>
             <param name="objectType">Type of the object.</param>
             <returns>IObjectFactory.</returns>
@@ -3404,6 +3422,14 @@
             <param name="objectType">Type of the object.</param>
             <param name="factory">The factory.</param>
             <returns>IObjectFactory.</returns>
+            <exception cref="T:System.ArgumentNullException">objectType</exception>
+        </member>
+        <member name="M:SiliconStudio.Core.Reflection.ObjectFactory.GetFactory(System.Type)">
+            <summary>
+            Gets the factory corresponding to the given object type, if available.
+            </summary>
+            <param name="objectType">The object type for which to retrieve the factory.</param>
+            <returns>The factory corresponding to the given object type if available, <c>null</c> otherwise.</returns>
             <exception cref="T:System.ArgumentNullException">objectType</exception>
         </member>
         <member name="M:SiliconStudio.Core.Reflection.ObjectFactory.FindRegisteredFactories">
@@ -3461,7 +3487,7 @@
         </member>
         <member name="T:SiliconStudio.Core.Reflection.AssemblyRegisteredEventArgs">
             <summary>
-            An event occuring when an assembly is registered with <see cref="T:SiliconStudio.Core.Reflection.AssemblyRegistry"/>.
+            An event occurring when an assembly is registered with <see cref="T:SiliconStudio.Core.Reflection.AssemblyRegistry"/>.
             </summary>
         </member>
         <member name="M:SiliconStudio.Core.Reflection.AssemblyRegisteredEventArgs.#ctor(System.Reflection.Assembly,System.Collections.Generic.HashSet{System.String})">
@@ -5353,16 +5379,6 @@
             When specified on a property or field, a serializer won't be needed for this type (useful if serializer is dynamically or manually registered).
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.NativeLibrary.LibraryName">
-            <summary>
-            Defines the location of the core native DLL.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Core.NativeLibrary.CallConvention">
-            <summary>
-            Defines the calling convention for P/Invoking the native core methods.
-            </summary>
-        </member>
         <member name="M:SiliconStudio.Core.NativeLibrary.PreloadLibrary(System.String)">
             <summary>
             Try to preload the library.
@@ -5761,6 +5777,7 @@
             </summary>
             <typeparam name="T">Generic type parameter.</typeparam>
             <param name="source">Input enumerable to work on.</param>
+            <returns>An enumeration of all items in <paramref name="source"/> that are not <c>null</c>.</returns>
         </member>
         <member name="M:SiliconStudio.Core.Extensions.EnumerableExtensions.EnumerateNodes``1(System.Collections.Generic.LinkedList{``0})">
             <summary>
@@ -5768,7 +5785,7 @@
             </summary>
             <typeparam name="T"></typeparam>
             <param name="list">The linked list.</param>
-            <returns></returns>
+            <returns>An enumeration of the linked list nodes.</returns>
         </member>
         <member name="T:SiliconStudio.Core.Extensions.NamespaceDoc">
             <summary>
@@ -5922,8 +5939,8 @@
             <summary>
             Property changed delegate.
             </summary>
-            <param name="container">The property container.</param>
-            <param name="key">The property key.</param>
+            <param name="propertyContainer">The property container.</param>
+            <param name="propertyKey">The property key.</param>
             <param name="newValue">The property new value.</param>
             <param name="oldValue">The property old value.</param>
         </member>
@@ -5995,7 +6012,6 @@
             <summary>
             Tries to get a tag value.
             </summary>
-            <typeparam name="T">Type of the tag value</typeparam>
             <param name="propertyKey">The tag property.</param>
             <param name="value">The value or default vaue if not found</param>
             <returns>Returns <c>true</c> if the was found; <c>false</c> otherwise</returns>
@@ -6446,6 +6462,12 @@
             Gets a value indicating whether the running assembly is a debug assembly.
             </summary>
         </member>
+        <member name="M:SiliconStudio.Core.Platform.GetIsRunningDebugAssembly">
+            <summary>
+            Check if running assembly has the DebuggableAttribute set with the `DisableOptimizations` mode enabled.
+            This function is called only once.
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Core.PropertyKey">
             <summary>
             A class that represents a tag propety.
@@ -6780,7 +6802,7 @@
             Allocate an aligned memory buffer.
             </summary>
             <param name="sizeInBytes">Size of the buffer to allocate.</param>
-            <param name="align">Alignment, 16 bytes by default.</param>
+            <param name="align">Alignment, a positive value which is a power of 2. 16 bytes by default.</param>
             <returns>A pointer to a buffer aligned.</returns>
             <remarks>
             To free this buffer, call <see cref="M:SiliconStudio.Core.Utilities.FreeMemory(System.IntPtr)"/>

@@ -11,7 +11,7 @@
         </member>
         <member name="F:SiliconStudio.Xenko.Games.AppContextType.Desktop">
             <summary>
-            Game running on desktop in a form or <see cref="T:System.Windows.Forms.Control"/>.
+            Game running on desktop in a form or <see cref="!:System.Windows.Forms.Control"/>.
             </summary>
         </member>
         <member name="F:SiliconStudio.Xenko.Games.AppContextType.DesktopSDL">
@@ -87,7 +87,7 @@
             Calls this method on each frame.
             </summary>
             <returns><c>true</c> if if the control is still active, <c>false</c> otherwise.</returns>
-            <exception cref="T:System.InvalidOperationException">An error occured </exception>
+            <exception cref="T:System.InvalidOperationException">An error occurred </exception>
         </member>
         <member name="M:SiliconStudio.Xenko.Games.SDLMessageLoop.Dispose">
             <summary>
@@ -419,6 +419,9 @@
             </summary>
             <value>The native device context.</value>
         </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.CommandList.OnDestroyed">
+            <inheritdoc/>
+        </member>
         <member name="M:SiliconStudio.Xenko.Graphics.CommandList.ResetTargetsImpl">
             <summary>
             Unbinds all depth-stencil buffer and render targets from the output-merger stage.
@@ -671,6 +674,509 @@
             <param name="lengthInBytes">The length information in bytes.</param>
             <returns>Pointer to the sub resource to map.</returns>
         </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.GetNativeDevice(SiliconStudio.Xenko.Graphics.GraphicsDevice)">
+            <summary>
+            Gets the DX11 native device
+            </summary>
+            <param name="device">The Xenko GraphicsDevice</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.GetNativeDeviceContext(SiliconStudio.Xenko.Graphics.CommandList)">
+            <summary>
+            Gets the DX11 native device context
+            </summary>
+            <param name="commandList">The Xenko CommandList</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.GetNativeResource(SiliconStudio.Xenko.Graphics.GraphicsResource)">
+            <summary>
+            Gets the DX11 native resource handle
+            </summary>
+            <param name="resource">The Xenko GraphicsResourceBase</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.CreateTextureFromNative(SiliconStudio.Xenko.Graphics.GraphicsDevice,SharpDX.Direct3D11.Texture2D,System.Boolean)">
+            <summary>
+            Creates a Texture from a DirectX11 native texture
+            This method internally will call AddReference on the dxTexture2D texture.
+            </summary>
+            <param name="device">The GraphicsDevice in use</param>
+            <param name="dxTexture2D">The DX11 texture</param>
+            <param name="takeOwnership">If false AddRef will be called on the texture, if true will not, effectively taking ownership</param>
+            <returns></returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.SignedDistanceFieldSpriteFontSerializer">
+            <summary>
+            Serializer for <see cref="T:SiliconStudio.Xenko.Graphics.Font.SignedDistanceFieldSpriteFont"/>.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontDataFactory">
+            <summary>
+            A font factory initializing only the data members of font. 
+            Used when creating a font in the only purpose use serializing on disk.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.OfflineRasterizedSpriteFontSerializer">
+            <summary>
+            Serializer for <see cref="T:SiliconStudio.Xenko.Graphics.Font.RuntimeRasterizedSpriteFont"/>.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.RuntimeRasterizedSpriteFontSerializer">
+            <summary>
+            Serializer for <see cref="T:SiliconStudio.Xenko.Graphics.Font.RuntimeRasterizedSpriteFont"/>.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontAntiAliasMode">
+            <summary>
+            Available antialias mode.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontAntiAliasMode.Default">
+            <summary>
+            The default grayscale anti-aliasing
+            </summary>
+            <userdoc>Equivalent to 'Grayscale'.</userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontAntiAliasMode.Grayscale">
+            <summary>
+            Use grayscale antialiasing
+            </summary>
+            <userdoc>Uses several levels of gray smooth the character edges. 
+            'ClearType' .</userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontAntiAliasMode.ClearType">
+            <summary>
+            Use cleartype antialiasing.
+            </summary>
+            <userdoc>Uses the display red/green/blue sub-pixels to smooth character edges</userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontAntiAliasMode.Aliased">
+            <summary>
+            Don't use any antialiasing
+            </summary>
+            <userdoc>Does not perform any anti-aliasing</userdoc>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontStyleExtensions">
+            <summary>
+            Extension methods for type <see cref="T:SiliconStudio.Xenko.Graphics.Font.FontStyle"/>.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontStyleExtensions.IsBold(SiliconStudio.Xenko.Graphics.Font.FontStyle)">
+            <summary>
+            Indicate if the style is bold (partially bold).
+            </summary>
+            <param name="style">the style</param>
+            <returns><value>true</value> if bold, false otherwise</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontStyleExtensions.IsItalic(SiliconStudio.Xenko.Graphics.Font.FontStyle)">
+            <summary>
+            Indicate if the style is italic (partially italic).
+            </summary>
+            <param name="style">the style</param>
+            <returns><value>true</value> if italic, false otherwise</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontHelper.GetFontPath(System.String,SiliconStudio.Xenko.Graphics.Font.FontStyle)">
+            <summary>
+            Build the path of a font in the database given the name of the font family and the font style.
+            </summary>
+            <param name="fontName">Family name of the font</param>
+            <param name="style">The style of the font</param>
+            <remarks>This function does not indicate it the font exists or not in the database.</remarks>
+            <returns>The absolute path of the font in the database</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontManager">
+            <summary>
+            A font manager is in charge of loading in memory the ttf files, looking for font informations, rendering and then caching the <see cref="T:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap"/>s on the CPU . 
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.dataStructuresLock">
+            <summary>
+            Lock both <see cref="F:SiliconStudio.Xenko.Graphics.Font.FontManager.generatedBitmaps"/> and <see cref="F:SiliconStudio.Xenko.Graphics.Font.FontManager.bitmapsToGenerate"/>.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.cachedFontFaces">
+            <summary>
+            The font data that are currently cached in the registry
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.generatedBitmaps">
+            <summary>
+            The list of the bitmaps that have already been generated.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.bitmapsToGenerate">
+            <summary>
+            The list of the bitmaps that are in generation or to generate
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.bitmapBuildSignal">
+            <summary>
+            The <see cref="T:System.Threading.AutoResetEvent"/> used to signal the bitmap build thread that a build operation is requested.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.bitmapBuilderThread">
+            <summary>
+            The thread in charge of building the characters bitmaps
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.bitmapShouldEndThread">
+            <summary>
+            Boolean specifying if we need to quit the bitmap building thread.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.freetypeLibrary">
+            <summary>
+            A reference pointer to the freetype library.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.contentManager">
+            <summary>
+            The asset manager used to load the ttf fonts.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.borderSize">
+            <summary>
+            The size of the transparent border to add around the character bitmap.
+            <remarks>
+            If we don't do so artifacts appears around the character when scaling fonts
+            Note that we cannot just increase space taken in the bin packer because artifacts with old/previous characters may happen.
+            </remarks>
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontManager.#ctor">
+            <summary>
+            Create an empty register.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontManager.GenerateBitmap(SiliconStudio.Xenko.Graphics.Font.CharacterSpecification,System.Boolean)">
+            <summary>
+            Start the generation of the specified character's bitmap. 
+            </summary>
+            <remarks>Does nothing if the bitmap already exist or if the generation is currently running.</remarks>
+            <param name="characterSpecification">The character we want the bitmap of</param>
+            <param name="synchronously">Indicate if the generation of the bitmap must by done synchronously or asynchronously</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontManager.GetFontInfo(System.String,SiliconStudio.Xenko.Graphics.Font.FontStyle,System.Single@,System.Single@,System.Single@,System.Single@)">
+            <summary>
+            Get various information about a font of a given family, type, and size.
+            </summary>
+            <param name="fontFamily">The name of the family of the font</param>
+            <param name="fontStyle">The style of the font</param>
+            <param name="lineSpacing">The space between two lines for a font size of 1 pixel</param>
+            <param name="baseLine">The default base line for a font size of 1 pixel</param>
+            <param name="maxWidth">The width of the largest character for a font size of 1 pixel</param>
+            <param name="maxHeight">The height of the largest character for a font size of 1 pixel</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontManager.DoesFontContains(System.String,SiliconStudio.Xenko.Graphics.Font.FontStyle,System.Char)">
+            <summary>
+            Returns a boolean indicating if the specified font contains the provided character.
+            </summary>
+            <param name="fontStyle">The style in the font family</param>
+            <param name="character">The character to look for</param>
+            <param name="fontFamily">The family of the font</param>
+            <returns>boolean indicating if the font contains the character</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontManager.BuildBitmapThread">
+            <summary>
+            Thread function in charge of building the bitmap
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap">
+            <summary>
+            A bitmap representing a given character
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap"/> representing a null bitmap.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.#ctor(System.IntPtr,SiliconStudio.Core.Mathematics.Int2@,System.Int32,System.Int32,System.Int32,System.Int32,SharpFont.PixelMode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap"/> class from a data array.
+            </summary>
+            <param name="pixelMode">The data format of the bitmap data</param>
+            <param name="data">The bitmap data</param>
+            <param name="borderSize">The size of the border around the image</param>
+            <param name="width">The width of the bitmap </param>
+            <param name="rows">The height of the bitmap</param>
+            <param name="pitch">The pitch of the bitmap</param>
+            <param name="grayLevels">The number of gray levels of the bitmap</param>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.IsDisposed">
+            <summary>
+            Gets a value indicating whether the <see cref="T:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap"/> has been disposed.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.Rows">
+            <summary>
+            Gets the number of bitmap rows.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.Width">
+            <summary>
+            Gets the number of pixels in bitmap row.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.Pitch">
+            <summary><para>
+            Gets the pitch's absolute value is the number of bytes taken by one bitmap row, including padding. However,
+            the pitch is positive when the bitmap has a ‘down’ flow, and negative when it has an ‘up’ flow. In all
+            cases, the pitch is an offset to add to a bitmap pointer in order to go down one row.
+            </para><para>
+            Note that ‘padding’ means the alignment of a bitmap to a byte border, and FreeType functions normally align
+            to the smallest possible integer value.
+            </para><para>
+            For the B/W rasterizer, ‘pitch’ is always an even number.
+            </para></summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.Buffer">
+            <summary>
+            Gets a typeless pointer to the bitmap buffer. This value should be aligned on 32-bit boundaries in most
+            cases.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.GrayLevels">
+            <summary>
+            Gets the number of gray levels used in the bitmap. This field is only used with
+            <see cref="F:SharpFont.PixelMode.Gray"/>.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.PixelMode">
+            <summary>
+            Gets the pixel mode, i.e., how pixel bits are stored.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.RuntimeRasterizedSpriteFont">
+            <summary>
+            A dynamic font. That is a font that generate its character bitmaps at execution.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.RuntimeRasterizedSpriteFont.FontName">
+            <summary>
+            Input the family name of the (TrueType) font.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.RuntimeRasterizedSpriteFont.Style">
+            <summary>
+            Style for the font. 'regular', 'bold' or 'italic'. Default is 'regular
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.RuntimeRasterizedSpriteFont.UseKerning">
+            <summary>
+            Specifies whether to use kerning information when rendering the font. Default value is false (NOT SUPPORTED YET).
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.RuntimeRasterizedSpriteFont.AntiAlias">
+            <summary>
+            The alias mode of the font
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.RuntimeRasterizedSpriteFont.sizedCharacterToCharacterData">
+            <summary>
+            The character specifications cached to avoid re-allocations
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontCacheManager">
+            <summary>
+            Represent a GPU cache of font characters
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.Font.FontCacheManager.Textures">
+            <summary>
+            The textures containing the cached characters on the GPU.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontCacheManager.ClearCache">
+            <summary>
+            Remove all the currently cached characters from the cache.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontCacheManager.UploadCharacterBitmap(SiliconStudio.Xenko.Graphics.CommandList,SiliconStudio.Xenko.Graphics.Font.CharacterSpecification)">
+            <summary>
+            Upload a character's bitmap into the current cache.
+            </summary>
+            <param name="character">The character specifications corresponding to the bitmap</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontCacheManager.RemoveLessUsedCharacters(System.Int32)">
+            <summary>
+            Remove all the character that haven't been used for the given amount of frames
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification">
+            <summary>
+            A character of a specific font with a specific size.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.FontName">
+            <summary>
+            Name of a system (TrueType) font.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.Size">
+            <summary>
+             Size of the TrueType fonts in pixels
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.Style">
+            <summary>
+            Style for the font. 'regular', 'bold', 'italic', 'underline', 'strikeout'. Default is 'regular
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.AntiAlias">
+            <summary>
+            The alias mode of the font
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.Bitmap">
+            <summary>
+            The bitmap of the character
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.Glyph">
+            <summary>
+            The glyph of the character
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.IsBitmapUploaded">
+            <summary>
+            Indicate if the current <see cref="F:SiliconStudio.Xenko.Graphics.Font.Glyph.Subrect"/> and <see cref="F:SiliconStudio.Xenko.Graphics.Font.Glyph.BitmapIndex"/> data has been uploaded to the GPU or not.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.ListNode">
+            <summary>
+            The node of the least recently used (LRU) list.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.LastUsedFrame">
+            <summary>
+            The index of the frame where the character has been used for the last time.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontStyle">
+            <summary>
+            Type of a font.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontStyle.Regular">
+            <summary>
+            A regular font.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontStyle.Bold">
+            <summary>
+            A bold font.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontStyle.Italic">
+            <summary>
+            An italic font.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontSystem">
+            <summary>
+            The system managing the fonts.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontSystem.#ctor">
+            <summary>
+            Create a new instance of <see cref="T:SiliconStudio.Xenko.Graphics.Font.FontSystem" /> base on the provided <see cref="P:SiliconStudio.Xenko.Graphics.Font.FontSystem.GraphicsDevice" />.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontSystem.Load(SiliconStudio.Xenko.Graphics.GraphicsDevice)">
+            <summary>
+            Load this system.
+            </summary>
+            <param name="graphicsDevice">The graphics device.</param>
+            <exception cref="T:System.ArgumentNullException">graphicsDevice</exception>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.Font.IFontFactory">
+            <summary>
+            The interface to create and manage fonts.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.IFontFactory.NewStatic(System.Single,System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Font.Glyph},System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Texture},System.Single,System.Single,System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Font.Kerning},System.Single,System.Single,System.Char)">
+            <summary>
+            Create a new instance of a static font.
+            </summary>
+            <param name="size">The size of the font in pixels.</param>
+            <param name="glyphs">The list of the font glyphs</param>
+            <param name="textures">The list of textures containing the font character data</param>
+            <param name="baseOffset">The number of pixels from the absolute top of the line to the base of the characters.</param>
+            <param name="defaultLineSpacing">The default line spacing of the font.</param>
+            <param name="kernings">The list of the kerning information of the font</param>
+            <param name="extraSpacing">The character extra spacing in pixels. Zero is default spacing, negative closer together, positive further apart.</param>
+            <param name="extraLineSpacing">This is the extra distance in pixels to add between each line of text. Zero is default spacing, negative closer together, positive further apart.</param>
+            <param name="defaultCharacter">The default character fall-back.</param>
+            <remarks>The font does not copy the provided textures, glyphs information. 
+            Provided data should not be modified after the creation of the font.
+            The textures should be disposed manually (if useless) after that the sprite font is not used anymore.</remarks>
+            <returns>The newly created static font</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.IFontFactory.NewStatic(System.Single,System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Font.Glyph},System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Image},System.Single,System.Single,System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Font.Kerning},System.Single,System.Single,System.Char)">
+            <summary>
+            Create a new instance of a static font.
+            </summary>
+            <param name="size">The size of the font in pixels.</param>
+            <param name="glyphs">The list of the font glyphs</param>
+            <param name="images">The list of images containing the font character data</param>
+            <param name="baseOffset">The number of pixels from the absolute top of the line to the base of the characters.</param>
+            <param name="defaultLineSpacing">The default line spacing of the font.</param>
+            <param name="kernings">The list of the kerning information of the font</param>
+            <param name="extraSpacing">The character extra spacing in pixels. Zero is default spacing, negative closer together, positive further apart.</param>
+            <param name="extraLineSpacing">This is the extra distance in pixels to add between each line of text. Zero is default spacing, negative closer together, positive further apart.</param>
+            <param name="defaultCharacter">The default character fall-back.</param>
+            <remarks>The font does not copy the provided glyphs information. Provided glyphs should not be modified after the creation of the font.</remarks>
+            <returns>The newly created static font</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.IFontFactory.NewDynamic(System.Single,System.String,SiliconStudio.Xenko.Graphics.Font.FontStyle,SiliconStudio.Xenko.Graphics.Font.FontAntiAliasMode,System.Boolean,System.Single,System.Single,System.Char)">
+            <summary>
+            Create a new instance of a dynamic font.
+            </summary>
+            <param name="defaultSize">The default size of the font in pixels.</param>
+            <param name="fontName">The family name of the (TrueType) font.</param>
+            <param name="antiAliasMode">The anti-aliasing mode to use when rendering the font. By default, font textures are rendered in levels of grey.</param>
+            <param name="style">The style for the font. A combinaison of 'regular', 'bold' or 'italic'.</param>
+            <param name="useKerning">Specifies whether to use kerning information when rendering the font. Default value is false (NOT SUPPORTED YET)</param>
+            <param name="extraSpacing">The character extra spacing in pixels. Zero is default spacing, negative closer together, positive further apart.</param>
+            <param name="extraLineSpacing">This is the extra distance in pixels to add between each line of text. Zero is default spacing, negative closer together, positive further apart.</param>
+            <param name="defaultCharacter">The default character fall-back.</param>
+            <returns>The newly created dynamic font</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.IFontFactory.NewScalable(System.Single,System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Font.Glyph},System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Texture},System.Single,System.Single,System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Font.Kerning},System.Single,System.Single,System.Char)">
+            <summary>
+            Create a new instance of a scalable font.
+            </summary>
+            <param name="size">The size of the font in pixels.</param>
+            <param name="glyphs">The list of the font glyphs</param>
+            <param name="textures">The list of textures containing the font character data</param>
+            <param name="baseOffset">The number of pixels from the absolute top of the line to the base of the characters.</param>
+            <param name="defaultLineSpacing">The default line spacing of the font.</param>
+            <param name="kernings">The list of the kerning information of the font</param>
+            <param name="extraSpacing">The character extra spacing in pixels. Zero is default spacing, negative closer together, positive further apart.</param>
+            <param name="extraLineSpacing">This is the extra distance in pixels to add between each line of text. Zero is default spacing, negative closer together, positive further apart.</param>
+            <param name="defaultCharacter">The default character fall-back.</param>
+            <remarks>The font does not copy the provided textures, glyphs information. 
+            Provided data should not be modified after the creation of the font.
+            The textures should be disposed manually (if useless) after that the sprite font is not used anymore.</remarks>
+            <returns>The newly created static font</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Font.IFontFactory.NewScalable(System.Single,System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Font.Glyph},System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Image},System.Single,System.Single,System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Font.Kerning},System.Single,System.Single,System.Char)">
+            <summary>
+            Create a new instance of a scalable font.
+            </summary>
+            <param name="size">The size of the font in pixels.</param>
+            <param name="glyphs">The list of the font glyphs</param>
+            <param name="images">The list of images containing the font character data</param>
+            <param name="baseOffset">The number of pixels from the absolute top of the line to the base of the characters.</param>
+            <param name="defaultLineSpacing">The default line spacing of the font.</param>
+            <param name="kernings">The list of the kerning information of the font</param>
+            <param name="extraSpacing">The character extra spacing in pixels. Zero is default spacing, negative closer together, positive further apart.</param>
+            <param name="extraLineSpacing">This is the extra distance in pixels to add between each line of text. Zero is default spacing, negative closer together, positive further apart.</param>
+            <param name="defaultCharacter">The default character fall-back.</param>
+            <remarks>The font does not copy the provided glyphs information. Provided glyphs should not be modified after the creation of the font.</remarks>
+            <returns>The newly created static font</returns>
+        </member>
         <member name="F:SiliconStudio.Xenko.Graphics.RequiredDisplayOrientation.Default">
             <summary>
             The default value for the orientation.
@@ -711,6 +1217,11 @@
             OpenGL ES.
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.PreferredGraphicsPlatform.Vulkan">
+            <summary>
+            Vulkan
+            </summary>
+        </member>
         <member name="F:SiliconStudio.Xenko.Graphics.RenderingSettings.DefaultBackBufferWidth">
             <summary>
             Gets or sets the width of the back buffer.
@@ -729,6 +1240,14 @@
             The desired back buffer height.
             Might be overriden depending on actual device resolution and/or ratio.
             On Windows, it will be the window size. On Android/iOS, it will be the off-screen target resolution.
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.RenderingSettings.AdaptBackBufferToScreen">
+            <summary>
+            Gets or sets a value that if true will make sure that the aspect ratio of screen is kept.
+            </summary>
+            <userdoc>
+            If true, adapt the ratio of the back buffer so that it fits the screen ratio.
             </userdoc>
         </member>
         <member name="F:SiliconStudio.Xenko.Graphics.RenderingSettings.DefaultGraphicsProfile">
@@ -917,7 +1436,7 @@
             Returns hash describing current state of DescriptorSet (to know if they can be shared)
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.DescriptorSetLayoutBuilder.AddBinding(SiliconStudio.Xenko.Rendering.ParameterKey,SiliconStudio.Xenko.Shaders.EffectParameterClass,System.Int32,SiliconStudio.Xenko.Graphics.SamplerState)">
+        <member name="M:SiliconStudio.Xenko.Graphics.DescriptorSetLayoutBuilder.AddBinding(SiliconStudio.Xenko.Rendering.ParameterKey,System.String,SiliconStudio.Xenko.Shaders.EffectParameterClass,SiliconStudio.Xenko.Shaders.EffectParameterType,System.Int32,SiliconStudio.Xenko.Graphics.SamplerState)">
             <summary>
             Gets (or creates) an entry to the DescriptorSetLayout and gets its index.
             </summary>
@@ -974,446 +1493,6 @@
             Describes how DescriptorSet maps to real resource binding.
             This might become a core part of <see cref="T:SiliconStudio.Xenko.Graphics.Effect"/> at some point.
             </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontDataFactory">
-            <summary>
-            A font factory initializing only the data members of font. 
-            Used when creating a font in the only purpose use serializing on disk.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.StaticSpriteFontSerializer">
-            <summary>
-            Serializer for <see cref="T:SiliconStudio.Xenko.Graphics.Font.DynamicSpriteFont"/>.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.DynamicSpriteFontSerializer">
-            <summary>
-            Serializer for <see cref="T:SiliconStudio.Xenko.Graphics.Font.DynamicSpriteFont"/>.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontAntiAliasMode">
-            <summary>
-            Available antialias mode.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontAntiAliasMode.Default">
-            <summary>
-            The default grayscale anti-aliasing
-            </summary>
-            <userdoc>Equivalent to 'Grayscale'.</userdoc>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontAntiAliasMode.Grayscale">
-            <summary>
-            Use grayscale antialiasing
-            </summary>
-            <userdoc>Uses several levels of gray smooth the character edges. 
-            'ClearType' .</userdoc>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontAntiAliasMode.ClearType">
-            <summary>
-            Use cleartype antialiasing.
-            </summary>
-            <userdoc>Uses the display red/green/blue sub-pixels to smooth character edges</userdoc>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontAntiAliasMode.Aliased">
-            <summary>
-            Don't use any antialiasing
-            </summary>
-            <userdoc>Does not perform any anti-aliasing</userdoc>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontStyleExtensions">
-            <summary>
-            Extension methods for type <see cref="T:SiliconStudio.Xenko.Graphics.Font.FontStyle"/>.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontStyleExtensions.IsBold(SiliconStudio.Xenko.Graphics.Font.FontStyle)">
-            <summary>
-            Indicate if the style is bold (partially bold).
-            </summary>
-            <param name="style">the style</param>
-            <returns><value>true</value> if bold, false otherwise</returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontStyleExtensions.IsItalic(SiliconStudio.Xenko.Graphics.Font.FontStyle)">
-            <summary>
-            Indicate if the style is italic (partially italic).
-            </summary>
-            <param name="style">the style</param>
-            <returns><value>true</value> if italic, false otherwise</returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontHelper.PointsToPixels(System.Single)">
-            <summary>
-            Converts a font size from points to pixels. Can't just let GDI+ do this for us, because we want identical results on every machine regardless of system DPI settings.
-            </summary>
-            <param name="points">The size in number of points</param>
-            <returns>The size in number of pixels</returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontHelper.GetFontPath(System.String,SiliconStudio.Xenko.Graphics.Font.FontStyle)">
-            <summary>
-            Build the path of a font in the database given the name of the font family and the font style.
-            </summary>
-            <param name="fontName">Family name of the font</param>
-            <param name="style">The style of the font</param>
-            <remarks>This function does not indicate it the font exists or not in the database.</remarks>
-            <returns>The absolute path of the font in the database</returns>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontManager">
-            <summary>
-            A font manager is in charge of loading in memory the ttf files, looking for font informations, rendering and then caching the <see cref="T:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap"/>s on the CPU . 
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.dataStructuresLock">
-            <summary>
-            Lock both <see cref="F:SiliconStudio.Xenko.Graphics.Font.FontManager.generatedBitmaps"/> and <see cref="F:SiliconStudio.Xenko.Graphics.Font.FontManager.bitmapsToGenerate"/>.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.cachedFontFaces">
-            <summary>
-            The font data that are currently cached in the registry
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.generatedBitmaps">
-            <summary>
-            The list of the bitmaps that have already been generated.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.bitmapsToGenerate">
-            <summary>
-            The list of the bitmaps that are in generation or to generate
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.bitmapBuildSignal">
-            <summary>
-            The <see cref="T:System.Threading.AutoResetEvent"/> used to signal the bitmap build thread that a build operation is requested.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.bitmapBuilderThread">
-            <summary>
-            The thread in charge of building the characters bitmaps
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.bitmapShouldEndThread">
-            <summary>
-            Boolean specifying if we need to quit the bitmap building thread.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.freetypeLibrary">
-            <summary>
-            A reference pointer to the freetype library.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.contentManager">
-            <summary>
-            The asset manager used to load the ttf fonts.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontManager.borderSize">
-            <summary>
-            The size of the transparent border to add around the character bitmap.
-            <remarks>
-            If we don't do so artifacts appears around the character when scaling fonts
-            Note that we cannot just increase space taken in the bin packer because artifacts with old/previous characters may happen.
-            </remarks>
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontManager.#ctor">
-            <summary>
-            Create an empty register.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontManager.GenerateBitmap(SiliconStudio.Xenko.Graphics.Font.CharacterSpecification,System.Boolean)">
-            <summary>
-            Start the generation of the specified character's bitmap. 
-            </summary>
-            <remarks>Does nothing if the bitmap already exist or if the generation is currently running.</remarks>
-            <param name="characterSpecification">The character we want the bitmap of</param>
-            <param name="synchronously">Indicate if the generation of the bitmap must by done synchronously or asynchronously</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontManager.GetFontInfo(System.String,SiliconStudio.Xenko.Graphics.Font.FontStyle,System.Single@,System.Single@,System.Single@,System.Single@)">
-            <summary>
-            Get various information about a font of a given family, type, and size.
-            </summary>
-            <param name="fontFamily">The name of the family of the font</param>
-            <param name="fontStyle">The style of the font</param>
-            <param name="lineSpacing">The space between two lines for a font size of 1 pixel</param>
-            <param name="baseLine">The default base line for a font size of 1 pixel</param>
-            <param name="maxWidth">The width of the largest character for a font size of 1 pixel</param>
-            <param name="maxHeight">The height of the largest character for a font size of 1 pixel</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontManager.DoesFontContains(System.String,SiliconStudio.Xenko.Graphics.Font.FontStyle,System.Char)">
-            <summary>
-            Returns a boolean indicating if the specified font contains the provided character.
-            </summary>
-            <param name="fontStyle">The style in the font family</param>
-            <param name="character">The character to look for</param>
-            <param name="fontFamily">The family of the font</param>
-            <returns>boolean indicating if the font contains the character</returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontManager.BuildBitmapThread">
-            <summary>
-            Thread function in charge of building the bitmap
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap">
-            <summary>
-            A bitmap representing a given character
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap"/> representing a null bitmap.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.#ctor(System.IntPtr,SiliconStudio.Core.Mathematics.Int2@,System.Int32,System.Int32,System.Int32,System.Int32,SharpFont.PixelMode)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap"/> class from a data array.
-            </summary>
-            <param name="pixelMode">The data format of the bitmap data</param>
-            <param name="data">The bitmap data</param>
-            <param name="borderSize">The size of the border around the image</param>
-            <param name="width">The width of the bitmap </param>
-            <param name="rows">The height of the bitmap</param>
-            <param name="pitch">The pitch of the bitmap</param>
-            <param name="grayLevels">The number of gray levels of the bitmap</param>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.IsDisposed">
-            <summary>
-            Gets a value indicating whether the <see cref="T:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap"/> has been disposed.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.Rows">
-            <summary>
-            Gets the number of bitmap rows.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.Width">
-            <summary>
-            Gets the number of pixels in bitmap row.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.Pitch">
-            <summary><para>
-            Gets the pitch's absolute value is the number of bytes taken by one bitmap row, including padding. However,
-            the pitch is positive when the bitmap has a ‘down’ flow, and negative when it has an ‘up’ flow. In all
-            cases, the pitch is an offset to add to a bitmap pointer in order to go down one row.
-            </para><para>
-            Note that ‘padding’ means the alignment of a bitmap to a byte border, and FreeType functions normally align
-            to the smallest possible integer value.
-            </para><para>
-            For the B/W rasterizer, ‘pitch’ is always an even number.
-            </para></summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.Buffer">
-            <summary>
-            Gets a typeless pointer to the bitmap buffer. This value should be aligned on 32-bit boundaries in most
-            cases.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.GrayLevels">
-            <summary>
-            Gets the number of gray levels used in the bitmap. This field is only used with
-            <see cref="F:SharpFont.PixelMode.Gray"/>.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Graphics.Font.CharacterBitmap.PixelMode">
-            <summary>
-            Gets the pixel mode, i.e., how pixel bits are stored.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.DynamicSpriteFont">
-            <summary>
-            A dynamic font. That is a font that generate its character bitmaps at execution.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.DynamicSpriteFont.FontName">
-            <summary>
-            Input the family name of the (TrueType) font.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.DynamicSpriteFont.Style">
-            <summary>
-            Style for the font. 'regular', 'bold' or 'italic'. Default is 'regular
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.DynamicSpriteFont.UseKerning">
-            <summary>
-            Specifies whether to use kerning information when rendering the font. Default value is false (NOT SUPPORTED YET).
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.DynamicSpriteFont.AntiAlias">
-            <summary>
-            The alias mode of the font
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.DynamicSpriteFont.sizedCharacterToCharacterData">
-            <summary>
-            The character specifications cached to avoid re-allocations
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontCacheManager">
-            <summary>
-            Represent a GPU cache of font characters
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Graphics.Font.FontCacheManager.Textures">
-            <summary>
-            The textures containing the cached characters on the GPU.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontCacheManager.ClearCache">
-            <summary>
-            Remove all the currently cached characters from the cache.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontCacheManager.UploadCharacterBitmap(SiliconStudio.Xenko.Graphics.CommandList,SiliconStudio.Xenko.Graphics.Font.CharacterSpecification)">
-            <summary>
-            Upload a character's bitmap into the current cache.
-            </summary>
-            <param name="character">The character specifications corresponding to the bitmap</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontCacheManager.RemoveLessUsedCharacters(System.Int32)">
-            <summary>
-            Remove all the character that haven't been used for the given amount of frames
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification">
-            <summary>
-            A character of a specific font with a specific size.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.FontName">
-            <summary>
-            Name of a system (TrueType) font.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.Size">
-            <summary>
-             Size of the TrueType fonts in pixels
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.Style">
-            <summary>
-            Style for the font. 'regular', 'bold', 'italic', 'underline', 'strikeout'. Default is 'regular
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.AntiAlias">
-            <summary>
-            The alias mode of the font
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.Bitmap">
-            <summary>
-            The bitmap of the character
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.Glyph">
-            <summary>
-            The glyph of the character
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.IsBitmapUploaded">
-            <summary>
-            Indicate if the current <see cref="F:SiliconStudio.Xenko.Graphics.Font.Glyph.Subrect"/> and <see cref="F:SiliconStudio.Xenko.Graphics.Font.Glyph.BitmapIndex"/> data has been uploaded to the GPU or not.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.ListNode">
-            <summary>
-            The node of the least recently used (LRU) list.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.CharacterSpecification.LastUsedFrame">
-            <summary>
-            The index of the frame where the character has been used for the last time.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontStyle">
-            <summary>
-            Type of a font.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontStyle.Regular">
-            <summary>
-            A regular font.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontStyle.Bold">
-            <summary>
-            A bold font.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.Font.FontStyle.Italic">
-            <summary>
-            An italic font.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.FontSystem">
-            <summary>
-            The system managing the fonts.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontSystem.#ctor">
-            <summary>
-            Create a new instance of <see cref="T:SiliconStudio.Xenko.Graphics.Font.FontSystem" /> base on the provided <see cref="P:SiliconStudio.Xenko.Graphics.Font.FontSystem.GraphicsDevice" />.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.FontSystem.Load(SiliconStudio.Xenko.Graphics.GraphicsDevice)">
-            <summary>
-            Load this system.
-            </summary>
-            <param name="graphicsDevice">The graphics device.</param>
-            <exception cref="T:System.ArgumentNullException">graphicsDevice</exception>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Graphics.Font.IFontFactory">
-            <summary>
-            The interface to create and manage fonts.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.IFontFactory.NewStatic(System.Single,System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Font.Glyph},System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Texture},System.Single,System.Single,System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Font.Kerning},System.Single,System.Single,System.Char)">
-            <summary>
-            Create a new instance of a static font.
-            </summary>
-            <param name="size">The size of the font in pixels.</param>
-            <param name="glyphs">The list of the font glyphs</param>
-            <param name="textures">The list of textures containing the font character data</param>
-            <param name="baseOffset">The number of pixels from the absolute top of the line to the base of the characters.</param>
-            <param name="defaultLineSpacing">The default line spacing of the font.</param>
-            <param name="kernings">The list of the kerning information of the font</param>
-            <param name="extraSpacing">The character extra spacing in pixels. Zero is default spacing, negative closer together, positive further apart.</param>
-            <param name="extraLineSpacing">This is the extra distance in pixels to add between each line of text. Zero is default spacing, negative closer together, positive further apart.</param>
-            <param name="defaultCharacter">The default character fall-back.</param>
-            <remarks>The font does not copy the provided textures, glyphs information. 
-            Provided data should not be modified after the creation of the font.
-            The textures should be disposed manually (if useless) after that the sprite font is not used anymore.</remarks>
-            <returns>The newly created static font</returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.IFontFactory.NewStatic(System.Single,System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Font.Glyph},System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Image},System.Single,System.Single,System.Collections.Generic.IList{SiliconStudio.Xenko.Graphics.Font.Kerning},System.Single,System.Single,System.Char)">
-            <summary>
-            Create a new instance of a static font.
-            </summary>
-            <param name="size">The size of the font in pixels.</param>
-            <param name="glyphs">The list of the font glyphs</param>
-            <param name="images">The list of images containing the font character data</param>
-            <param name="baseOffset">The number of pixels from the absolute top of the line to the base of the characters.</param>
-            <param name="defaultLineSpacing">The default line spacing of the font.</param>
-            <param name="kernings">The list of the kerning information of the font</param>
-            <param name="extraSpacing">The character extra spacing in pixels. Zero is default spacing, negative closer together, positive further apart.</param>
-            <param name="extraLineSpacing">This is the extra distance in pixels to add between each line of text. Zero is default spacing, negative closer together, positive further apart.</param>
-            <param name="defaultCharacter">The default character fall-back.</param>
-            <remarks>The font does not copy the provided glyphs information. Provided glyphs should not be modified after the creation of the font.</remarks>
-            <returns>The newly created static font</returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Font.IFontFactory.NewDynamic(System.Single,System.String,SiliconStudio.Xenko.Graphics.Font.FontStyle,SiliconStudio.Xenko.Graphics.Font.FontAntiAliasMode,System.Boolean,System.Single,System.Single,System.Char)">
-            <summary>
-            Create a new instance of a dynamic font.
-            </summary>
-            <param name="defaultSize">The default size of the font in pixels.</param>
-            <param name="fontName">The family name of the (TrueType) font.</param>
-            <param name="antiAliasMode">The anti-aliasing mode to use when rendering the font. By default, font textures are rendered in levels of grey.</param>
-            <param name="style">The style for the font. A combinaison of 'regular', 'bold' or 'italic'.</param>
-            <param name="useKerning">Specifies whether to use kerning information when rendering the font. Default value is false (NOT SUPPORTED YET)</param>
-            <param name="extraSpacing">The character extra spacing in pixels. Zero is default spacing, negative closer together, positive further apart.</param>
-            <param name="extraLineSpacing">This is the extra distance in pixels to add between each line of text. Zero is default spacing, negative closer together, positive further apart.</param>
-            <param name="defaultCharacter">The default character fall-back.</param>
-            <returns>The newly created dynamic font</returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Graphics.GraphicsDeviceServiceLocal">
             <summary>
@@ -1752,6 +1831,11 @@
             Get the mouse position on screen.
             </summary>
         </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.SDL.Window.RelativeCursorPosition">
+            <summary>
+            Get the coordinate of the mouse in Window coordinates
+            </summary>
+        </member>
         <member name="P:SiliconStudio.Xenko.Graphics.SDL.Window.TopMost">
             <summary>
             Make the window topmost
@@ -1829,7 +1913,7 @@
             <summary>
             Platform specific handle for Window:
             - On Windows: the HWND of the window
-            - On Unix: ...
+            - On Unix: the Window ID (XID). Note that on Unix, the value is 32-bit (See X11/X.h for the typedef of XID).
             </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Graphics.SDL.Window.SdlHandle">
@@ -2205,6 +2289,30 @@
             <param name="imageOrientation">The rotation to apply on the image uv</param>
             <param name="swizzle">Swizzle mode indicating the swizzle use when sampling the texture in the shader</param>
             <param name="depth">The depth of the element. If null, it is calculated using world and view-projection matrix.</param>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.SpriteFontType.Static">
+            <summary>
+            Static font which has fixed font size and is pre-compiled
+            </summary>
+            <userdoc>
+            Offline rasterized sprite font which has a fixed size in-game
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.SpriteFontType.Dynamic">
+            <summary>
+            Font which can change its font size dynamically and is compiled at runtime
+            </summary>
+            <userdoc>
+            Runtime (in-game) rasterized sprite font which is also resizable
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.SpriteFontType.SDF">
+            <summary>
+            Signed Distance Field font which is pre-compiled but can still be scaled at runtime
+            </summary>
+            <userdoc>
+            Offline rasterized sprite font which is resizable in-game
+            </userdoc>
         </member>
         <member name="T:SiliconStudio.Xenko.Graphics.VertexHelper">
             <summary>
@@ -2682,7 +2790,7 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "M:SiliconStudio.Xenko.Graphics.GeometricPrimitives.GeometricPrimitive`1.#ctor(SiliconStudio.Xenko.Graphics.GraphicsDevice,SiliconStudio.Xenko.Graphics.GeometricMeshData{`0})" -->
-        <member name="M:SiliconStudio.Xenko.Graphics.GeometricPrimitives.GeometricPrimitive`1.Draw(SiliconStudio.Xenko.Graphics.CommandList,SiliconStudio.Xenko.Rendering.EffectInstance)">
+        <member name="M:SiliconStudio.Xenko.Graphics.GeometricPrimitives.GeometricPrimitive`1.Draw(SiliconStudio.Xenko.Graphics.GraphicsContext,SiliconStudio.Xenko.Rendering.EffectInstance)">
             <summary>
             Draws this <see cref="T:SiliconStudio.Xenko.Graphics.GeometricPrimitives.GeometricPrimitive" />.
             </summary>
@@ -3331,7 +3439,7 @@
             </summary>
             <param name="texture"></param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.PrimitiveQuad.Draw(SiliconStudio.Xenko.Graphics.CommandList,SiliconStudio.Xenko.Rendering.EffectInstance)">
+        <member name="M:SiliconStudio.Xenko.Graphics.PrimitiveQuad.Draw(SiliconStudio.Xenko.Graphics.GraphicsContext,SiliconStudio.Xenko.Rendering.EffectInstance)">
             <summary>
             Draws a quad. The effect must have been applied before calling this method with pixel shader having the signature float2:TEXCOORD.
             </summary>
@@ -3447,6 +3555,11 @@
             SpriteFont to use with <see cref="T:SiliconStudio.Xenko.Graphics.SpriteBatch"/>. See <see cref="T:SiliconStudio.Xenko.Graphics.SpriteFont"/> to learn how to use it.
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.SpriteFont.Swizzle">
+            <summary>
+            The swizzle mode to use when drawing the sprite font.
+            </summary>
+        </member>
         <member name="P:SiliconStudio.Xenko.Graphics.SpriteFont.Textures">
             <summary>
             Gets the textures containing the font character data.
@@ -3482,14 +3595,9 @@
             </summary>
             <remarks>Line spacing is the distance between the base lines of two consecutive lines of text (blank space as well as characters' height are thus included).</remarks>
         </member>
-        <member name="P:SiliconStudio.Xenko.Graphics.SpriteFont.IsDynamic">
+        <member name="P:SiliconStudio.Xenko.Graphics.SpriteFont.FontType">
             <summary>
-            Gets a boolean indicating if the current font is dynamic or not.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.SpriteFont.Swizzle">
-            <summary>
-            The swizzle mode to use when drawing the sprite font.
+            Gets the type indicating if the current font is static, dynamic or SDF.
             </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Graphics.SpriteFont.FontSystem">
@@ -3643,7 +3751,7 @@
             <param name="c">The character to check.</param>
             <returns>true if the <paramref name="c"/> is present in the character map, false - otherwise.</returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.SpriteFont.GetGlyph(SiliconStudio.Xenko.Graphics.CommandList,System.Char,SiliconStudio.Core.Mathematics.Vector2@,System.Boolean)">
+        <member name="M:SiliconStudio.Xenko.Graphics.SpriteFont.GetGlyph(SiliconStudio.Xenko.Graphics.CommandList,System.Char,SiliconStudio.Core.Mathematics.Vector2@,System.Boolean,SiliconStudio.Core.Mathematics.Vector2@)">
             <summary>
             Return the glyph associated to provided character at the given size.
             </summary>
@@ -3651,6 +3759,7 @@
             <param name="character">The character we want the glyph of</param>
             <param name="fontSize">The font size in pixel</param>
             <param name="uploadGpuResources">Indicate if the GPU resource should be uploaded or not.</param>
+            <param name="auxiliaryScaling">If the requested font size isn't available, the closest one is chosen and an auxiliary scaling is returned</param>
             <returns>The glyph corresponding to the request or null if not existing</returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Graphics.SpriteFont.InternalDrawCommand">
@@ -3661,6 +3770,21 @@
         <member name="T:SiliconStudio.Xenko.Graphics.SpriteFont.InternalUIDrawCommand">
             <summary>
             Structure InternalDrawCommand used to pass parameters to InternalDrawGlyph
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.SpriteFont.InternalUIDrawCommand.RequestedFontSize">
+            <summary>
+            Font size to be used for the draw command, as requested when the command was issued
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.SpriteFont.InternalUIDrawCommand.RealVirtualResolutionRatio">
+            <summary>
+            The ratio between the real and virtual resolution (=real/virtual), inherited from the layouting context
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.SpriteFont.InternalUIDrawCommand.TextBoxSize">
+            <summary>
+            The size of the rectangle containing the text
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Graphics.SpriteFrame">
@@ -3984,6 +4108,16 @@
             Boolean indicating if this device supports SRGB texture and render targets.
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.GraphicsDeviceFeatures.HasDepthAsSRV">
+            <summary>
+            Boolean indicating if the Depth buffer can also be used as ShaderResourceView for some passes.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.GraphicsDeviceFeatures.HasDepthAsReadOnlyRT">
+            <summary>
+            Boolean indicating if the Depth buffer can directly be used as a read only RenderTarget
+            </summary>
+        </member>
         <member name="P:SiliconStudio.Xenko.Graphics.GraphicsDeviceFeatures.Item(SiliconStudio.Xenko.Graphics.PixelFormat)">
             <summary>
             Gets the <see cref="T:SiliconStudio.Xenko.Graphics.GraphicsDeviceFeatures.FeaturesPerFormat" /> for the specified <see cref="T:SharpDX.DXGI.Format" />.
@@ -4160,6 +4294,13 @@
             <summary>
             Graphics presenter for SwapChain.
             </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.SwapChainGraphicsPresenter.DestroyChildrenTextures(SiliconStudio.Xenko.Graphics.Texture)">
+            <summary>
+            Calls <see cref="M:SiliconStudio.Xenko.Graphics.Texture.OnDestroyed"/> for all children of the specified texture
+            </summary>
+            <param name="parentTexture">Specified parent texture</param>
+            <returns>A list of the children textures which were destroyed</returns>
         </member>
         <member name="M:SiliconStudio.Xenko.Graphics.SwapChainGraphicsPresenter.CreateSwapChainForWindows">
             <summary>
@@ -5084,6 +5225,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.GraphicsAdapter.AdapterUid">
+            <summary>
+            The unique id in the form of string of this device
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Graphics.GraphicsAdapterFactory">
             <summary>
             Factory for <see cref="T:SiliconStudio.Xenko.Graphics.GraphicsAdapter"/>.
@@ -5416,9 +5562,6 @@
             <param name="name">The name.</param>
             <param name="samplerStateDescription">The sampler state description.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.SamplerState.OnDestroyed">
-            <inheritdoc/>
-        </member>
         <member name="M:SiliconStudio.Xenko.Graphics.SamplerState.OnRecreate">
             <inheritdoc/>
         </member>
@@ -5451,9 +5594,6 @@
             Initializes from a native SharpDX.Texture
             </summary>
             <param name="texture">The texture.</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Texture.OnDestroyed">
-            <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Xenko.Graphics.Texture.GetShaderResourceView(SiliconStudio.Xenko.Graphics.ViewType,System.Int32,System.Int32)">
             <summary>
@@ -6537,6 +6677,7 @@
             <param name="depthStencilState">Depth and stencil options.</param>
             <param name="viewProjection">The view projection matrix used for this series of draw calls</param>
             <param name="stencilValue">The value of the stencil buffer to take as reference</param>
+            <param name="overrideEffect">The number of the override effect to use, if any</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Graphics.UIBatch.Begin(SiliconStudio.Xenko.Graphics.GraphicsContext,SiliconStudio.Core.Mathematics.Matrix@,System.Nullable{SiliconStudio.Xenko.Graphics.BlendStateDescription},SiliconStudio.Xenko.Graphics.SamplerState,System.Nullable{SiliconStudio.Xenko.Graphics.RasterizerStateDescription},System.Nullable{SiliconStudio.Xenko.Graphics.DepthStencilStateDescription},System.Int32)">
             <summary>
@@ -6592,21 +6733,6 @@
             <param name="imageOrientation">The rotation to apply on the image uv</param>
             <param name="swizzle">Swizzle mode indicating the swizzle use when sampling the texture in the shader</param>
             <param name="snapImage">Indicate if the image needs to be snapped or not</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.UIBatch.DrawString(SiliconStudio.Xenko.Graphics.SpriteFont,System.String,System.Single,SiliconStudio.Core.Mathematics.Vector2@,SiliconStudio.Core.Mathematics.Matrix@,SiliconStudio.Core.Mathematics.Vector2@,SiliconStudio.Core.Mathematics.Color@,SiliconStudio.Xenko.Graphics.TextAlignment,System.Int32,System.Boolean)">
-            <summary>
-            Batch the draws required to display the provided text to the draw list.
-            </summary>
-            <param name="fontSize">The size to use when rendering the font in virtual pixels</param>
-            <param name="internalScales">The internal scales to apply on the font glyphs</param>
-            <param name="text">The text to draw on the screen</param>
-            <param name="worldMatrix">The world matrix of the element</param>
-            <param name="elementSize">The 2D size of the element to draw in virtual pixels</param>
-            <param name="color">The color of the text to draw</param>
-            <param name="alignment">The alignment of the text to draw</param>
-            <param name="depthBias">The depth bias of the ui element</param>
-            <param name="font">The fond to use to draw the text</param>
-            <param name="snapText">Indicate if the rendered string should be snapped to the closed pixel.</param>
         </member>
         <member name="T:SiliconStudio.Xenko.Graphics.UIBatch.PrimitiveType">
             <summary>
@@ -6854,21 +6980,27 @@
             A platform specific window handle.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.WindowHandle.#ctor(SiliconStudio.Xenko.Games.AppContextType,System.Object)">
+        <member name="M:SiliconStudio.Xenko.Graphics.WindowHandle.#ctor(SiliconStudio.Xenko.Games.AppContextType,System.Object,System.IntPtr)">
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Graphics.WindowHandle"/> class.
             </summary>
             <param name="context">The context.</param>
-            <param name="nativeHandle">The native handle.</param>
+            <param name="nativeWindow">The native window instance (Winforms, SDLWindow, ...).</param>
+            <param name="handle">The associated handle of <paramref name="nativeWindow"/>.</param>
         </member>
         <member name="F:SiliconStudio.Xenko.Graphics.WindowHandle.Context">
             <summary>
             The context.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.WindowHandle.NativeHandle">
+        <member name="P:SiliconStudio.Xenko.Graphics.WindowHandle.NativeWindow">
             <summary>
-            The native handle.
+            The native windows as an opaque <see cref="T:System.Object"/>.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.WindowHandle.Handle">
+            <summary>
+            The associated platform specific handle of <seealso cref="P:SiliconStudio.Xenko.Graphics.WindowHandle.NativeWindow"/>.
             </summary>
         </member>
         <member name="F:SiliconStudio.Xenko.Graphics.BufferFlags.None">
@@ -8534,6 +8666,11 @@
             <param name="projection">The projection matrix.</param>
             <param name="view">The view matrix.</param>
             <param name="world">The world matrix.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.Viewport.Unproject(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Matrix@)">
+            <summary>Converts a screen space point into a corresponding point in world space.</summary>
+            <param name="source">The vector to project.</param>
+            <param name="worldViewProjection">The World-View-Projection matrix.</param>
         </member>
         <member name="P:SiliconStudio.Xenko.Graphics.Viewport.AspectRatio">
             <summary>Gets the aspect ratio used by the viewport</summary>

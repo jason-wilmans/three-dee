@@ -1292,6 +1292,16 @@
             Internal comparer for <see cref="T:SiliconStudio.Xenko.Engine.EntityProcessor"/>
             </summary>
         </member>
+        <member name="T:SiliconStudio.Xenko.Engine.Events.EventKeyCounter">
+            <summary>
+            Used mostly for debug, to identify events
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.Events.EventKey`1.Broadcast(`0)">
+            <summary>
+            Broadcasts the event to all the receivers
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Engine.Events.EventKey">
             <summary>
             Creates a new EventKey used to broadcast events.
@@ -1302,43 +1312,16 @@
             Broadcasts the event to all the receivers
             </summary>
         </member>
-        <member name="T:SiliconStudio.Xenko.Engine.Events.EventKey`1">
+        <member name="T:SiliconStudio.Xenko.Engine.Events.EventKeyBase`1">
             <summary>
             Creates a new EventKey used to broadcast T type events.
             </summary>
             <typeparam name="T">The data type of the event you wish to send</typeparam>
         </member>
-        <member name="M:SiliconStudio.Xenko.Engine.Events.EventKey`1.Broadcast(`0)">
+        <member name="T:SiliconStudio.Xenko.Engine.Events.EventData">
             <summary>
-            Broadcasts the event data to all the receivers
+            When using EventReceiver.ReceiveOne, this structure is used to contain the received data
             </summary>
-            <param name="data"></param>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Engine.Events.EventReceiver">
-            <summary>
-            Creates an event receiver that is used to receive events from an EventKey
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver.#ctor(SiliconStudio.Xenko.Engine.Events.EventKey,SiliconStudio.Xenko.Engine.Events.EventReceiverOptions)">
-            <summary>
-            Creates an event receiver, ready to receive broadcasts from the key
-            </summary>
-            <param name="key">The event key to listen from</param>
-            <param name="options">Option flags</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver.#ctor(SiliconStudio.Xenko.Engine.Events.EventKey,SiliconStudio.Xenko.Engine.ScriptComponent,SiliconStudio.Xenko.Engine.Events.EventReceiverOptions)">
-            <summary>
-            Creates an event receiver, ready to receive broadcasts from the key
-            </summary>
-            <param name="key">The event key to listen from</param>
-            <param name="attachedScript">The script from where this receiver is created, useful if we have the ClearEveryFrame option set</param>
-            <param name="options">Option flags</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver.ReceiveAsync">
-            <summary>
-            Awaits a single event
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Engine.Events.EventReceiver`1">
             <summary>
@@ -1353,41 +1336,80 @@
             <param name="key">The event key to listen from</param>
             <param name="options">Option flags</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver`1.#ctor(SiliconStudio.Xenko.Engine.Events.EventKey{`0},SiliconStudio.Xenko.Engine.ScriptComponent,SiliconStudio.Xenko.Engine.Events.EventReceiverOptions)">
-            <summary>
-            Creates an event receiver, ready to receive broadcasts from the key
-            </summary>
-            <param name="key">The event key to listen from</param>
-            <param name="attachedScript">The script from where this receiver is created, useful if we have the ClearEveryFrame option set</param>
-            <param name="options">Option flags</param>
-        </member>
         <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver`1.ReceiveAsync">
             <summary>
             Awaits a single event
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver`1.HasEvents">
-            <summary>
-            Checks if there is any event waiting to be received, useful in Sync scripts
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver`1.ReceiveOne">
+        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver`1.TryReceive(`0@)">
             <summary>
             Receives one event from the buffer, useful specially in Sync scripts
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver`1.ReceiveMany">
+        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver`1.TryReceiveAll(System.Collections.Generic.ICollection{`0})">
             <summary>
             Receives all the events from the queue (if buffered was true during creations), useful mostly only in Sync scripts
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver`1.Dispose">
+        <member name="T:SiliconStudio.Xenko.Engine.Events.EventReceiver">
             <summary>
-            Removes the link between this receiver and the broadcaster
+            Creates an event receiver that is used to receive events from an EventKey
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver.#ctor(SiliconStudio.Xenko.Engine.Events.EventKey,SiliconStudio.Xenko.Engine.Events.EventReceiverOptions)">
+            <summary>
+            Creates an event receiver, ready to receive broadcasts from the key
+            </summary>
+            <param name="key">The event key to listen from</param>
+            <param name="options">Option flags</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver.ReceiveAsync">
+            <summary>
+            Awaits a single event
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver.TryReceive">
+            <summary>
+            Receives one event from the buffer, useful specially in Sync scripts
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver.TryReceiveAll">
+            <summary>
+            Receives all the events from the queue (if buffered was true during creations), useful mostly only in Sync scripts
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiver.ReceiveOne(SiliconStudio.Xenko.Engine.Events.EventReceiverBase[])">
+            <summary>
+            Combines multiple receivers in one call and tries to receive the first available events among all the passed receivers
+            </summary>
+            <param name="events">The events you want to listen to</param>
+            <returns></returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.Events.EventReceiverBase">
+            <summary>
+            Base class for EventReceivers
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.Events.EventReceiverBase`1">
+            <summary>
+            Base type for EventReceiver
+            </summary>
+            <typeparam name="T">The type of data the EventKey will send</typeparam>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.Events.EventReceiverBase`1.Count">
+            <summary>
+            Returns the count of currently buffered events
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.Events.EventReceiverBase`1.Reset">
+            <summary>
+            Clears all currently buffered events.
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Engine.Events.EventReceiverOptions">
@@ -1407,10 +1429,10 @@
             receivers might decide to consume at any pace they wish as long as they consume them at some point
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Engine.Events.EventReceiverOptions.ClearEveryFrame">
+        <member name="T:SiliconStudio.Xenko.Engine.Events.EventTaskScheduler">
             <summary>
-            If this flag is present at the end of each frame the events queue will be cleared,
-            this will ensure that consumers will have always up-to-date events (from previous/current frame)
+            Simple passthru scheduler to avoid the default dataflow TaskScheduler.Default usage
+            This also makes sure we fire events at proper required order/timing
             </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Engine.GameSystem.Game">
@@ -1546,6 +1568,11 @@
             <summary>
             Manages socket connection+ack and low-level communication.
             High-level communication is supposed to happen in <see cref="T:SiliconStudio.Xenko.Engine.Network.SocketMessageLayer"/>.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.Network.SimpleSocket.Socket">
+            <summary>
+            Gets the underlying <see cref="T:Sockets.Plugin.TcpSocketClient"/> object.
             </summary>
         </member>
         <member name="M:SiliconStudio.Xenko.Engine.Network.SimpleSocket.Dispose">
@@ -1828,6 +1855,16 @@
             Performs some work after world matrix has been updated.
             </summary>
         </member>
+        <member name="T:SiliconStudio.Xenko.Engine.IAnimatableSpriteProvider">
+            <summary>
+            The base interface for all classes providing animated sprites.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.IAnimatableSpriteProvider.CurrentFrame">
+            <summary>
+            Gets or sets the current frame of the animation.
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Engine.AnimationComponent">
             <summary>
             Add animation capabilities to an <see cref="T:SiliconStudio.Xenko.Engine.Entity"/>. It will usually apply to <see cref="P:SiliconStudio.Xenko.Engine.ModelComponent.Skeleton"/>
@@ -1880,33 +1917,33 @@
             <remarks>
             <para>
             Associate this component to an entity to simulate a 3D localized source of sound coming from the entity center.
-            Use the component <see cref="P:SiliconStudio.Xenko.Engine.AudioEmitterComponent.DistanceScale"/> and <see cref="P:SiliconStudio.Xenko.Engine.AudioEmitterComponent.DopplerScale"/> properties to attenuate or exaggerate the 
+            Use the component <see cref="!:DistanceScale"/> and <see cref="!:DopplerScale"/> properties to attenuate or exaggerate the 
             effect the distance sound attenuation and Doppler effect.
             </para>
             <para>
             Several sounds can be associated to a single AudioEmitterComponent. 
-            Use the functions <see cref="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.AttachSoundEffect(SiliconStudio.Xenko.Audio.SoundEffect)"/> and <see cref="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.DetachSoundEffect(SiliconStudio.Xenko.Audio.SoundEffect)"/> to associate or dissociate a <see cref="T:SiliconStudio.Xenko.Audio.SoundEffect"/> to the emitter component.
-            Each SoundEffect associated to the emitter component can be controlled (played, paused, stopped, ...) independently for the others.
-            Once attached to the emitter component, a SoundEffect is controlled using a <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitterSoundController"/>.
-            To get the AudioEmitterSoundController associated to a SoundEffect use the <see cref="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.GetSoundEffectController(SiliconStudio.Xenko.Audio.SoundEffect)"/> function.
+            Use the functions <see cref="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.AttachSound(SiliconStudio.Xenko.Audio.Sound)"/> and <see cref="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.DetachSound(SiliconStudio.Xenko.Audio.Sound)"/> to associate or dissociate a <see cref="T:SiliconStudio.Xenko.Audio.Sound"/> to the emitter component.
+            Each Sound associated to the emitter component can be controlled (played, paused, stopped, ...) independently for the others.
+            Once attached to the emitter component, a Sound is controlled using a <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitterSoundController"/>.
+            To get the AudioEmitterSoundController associated to a Sound use the <see cref="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.GetSoundController(SiliconStudio.Xenko.Audio.Sound)"/> function.
             </para>
             </remarks>
         </member>
-        <member name="F:SiliconStudio.Xenko.Engine.AudioEmitterComponent.SoundEffectToController">
+        <member name="F:SiliconStudio.Xenko.Engine.AudioEmitterComponent.SoundToController">
             <summary>
-            Dictionary associating each soundEffect to a single soundController.
-            The controller a valid as long as the corresponding SoundEffect is present in the dictionary.
+            Dictionary associating each Sound to a single soundController.
+            The controller a valid as long as the corresponding Sound is present in the dictionary.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.#ctor(System.Collections.Generic.IEnumerable{SiliconStudio.Xenko.Audio.SoundEffect})">
+        <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.#ctor(System.Collections.Generic.IEnumerable{SiliconStudio.Xenko.Audio.Sound})">
             <summary>
-            Create an instance of <see cref="T:SiliconStudio.Xenko.Engine.AudioEmitterComponent"/> with a list default <see cref="T:SiliconStudio.Xenko.Audio.SoundEffect"/> associated.
+            Create an instance of <see cref="T:SiliconStudio.Xenko.Engine.AudioEmitterComponent"/> with a list default <see cref="T:SiliconStudio.Xenko.Audio.Sound"/> associated.
             </summary>
-            <param name="soundEffectToAttach">The SoundEffect to attach to the emitter by default.</param>
+            <param name="soundToAttach">The Sound to attach to the emitter by default.</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.#ctor">
             <summary>
-            Create an instance of <see cref="T:SiliconStudio.Xenko.Engine.AudioEmitterComponent"/> with no default <see cref="T:SiliconStudio.Xenko.Audio.SoundEffect"/> associated.
+            Create an instance of <see cref="T:SiliconStudio.Xenko.Engine.AudioEmitterComponent"/> with no default <see cref="T:SiliconStudio.Xenko.Audio.Sound"/> associated.
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Engine.AudioEmitterComponent.ControllerCollectionChangedEventArgs">
@@ -1939,86 +1976,56 @@
             Event triggered when an <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitterSoundController"/> has be attached or detached to the component.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.GetSoundEffectController(SiliconStudio.Xenko.Audio.SoundEffect)">
+        <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.GetSoundController(SiliconStudio.Xenko.Audio.Sound)">
             <summary>
-            Return a <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitterSoundController"/> that can be used to control the provided <see cref="T:SiliconStudio.Xenko.Audio.SoundEffect"/>.
+            Return a <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitterSoundController"/> that can be used to control the provided <see cref="T:SiliconStudio.Xenko.Audio.Sound"/>.
             </summary>
-            <param name="soundEffect">The soundEffect that the user want to control.</param>
-            <returns>The controller that can control the <paramref name="soundEffect"/></returns>
-            <exception cref="T:System.ArgumentNullException">The provided <paramref name="soundEffect"/> is null.</exception>
-            <exception cref="T:System.ArgumentException">The provided <paramref name="soundEffect"/> is not attached to this component.</exception>
+            <param name="sound">The Sound that the user want to control.</param>
+            <returns>The controller that can control the <paramref name="sound"/></returns>
+            <exception cref="T:System.ArgumentNullException">The provided <paramref name="sound"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">The provided <paramref name="sound"/> is not attached to this component.</exception>
             <remarks>The return AudioEmitterSoundController is valid as long as 
-            (1) the associated soundEffect is attached to the emitter, 
-            (2) the associated soundEffect is not disposed and,
+            (1) the associated Sound is attached to the emitter, 
+            (2) the associated Sound is not disposed and,
             (3) the emitter component's entity is present into Entity system.</remarks>
         </member>
-        <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.AttachSoundEffect(SiliconStudio.Xenko.Audio.SoundEffect)">
+        <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.AttachSound(SiliconStudio.Xenko.Audio.Sound)">
             <summary>
-            Attach a <see cref="T:SiliconStudio.Xenko.Audio.SoundEffect"/> to this emitter component.
-            Once attached a <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitterSoundController"/> can be queried using <see cref="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.GetSoundEffectController(SiliconStudio.Xenko.Audio.SoundEffect)"/> to control the attached SoundEffect.
+            Attach a <see cref="T:SiliconStudio.Xenko.Audio.Sound"/> to this emitter component.
+            Once attached a <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitterSoundController"/> can be queried using <see cref="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.GetSoundController(SiliconStudio.Xenko.Audio.Sound)"/> to control the attached Sound.
             </summary>
-            <param name="soundEffect">The SoundEffect to attach</param>
-            <exception cref="T:System.ArgumentNullException">The provided <paramref name="soundEffect"/> is null.</exception>
-            <exception cref="T:System.InvalidOperationException">The provided <paramref name="soundEffect"/> can not be localized (contains more than one channel).</exception>
-            <remarks>Attaching a soundEffect already attached has no effects.</remarks>
+            <param name="sound">The Sound to attach</param>
+            <exception cref="T:System.ArgumentNullException">The provided <paramref name="sound"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException">The provided <paramref name="sound"/> can not be localized (contains more than one channel).</exception>
+            <remarks>Attaching a Sound already attached has no effects.</remarks>
         </member>
-        <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.AttachSoundEffects(System.Collections.Generic.IEnumerable{SiliconStudio.Xenko.Audio.SoundEffect})">
+        <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.AttachSounds(System.Collections.Generic.IEnumerable{SiliconStudio.Xenko.Audio.Sound})">
             <summary>
-            Attach a list of <see cref="T:SiliconStudio.Xenko.Audio.SoundEffect"/> to this emitter component.
-            Once attached a <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitterSoundController"/> can be queried using <see cref="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.GetSoundEffectController(SiliconStudio.Xenko.Audio.SoundEffect)"/> to control the attached SoundEffect.
+            Attach a list of <see cref="T:SiliconStudio.Xenko.Audio.Sound"/> to this emitter component.
+            Once attached a <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitterSoundController"/> can be queried using <see cref="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.GetSoundController(SiliconStudio.Xenko.Audio.Sound)"/> to control the attached Sound.
             </summary>
-            <param name="soundEffects">The SoundEffects to attach</param>
-            <exception cref="T:System.ArgumentNullException">The provided <paramref name="soundEffects"/> list is null.</exception>
-            <exception cref="T:System.InvalidOperationException">One or more of the provided SoundEffect can not be localized (contains more than one channel).</exception>
-            <remarks>Attaching a soundEffect already attached has no effects.</remarks>
+            <param name="sounds">The Sounds to attach</param>
+            <exception cref="T:System.ArgumentNullException">The provided <paramref name="sounds"/> list is null.</exception>
+            <exception cref="T:System.InvalidOperationException">One or more of the provided Sound can not be localized (contains more than one channel).</exception>
+            <remarks>Attaching a Sound already attached has no effects.</remarks>
         </member>
-        <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.DetachSoundEffect(SiliconStudio.Xenko.Audio.SoundEffect)">
+        <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.DetachSound(SiliconStudio.Xenko.Audio.Sound)">
             <summary>
-            Detach a <see cref="T:SiliconStudio.Xenko.Audio.SoundEffect"/> from this emitter component.
-            Once detach the controller previously associated to the SoundEffect is invalid.
+            Detach a <see cref="T:SiliconStudio.Xenko.Audio.Sound"/> from this emitter component.
+            Once detach the controller previously associated to the Sound is invalid.
             </summary>
-            <param name="soundEffect">The soundEffect to detach.</param>
-            <exception cref="T:System.ArgumentNullException">The provided <paramref name="soundEffect"/> is null.</exception>
-            <exception cref="T:System.ArgumentException">The provided <paramref name="soundEffect"/> is not currently attached to the emitter component.</exception>
+            <param name="sound">The Sound to detach.</param>
+            <exception cref="T:System.ArgumentNullException">The provided <paramref name="sound"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">The provided <paramref name="sound"/> is not currently attached to the emitter component.</exception>
         </member>
-        <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.DetachSoundEffects(System.Collections.Generic.IEnumerable{SiliconStudio.Xenko.Audio.SoundEffect})">
+        <member name="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.DetachSounds(System.Collections.Generic.IEnumerable{SiliconStudio.Xenko.Audio.Sound})">
             <summary>
-            Detach a list of <see cref="T:SiliconStudio.Xenko.Audio.SoundEffect"/> from this emitter component.
-            Once detach the controller previously associated to the SoundEffect is invalid.
+            Detach a list of <see cref="T:SiliconStudio.Xenko.Audio.Sound"/> from this emitter component.
+            Once detach the controller previously associated to the Sound is invalid.
             </summary>
-            <param name="soundEffects">The soundEffects to detach.</param>
-            <exception cref="T:System.ArgumentNullException">The provided <paramref name="soundEffects"/> is null.</exception>
-            <exception cref="T:System.ArgumentException">One or more of the provided SoundEffect is not currently attached to the emitter component.</exception>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Engine.AudioEmitterComponent.DistanceScale">
-            <summary>
-            Distance scale used to calculate the signal attenuation with the listener
-            </summary>
-            <remarks>
-            By default, this value is 1.0.
-            This value represent the distance unit and determines how quickly the signal attenuates between this object and the AudioListener. 
-            Values below 1.0 exaggerate the attenuation to make it more apparent. 
-            Values above 1.0 scale down the attenuation. A value of 1.0 leaves the default attenuation unchanged.
-            Note that this value modifies only the calculated attenuation between this object and a AudioListener. 
-            The calculated attenuation is a product of the relationship between AudioEmitter.Position and AudioListener.Position. 
-            If the calculation yields a result of no attenuation effect, this value has no effect.
-            </remarks>
-            <exception cref="T:System.ArgumentOutOfRangeException">The distance scale of an audio emitter must be greater than or equal to zero.</exception>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Engine.AudioEmitterComponent.DopplerScale">
-            <summary>
-            The scalar applied to the level of Doppler effect calculated between this and the listener
-            </summary>
-            <remarks>
-            By default, this value is 1.0.
-            This value determines how much to modify the calculated Doppler effect between this object and a AudioListener. 
-            Values below 1.0 scale down the Doppler effect to make it less apparent. 
-            Values above 1.0 exaggerate the Doppler effect. A value of 1.0 leaves the effect unmodified.
-            Note that this value modifies only the calculated Doppler between this object and a AudioListener. 
-            The calculated Doppler is a product of the relationship between AudioEmitter.Velocity and AudioListener.Velocity. 
-            If the calculation yields a result of no Doppler effect, this value has no effect.
-            </remarks>
-            <exception cref="T:System.ArgumentOutOfRangeException">The Doppler scale of an audio emitter must be greater than or equal to zero.</exception>
+            <param name="sounds">The Sounds to detach.</param>
+            <exception cref="T:System.ArgumentNullException">The provided <paramref name="sounds"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">One or more of the provided Sound is not currently attached to the emitter component.</exception>
         </member>
         <member name="P:SiliconStudio.Xenko.Engine.AudioEmitterComponent.ShouldBeProcessed">
             <summary>
@@ -2505,9 +2512,8 @@
         </member>
         <member name="P:SiliconStudio.Xenko.Engine.SpriteComponent.CurrentFrame">
             <summary>
-            Gets or sets the current frame of the animation.
+            Gets the current frame of the animation.
             </summary>
-            <userdoc>The index of the default frame of the sprite sheet to use.</userdoc>
         </member>
         <member name="P:SiliconStudio.Xenko.Engine.SpriteComponent.CurrentSprite">
             <summary>
@@ -2615,48 +2621,6 @@
             <param name="rotation">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
             <param name="scaling">The scaling.</param>
             <param name="result">When the method completes, contains the created rotation matrix.</param>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Engine.UIComponent">
-            <summary>
-            Add an <see cref="T:SiliconStudio.Xenko.UI.UIElement"/> to an <see cref="T:SiliconStudio.Xenko.Engine.Entity"/>.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.RootElement">
-            <summary>
-            Gets or sets the root element of the UI hierarchy.
-            </summary>
-            <userdoc>The root element of the UI hierarchy.</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.IsFullScreen">
-            <summary>
-            Gets or sets the value indicating whether the UI should be full screen.
-            </summary>
-            <userdoc>Check this checkbox to display UI of this component on full screen. Uncheck it to display UI using standard camera.</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.VirtualResolution">
-            <summary>
-            Gets or sets the virtual resolution of the UI in virtual pixels.
-            </summary>
-            <userdoc>The value in pixels of the resolution of the UI</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.VirtualResolutionMode">
-            <summary>
-            Gets or sets the camera.
-            </summary>
-            <value>The camera.</value>
-            <userdoc>Indicate how the virtual resolution value should be interpreted</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.IsBillboard">
-            <summary>
-            Gets or sets the value indicating whether the UI should be displayed as billboard.
-            </summary>
-            <userdoc>If checked, the UI is displayed as a billboard. That is, it is automatically rotated parallel to the screen.</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.SnapText">
-            <summary>
-            Gets or sets the value indicating of the UI texts should be snapped to closest pixel.
-            </summary>
-            <userdoc>If checked, all the text of the UI is snapped to the closest pixel (pixel perfect).</userdoc>
         </member>
         <member name="T:SiliconStudio.Xenko.Engine.EntityTransformExtensions">
             <summary>
@@ -2779,20 +2743,19 @@
         </member>
         <member name="T:SiliconStudio.Xenko.Engine.ISpriteProvider">
             <summary>
-            The base interface for all classes providing a sequence of sprites.
+            The base interface for all classes providing sprites.
             </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Engine.ISpriteProvider.GetSprite(System.Int32)">
-            <summary>
-            Get the sprite located at <paramref name="index"/> in the sprite sequence.
-            </summary>
-            <param name="index"></param>
-            <returns></returns>
         </member>
         <member name="P:SiliconStudio.Xenko.Engine.ISpriteProvider.SpritesCount">
             <summary>
-            Gets the number of sprites available in the sequence.
+            Gets the number of sprites available in the provider.
             </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.ISpriteProvider.GetSprite">
+            <summary>
+            Get a sprite from the provider.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Engine.EntityGroupMask">
             <summary>
@@ -2961,12 +2924,6 @@
             </summary>
             <value>The audio.</value>
         </member>
-        <member name="P:SiliconStudio.Xenko.Engine.Game.UI">
-            <summary>
-            Gets the UI system.
-            </summary>
-            <value>The UI.</value>
-        </member>
         <member name="P:SiliconStudio.Xenko.Engine.Game.SpriteAnimation">
             <summary>
             Gets the sprite animation system.
@@ -3010,6 +2967,12 @@
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Engine.Game"/> class.
             </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.Game.Destroy">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.Game.PrepareContext">
+            <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Xenko.Engine.Game.LoadContent">
             <summary>
@@ -5519,6 +5482,52 @@
             Gets or sets the harmonic order to use during the filtering.
             </summary>
         </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.ResourceResolver">
+            <summary>
+            Resolves a render target from one render pass to be used as an input resource to another render pass
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.#ctor(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context"><see cref="T:SiliconStudio.Xenko.Rendering.RenderDrawContext"/> to which this resolver belongs</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.GetDepthStencilAsRenderTarget(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Xenko.Graphics.Texture)">
+            <summary>
+            Returns a texture view which should be used as DepthStencil render target while SRV is also used
+            </summary>
+            <param name="texture">The depthStencil texture originally used for render target</param>
+            <param name="readOnlyCached">The cached view for the texture resource</param>
+            <returns>The texture view which should be used as DepthStencil render target while SRV is also used</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.GetDepthStenctilAsShaderResource(SiliconStudio.Xenko.Graphics.Texture)">
+            <summary>
+            Returns a texture view which should be used as DepthStencil Shader Resource View. Can be <c>null</c> if not supported
+            </summary>
+            <param name="texture">The depthStencil texture originally used for render target</param>
+            <returns>The texture view which should be used as DepthStencil SRV. Can be <c>null</c> if not supported</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.ReleaseDepthStenctilAsShaderResource(SiliconStudio.Xenko.Graphics.Texture)">
+            <summary>
+            Frees previously acquired SRV texture. Should be called when the view is no longer needed
+            </summary>
+            <param name="depthAsSR">The previously acquired SRV texture</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.GetDepthStenctilAsShaderResource_Copy(SiliconStudio.Xenko.Graphics.Texture)">
+            <summary>
+            Gets a texture view which can be used to copy the depth buffer
+            </summary>
+            <param name="texture">The depthStencil texture originally used for render target</param>
+            <returns>A texture view which can be used to copy the depth buffer</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.ResolveDepthStencil(SiliconStudio.Xenko.Graphics.Texture)">
+            <summary>
+            Resolves the depth render target so it can be used as a shader resource view. Should only be called once per frame and acquired with <see cref="M:SiliconStudio.Xenko.Rendering.ResourceResolver.GetDepthStenctilAsShaderResource(SiliconStudio.Xenko.Graphics.Texture)"/> after that
+            </summary>
+            <param name="texture">The depthStencil texture originally used for render target</param>
+            <returns>The texture view which should be used as DepthStencil render target while SRV is also used</returns>
+        </member>
         <member name="T:SiliconStudio.Xenko.Rendering.FrameResourceGroupLayout">
             <summary>
             Implementation of <see cref="!:ResourceGroupLayout"/> specifically for PerFrame cbuffer of <see cref="T:SiliconStudio.Xenko.Rendering.RenderSystem"/>.
@@ -5541,6 +5550,84 @@
             </summary>
             <param name="context"></param>
         </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererDynamic">
+            <summary>
+            A light group renderer that can handle a varying number of lights, i.e. point, spots, directional.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererDynamic.NonShadowRenderer">
+            <summary>
+            Next light renderer we can send our unprocessed lights to.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic">
+            <summary>
+            Base class to build light shader groups with <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererDynamic"/>.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.Lights">
+            <summary>
+            List of all available lights.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.CurrentLights">
+            <summary>
+            List of lights selected for this rendering.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.AddView(System.Int32,SiliconStudio.Xenko.Rendering.RenderView,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="viewIndex"></param>
+            <param name="renderView"></param>
+            <param name="lightCount"></param>
+            <returns>The number of lights accepted in <see cref="F:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.CurrentLights"/>.</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.ComputeLightCount(System.Int32)">
+            <summary>
+            Compute the number of light supported by this shader. Usually a different number of light will trigger a permutation and layout update.
+            </summary>
+            <param name="lightCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.AddLight(SiliconStudio.Xenko.Engine.LightComponent,SiliconStudio.Xenko.Rendering.Shadows.LightShadowMapTexture)">
+            <summary>
+            Try to add light to this group (returns false if not possible).
+            </summary>
+            <param name="light"></param>
+            <param name="shadowMapTexture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.UpdateLayout(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.ApplyViewParameters(SiliconStudio.Xenko.Rendering.RenderDrawContext,System.Int32,SiliconStudio.Xenko.Rendering.ParameterCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.ApplyDrawParameters(SiliconStudio.Xenko.Rendering.RenderDrawContext,System.Int32,SiliconStudio.Xenko.Rendering.ParameterCollection,SiliconStudio.Core.Mathematics.BoundingBoxExt@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightClusteredPointGroupRenderer">
+            <summary>
+            Light renderer for clustered shading.
+            </summary>
+            <remarks>
+            Due to the fact that it handles both Point and Spot with a single logic, it doesn't fit perfectly the current logic of one "direct light groups" per renderer.
+            </remarks>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightClusteredPointGroupRenderer.PointLightShaderGroupData.ComputeLightCount(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightClusteredPointGroupRenderer.PointLightShaderGroupData.SetViews(SiliconStudio.Core.Collections.FastList{SiliconStudio.Xenko.Rendering.RenderView})">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightClusteredPointGroupRenderer.PointLightShaderGroupData.AddView(System.Int32,SiliconStudio.Xenko.Rendering.RenderView,System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature">
             <summary>
             Compute lighting shaders and data.
@@ -5552,20 +5639,21 @@
             </summary>
             <value>The lights.</value>
         </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.RenderViewLightData.ActiveLightGroupsWithShadows">
-            <summary>
-            Gets the lights without shadow per light type.
-            </summary>
-            <value>The lights.</value>
-        </member>
         <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.Extract">
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <param name="context"></param>
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.GetReadonlyShaderSources(SiliconStudio.Xenko.Shaders.ShaderSourceCollection)">
+            <summary>
+            Create a read-only copy of the given shader sources.
+            </summary>
+            <param name="shaderSources"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.CollectVisibleLights">
@@ -5573,9 +5661,9 @@
             Collects the visible lights by intersecting them with the frustum.
             </summary>
         </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.LightForwardShaderEntryKey">
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.LightShaderPermutationEntry.PermutationLightGroups">
             <summary>
-            We expect this class to be 
+            Light groups that have <see cref="P:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.HasEffectPermutations"/>.
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightAmbientRenderer">
@@ -5615,7 +5703,7 @@
             A list of <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> for a particular type of light (direct light, direct light + shadows, environment lights).
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.#ctor">
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.#ctor(System.Type)">
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup"/> class.
             </summary>
@@ -5653,10 +5741,87 @@
             </summary>
             <value>The number of <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> stored in this group.</value>
         </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.LightType">
+            <summary>
+            Gets the light type this collection contains.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalGroupRenderer">
+            <summary>
+            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectional"/>.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererBase">
+            <summary>
+            Base class for light renderers.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightPointGroupRenderer">
+            <summary>
+            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightPoint"/>.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightPointGroupRenderer.PointLightShaderGroup.AddView(System.Int32,SiliconStudio.Xenko.Rendering.RenderView,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup">
+            <summary>
+            A group of lights of the same type (single loop in the shader).
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.UpdateLayout(System.String)">
+            <summary>
+            Called when layout is updated, so that parameter keys can be recomputed.
+            </summary>
+            <param name="compositionName"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.Reset">
+            <summary>
+            Resets states.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.ApplyEffectPermutations(SiliconStudio.Xenko.Rendering.RenderEffect)">
+            <summary>
+            Applies effect permutations.
+            </summary>
+            <param name="renderEffect"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.ApplyViewParameters(SiliconStudio.Xenko.Rendering.RenderDrawContext,System.Int32,SiliconStudio.Xenko.Rendering.ParameterCollection)">
+            <summary>
+            Applies PerView lighting parameters.
+            </summary>
+            <param name="context"></param>
+            <param name="viewIndex"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.ApplyDrawParameters(SiliconStudio.Xenko.Rendering.RenderDrawContext,System.Int32,SiliconStudio.Xenko.Rendering.ParameterCollection,SiliconStudio.Core.Mathematics.BoundingBoxExt@)">
+            <summary>
+            Applies PerDraw lighting parameters.
+            </summary>
+            <param name="context"></param>
+            <param name="viewIndex"></param>
+            <param name="parameters"></param>
+            <param name="boundingBox"></param>
+        </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightSkyboxRenderer">
             <summary>
             Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightSkybox"/>.
             </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightSkyboxRenderer.Reset">
+            <param name="viewCount"></param>
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightSkyboxRenderer.ProcessLights(SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererBase.ProcessLightsParameters)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightSpotGroupRenderer">
+            <summary>
+            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightSpot"/>.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightSpotGroupRenderer.SpotLightShaderGroup.AddView(System.Int32,SiliconStudio.Xenko.Rendering.RenderView,System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap">
             <summary>
@@ -5971,15 +6136,13 @@
             <param name="direction">The direction.</param>
             <returns>BoundingBox.</returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.IDirectLight.ComputeScreenCoverage(SiliconStudio.Xenko.Engine.CameraComponent,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,System.Single,System.Single)">
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.IDirectLight.ComputeScreenCoverage(SiliconStudio.Xenko.Rendering.RenderView,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3)">
             <summary>
             Computes the screen coverage of this light in pixel.
             </summary>
-            <param name="camera">The camera observing the light.</param>
+            <param name="renderView">The render view.</param>
             <param name="position">The position of the light in world space.</param>
             <param name="direction">The direction of the light in world space.</param>
-            <param name="width">The viewport width.</param>
-            <param name="height">The viewport height.</param>
             <returns>The largest screen coverage width or height size in pixels of this light.</returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Lights.IEnvironmentLight">
@@ -6139,6 +6302,17 @@
             </summary>
             <value>The spot angle in degrees.</value>
             <userdoc>The angle of secondary beam of the light spot</userdoc>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.LogicalGroup">
+            <summary>
+            Defines a group of descriptors and cbuffer range that are updated together.
+            It can be declared in shader using the syntax <c>cbuffer PerView_LogicalGroupName</c> (also works with <c>rgroup</c>).
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.LogicalGroupReference">
+            <summary>
+            Handle used to query logical group information.
+            </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.MaterialNull">
             <summary>
@@ -6605,7 +6779,7 @@
             <param name="context">The context to get the children.</param>
             <returns>The list of children.</returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeNode.GenerateShaderSource(SiliconStudio.Xenko.Assets.ShaderGeneratorContext,SiliconStudio.Xenko.Rendering.Materials.MaterialComputeColorKeys)">
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeNode.GenerateShaderSource(SiliconStudio.Xenko.Rendering.Materials.ShaderGeneratorContext,SiliconStudio.Xenko.Rendering.Materials.MaterialComputeColorKeys)">
             <summary>
             Generates the shader source equivalent for this node
             </summary>
@@ -6883,6 +7057,30 @@
             Interface defining a parameter for a <see cref="T:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeNode"/>
             </summary>
         </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Materials.MaterialBlendLayerContext">
+            <summary>
+            Context used by a layer to store intermediate information (streams used, shading models...etc.)
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialBlendLayerContext.#ctor(SiliconStudio.Xenko.Rendering.Materials.MaterialGeneratorContext,SiliconStudio.Xenko.Rendering.Materials.MaterialBlendLayerContext,SiliconStudio.Xenko.Rendering.Materials.IComputeScalar)">
+            <summary>
+            Initializes a new instance of <see cref="T:SiliconStudio.Xenko.Rendering.Materials.MaterialBlendLayerContext"/>.
+            </summary>
+            <param name="context">The material generator context</param>
+            <param name="parentLayerContext">The parent layer context</param>
+            <param name="blendMap">The blend map used for this layer</param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Materials.MaterialBlendLayerPerStageContext">
+            <summary>
+            Defines the context used by a stage for a layer.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialBlendLayerPerStageContext.ComputeShaderSource">
+            <summary>
+            Squash <see cref="P:SiliconStudio.Xenko.Rendering.Materials.MaterialBlendLayerPerStageContext.ShaderSources"/> to a single ShaderSource (compatible with IComputeColor)
+            </summary>
+            <returns>The squashed <see cref="T:SiliconStudio.Xenko.Shaders.ShaderSource"/> or null if nothing to squash</returns>
+        </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.MaterialFeature">
             <summary>
             A material feature
@@ -6893,6 +7091,40 @@
             Generates the for the feature shader.
             </summary>
             <param name="context">The context.</param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Materials.MaterialShadingModelCollection">
+            <summary>
+            Stores a collection of shading model used by a layer and allow to compare if a layer can be blend by attributes (if
+            shading model doesn't change) or by shading (if shading model is different).
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialShadingModelCollection.Add``1(``0,SiliconStudio.Xenko.Shaders.ShaderSource)">
+            <summary>
+            Adds the specified shading model associated with source to this collection.
+            </summary>
+            <typeparam name="T">Type of the shading model</typeparam>
+            <param name="shadingModel">The shading model</param>
+            <param name="shaderSource">The shading source</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialShadingModelCollection.CopyTo(SiliconStudio.Xenko.Rendering.Materials.MaterialShadingModelCollection)">
+            <summary>
+            Copies the shading models of this instance to the destination instance.
+            </summary>
+            <param name="node">The destination collection</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialShadingModelCollection.Equals(SiliconStudio.Xenko.Rendering.Materials.MaterialShadingModelCollection)">
+            <summary>
+            Compares the shading models of this instance against the specified instance.
+            </summary>
+            <param name="node">The shading model</param>
+            <returns><c>true</c> if shading models are equvalent; <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialShadingModelCollection.Generate(SiliconStudio.Xenko.Rendering.Materials.MaterialGeneratorContext)">
+            <summary>
+            Generates the shader for the shading models of this instance.
+            </summary>
+            <param name="context">The material generator context</param>
+            <returns>An enumeration of shader sources</returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.MaterialTransparencyBlendFeature">
             <summary>
@@ -6936,11 +7168,11 @@
         <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialRenderFeature.InitializeCore">
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialRenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialRenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <param name="context"></param>
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.DisplacementMapStage">
@@ -7143,7 +7375,7 @@
             <param name="context">The context to get the children.</param>
             <returns>The list of children.</returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Materials.IComputeNode.GenerateShaderSource(SiliconStudio.Xenko.Assets.ShaderGeneratorContext,SiliconStudio.Xenko.Rendering.Materials.MaterialComputeColorKeys)">
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.IComputeNode.GenerateShaderSource(SiliconStudio.Xenko.Rendering.Materials.ShaderGeneratorContext,SiliconStudio.Xenko.Rendering.Materials.MaterialComputeColorKeys)">
             <summary>
             Generates the shader source equivalent for this node
             </summary>
@@ -7219,6 +7451,11 @@
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.IMaterialShadingModelFeature">
             <summary>
             Base interface for a shading light dependent model material feature.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.IMaterialShadingModelFeature.IsLightDependent">
+            <summary>
+            A boolean indicating whether this material depends on the lighting.
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.IMaterialSpecularFeature">
@@ -7538,6 +7775,22 @@
             <value><c>true</c> if [use alpha]; otherwise, <c>false</c>.</value>
             <userdoc>If checked, use the alpha component of the emissive map as main alpha color for the material. Otherwise, ignore it and use the diffuse alpha color.</userdoc>
         </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Materials.MaterialGeneratorContext">
+            <summary>
+            Main entry point class for generating shaders from a <see cref="T:SiliconStudio.Xenko.Rendering.Materials.MaterialDescriptor"/>
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialGeneratorContext.#ctor(SiliconStudio.Xenko.Rendering.Material)">
+            <summary>
+            Initializes a new instance of <see cref="T:SiliconStudio.Xenko.Rendering.Materials.MaterialGeneratorContext"/>.
+            </summary>
+            <param name="material"></param>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.MaterialGeneratorContext.Material">
+            <summary>
+            Gets the compiled Material
+            </summary>
+        </member>
         <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialGeneratorContext.PushMaterial(SiliconStudio.Xenko.Rendering.Materials.IMaterialDescriptor,System.String)">
             <summary>
             Push a material for processing.
@@ -7546,6 +7799,24 @@
             <param name="materialName">Friendly name of the material.</param>
             <returns><c>true</c> if the material is valid and can be visited, <c>false</c> otherwise.</returns>
             <exception cref="T:System.ArgumentNullException">materialDescriptor</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialGeneratorContext.PushLayer(SiliconStudio.Xenko.Rendering.Materials.IComputeScalar)">
+            <summary>
+            Pushes a new layer with the specified blend map.
+            </summary>
+            <param name="blendMap">The blend map used by this layer.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialGeneratorContext.PopLayer">
+            <summary>
+            Pops the current layer.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialGeneratorContext.ProcessIntermediateLayer(SiliconStudio.Xenko.Rendering.Materials.MaterialBlendLayerContext,System.Boolean)">
+            <summary>
+            Processes the intermediate layer.
+            </summary>
+            <param name="layer">The layer.</param>
+            <param name="isLastLayer">if set to <c>true</c> the layer is the last children of the parent layer.</param>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.MaterialGlossinessMapFeature">
             <summary>
@@ -7831,6 +8102,27 @@
             <param name="i">The id of the texture.</param>
             <returns>The corresponding ParameterKey.</returns>
         </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Materials.ShaderGeneratorContext">
+            <summary>
+            Base class for generating shader class source with associated parameters.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.ShaderGeneratorContext.Content">
+            <summary>
+            Gets or sets the asset manager.
+            </summary>
+            <value>
+            The asset manager.
+            </value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.ShaderGeneratorContext.OptimizeMaterials">
+            <summary>
+            Gets or sets a value indicating whether materials will be optimized (textures blended together, generate optimized shader permutations, etc...).
+            </summary>
+            <value>
+              <c>true</c> if [materials are optimized]; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.ColorChannel">
             <summary>
             A RGBA channel selected when performing texture sampling.
@@ -8031,11 +8323,11 @@
         <member name="M:SiliconStudio.Xenko.Rendering.MeshRenderFeature.Extract">
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.MeshRenderFeature.PrepareEffectPermutationsImpl(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.MeshRenderFeature.PrepareEffectPermutationsImpl(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <param name="context"></param>
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.MeshRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.MeshRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Xenko.Rendering.MeshRenderFeature.Draw(SiliconStudio.Xenko.Rendering.RenderDrawContext,SiliconStudio.Xenko.Rendering.RenderView,SiliconStudio.Xenko.Rendering.RenderViewStage,System.Int32,System.Int32)">
@@ -8069,6 +8361,29 @@
             <summary>
             A forward rendering mode.
             </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.LogicalGroupExtensions">
+            <summary>
+            Various extension methods usedful to use with <see cref="T:SiliconStudio.Xenko.Rendering.LogicalGroup"/>.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.LogicalGroupExtensions.ProcessLogicalGroup(SiliconStudio.Xenko.Rendering.ParameterCollectionLayout,SiliconStudio.Xenko.Rendering.RenderSystemResourceGroupLayout,SiliconStudio.Xenko.Rendering.LogicalGroup@)">
+            <summary>
+            Adds a <see cref="T:SiliconStudio.Xenko.Rendering.LogicalGroup"/> layout to a <see cref="T:SiliconStudio.Xenko.Rendering.ParameterCollectionLayout"/>, so that it is later easy to use with <see cref="M:SiliconStudio.Xenko.Rendering.LogicalGroupExtensions.UpdateLogicalGroup(SiliconStudio.Xenko.Graphics.ResourceGroup,SiliconStudio.Xenko.Rendering.LogicalGroup@,SiliconStudio.Xenko.Rendering.ParameterCollection,System.Int32,System.Int32)"/>.
+            </summary>
+            <param name="parameterCollectionLayout"></param>
+            <param name="resourceGroupLayout"></param>
+            <param name="logicalGroup"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.LogicalGroupExtensions.UpdateLogicalGroup(SiliconStudio.Xenko.Graphics.ResourceGroup,SiliconStudio.Xenko.Rendering.LogicalGroup@,SiliconStudio.Xenko.Rendering.ParameterCollection,System.Int32,System.Int32)">
+            <summary>
+            Copies a full logical group of descriptors and data from a <see cref="T:SiliconStudio.Xenko.Rendering.ParameterCollection"/> to a <see cref="T:SiliconStudio.Xenko.Graphics.ResourceGroup"/>.
+            </summary>
+            <param name="resourceGroup">The target resource group to update.</param>
+            <param name="logicalGroup">The logical group.</param>
+            <param name="sourceParameters">The source values.</param>
+            <param name="sourceDescriptorSlotStart">The source descriptor start slot (in case it contains other data before in the layout).</param>
+            <param name="sourceOffset">The source data start offset (in case it contains other data before in the layout).</param>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.RenderSystem">
             <summary>
@@ -8111,18 +8426,18 @@
             </summary>
             <value>The services registry.</value>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.RenderSystem.Collect(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.RenderSystem.Collect(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <summary>
             Performs pipeline initialization, enumerates views and populates visibility groups.
             </summary>
             <param name="context"></param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.RenderSystem.Extract(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.RenderSystem.Extract(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <summary>
             Extract data from entities, should be as fast as possible to not block simulation loop. It should be mostly copies, and the actual processing should be part of Prepare().
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.RenderSystem.Prepare(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.RenderSystem.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <summary>
             Performs most of the work (computation and resource preparation). Later game simulation might be running during that step.
             </summary>
@@ -8433,13 +8748,13 @@
             Extract data from entities, should be as fast as possible to not block simulation loop. It should be mostly copies, and the actual processing should be part of Prepare().
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.RenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.RenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <summary>
-            Perform effect permutations, before <see cref="M:SiliconStudio.Xenko.Rendering.RenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderThreadContext)"/>.
+            Perform effect permutations, before <see cref="M:SiliconStudio.Xenko.Rendering.RenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)"/>.
             </summary>
             <param name="context"></param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.RenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.RenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <summary>
             Performs most of the work (computation and resource preparation). Later game simulation might be running during that step.
             </summary>
@@ -8543,6 +8858,11 @@
             Implementation of <see cref="T:SiliconStudio.Xenko.Graphics.ResourceGroupLayout"/> specifically for <see cref="T:SiliconStudio.Xenko.Rendering.RenderSystem"/> use (contains some extra information).
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.RenderSystemResourceGroupLayout.State">
+            <summary>
+            Describes what state the effect is in (compiling, error, etc..)
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Rendering.RenderView">
             <summary>
             Defines a view used during rendering. This is usually a frustum and some camera parameters.
@@ -8583,9 +8903,39 @@
             The view projection matrix for this view.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.RenderView.Camera">
+        <member name="F:SiliconStudio.Xenko.Rendering.RenderView.SceneInstance">
             <summary>
-            The camera for this view. 
+            The scene instance that created this view.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.RenderView.NearClipPlane">
+            <summary>
+            Far clip plane.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.RenderView.FarClipPlane">
+            <summary>
+            Near clip plane.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.RenderView.Frustum">
+            <summary>
+            The frustum extracted from the view projection matrix.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.RenderView.ViewSize">
+            <summary>
+            The size of the view being rendered.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.RenderView.CullingMask">
+            <summary>
+            The culling mask.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.RenderView.CullingMode">
+            <summary>
+            The culling mode.
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.RenderViewFeature">
@@ -8678,13 +9028,13 @@
             As an example, we could have main shader (automatically created), GBuffer shader and shadow mapping shader.
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.RootEffectRenderFeature.PrepareEffectPermutationsImpl(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.RootEffectRenderFeature.PrepareEffectPermutationsImpl(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <summary>
-            Actual implementation of <see cref="M:SiliconStudio.Xenko.Rendering.RootEffectRenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderThreadContext)"/>.
+            Actual implementation of <see cref="M:SiliconStudio.Xenko.Rendering.RootEffectRenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderDrawContext)"/>.
             </summary>
             <param name="context"></param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.RootEffectRenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.RootEffectRenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <param name="context"></param>
             <inheritdoc/>
         </member>
@@ -8693,7 +9043,7 @@
             Implemented by subclasses to reset effect dependent data.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.RootEffectRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.RootEffectRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.RootRenderFeature">
@@ -8813,11 +9163,10 @@
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Shadows.LightDirectionalShadowMapRenderer"/> class.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Shadows.LightDirectionalShadowMapRenderer.LightDirectionalShadowMapGroupShaderData.#ctor(System.String,SiliconStudio.Xenko.Rendering.Shadows.LightShadowType,System.Int32)">
+        <member name="M:SiliconStudio.Xenko.Rendering.Shadows.LightDirectionalShadowMapRenderer.LightDirectionalShadowMapGroupShaderData.#ctor(SiliconStudio.Xenko.Rendering.Shadows.LightShadowType)">
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Shadows.LightDirectionalShadowMapRenderer.LightDirectionalShadowMapGroupShaderData" /> class.
             </summary>
-            <param name="compositionKey">The composition key.</param>
             <param name="shadowType">Type of the shadow.</param>
             <param name="lightCountMax">The light count maximum.</param>
         </member>
@@ -8836,11 +9185,10 @@
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Shadows.LightSpotShadowMapRenderer"/> class.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Shadows.LightSpotShadowMapRenderer.LightSpotShadowMapGroupShaderData.#ctor(System.String,SiliconStudio.Xenko.Rendering.Shadows.LightShadowType,System.Int32)">
+        <member name="M:SiliconStudio.Xenko.Rendering.Shadows.LightSpotShadowMapRenderer.LightSpotShadowMapGroupShaderData.#ctor(SiliconStudio.Xenko.Rendering.Shadows.LightShadowType)">
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Shadows.LightSpotShadowMapRenderer.LightSpotShadowMapGroupShaderData" /> class.
             </summary>
-            <param name="compositionKey">The composition key.</param>
             <param name="shadowType">Type of the shadow.</param>
             <param name="lightCountMax">The light count maximum.</param>
         </member>
@@ -8854,11 +9202,6 @@
             Gets or sets the render view.
             </summary>
             <value>The render view.</value>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Shadows.ShadowMapRenderer.ShadowCamera">
-            <summary>
-            The shadow camera used for rendering from the shadow space.
-            </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Shadows.LightShadowMapTexture">
             <summary>
@@ -8917,14 +9260,14 @@
         <member name="M:SiliconStudio.Xenko.Rendering.SkinningRenderFeature.InitializeCore">
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.SkinningRenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.SkinningRenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <param name="context"></param>
             <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Xenko.Rendering.SkinningRenderFeature.Extract">
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.SkinningRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.SkinningRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Skyboxes.SkyboxPipelinePlugin">
@@ -8952,11 +9295,11 @@
         <member name="M:SiliconStudio.Xenko.Rendering.Skyboxes.SkyboxRenderFeature.Extract">
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Skyboxes.SkyboxRenderFeature.PrepareEffectPermutationsImpl(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.Skyboxes.SkyboxRenderFeature.PrepareEffectPermutationsImpl(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <param name="context"></param>
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Skyboxes.SkyboxRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.Skyboxes.SkyboxRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Skyboxes.Skybox">
@@ -9024,7 +9367,7 @@
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromSheet">
             <summary>
-            A sprite provider from a <see cref="P:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromSheet.Sheet"/>
+            A sprite provider from a <see cref="T:SiliconStudio.Xenko.Graphics.SpriteSheet"/>
             </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromSheet.Sheet">
@@ -9032,6 +9375,30 @@
             Gets or sets the <see cref="P:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromSheet.Sheet"/> of the provider.
             </summary>
             <userdoc>The sheet that provides the sprites</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromSheet.CurrentFrame">
+            <summary>
+            Gets or sets the current frame of the animation.
+            </summary>
+            <userdoc>The index of the default frame of the sprite sheet to use.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromSheet.SpritesCount">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromSheet.Create(SiliconStudio.Xenko.Graphics.SpriteSheet,System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromSheet"/> with the specified <see cref="T:SiliconStudio.Xenko.Graphics.SpriteSheet"/>.
+            <see cref="P:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromSheet.CurrentFrame"/> is initialized according to the specified <paramref name="spriteName"/>.
+            </summary>
+            <param name="sheet"></param>
+            <param name="spriteName">The name of the sprite.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">sheet</exception>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">No sprite in the sheet has the given name.</exception>
+            <remarks>If two sprites have the provided name then the first sprite found is used.</remarks>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromSheet.GetSprite">
+            <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromTexture">
             <summary>
@@ -9081,6 +9448,12 @@
             <userdoc>
             If checked, the sprite is considered as having transparent colors.
             </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromTexture.SpritesCount">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Sprites.SpriteFromTexture.GetSprite">
+            <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Sprites.SpriteType">
             <summary>
@@ -9213,24 +9586,37 @@
         <member name="M:SiliconStudio.Xenko.Rendering.TransformRenderFeature.Extract">
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.TransformRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.TransformRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <param name="context"></param>
             <inheritdoc/>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.RenderThreadContext.ResourceGroupAllocator">
-            <summary>
-            Gets the <see cref="T:SiliconStudio.Xenko.Graphics.ResourceGroup"/> allocator.
-            </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.RenderDrawContext">
             <summary>
             Rendering context used during <see cref="M:SiliconStudio.Xenko.Rendering.IGraphicsRenderer.Draw(SiliconStudio.Xenko.Rendering.RenderDrawContext)"/>.
             </summary>
         </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.RenderDrawContext.RenderContext">
+            <summary>
+            Gets the render context.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.RenderDrawContext.ResourceGroupAllocator">
+            <summary>
+            Gets the <see cref="T:SiliconStudio.Xenko.Graphics.ResourceGroup"/> allocator.
+            </summary>
+        </member>
         <member name="P:SiliconStudio.Xenko.Rendering.RenderDrawContext.CommandList">
             <summary>
             Gets the command list.
             </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.RenderDrawContext.LockCommandList">
+            <summary>
+            Locks the command list until <see cref="M:System.IDisposable.Dispose"/> is called on the returned value type.
+            </summary>
+            <returns></returns>
+            This is necessary only during Collect(), Extract() and Prepare() phases, not during Draw().
+            Some graphics API might not require actual locking, in which case this object might do nothing.
         </member>
         <member name="M:SiliconStudio.Xenko.Rendering.RenderDrawContext.PushRenderTargets">
             <summary>
@@ -9254,19 +9640,9 @@
             Holds current viewports and render targets.
             </summary>
         </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.UI.UIPipelinePlugin">
+        <member name="T:SiliconStudio.Xenko.Rendering.RenderDrawContext.CommandListLock">
             <summary>
-            Automatically registers UI rendering.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.UI.UIRenderProcessor">
-            <summary>
-            The processor in charge of updating and drawing the entities having sprite components.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.UI.UIRenderProcessor.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.UI.UIRenderProcessor"/> class.
+            Used to prevent concurrent uses of CommandList.
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.ViewResourceGroupLayout">
@@ -9363,22 +9739,22 @@
             Property key to access the current collection of <see cref="T:SiliconStudio.Xenko.Engine.CameraComponent"/> from <see cref="!:RenderContext.Tags"/>.
             </summary>
         </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.VirtualResolutionMode">
+        <member name="T:SiliconStudio.Xenko.Rendering.ResolutionStretch">
             <summary>
             Enumerates the different ways to interpret a visual resolution value.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.VirtualResolutionMode.FixedWidthFixedHeight">
+        <member name="F:SiliconStudio.Xenko.Rendering.ResolutionStretch.FixedWidthFixedHeight">
             <summary>
             The resolution is determined by the width, height and depth of the field.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.VirtualResolutionMode.FixedWidthAdaptableHeight">
+        <member name="F:SiliconStudio.Xenko.Rendering.ResolutionStretch.FixedWidthAdaptableHeight">
             <summary>
             The resolution is determined by the width, the ratio of the target, and the depth.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.VirtualResolutionMode.FixedHeightAdaptableWidth">
+        <member name="F:SiliconStudio.Xenko.Rendering.ResolutionStretch.FixedHeightAdaptableWidth">
             <summary>
             The resolution is determined by the height, the ratio of the target, and the depth.
             </summary>
@@ -10078,6 +10454,21 @@
             </summary>
             <value><c>true</c> if the viewport is in pixels instead of percentage; otherwise, <c>false</c>.</value>
             <userdoc>When this value is true, the Viewport size is a percentage (0-100) calculated relatively to the size of the Output, else it is a fixed size in pixels.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.SceneRendererViewportBase.FixedAspectRatio">
+            <summary>
+            Gets or sets the aspect ratio.
+            </summary>
+            <value>
+            The aspect ratio.
+            </value>
+            <userdoc>The aspect ratio used if Add Letterbox/Pillarbox is checked.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.SceneRendererViewportBase.ForceAspectRatio">
+            <summary>
+            Gets or sets a value wether to edit the Viewport to force the aspect ratio and add letterboxes or pillarboxes where needed
+            </summary>
+            <userdoc>If checked and the viewport will be modified to fit the aspect ratio of Default Back Buffer Width and Default Back Buffer Height and letterboxes/pillarboxes might be added.</userdoc>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.SharedRenderFrameProvider">
             <summary>
@@ -11126,27 +11517,6 @@
             and <see cref="M:SiliconStudio.Xenko.Rendering.EffectSystem.CreateEffectCompiler(SiliconStudio.Xenko.Shaders.Compiler.TaskSchedulerSelector)"/> to record effect requested.
             </summary>
         </member>
-        <member name="T:SiliconStudio.Xenko.Assets.ShaderGeneratorContext">
-            <summary>
-            Base class for generating shader class source with associated parameters.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Assets.ShaderGeneratorContext.Content">
-            <summary>
-            Gets or sets the asset manager.
-            </summary>
-            <value>
-            The asset manager.
-            </value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Assets.ShaderGeneratorContext.OptimizeMaterials">
-            <summary>
-            Gets or sets a value indicating whether materials will be optimized (textures blended together, generate optimized shader permutations, etc...).
-            </summary>
-            <value>
-              <c>true</c> if [materials are optimized]; otherwise, <c>false</c>.
-            </value>
-        </member>
         <member name="T:SiliconStudio.Xenko.Extensions.GeometricPrimitiveExtensions">
             <summary>
             An extension class for the <see cref="T:SiliconStudio.Xenko.Graphics.GeometricPrimitives.GeometricPrimitive"/>
@@ -11350,26 +11720,26 @@
         </member>
         <member name="T:SiliconStudio.Xenko.Audio.AudioEmitterSoundController">
             <summary>
-            This class is used to control a <see cref="T:SiliconStudio.Xenko.Audio.SoundEffect"/> associated to a <see cref="T:SiliconStudio.Xenko.Engine.AudioEmitterComponent"/>.
+            This class is used to control a <see cref="T:SiliconStudio.Xenko.Audio.Sound"/> associated to a <see cref="T:SiliconStudio.Xenko.Engine.AudioEmitterComponent"/>.
             </summary>
             <remarks>
             <para>
             Instances of this class can not be directly created by the user, but need to queried from an <see cref="T:SiliconStudio.Xenko.Engine.AudioEmitterComponent"/> 
-            instance using the <see cref="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.GetSoundEffectController(SiliconStudio.Xenko.Audio.SoundEffect)"/> function.
+            instance using the <see cref="M:SiliconStudio.Xenko.Engine.AudioEmitterComponent.GetSoundController(SiliconStudio.Xenko.Audio.Sound)"/> function.
             </para>
             <para>
             An instance <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitterSoundController"/> is not valid anymore if any of those situations arrives: 
             <list type="bullet">
-             <item><description>The underlying <see cref="T:SiliconStudio.Xenko.Audio.SoundEffect"/> is disposed.</description></item>
+             <item><description>The underlying <see cref="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.sound"/> is disposed.</description></item>
              <item><description>The <see cref="T:SiliconStudio.Xenko.Engine.AudioEmitterComponent"/> is detached from its entity.</description></item>
              <item><description>The entity to which it is attached is removed from the Entity System.</description></item>
             </list>
             </para>
             </remarks>
         </member>
-        <member name="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.soundEffect">
+        <member name="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.sound">
             <summary>
-            The underlying <see cref="T:SiliconStudio.Xenko.Audio.SoundEffect"/>
+            The underlying <see cref="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.sound"/>
             </summary>
         </member>
         <member name="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.parent">
@@ -11377,34 +11747,33 @@
             The parent <see cref="T:SiliconStudio.Xenko.Engine.AudioEmitterComponent"/> to which to controller is associated.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.associatedSoundEffectInstances">
+        <member name="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.InstanceToListener">
             <summary>
-            The instances of <see cref="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.soundEffect"/> currently created by this controller (one for each listener).
+            The instances of <see cref="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.sound"/> currently created by this controller (one for each listener).
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.#ctor(SiliconStudio.Xenko.Engine.AudioEmitterComponent,SiliconStudio.Xenko.Audio.SoundEffect)">
+        <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.#ctor(SiliconStudio.Xenko.Engine.AudioEmitterComponent,SiliconStudio.Xenko.Audio.Sound)">
             <summary>
             Created a new <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitterSoundController"/> instance.
             </summary>
             <param name="parent">The parent AudioEmitterComponent to which the controller is associated.</param>
-            <param name="soundEffect">The underlying SoundEffect to be controlled</param>
-            <remarks>A <see cref="T:SiliconStudio.Xenko.Audio.SoundEffect"/> can be associated to several controllers.</remarks>
+            <param name="sound">The underlying Sound to be controlled</param>
+            <remarks>A <see cref="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.sound"/> can be associated to several controllers.</remarks>
         </member>
-        <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.CreateSoundInstance">
+        <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.CreateSoundInstance(SiliconStudio.Xenko.Engine.AudioListenerComponent)">
             <summary>
             Create an new instance of underlying sound, and register it in the controller's sound instance list.
             </summary>
             <returns>The new sound effect instance created</returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.DestroySoundInstance(SiliconStudio.Xenko.Audio.SoundEffectInstance)">
-            <summary>
-            Dispose and sound instance and removes it from the controller sound instance list.
-            </summary>
-            <param name="soundInstance">Sound instance to destroy</param>
-        </member>
         <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.DestroyAllSoundInstances">
             <summary>
             Dispose and removes all the controller sound instances.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.IsLooped">
+            <summary>
+            Gets or sets whether the sound is automatically looping from beginning when it reaches the end.
             </summary>
         </member>
         <member name="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.ShouldBePlayed">
@@ -11424,7 +11793,6 @@
             </summary>
             <remarks>
             The processor updates only <see cref="T:SiliconStudio.Xenko.Audio.AudioListener"/> associated to <see cref="T:SiliconStudio.Xenko.Engine.AudioListenerComponent"/>s 
-            added to the <see cref="T:SiliconStudio.Xenko.Audio.AudioSystem"/> via the <see cref="M:SiliconStudio.Xenko.Audio.AudioSystem.AddListener(SiliconStudio.Xenko.Engine.AudioListenerComponent)"/> function.
             The processor is subscribing to the <see cref="F:SiliconStudio.Xenko.Audio.AudioListenerProcessor.audioSystem"/> <see cref="T:SiliconStudio.Xenko.Engine.AudioListenerComponent"/> collection events to be informed of required <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitter"/> updates.
             When a <see cref="T:SiliconStudio.Xenko.Engine.AudioListenerComponent"/> is added to the <see cref="F:SiliconStudio.Xenko.Audio.AudioListenerProcessor.audioSystem"/>, the processor set the associated <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitter"/>.
             When a <see cref="T:SiliconStudio.Xenko.Engine.AudioListenerComponent"/> is removed from the entity system, 
@@ -11440,35 +11808,6 @@
         <member name="M:SiliconStudio.Xenko.Audio.AudioListenerProcessor.#ctor">
             <summary>
             Create a new instance of AudioListenerProcessor.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Audio.AudioListenerProcessor.OnListenerCollectionChanged(System.Object,SiliconStudio.Core.Collections.TrackingCollectionChangedEventArgs)">
-            <summary>
-            The <see cref="T:SiliconStudio.Xenko.Audio.AudioSystem"/> listeners collection has been modified.
-            Mark AudioEmitter not for update if removed from the list.
-            Create the AudioEmitter data and mark it for update  if added to the list.
-            </summary>
-            <param name="o"></param>
-            <param name="args"></param>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Audio.AudioListenerProcessor.AssociatedData.ShouldBeComputed">
-            <summary>
-            Boolean indicating whether the AudioEmitter need to be updated for the current loop turn or not.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Audio.AudioListenerProcessor.AssociatedData.AudioListener">
-            <summary>
-            The <see cref="T:SiliconStudio.Xenko.Audio.AudioListener"/> associated to the below <see cref="T:SiliconStudio.Xenko.Engine.AudioListenerComponent"/>.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Audio.AudioListenerProcessor.AssociatedData.ListenerComponent">
-            <summary>
-            The <see cref="T:SiliconStudio.Xenko.Engine.AudioListenerComponent"/> associated to the entity.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Audio.AudioListenerProcessor.AssociatedData.TransformComponent">
-            <summary>
-            The <see cref="F:SiliconStudio.Xenko.Audio.AudioListenerProcessor.AssociatedData.TransformComponent"/> associated to the entity.
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Audio.AudioEmitterProcessor">
@@ -11507,11 +11846,6 @@
             The <see cref="F:SiliconStudio.Xenko.Audio.AudioEmitterProcessor.AssociatedData.TransformComponent"/> associated to the entity
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Audio.AudioEmitterProcessor.AssociatedData.ListenerControllerToSoundInstance">
-            <summary>
-            A dictionary associating each activated listener of the AudioSystem and each sound controller of the <see cref="F:SiliconStudio.Xenko.Audio.AudioEmitterProcessor.AssociatedData.AudioEmitterComponent"/> to a valid sound effect instance.
-            </summary>
-        </member>
         <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterProcessor.#ctor">
             <summary>
             Create a new instance of the processor.
@@ -11531,7 +11865,7 @@
         </member>
         <member name="P:SiliconStudio.Xenko.Audio.AudioSystem.AudioEngine">
             <summary>
-            The underlying <see cref="P:SiliconStudio.Xenko.Audio.AudioSystem.AudioEngine" />. This instance can be used to possibly create <see cref="T:SiliconStudio.Xenko.Audio.DynamicSoundEffectInstance" />.
+            The underlying <see cref="P:SiliconStudio.Xenko.Audio.AudioSystem.AudioEngine" />.
             </summary>
             <value>The audio engine.</value>
         </member>

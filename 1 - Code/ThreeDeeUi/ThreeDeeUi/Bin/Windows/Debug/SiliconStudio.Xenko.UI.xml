@@ -247,13 +247,10 @@
             Function triggered when the value of <see cref="P:SiliconStudio.Xenko.UI.Controls.EditText.MinLines"/> changed.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.UI.Controls.EditText.#ctor(SiliconStudio.Core.IServiceRegistry)">
+        <member name="M:SiliconStudio.Xenko.UI.Controls.EditText.#ctor">
             <summary>
             Create a new instance of <see cref="T:SiliconStudio.Xenko.UI.Controls.EditText"/>.
             </summary>
-            <param name="services">The game services</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="services"/> is null</exception>
-            <exception cref="T:System.ArgumentException"><paramref name="services"/> does not contain an <see cref="T:SiliconStudio.Xenko.Games.IGame"/> service.</exception>
         </member>
         <member name="P:SiliconStudio.Xenko.UI.Controls.EditText.IsSelectionActive">
             <summary>
@@ -262,7 +259,7 @@
         </member>
         <member name="P:SiliconStudio.Xenko.UI.Controls.EditText.SynchronousCharacterGeneration">
             <summary>
-            Gets or sets the value indicating if the text block should generate <see cref="T:SiliconStudio.Xenko.Graphics.Font.DynamicSpriteFont"/> characters synchronously or asynchronously.
+            Gets or sets the value indicating if the text block should generate <see cref="T:SiliconStudio.Xenko.Graphics.Font.RuntimeRasterizedSpriteFont"/> characters synchronously or asynchronously.
             </summary>
             <remarks>If synchronous generation is activated, the game will be block until all the characters have finished to be generate.
             If asynchronous generation is activated, some characters can appears with one or two frames of delay.</remarks>
@@ -1143,7 +1140,7 @@
         </member>
         <member name="P:SiliconStudio.Xenko.UI.Controls.ImageElement.Source">
             <summary>
-            Gets or sets the <see cref="T:SiliconStudio.Xenko.Graphics.Sprite"/> for the image.
+            Gets or sets the <see cref="T:SiliconStudio.Xenko.Engine.ISpriteProvider"/> for the image.
             </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.UI.Controls.ImageElement.Color">
@@ -1206,7 +1203,7 @@
         </member>
         <member name="P:SiliconStudio.Xenko.UI.Controls.TextBlock.SynchronousCharacterGeneration">
             <summary>
-            Gets or sets the value indicating if the text block should generate <see cref="T:SiliconStudio.Xenko.Graphics.Font.DynamicSpriteFont"/> characters synchronously or asynchronously.
+            Gets or sets the value indicating if the text block should generate <see cref="T:SiliconStudio.Xenko.Graphics.Font.RuntimeRasterizedSpriteFont"/> characters synchronously or asynchronously.
             </summary>
             <remarks>If synchronous generation is activated, the game will be block until all the characters have finished to be generate.
             If asynchronous generation is activated, some characters can appears with one or two frames of delay.</remarks>
@@ -2881,11 +2878,6 @@
             Gets a value indicating whether the current size returned by layout measure is valid.
             </summary>
         </member>
-        <member name="P:SiliconStudio.Xenko.UI.UIElement.IsTouched">
-            <summary>
-            Gets a value indicating whether the <see cref="T:SiliconStudio.Xenko.UI.UIElement"/> is currently touched by the user.
-            </summary>
-        </member>
         <member name="P:SiliconStudio.Xenko.UI.UIElement.WorldMatrix">
             <summary>
             The world matrix of the UIElement.
@@ -2987,13 +2979,6 @@
             <summary>
             Gets or sets the user interface (UI) visibility of this element. This is a dependency property.
             </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.UI.UIElement.MouseOverState">
-            <summary>
-            Gets the current state of the mouse over the UI element.
-            </summary>
-            <remarks>Only elements that can be clicked by user can have the <cref>MouseOverState.MouseOverElement</cref> value. 
-            That is element that have <see cref="P:SiliconStudio.Xenko.UI.UIElement.CanBeHitByUser"/> set to <value>true</value></remarks>
         </member>
         <member name="P:SiliconStudio.Xenko.UI.UIElement.DefaultHeight">
             <summary>
@@ -3294,6 +3279,18 @@
             <param name="providedSpace">The total space given to the child element by the parent</param>
             <param name="usedSpaceWithoutThickness">The space used by the child element without the thickness included in it.</param>
             <returns>The offsets</returns>
+        </member>
+        <member name="P:SiliconStudio.Xenko.UI.UIElement.IsTouched">
+            <summary>
+            Gets a value indicating whether the <see cref="T:SiliconStudio.Xenko.UI.UIElement"/> is currently touched by the user.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.UI.UIElement.MouseOverState">
+            <summary>
+            Gets the current state of the mouse over the UI element.
+            </summary>
+            <remarks>Only elements that can be clicked by user can have the <cref>MouseOverState.MouseOverElement</cref> value. 
+            That is element that have <see cref="P:SiliconStudio.Xenko.UI.UIElement.CanBeHitByUser"/> set to <value>true</value></remarks>
         </member>
         <member name="M:SiliconStudio.Xenko.UI.UIElement.RaiseEvent(SiliconStudio.Xenko.UI.Events.RoutedEventArgs)">
             <summary>
@@ -3667,6 +3664,11 @@
             A collection of UIElements.
             </summary>
         </member>
+        <member name="T:SiliconStudio.Xenko.UI.UIElementServices">
+            <summary>
+            Provides a services class for all the User Interface elements in Xenko applications.
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.UI.UIInternalException">
             <summary>
             The exception that is thrown when an internal error happened in the UI System. That is an error that is not due to the user behavior.
@@ -3735,6 +3737,156 @@
         <member name="F:SiliconStudio.Xenko.UI.Visibility.Collapsed">
             <summary>
             Do not display the element, and do not reserve space for it in layout.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.UIComponent">
+            <summary>
+            Add an <see cref="T:SiliconStudio.Xenko.UI.UIElement"/> to an <see cref="T:SiliconStudio.Xenko.Engine.Entity"/>.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.RootElement">
+            <summary>
+            Gets or sets the root element of the UI hierarchy.
+            </summary>
+            <userdoc>The root element of the UI hierarchy.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.IsFullScreen">
+            <summary>
+            Gets or sets the value indicating whether the UI should be full screen.
+            </summary>
+            <userdoc>Check this checkbox to display UI of this component on full screen. Uncheck it to display UI using standard camera.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.Resolution">
+            <summary>
+            Gets or sets the virtual resolution of the UI in virtual pixels.
+            </summary>
+            <userdoc>The value in pixels of the resolution of the UI</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.Size">
+            <summary>
+            Gets or sets the actual size of the UI component in world units. This value is ignored in fullscreen mode.
+            </summary>
+            <userdoc>Gets or sets the actual size of the UI component in world units. This value is ignored in fullscreen mode.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.ResolutionStretch">
+            <summary>
+            Gets or sets the camera.
+            </summary>
+            <value>The camera.</value>
+            <userdoc>Indicate how the virtual resolution value should be interpreted</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.IsBillboard">
+            <summary>
+            Gets or sets the value indicating whether the UI should be displayed as billboard.
+            </summary>
+            <userdoc>If checked, the UI is displayed as a billboard. That is, it is automatically rotated parallel to the screen.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.SnapText">
+            <summary>
+            Gets or sets the value indicating of the UI texts should be snapped to closest pixel.
+            </summary>
+            <userdoc>If checked, all the text of the UI is snapped to the closest pixel (pixel perfect).</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.UIComponent.IsFixedSize">
+            <summary>
+            Gets or sets the value indicating whether the UI should be always a fixed size on the screen.
+            </summary>
+            <userdoc>
+            Gets or sets the value indicating whether the UI should be always a fixed size on the screen.
+            A fixed size component with a height of 1 unit will be 0.1 of the screen size.
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.UIComponent.FixedSizeVerticalUnit">
+            <summary>
+            A fixed size UI component with height of 1 will be this much of the vertical resolution on screen
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.UIElementLinkComponent.Target">
+            <summary>
+            Gets or sets the ui component which contains the hierarchy to use.
+            </summary>
+            <value>
+            The ui component which contains the hierarchy to use.
+            </value>
+            <userdoc>The reference to the target entity to which to attach the current entity. If null, parent will be used.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.UIElementLinkComponent.Camera">
+            <summary>
+            Gets or sets the camera component which is required if the UI component is a billboard.
+            </summary>
+            <value>
+            The camera component which is required if the UI component is a billboard.
+            </value>
+            <userdoc>The reference to the target camera used to render the component. It is only required in case the parent UI component is a billboard.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.UIElementLinkComponent.NodeName">
+            <summary>
+            Gets or sets the name of the element.
+            </summary>
+            <value>
+            The name of the element.
+            </value>
+            <userdoc>The name of node of the model of the target entity to which attach the current entity.</userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.UIElementTransformLink.ComputeMatrix(System.Boolean,SiliconStudio.Core.Mathematics.Matrix@)">
+            <inheritdoc/>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.UI.RenderUIElement.LastMousePosition">
+            <summary>
+            Last registered position of teh mouse
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.UI.RenderUIElement.LastMouseOverElement">
+            <summary>
+            Last element over which the mouse cursor was registered
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.UI.RenderUIElement.LastTouchedElement">
+            <summary>
+            Last element which received a touch/click event
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.UI.UIPipelinePlugin">
+            <summary>
+            Automatically registers UI rendering.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.UI.UIRenderFeature.GetWorldRay(SiliconStudio.Xenko.Graphics.Viewport@,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Core.Mathematics.Matrix@)">
+            <summary>
+            Creates a ray in object space based on a screen position and a previously rendered object's WorldViewProjection matrix
+            </summary>
+            <param name="viewport">The viewport in which the object was rendered</param>
+            <param name="screenPos">The click position on screen in normalized (0..1, 0..1) range</param>
+            <param name="worldViewProj">The WorldViewProjection matrix with which the object was last rendered in the view</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.UI.UIRenderFeature.GetTouchPosition(SiliconStudio.Xenko.Engine.UIComponent,SiliconStudio.Xenko.Graphics.Viewport@,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Core.Mathematics.Ray@)">
+            <summary>
+            Returns if a screen position is within the borders of a tested ui component
+            </summary>
+            <param name="uiComponent">The <see cref="T:SiliconStudio.Xenko.Engine.UIComponent"/> to be tested</param>
+            <param name="viewport">The <see cref="T:SiliconStudio.Xenko.Graphics.Viewport"/> in which the component is being rendered</param>
+            <param name="screenPosition">The position of the lick on the screen in normalized (0..1, 0..1) range</param>
+            <param name="uiRay"><see cref="T:SiliconStudio.Core.Mathematics.Ray"/> from the click in object space of the ui component in (-Resolution.X/2 .. Resolution.X/2, -Resolution.Y/2 .. Resolution.Y/2) range</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.UI.UIRenderFeature.GetElementAtScreenPosition(SiliconStudio.Xenko.UI.UIElement,SiliconStudio.Core.Mathematics.Ray,SiliconStudio.Core.Mathematics.Vector3@)">
+            <summary>
+            Gets the element with which the clickRay intersects, or null if none is found
+            </summary>
+            <param name="rootElement">The root <see cref="T:SiliconStudio.Xenko.UI.UIElement"/> from which it should test</param>
+            <param name="clickRay"><see cref="T:SiliconStudio.Core.Mathematics.Ray"/> from the click in object space of the ui component in (-Resolution.X/2 .. Resolution.X/2, -Resolution.Y/2 .. Resolution.Y/2) range</param>
+            <param name="intersectionPoint">Intersection point between the ray and the element</param>
+            <returns>The <see cref="T:SiliconStudio.Xenko.UI.UIElement"/> with which the ray intersects</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.UI.UIRenderProcessor">
+            <summary>
+            The processor in charge of updating and drawing the entities having sprite components.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.UI.UIRenderProcessor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.UI.UIRenderProcessor"/> class.
             </summary>
         </member>
     </members>

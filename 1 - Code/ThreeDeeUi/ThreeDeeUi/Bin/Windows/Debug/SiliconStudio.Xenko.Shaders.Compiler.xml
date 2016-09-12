@@ -27,7 +27,7 @@
             Converts from HLSL shader sourcecode to a GLSL sourcecode.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Compiler.OpenGL.ShaderConverter.#ctor(System.Boolean,System.Boolean)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Compiler.OpenGL.ShaderConverter.#ctor(SiliconStudio.Shaders.Convertor.GlslShaderPlatform,System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Compiler.OpenGL.ShaderConverter"/> class.
             </summary>
@@ -64,7 +64,7 @@
             The log used by this instance.
             </value>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Compiler.OpenGL.ShaderConverter.Convert(System.String,System.String,SiliconStudio.Shaders.Convertor.PipelineStage,System.String,SiliconStudio.Core.Diagnostics.LoggerResult)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Compiler.OpenGL.ShaderConverter.Convert(System.String,System.String,SiliconStudio.Shaders.Convertor.PipelineStage,System.String,System.Collections.Generic.IDictionary{System.Int32,System.String},SiliconStudio.Core.Diagnostics.LoggerResult)">
             <summary>
             Converts the specified hlsl source code to glsl.
             </summary>
@@ -77,7 +77,7 @@
             The resulting glsl AST tree.
             </returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Compiler.OpenGL.ShaderConverter.Convert(SiliconStudio.Shaders.Parser.ParsingResult,System.String,SiliconStudio.Shaders.Convertor.PipelineStage,System.String,SiliconStudio.Core.Diagnostics.LoggerResult)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Compiler.OpenGL.ShaderConverter.Convert(SiliconStudio.Shaders.Parser.ParsingResult,System.String,SiliconStudio.Shaders.Convertor.PipelineStage,System.String,System.Collections.Generic.IDictionary{System.Int32,System.String},SiliconStudio.Core.Diagnostics.LoggerResult)">
             <summary>
             Converts the specified hlsl source code to glsl.
             </summary>

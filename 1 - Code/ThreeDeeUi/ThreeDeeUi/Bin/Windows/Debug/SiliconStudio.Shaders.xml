@@ -30,6 +30,21 @@
             </summary>
             <param name="breakFlag">the break variable</param>
         </member>
+        <member name="F:SiliconStudio.Shaders.Convertor.GlslShaderPlatform.OpenGL">
+            <summary>
+            GLSL OpenGL Shader.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Shaders.Convertor.GlslShaderPlatform.OpenGLES">
+            <summary>
+            GLSL OpenGL ES Shader.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Shaders.Convertor.GlslShaderPlatform.Vulkan">
+            <summary>
+            GLSL Vulkan Shader.
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Shaders.Convertor.ConstantBufferLayoutRule">
             <summary>
             A single map rule.
@@ -128,7 +143,7 @@
             - Convert return statements into GLSL out assignments.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslConvertor.#ctor(System.String,SiliconStudio.Shaders.Convertor.PipelineStage,SiliconStudio.Shaders.Convertor.ShaderModel,System.Boolean)">
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslConvertor.#ctor(SiliconStudio.Shaders.Convertor.GlslShaderPlatform,System.Int32,System.String,SiliconStudio.Shaders.Convertor.PipelineStage,SiliconStudio.Shaders.Convertor.ShaderModel,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Shaders.Convertor.HlslToGlslConvertor" /> class.
             </summary>
@@ -263,11 +278,6 @@
         <member name="P:SiliconStudio.Shaders.Convertor.HlslToGlslConvertor.KeepNonUniformArrayInitializers">
             <summary>
             Gets or sets a value indicating whether to keep array initializers.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Shaders.Convertor.HlslToGlslConvertor.IsOpenGLES2">
-            <summary>
-            Gets or sets a value indicating whether the shader should be converted to ES2 target.
             </summary>
         </member>
         <member name="P:SiliconStudio.Shaders.Convertor.HlslToGlslConvertor.UnrollForLoops">
@@ -819,6 +829,11 @@
             A Tag associated to a variable
             </summary>
         </member>
+        <member name="T:SiliconStudio.Shaders.Convertor.HlslToGlslConvertor.QualifierComparer">
+            <summary>
+            Sort qualifiers: layout(xx) first, then others (out, int, etc...)
+            </summary>
+        </member>
         <member name="M:SiliconStudio.Shaders.Convertor.HlslTypes.GetType(System.String)">
             <summary>
             Gets the type.
@@ -1019,6 +1034,76 @@
             <summary>
             Proj fetch.
             </summary>
+        </member>
+        <member name="T:SiliconStudio.Shaders.Convertor.HlslToGlslWriter">
+            <summary>
+            A writer for a shader.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.#ctor(SiliconStudio.Shaders.Convertor.GlslShaderPlatform,System.Int32,SiliconStudio.Shaders.Convertor.PipelineStage,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Shaders.Writer.Hlsl.HlslWriter"/> class. 
+            </summary>
+            <param name="useNodeStack">
+            if set to <c>true</c> [use node stack].
+            </param>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Shader)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Literal)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Glsl.InterfaceType)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.Annotations)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.ClassType)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.InterfaceType)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.AsmExpression)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.ConstantBuffer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.Typedef)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.AttributeDeclaration)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.CastExpression)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.Technique)">
+            <summary>
+            Visits the specified technique.
+            </summary>
+            <param name="technique">The technique.</param>
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.StateInitializer)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.StateExpression)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.Semantic)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.PackOffset)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.RegisterLocation)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Shaders.Convertor.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Glsl.LayoutQualifier)">
+            <inheritdoc />
         </member>
         <member name="P:SiliconStudio.Shaders.Properties.Resources.ResourceManager">
             <summary>
@@ -8393,73 +8478,6 @@
             </summary>
             <param name="collectedReferences">The collected declarations.</param>
             <param name="reference">The reference to collect.</param>
-        </member>
-        <member name="T:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter">
-            <summary>
-            A writer for a shader.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.#ctor(System.Boolean)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Shaders.Writer.Hlsl.HlslWriter"/> class. 
-            </summary>
-            <param name="useNodeStack">
-            if set to <c>true</c> [use node stack].
-            </param>
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Literal)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Glsl.InterfaceType)">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.Annotations)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.ClassType)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.InterfaceType)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.AsmExpression)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.ConstantBuffer)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.Typedef)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.AttributeDeclaration)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.CastExpression)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.Technique)">
-            <summary>
-            Visits the specified technique.
-            </summary>
-            <param name="technique">The technique.</param>
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.StateInitializer)">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.StateExpression)">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.Semantic)">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.PackOffset)">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Hlsl.RegisterLocation)">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Shaders.Writer.Hlsl.HlslToGlslWriter.Visit(SiliconStudio.Shaders.Ast.Glsl.LayoutQualifier)">
-            <inheritdoc />
         </member>
         <member name="T:SiliconStudio.Shaders.Writer.Hlsl.HlslWriter">
             <summary>

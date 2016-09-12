@@ -1,11 +1,12 @@
 !PrefabAsset
 Id: b5afc7ae-90fc-46ac-9bba-f9adaafaa637
+SerializedVersion: {Xenko: 1.7.0-beta04}
 Tags: []
 Hierarchy:
     ~Id: 4de2f1a9-3286-4c91-a90d-441d9e8983df
-    RootEntities:
+    RootPartIds:
         - b112135f-e647-4dee-9ead-72281e3c120d
-    Entities:
+    Parts:
         -   Entity:
                 Id: b112135f-e647-4dee-9ead-72281e3c120d
                 Name: Sphere
@@ -24,4 +25,3 @@ Hierarchy:
                     - !ThreeDeeUi.UI.Diagrams.DiagramVertexComponent,ThreeDeeUi.Game
                         ~Id: 3c1ad686-dc1c-4812-96ea-93092abe54a0
                         CurrentElement: null
-            Design: {}

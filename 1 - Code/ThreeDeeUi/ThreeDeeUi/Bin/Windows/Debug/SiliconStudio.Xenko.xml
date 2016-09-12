@@ -1014,6 +1014,11 @@
             GLSL OpenGL ES Shader.
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.GraphicsPlatform.Vulkan">
+            <summary>
+            GLSL/SPIR-V Shader.
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Graphics.GraphicsProfile">
             <summary>
             Identifies the set of supported devices for the demo based on device capabilities.

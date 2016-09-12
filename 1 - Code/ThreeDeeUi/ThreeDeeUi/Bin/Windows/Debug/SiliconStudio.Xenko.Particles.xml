@@ -181,6 +181,43 @@
             The second orientation to interpolate to
             </userdoc>
         </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Initializers.InitialColorParent">
+            <summary>
+            The <see cref="T:SiliconStudio.Xenko.Particles.Initializers.InitialColorParent"/> is an initializer which sets the particle's initial color based on a followed (parent) particle's color
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialColorParent.#ctor">
+            <summary>
+            Default constructor which also registers the fields required by this updater
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialColorParent.SeedOffset">
+            <summary>
+            The seed offset used to match or separate random values
+            </summary>
+            <userdoc>
+            The seed offset used to match or separate random values
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialColorParent.ColorMin">
+            <summary>
+            The first color to interpolate from
+            </summary>
+            <userdoc>
+            The first color to interpolate from
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialColorParent.ColorMax">
+            <summary>
+            The second color to interpolate to
+            </summary>
+            <userdoc>
+            The second color to interpolate to
+            </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialColorParent.Initialize(SiliconStudio.Xenko.Particles.ParticlePool,System.Int32,System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialColorSeed.SeedOffset">
             <summary>
             The seed offset used to match or separate random values
@@ -247,10 +284,182 @@
             Display the Particle Module's bounds as a wireframe debug shape. Temporary feature (will be removed later)!
             </userdoc>
         </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc">
+            <summary>
+            The <see cref="T:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc"/> is an initializer which sets the particle's initial position along a line or an arc
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc.#ctor">
+            <summary>
+            Default constructor which also registers the fields required by this updater
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc.Target">
+            <summary>
+            An arc initializer needs a second point so that it can position the particles in a line or arc between two locators
+            </summary>
+            <userdoc>
+            An arc initializer needs a second point so that it can position the particles in a line or arc between two locators
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc.FallbackTarget">
+            <summary>
+            In case the <see cref="F:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc.Target"/> is null, the <see cref="F:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc.FallbackTarget"/> offset will be used
+            </summary>
+            <userdoc>
+            In case the Target is null, the FallbackTarget offset will be used
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc.ArcHeight">
+            <summary>
+            The height of the arc in the center, which is also subject to scale and rotation if inherited
+            </summary>
+            <userdoc>
+            The height of the arc in the center, which is also subject to scale and rotation if inherited
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc.Sequential">
+            <summary>
+            If <C>true</C> the particles will appear along the arc path in the order they are added.
+            Otherwise, their positions will be random along the arc, not preserving the order of appearance.
+            </summary>
+            <userdoc>
+            If true the particles will appear along the arc path in the order they are added.
+            Otherwise, their positions will be random along the arc, not preserving the order of appearance.
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc.FixedLength">
+            <summary>
+            If positive, it will limit the number of possible positions where the particles can appear along the arc to the specified count.
+            More particles will start appearing over from the biginning of the arc path.
+            </summary>
+            <userdoc>
+            If positive, it will limit the number of possible positions where the particles can appear along the arc to the specified count.
+            More particles will start appearing over from the biginning of the arc path.
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc.PositionMin">
+            <summary>
+            The left bottom back corner of the box
+            </summary>
+            <userdoc>
+            The left bottom back corner of the box
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc.PositionMax">
+            <summary>
+            The right upper front corner of the box
+            </summary>
+            <userdoc>
+            The right upper front corner of the box
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc.SeedOffset">
+            <summary>
+            The seed offset used to match or separate random values
+            </summary>
+            <userdoc>
+            The seed offset used to match or separate random values
+            </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialPositionArc.Initialize(SiliconStudio.Xenko.Particles.ParticlePool,System.Int32,System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Initializers.InitialOrderParent">
+            <summary>
+            The <see cref="T:SiliconStudio.Xenko.Particles.Initializers.InitialOrderParent"/> is an initializer which sets the particle's spawn order based on a followed (parent) particle's order
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialOrderParent.ResetSimulation">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialOrderParent.#ctor">
+            <summary>
+            Default constructor which also registers the fields required by this updater
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialOrderParent.Initialize(SiliconStudio.Xenko.Particles.ParticlePool,System.Int32,System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialOrderParent.RemoveControlGroup">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialOrderParent.AddControlGroup">
+            <inheritdoc />
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Initializers.InitialPositionParent">
+            <summary>
+            The <see cref="T:SiliconStudio.Xenko.Particles.Initializers.InitialPositionParent"/> is an initializer which sets the particle's initial position at the time of spawning
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialPositionParent.#ctor">
+            <summary>
+            Default constructor which also registers the fields required by this updater
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialPositionParent.SeedOffset">
+            <summary>
+            The seed offset used to match or separate random values
+            </summary>
+            <userdoc>
+            The seed offset used to match or separate random values
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialPositionParent.PositionMin">
+            <summary>
+            The left bottom back corner of the box
+            </summary>
+            <userdoc>
+            The left bottom back corner of the box
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialPositionParent.PositionMax">
+            <summary>
+            The right upper front corner of the box
+            </summary>
+            <userdoc>
+            The right upper front corner of the box
+            </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialPositionParent.Initialize(SiliconStudio.Xenko.Particles.ParticlePool,System.Int32,System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Initializers.InitialSizeParent">
+            <summary>
+            The <see cref="T:SiliconStudio.Xenko.Particles.Initializers.InitialSizeParent"/> is an initializer which sets the particle's size based on a followed (parent) particle's size
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialSizeParent.#ctor">
+            <summary>
+            Default constructor which also registers the fields required by this updater
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialSizeParent.SeedOffset">
+            <summary>
+            The seed offset used to match or separate random values
+            </summary>
+            <userdoc>
+            The seed offset used to match or separate random values
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialSizeParent.RandomSize">
+            <summary>
+            Minimum and maximum values for the size field
+            </summary>
+            <userdoc>
+            Minimum and maximum values for the size field
+            </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialSizeParent.Initialize(SiliconStudio.Xenko.Particles.ParticlePool,System.Int32,System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:SiliconStudio.Xenko.Particles.Initializers.InitialSpawnOrder">
             <summary>
             The <see cref="T:SiliconStudio.Xenko.Particles.Initializers.InitialSpawnOrder"/> is an initializer which assigns all particles an increasing number based on the order of their spawning
             </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialSpawnOrder.ResetSimulation">
+            <inheritdoc />
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialSpawnOrder.#ctor">
             <summary>
@@ -259,6 +468,114 @@
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialSpawnOrder.Initialize(SiliconStudio.Xenko.Particles.ParticlePool,System.Int32,System.Int32,System.Int32)">
             <inheritdoc />
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Initializers.InitialVelocityParent">
+            <summary>
+            The <see cref="T:SiliconStudio.Xenko.Particles.Initializers.InitialVelocityParent"/> is an initializer which sets the particle's velocity based on a followed (parent) particle's velocity
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialVelocityParent.#ctor">
+            <summary>
+            Default constructor which also registers the fields required by this updater
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialVelocityParent.SeedOffset">
+            <summary>
+            The seed offset used to match or separate random values
+            </summary>
+            <userdoc>
+            The seed offset used to match or separate random values
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialVelocityParent.ParentVelocityFactor">
+            <summary>
+            The factor (percentage) for parent's velocity inheritance
+            </summary>
+            <userdoc>
+            The factor (percentage) for parent's velocity inheritance
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialVelocityParent.VelocityMin">
+            <summary>
+            The left bottom back corner of the box
+            </summary>
+            <userdoc>
+            The left bottom back corner of the box
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialVelocityParent.VelocityMax">
+            <summary>
+            The right upper front corner of the box
+            </summary>
+            <userdoc>
+            The right upper front corner of the box
+            </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialVelocityParent.Initialize(SiliconStudio.Xenko.Particles.ParticlePool,System.Int32,System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Initializers.ParticleChildInitializer">
+            <summary>
+            Base class for initializers which reference a parent particle emitter
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Initializers.ParticleChildInitializer.Parent">
+            <summary>
+            Referenced parent emitter
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Initializers.ParticleChildInitializer.parentName">
+            <summary>
+            Referenced parent emitter's name
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Initializers.ParticleChildInitializer.isParentNameDirty">
+            <summary>
+            <c>true</c> is the parent's name has changed or the particle system has been invalidated
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.ParticleChildInitializer.ParentName">
+            <summary>
+            Name by which to reference a followed (parent) emitter
+            </summary>
+            <userdoc>
+            Name by which to reference a followed (parent) emitter
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.ParticleChildInitializer.ParentSeedOffset">
+            <summary>
+            The parent seed offset is used to determine which particle from the pool should be picked as a parent in case there is no control group
+            </summary>
+            <userdoc>
+            The parent seed offset is used to determine which particle from the pool should be picked as a parent in case there is no control group
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Initializers.ParticleChildInitializer.ParentControlFlag">
+            <summary>
+            Some initializers require fine control between parent and child emitters. Use the control group to assign such meta-fields.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.ParticleChildInitializer.GetSpawnControlField">
+            <summary>
+            Gets a field accessor to the parent emitter's spawn control field, if it exists
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.ParticleChildInitializer.SetParentTRS(SiliconStudio.Xenko.Particles.ParticleTransform,SiliconStudio.Xenko.Particles.ParticleSystem)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.ParticleChildInitializer.InvalidateRelations">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.ParticleChildInitializer.RemoveControlGroup">
+            <summary>
+            Removes the old required control group field from the parent emitter's pool
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.ParticleChildInitializer.AddControlGroup">
+            <summary>
+            Adds the required control group field to the parent emitter's pool
+            </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "M:SiliconStudio.Xenko.Particles.Initializers.ParticleInitializer.Initialize(SiliconStudio.Xenko.Particles.ParticlePool,System.Int32,System.Int32,System.Int32)" -->
         <member name="T:SiliconStudio.Xenko.Particles.Initializers.InitialPositionSeed">
@@ -296,6 +613,14 @@
             </summary>
             <userdoc>
             The right upper front corner of the box
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Initializers.InitialPositionSeed.Interpolate">
+            <summary>
+            If set to <c>true</c> it will interpolate the particles between the old and the new position, rather than using only the new one
+            </summary>
+            <userdoc>
+            If set to <c>true</c> it will interpolate the particles between the old and the new position, rather than using only the new one
             </userdoc>
         </member>
         <member name="P:SiliconStudio.Xenko.Particles.Initializers.InitialPositionSeed.DebugDraw">
@@ -516,6 +841,22 @@
             Defines if the particles should be rendered as alpha-blended (0), additive (1) or something in-between (any value between 0 and 1)
             </userdoc>
         </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialSimple.ZOffset">
+            <summary>
+            Adjusts the depth of the particle in regard to opaque objects
+            </summary>
+            <userdoc>
+            Adjusts the depth of the particle in regard to opaque objects
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialSimple.SoftEdgeDistance">
+            <summary>
+            If positive, soft particle edges will be calculated with maximum distance of the value set.
+            </summary>
+            <userdoc>
+            If positive, soft particle edges will be calculated with maximum distance of the value set.
+            </userdoc>
+        </member>
         <member name="P:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialSimple.FaceCulling">
             <summary>
             Allows the particle shape to be back- or front-face culled.
@@ -644,6 +985,11 @@
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Particles.Rendering.ParticleSystemRenderProcessor"/> class.
             </summary>
         </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Rendering.ParticleUtilitiesPerView">
+            <summary>
+            Should be identical to the cbuffer PerView in ParticleUtilities.xksl
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Particles.Rendering.ParticleEmitterRenderFeature">
             <summary>
             Renders <see cref="T:SiliconStudio.Xenko.Particles.Rendering.RenderParticleEmitter"/>.
@@ -655,10 +1001,10 @@
         <member name="M:SiliconStudio.Xenko.Particles.Rendering.ParticleEmitterRenderFeature.Extract">
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Rendering.ParticleEmitterRenderFeature.PrepareEffectPermutationsImpl(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Particles.Rendering.ParticleEmitterRenderFeature.PrepareEffectPermutationsImpl(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Rendering.ParticleEmitterRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderThreadContext)">
+        <member name="M:SiliconStudio.Xenko.Particles.Rendering.ParticleEmitterRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.Rendering.ParticleEmitterRenderFeature.ProcessPipelineState(SiliconStudio.Xenko.Rendering.RenderContext,SiliconStudio.Xenko.Rendering.RenderNodeReference,SiliconStudio.Xenko.Rendering.RenderNode@,SiliconStudio.Xenko.Rendering.RenderObject,SiliconStudio.Xenko.Graphics.PipelineStateDescription)">
@@ -762,6 +1108,33 @@
             <param name="rotationField">Rotation field accessor</param>
             <param name="lifeField">Normalized particle life for sampling</param>
             <returns>Screen space rotation in radians, positive is clockwise</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderOrientedQuad">
+            <summary>
+            Shape builder which builds each particle as a non-uniform quad oriented along an axis
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderOrientedQuad.ScaleLength">
+            <summary>
+            If <c>true</c>, length will scale with particle size
+            </summary>
+            <userdoc>
+            If true, length will scale with particle size
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderOrientedQuad.LengthFactor">
+            <summary>
+            Length will be modified with this factor
+            </summary>
+            <userdoc>
+            Length will be modified with this factor
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderOrientedQuad.QuadsPerParticle">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderOrientedQuad.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+            <inheritdoc />
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderQuad">
             <summary>
@@ -880,6 +1253,11 @@
             Restarts the point string, potentially expanding the capacity
             </summary>
             <param name="newCapacity">Required minimum capacity</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer.RibbonSplit">
+            <summary>
+            Splits (cuts) the ribbon without restarting or rebuilding the vertex buffer
+            </summary>
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer.AddParticle(SiliconStudio.Core.Mathematics.Vector3@,System.Single)">
             <summary>
@@ -1023,6 +1401,11 @@
             </summary>
             <param name="newCapacity">Required minimum capacity</param>
         </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer.RibbonSplit">
+            <summary>
+            Splits (cuts) the trail without restarting or rebuilding the vertex buffer
+            </summary>
+        </member>
         <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer.AddParticle(SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Vector3@)">
             <summary>
             Adds a new particle position and size to the point string
@@ -1111,7 +1494,7 @@
             If <c>True</c>, the texture coordinates will be flipped vertically prior to texture sampling. 
             </userdoc>
         </member>
-        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.Tools.UVRotate.UvClockwise">
+        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.Tools.UVRotate.UVClockwise">
             <summary>
             If <c>True</c>, the texture coordinates will be rotated clockwise by the specified angle prior to texture sampling.
             </summary>
@@ -1271,6 +1654,432 @@
             <inheritdoc />
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterLiving.GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerBirth">
+            <summary>
+            <see cref="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerBirth"/> triggers when the parent particle is first spawned
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerDeath">
+            <summary>
+            <see cref="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerDeath"/> triggers when the parent particle dies
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerDistance">
+            <summary>
+            <see cref="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerDistance"/> triggers when the parent particle tarvels beyond set distance
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerDistance.AddRequiredParentFields(SiliconStudio.Xenko.Particles.ParticleEmitter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerDistance.RemoveRequiredParentFields(SiliconStudio.Xenko.Particles.ParticleEmitter)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.SpawnerBurst">
+            <summary>
+            A particle spawner which continuously spawns particles. Number of particles to be spawned is given in seconds.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerBurst.SpawnCount">
+            <summary>
+            The amount of particles this spawner will emit in one burst when it activates
+            </summary>
+            <userdoc>
+            The amount of particles this spawner will emit in one burst when it activates
+            </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerBurst.GetMaxParticlesPerSecond">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerBurst.SpawnNew(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerBurst.NotifyStateSwitch(SiliconStudio.Xenko.Particles.Spawners.SpawnerState)">
+            <inheritdoc />
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.ParentControlFlag">
+            <summary>
+            Some initializers require fine control between parent and child emitters. Use the control group to assign such meta-fields.
+            </summary>
+            <userdoc>
+            Some initializers require fine control between parent and child emitters. Use the control group to assign such meta-fields.
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.ParentControlFlag.Group00">
+            <summary>
+            Use a meta-data control group with index 0
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.ParentControlFlag.Group01">
+            <summary>
+            Use a meta-data control group with index 1
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.ParentControlFlag.Group02">
+            <summary>
+            Use a meta-data control group with index 2
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.ParentControlFlag.Group03">
+            <summary>
+            Use a meta-data control group with index 3
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.ParentControlFlag.None">
+            <summary>
+            Do not use meta-data control groups
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTrigger">
+            <summary>
+            <see cref="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTrigger"/> governs the condition under which particle emission is triggered for spawners like <see cref="T:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent"/>
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTrigger.PrepareFromPool(SiliconStudio.Xenko.Particles.ParticlePool)">
+            <summary>
+            Prepares fields accessors before the 
+            </summary>
+            <param name="pool"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTrigger.HasTriggered(SiliconStudio.Xenko.Particles.Particle)">
+            <summary>
+            For positive values, shows if the condition was met and how much is the magnitude
+            </summary>
+            <param name="parentParticle">Parent particle which attributes are used for testing</param>
+            <returns>0f if it hasn't triggered, positive value otherwise, which also indicates the magnitude of the trigger</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTrigger.AddRequiredParentFields(SiliconStudio.Xenko.Particles.ParticleEmitter)">
+            <summary>
+            Override to add the required fields to the parent emitter
+            </summary>
+            <param name="parentEmitter">Parent emitter to which required fields should be added</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTrigger.RemoveRequiredParentFields(SiliconStudio.Xenko.Particles.ParticleEmitter)">
+            <summary>
+            Override to remove the required fields from the parent emitter
+            </summary>
+            <param name="parentEmitter">Parent emitter from which required fields should be removed</param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTrigger`1">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerCollision">
+            <summary>
+            <see cref="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerCollision"/> triggers when the parent particle collides with a surface
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerLifetime">
+            <summary>
+            <see cref="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerLifetime"/> triggers when the parent particle's remaining lifetime is within the specified limit
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerLifetime.LifetimeLowerLimit">
+            <summary>
+            If the parent particle is younger than the lower limit, it won't spawn children. When the lower limit is higher than the upper limit the condition is reversed.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerLifetime.LifetimeUpperLimit">
+            <summary>
+            If the parent particle is older than the upper limit, it won't spawn children. When the upper limit is smaller than the lower limit the condition is reversed.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromDistance">
+            <summary>
+            A particle spawner which continuously spawns particles. Number of particles to be spawned is given in seconds.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromDistance.SpawnCount">
+            <summary>
+            The amount of particles this spawner will emit over one second, every second
+            </summary>
+            <userdoc>
+            The amount of particles this spawner will emit over one second, every second
+            </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromDistance.GetMaxParticlesPerSecond">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromDistance.SpawnNew(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)">
+            <inheritdoc />
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent">
+            <summary>
+            A particle spawner which continuously spawns particles based on a condition set in a followed (parent) emitter
+            </summary>
+            <userdoc>
+            A particle spawner which continuously spawns particles based on a condition set in a followed (parent) emitter
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.parentControlFlag">
+            <summary>
+            Some initializers require fine control between parent and child emitters. Use the control group to assign such meta-fields.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.particleSpawnTrigger">
+            <summary>
+            <see cref="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.ParticleSpawnTrigger"/> provides a class which checks if the spawning condition has triggered
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.Parent">
+            <summary>
+            Referenced parent emitter
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.parentName">
+            <summary>
+            Referenced parent emitter's name
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.isParentNameDirty">
+            <summary>
+            <c>true</c> is the parent's name has changed or the particle system has been invalidated
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.spawnCount">
+            <summary>
+            Minimum and maximum number of particles to spawn every time the condition is met
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.ParentName">
+            <summary>
+            Name by which to reference a followed (parent) emitter
+            </summary>
+            <userdoc>
+            Name by which to reference a followed (parent) emitter
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.ParentControlFlag">
+            <summary>
+            Some initializers require fine control between parent and child emitters. Use the control group to assign such meta-fields.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.RemoveControlGroup">
+            <summary>
+            Removes the old required control group field from the parent emitter's pool
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.AddControlGroup">
+            <summary>
+            Adds the required control group field to the parent emitter's pool
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.GetSpawnControlField">
+            <summary>
+            Gets a field accessor to the parent emitter's spawn control field, if it exists
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.ParticleSpawnTrigger">
+            <summary>
+            <see cref="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.ParticleSpawnTrigger"/> provides a class which checks if the spawning condition has triggered
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.SpawnCount">
+            <summary>
+            The amount of particles this spawner will emit when the event is triggered
+            </summary>
+            <userdoc>
+            The amount of particles this spawner will emit when the event is triggered
+            </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.GetMaxParticlesPerSecond">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.SpawnNew(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerFromParent.InvalidateRelations">
+            <inheritdoc />
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerLoopCondition.Looping">
+            <summary>
+            Looping spawner will loop to the beginning of its Delay state when its Duration is over
+            If there is no delay it's indistinguishable from LoopingNoDelay
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerLoopCondition.LoopingNoDelay">
+            <summary>
+            LoopingNoDelay spawner will loop to the beginning of its Active state when its Duration is over
+                essentially skipping the Delay state after the first loop
+            If there is no delay it's indistinguishable from Looping
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerLoopCondition.OneShot">
+            <summary>
+            OneShot particle spawners will not loop and will only be ative for a period of time equal to its Duration
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerState.Inactive">
+            <summary>
+            A spawner in Inactive state hasn't been updated yet. Upon constructing, the Spawner is Inactive,
+                but can't return to this state anymore
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerState.Rest">
+            <summary>
+            A spawner starts in Rest state and stays in this state for as long as it is delayed.
+            While in Rest state it doesn't emit particles and switches to Active state after the Rest state is over
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerState.Active">
+            <summary>
+            A spawner in Active state emits particles. After the Active state expires, the spawner can switch to
+                Rest, Active or Dead state depending on its looping condition.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerState.Dead">
+            <summary>
+            A spawner in Dead state is not emitting particles and likely not switching to Rest or Active anymore.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner">
+            <summary>
+            <see cref="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner"/> governs the rate at which new particles are emitted into the <see cref="T:SiliconStudio.Xenko.Particles.ParticleEmitter"/>
+            Multiple spawners with different triggering conditions can be part of the same <see cref="T:SiliconStudio.Xenko.Particles.ParticleEmitter"/>
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.Enabled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner"/> is enabled.
+            </summary>
+            <value>
+              <c>true</c> if enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.LoopCondition">
+            <summary>
+            Indicates if the spawner should loop, and if there is a delay every time it loops
+            </summary>
+            <userdoc>
+            Indicates if the spawner should loop, and if there is a delay every time it loops
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.Delay">
+            <summary>
+            The minimum and maximum time the spawner should wait before starting to emit particles
+            </summary>
+            <userdoc>
+            The minimum and maximum time the spawner should wait before starting to emit particles
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.Duration">
+            <summary>
+            The minimum and maximum duration the spawner will be active once it starts spawning particles
+            </summary>
+            <userdoc>
+            The minimum and maximum duration the spawner will be active once it starts spawning particles
+            </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.ResetSimulation">
+            <summary>
+            Restarts the spawner setting it to inactive state and elapsed time = 0
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.MarkAsDirty">
+            <summary>
+            Marking the spawner as dirty will notify the parent emitter that the maximum number of particles need to be recalculated
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.NextFloat">
+            <summary>
+            Gets a next random float value from the random seed
+            </summary>
+            <returns>Random float value in the range [0..1)</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.SwitchToState(SiliconStudio.Xenko.Particles.Spawners.SpawnerState)">
+            <summary>
+            Changes the spawners internal state (active, rest, etc.) to a new value.
+            </summary>
+            <param name="newState">The new state</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.GetUpdatedState(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)">
+            <summary>
+            Updates and gets the current internal state
+            </summary>
+            <param name="dt">Delta time in seconds since the last <see cref="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.GetUpdatedState(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)"/> was called</param>
+            <param name="emitter">Parent <see cref="T:SiliconStudio.Xenko.Particles.ParticleEmitter"/> for this spawner</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.SpawnNew(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)">
+            <summary>
+            This method will be called form the emitter when it needs to poll how many particles to spawn (usually once per frame)
+            </summary>
+            <param name="dt">Time it has past since the last update (in seconds)</param>
+            <param name="emitter">Parent emitter in which new particles should be emitter</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.GetMaxParticlesPerSecond">
+            <summary>
+            Get the maximum number of particles this spawner can emit in one second
+            </summary>
+            <returns>Peak particles per second</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.InvalidateRelations">
+            <summary>
+            Invalidates relation of this emitter to any other emitters that might be referenced
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.NotifyStateSwitch(SiliconStudio.Xenko.Particles.Spawners.SpawnerState)">
+            <summary>
+            Will be called when the state changes. Override if you need to set/reset variables based on state changes
+            </summary>
+            <param name="newState">The new state</param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerFrame">
+            <summary>
+            A particle spawner which continuously spawns particles. Number of particles to be spawned is given in seconds.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerFrame.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerFrame.SpawnCount">
+            <summary>
+            The amount of particles this spawner will emit each frame
+            </summary>
+            <userdoc>
+            The amount of particles this spawner will emit each frame
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerFrame.Framerate">
+            <summary>
+            The maximum framerate you expect your game to achieve. It is only used for maximum particles estimation, not for actual spawning rate
+            </summary>
+            <userdoc>
+            The maximum framerate you expect your game to achieve. It is only used for maximum particles estimation, not for actual spawning rate
+            </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerFrame.GetMaxParticlesPerSecond">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerFrame.SpawnNew(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)">
+            <inheritdoc />
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerSecond">
+            <summary>
+            A particle spawner which continuously spawns particles. Number of particles to be spawned is given in seconds.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerSecond.SpawnCount">
+            <summary>
+            The amount of particles this spawner will emit over one second, every second
+            </summary>
+            <userdoc>
+            The amount of particles this spawner will emit over one second, every second
+            </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerSecond.GetMaxParticlesPerSecond">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerSecond.SpawnNew(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)">
             <inheritdoc />
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.Updaters.UpdaterColorOverTime">
@@ -1688,7 +2497,7 @@
         <member name="M:SiliconStudio.Xenko.Particles.Modules.UpdaterForceField.Update(System.Single,SiliconStudio.Xenko.Particles.ParticlePool)">
             <inheritdoc />
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Modules.UpdaterForceField.SetParentTrs(SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single)">
+        <member name="M:SiliconStudio.Xenko.Particles.Modules.UpdaterForceField.SetParentTRS(SiliconStudio.Xenko.Particles.ParticleTransform,SiliconStudio.Xenko.Particles.ParticleSystem)">
             <inheritdoc />
         </member>
         <member name="P:SiliconStudio.Xenko.Particles.Modules.UpdaterForceField.DebugDraw">
@@ -1723,6 +2532,14 @@
             </summary>
             <param name="dt">Delta time in seconds which has passed since the last update call</param>
             <param name="pool">The target <see cref="T:SiliconStudio.Xenko.Particles.ParticlePool"/> which needs to be updated</param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Modules.UpdaterSpeedToDirection">
+            <summary>
+            The <see cref="T:SiliconStudio.Xenko.Particles.Modules.UpdaterSpeedToDirection"/> calculates the particle's direction (not normalized) based on its delta position
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.Modules.UpdaterSpeedToDirection.IsPostUpdater">
+            <inheritdoc />
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.Particle">
             <summary>
@@ -1840,6 +2657,11 @@
             Particles will live for a number of seconds between these two values
             </summary>
         </member>
+        <member name="P:SiliconStudio.Xenko.Particles.ParticleEmitter.DelayParticleDeath">
+            <summary>
+            If positive, forces particles to stay one frame more when they are about ot expire
+            </summary>
+        </member>
         <member name="F:SiliconStudio.Xenko.Particles.ParticleEmitter.requiredFields">
             <summary>
             A list of the required particle fields for the <see cref="T:SiliconStudio.Xenko.Particles.ParticlePool"/>
@@ -1853,6 +2675,24 @@
         <member name="F:SiliconStudio.Xenko.Particles.ParticleEmitter.VertexBuilder">
             <summary>
             The vertex builder is used for rendering, and it builds the actual vertex buffer stream from particle data
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.ParticleEmitter.emitterName">
+            <summary>
+            Optional name for the emitter, so that it can be referenced from other emitters
+            </summary>
+            <userdoc>
+            Optional name for the emitter, so that it can be referenced from other emitters
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.ParticleEmitter.cachedParentSystem">
+            <summary>
+            Cached parent particle system, used for notifications
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.ParticleEmitter.CachedParticleSystem">
+            <summary>
+            Cached parent particle system, used for notifications
             </summary>
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.ParticleEmitter.#ctor">
@@ -1870,6 +2710,11 @@
             Maximum number of particles this <see cref="T:SiliconStudio.Xenko.Particles.ParticleEmitter"/> can have at any given time
             </summary>
         </member>
+        <member name="P:SiliconStudio.Xenko.Particles.ParticleEmitter.CanEmitParticles">
+            <summary>
+            Indicates if the emitter is allowed to emit new particles or not.
+            </summary>
+        </member>
         <member name="P:SiliconStudio.Xenko.Particles.ParticleEmitter.Enabled">
             <summary>
             Gets or sets a value indicating whether this <see cref="T:SiliconStudio.Xenko.Particles.ParticleEmitter"/> is enabled.
@@ -1877,6 +2722,14 @@
             <value>
               <c>true</c> if enabled; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.ParticleEmitter.EmitterName">
+            <summary>
+            The emitter name is used to uniquely identify this emitter within the same particle system
+            </summary>
+            <userdoc>
+            The emitter name is used to uniquely identify this emitter within the same particle system
+            </userdoc>
         </member>
         <member name="P:SiliconStudio.Xenko.Particles.ParticleEmitter.MaxParticlesOverride">
             <summary>
@@ -1900,6 +2753,14 @@
             </summary>
             <userdoc>
             All random numbers in the Particle System are based on a seed. If you use deterministic seeds, your particles will always behave the same way every time you start the simulation.
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.ParticleEmitter.DrawPriority">
+            <summary>
+            DrawPriority is used to sort emitters at the same position based on a user defined key and determine the order in which they will be drawn 
+            </summary>
+            <userdoc>
+            DrawPriority determines draw order within the same particle system. Higher priority appears on the top.
             </userdoc>
         </member>
         <member name="P:SiliconStudio.Xenko.Particles.ParticleEmitter.SortingPolicy">
@@ -2066,6 +2927,11 @@
             This is a strictly debug feature so it (probably) won't be invoked during the game (unless changing the simulation space is intended?)
             </summary>
         </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ParticleEmitter.InvalidateRelations">
+            <summary>
+            Invalidates relation of this emitter to any other emitters that might be referenced
+            </summary>
+        </member>
         <member name="F:SiliconStudio.Xenko.Particles.ParticleField.Offset">
             <summary>
             Offset of the field from the particle's position
@@ -2132,6 +2998,21 @@
             Order of the particle, which can be based on spawn order or something else
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Particles.ParticleFields.ChildOrder">
+            <summary>
+            Order of the particle's children, which is based on their spawn order
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.ParticleFields.CollisionControl">
+            <summary>
+            Provides control flags for particles which have collision enabled
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Particles.ParticleFields.ChildrenFlags">
+            <summary>
+            ChildrenFlags is used to store meta-data for the dependent particles
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Particles.ParticleModule">
             <summary>
             The <see cref="T:SiliconStudio.Xenko.Particles.ParticleModule"/> is a base class for all plugins (initializers and updaters) used by the emitter
@@ -2168,14 +3049,18 @@
             Please fill it during construction time.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ParticleModule.SetParentTrs(SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single)">
+        <member name="M:SiliconStudio.Xenko.Particles.ParticleModule.SetParentTRS(SiliconStudio.Xenko.Particles.ParticleTransform,SiliconStudio.Xenko.Particles.ParticleSystem)">
             <summary>
             Sets the parent (particle system's) translation, rotation and scale (uniform)
             The module can choose to inherit, use or ignore any of the elements
             </summary>
-            <param name="translation">Particle System's translation (from the Transform component)</param>
-            <param name="rotation">Particle System's quaternion rotation (from the Transform component)</param>
-            <param name="scale">Particle System's uniform scale (from the Transform component)</param>
+            <param name="transform"><see cref="T:SiliconStudio.Xenko.Particles.ParticleSystem"/>'s transform (from the Transform component) or identity if local space is used</param>
+            <param name="parent">The parent <see cref="T:SiliconStudio.Xenko.Particles.ParticleSystem"/></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ParticleModule.InvalidateRelations">
+            <summary>
+            Invalidates relation of this emitter to any other emitters that might be referenced
+            </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.ParticlePool">
             <summary>
@@ -2426,6 +3311,11 @@
             Random seed offset used for coupling 3-dimensional random values
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Particles.ParticleSystem.timeout">
+            <summary>
+            If positive, it indicates how much remaining time there is before the system calls Stop()
+            </summary>
+        </member>
         <member name="P:SiliconStudio.Xenko.Particles.ParticleSystem.Enabled">
             <summary>
             Gets or sets a value indicating whether this <see cref="T:SiliconStudio.Xenko.Particles.ParticleSystem"/> is enabled.
@@ -2511,6 +3401,11 @@
             Scale of the ParticleSystem. Only uniform scale is supported. Usually inherited directly from the ParticleSystemComponent or can be directly set.
             </userdoc>
         </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ParticleSystem.InvalidateRelations">
+            <summary>
+            Invalidates relation of this emitter to any other emitters that might be referenced
+            </summary>
+        </member>
         <member name="M:SiliconStudio.Xenko.Particles.ParticleSystem.Update(System.Single)">
             <summary>
             Updates the particles
@@ -2550,178 +3445,17 @@
             Stops the particle simulation by resetting it to its initial state and pausing it
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerLoopCondition.Looping">
+        <member name="M:SiliconStudio.Xenko.Particles.ParticleSystem.Timeout(System.Single)">
             <summary>
-            Looping spawner will loop to the beginning of its Delay state when its Duration is over
-            If there is no delay it's indistinguishable from LoopingNoDelay
+            Disables emission of new particles and sets a time limit on the system. After the time expires, the system stops.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerLoopCondition.LoopingNoDelay">
+        <member name="M:SiliconStudio.Xenko.Particles.ParticleSystem.GetEmitterByName(System.String)">
             <summary>
-            LoopingNoDelay spawner will loop to the beginning of its Active state when its Duration is over
-                essentially skipping the Delay state after the first loop
-            If there is no delay it's indistinguishable from Looping
+            Gets the first emitter with matching name which is contained in this <see cref="T:SiliconStudio.Xenko.Particles.ParticleSystem"/>
             </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerLoopCondition.OneShot">
-            <summary>
-            OneShot particle spawners will not loop and will only be ative for a period of time equal to its Duration
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerState.Inactive">
-            <summary>
-            A spawner in Inactive state hasn't been updated yet. Upon constructing, the Spawner is Inactive,
-                but can't return to this state anymore
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerState.Rest">
-            <summary>
-            A spawner starts in Rest state and stays in this state for as long as it is delayed.
-            While in Rest state it doesn't emit particles and switches to Active state after the Rest state is over
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerState.Active">
-            <summary>
-            A spawner in Active state emits particles. After the Active state expires, the spawner can switch to
-                Rest, Active or Dead state depending on its looping condition.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Particles.Spawners.SpawnerState.Dead">
-            <summary>
-            A spawner in Dead state is not emitting particles and likely not switching to Rest or Active anymore.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner">
-            <summary>
-            <see cref="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner"/> governs the rate at which new particles are emitted into the <see cref="T:SiliconStudio.Xenko.Particles.ParticleEmitter"/>
-            Multiple spawners with different triggering conditions can be part of the same <see cref="T:SiliconStudio.Xenko.Particles.ParticleEmitter"/>
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.Enabled">
-            <summary>
-            Gets or sets a value indicating whether this <see cref="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner"/> is enabled.
-            </summary>
-            <value>
-              <c>true</c> if enabled; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.LoopCondition">
-            <summary>
-            Indicates if the spawner should loop, and if there is a delay every time it loops
-            </summary>
-            <userdoc>
-            Indicates if the spawner should loop, and if there is a delay every time it loops
-            </userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.Delay">
-            <summary>
-            The minimum and maximum time the spawner should wait before starting to emit particles
-            </summary>
-            <userdoc>
-            The minimum and maximum time the spawner should wait before starting to emit particles
-            </userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.Duration">
-            <summary>
-            The minimum and maximum duration the spawner will be active once it starts spawning particles
-            </summary>
-            <userdoc>
-            The minimum and maximum duration the spawner will be active once it starts spawning particles
-            </userdoc>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.ResetSimulation">
-            <summary>
-            Restarts the spawner setting it to inactive state and elapsed time = 0
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.MarkAsDirty">
-            <summary>
-            Marking the spawner as dirty will notify the parent emitter that the maximum number of particles need to be recalculated
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.NextFloat">
-            <summary>
-            Gets a next random float value from the random seed
-            </summary>
-            <returns>Random float value in the range [0..1)</returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.SwitchToState(SiliconStudio.Xenko.Particles.Spawners.SpawnerState)">
-            <summary>
-            Changes the spawners internal state (active, rest, etc.) to a new value.
-            </summary>
-            <param name="newState">The new state</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.GetUpdatedState(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)">
-            <summary>
-            Updates and gets the current internal state
-            </summary>
-            <param name="dt">Delta time in seconds since the last <see cref="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.GetUpdatedState(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)"/> was called</param>
-            <param name="emitter">Parent <see cref="T:SiliconStudio.Xenko.Particles.ParticleEmitter"/> for this spawner</param>
-            <returns></returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.SpawnNew(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)">
-            <summary>
-            This method will be called form the emitter when it needs to poll how many particles to spawn (usually once per frame)
-            </summary>
-            <param name="dt">Time it has past since the last update (in seconds)</param>
-            <param name="emitter">Parent emitter in which new particles should be emitter</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawner.GetMaxParticlesPerSecond">
-            <summary>
-            Get the maximum number of particles this spawner can emit in one second
-            </summary>
-            <returns>Peak particles per second</returns>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerFrame">
-            <summary>
-            A particle spawner which continuously spawns particles. Number of particles to be spawned is given in seconds.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerFrame.#ctor">
-            <summary>
-            Default constructor
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerFrame.SpawnCount">
-            <summary>
-            The amount of particles this spawner will emit each frame
-            </summary>
-            <userdoc>
-            The amount of particles this spawner will emit each frame
-            </userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerFrame.Framerate">
-            <summary>
-            The maximum framerate you expect your game to achieve. It is only used for maximum particles estimation, not for actual spawning rate
-            </summary>
-            <userdoc>
-            The maximum framerate you expect your game to achieve. It is only used for maximum particles estimation, not for actual spawning rate
-            </userdoc>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerFrame.GetMaxParticlesPerSecond">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerFrame.SpawnNew(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)">
-            <inheritdoc />
-        </member>
-        <member name="T:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerSecond">
-            <summary>
-            A particle spawner which continuously spawns particles. Number of particles to be spawned is given in seconds.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerSecond.SpawnCount">
-            <summary>
-            The amount of particles this spawner will emit over one second, every second
-            </summary>
-            <userdoc>
-            The amount of particles this spawner will emit over one second, every second
-            </userdoc>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerSecond.GetMaxParticlesPerSecond">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Spawners.SpawnerPerSecond.SpawnNew(System.Single,SiliconStudio.Xenko.Particles.ParticleEmitter)">
-            <inheritdoc />
+            <param name="name">Name of the emitter. Some emitters might not have a name and cannot be referenced</param>
+            <returns><see cref="T:SiliconStudio.Xenko.Particles.ParticleEmitter"/> with the same <see cref="P:SiliconStudio.Xenko.Particles.ParticleEmitter.EmitterName"/> or <c>null</c> if not found</returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor">
             <summary>

@@ -1110,9 +1110,9 @@
             The result of the parsing
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.OccurenceId">
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.OccurrenceId">
             <summary>
-            Occurence ID in the inheritance tree
+            Occurrence ID in the inheritance tree
             </summary>
         </member>
         <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.PotentialConflictingVariables">
@@ -1577,9 +1577,9 @@
             </summary>
             <param name="mixin">the mixin to add</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ComputeMixinOccurence">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ComputeMixinOccurrence">
             <summary>
-            Compute the occurence Id of each mixin
+            Compute the occurrence Id of each mixin
             </summary>
         </member>
         <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.FindVariable(SiliconStudio.Shaders.Ast.Expression,SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin@)">
@@ -2544,7 +2544,7 @@
         </member>
         <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderVirtualTable.ReplaceVirtualMethod(SiliconStudio.Shaders.Ast.MethodDeclaration,SiliconStudio.Shaders.Utility.LoggerResult)">
             <summary>
-            Replace the method occurence with its last definition
+            Replace the method occurrence with its last definition
             </summary>
             <param name="methodDeclaration">the overriding method</param>
             <param name="errorLogger"></param>
@@ -2574,7 +2574,7 @@
         </member>
         <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderVirtualTable.LookForBaseDeclarationMixin(SiliconStudio.Shaders.Ast.MethodDeclaration,SiliconStudio.Shaders.Utility.LoggerResult)">
             <summary>
-            Find the base definition of the method and override its occurence
+            Find the base definition of the method and override its occurrence
             </summary>
             <param name="methodDeclaration"></param>
             <param name="errorLogger"></param>
