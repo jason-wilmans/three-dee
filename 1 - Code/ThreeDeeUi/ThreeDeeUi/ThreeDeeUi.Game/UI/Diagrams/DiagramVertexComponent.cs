@@ -1,4 +1,7 @@
+using System;
 using DiagramLogic.Interface.Elements;
+using GameClient.GUI.Ui3D;
+using GameClient.GUI.Ui3D.EventArgs;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Rendering;
@@ -7,85 +10,91 @@ using XenkoUtilities;
 
 namespace ThreeDeeUi.UI.Diagrams
 {
-    public class DiagramVertexComponent : SyncScript
+    public class DiagramVertexComponent : AViewElement3D
     {
-        private ModelComponent _modelComponent;
-        private TransformComponent _transform;
-        private IDiagramElement _currentElement;
-        private bool _selected;
-        private static readonly Color4 DarkColor = new Color4(new Color3(0.025f, 0.025f, 0.025f), 1.0f);
+        //private ModelComponent _modelComponent;
+        //private TransformComponent _transform;
+        //private IDiagramElement _currentElement;
+        //private bool _selected;
+        //private static readonly Color4 DarkColor = new Color4(new Color3(0.025f, 0.025f, 0.025f), 1.0f);
         
-        public IDiagramElement CurrentElement
-        {
-            get { return _currentElement; }
-            set
-            {
-                _currentElement = value;
-                UpdateVisuals();
-            }
-        }
+        //public IDiagramElement CurrentElement
+        //{
+        //    get { return _currentElement; }
+        //    set
+        //    {
+        //        _currentElement = value;
+        //        //UpdateVisuals();
+        //    }
+        //}
 
         public override void Start()
         {
             base.Start();
 
-            _modelComponent = Entity.Get<ModelComponent>();
-            _transform = Entity.Transform;
-            UpdateVisuals();
+            //_modelComponent = Entity.Get<ModelComponent>();
+            //_transform = Entity.Transform;
+            //UpdateVisuals();
+            //Clicked += OnClicked;
         }
 
-        public override void Update()
-        {
-            //TODO: What the fuck, why does position get overridden in first update?
-            if (Game.GameSystems.IsFirstUpdateDone)
-            {
-                UpdateVisuals();
-            }
-        }
+        //private void OnClicked(MouseClickEventArgs mouseClickEventArgs)
+        //{
+        //    ToggleColor();
+        //}
 
-        private void UpdateVisuals()
-        {
-            if (_currentElement != null && _transform != null && _modelComponent != null)
-            {
-                _transform.Position = ConversionTools.ToXenko(_currentElement.Position);
+        //public void Update()
+        //{
+        //    //TODO: What the fuck, why does position get overridden in first update?
+        //    if (Game.GameSystems.IsFirstUpdateDone)
+        //    {
+        //        UpdateVisuals();
+        //    }
+        //}
 
-                Model model = GetModelForType(_currentElement);
-                _modelComponent.Model = model;
-            }
-        }
+        //private void UpdateVisuals()
+        //{
+        //    if (_currentElement != null && _transform != null && _modelComponent != null)
+        //    {
+        //        _transform.Position = ConversionTools.ToXenko(_currentElement.Position);
 
-        private Model GetModelForType(IDiagramElement currentElement)
-        {
-            string url;
-            switch (currentElement.GetType().Name)
-            {
-                case nameof(Ellipsoid):
-                    url = "models/sphere/Sphere";
-                    break;
-                case nameof(Cuboid):
-                    url = "models/cuboid/Cuboid";
-                    break;
-                default:
-                    return null;
-            }
+        //        Model model = GetModelForType(_currentElement);
+        //        _modelComponent.Model = model;
+        //    }
+        //}
 
-            return !Content.IsLoaded(url) ? Content.Load<Model>(url) : Content.Get<Model>(url);
-        }
+        //private Model GetModelForType(IDiagramElement currentElement)
+        //{
+        //    string url;
+        //    switch (currentElement.GetType().Name)
+        //    {
+        //        case nameof(Ellipsoid):
+        //            url = "models/sphere/Sphere";
+        //            break;
+        //        case nameof(Cuboid):
+        //            url = "models/cuboid/Cuboid";
+        //            break;
+        //        default:
+        //            throw new ArgumentException("Unknown element type", nameof(currentElement));
+        //    }
 
-        public void ToggleColor()
-        {
-            Material material = _modelComponent.GetMaterial(0);
+        //    return !Content.IsLoaded(url) ? Content.Load<Model>(url) : Content.Get<Model>(url);
+        //}
 
-            if (_selected)
-            {
-                material.Parameters.Set(MaterialKeys.DiffuseValue, Color4.White);
-            }
-            else
-            {
-                material.Parameters.Set(MaterialKeys.DiffuseValue, DarkColor);
-            }
+        //public void ToggleColor()
+        //{
+        //    Material material = _modelComponent.GetMaterial(0);
 
-            _selected = !_selected;
-        }
+        //    if (_selected)
+        //    {
+        //        material.Parameters.Set(MaterialKeys.DiffuseValue, Color4.White);
+        //    }
+        //    else
+        //    {
+        //        material.Parameters.Set(MaterialKeys.DiffuseValue, DarkColor);
+        //    }
+
+        //    _selected = !_selected;
+        //}
     }
 }

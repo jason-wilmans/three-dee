@@ -42,7 +42,7 @@ namespace ThreeDeeUi.UI.Diagrams
             Prefab vertexPrefab = Content.Get<Prefab>(Url);
             FastCollection<Entity> entities = vertexPrefab.Instantiate();
             SceneSystem.SceneInstance.Scene.Entities.AddRange(entities);
-            entities[0].Get<DiagramVertexComponent>().CurrentElement = diagramElement;
+            //entities[0].Get<DiagramVertexComponent>().CurrentElement = diagramElement;
         }
 
         private void InitializeVisualScene(IDiagram diagram)
