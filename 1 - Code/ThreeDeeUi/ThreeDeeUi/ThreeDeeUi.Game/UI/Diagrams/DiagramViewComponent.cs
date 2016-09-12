@@ -10,7 +10,7 @@ namespace ThreeDeeUi.UI.Diagrams
     public class DiagramViewComponent : StartupScript
     {
         private readonly IThreeDeeCore _core;
-        private const string Url = "prefabs/DiagramVertex";
+        private const string Url = "prefabs/Vertex";
 
         public DiagramViewComponent()
         {

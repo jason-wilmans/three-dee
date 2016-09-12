@@ -10,9 +10,9 @@ using XenkoUtilities;
 
 namespace ThreeDeeUi.UI.Diagrams
 {
-    public class DiagramVertexComponent : AViewElement3D
-    {
-        private ModelComponent _modelComponent;
+    //public class DiagramVertexComponent : StartupScript
+    //{
+        //private ModelComponent _modelComponent;
         //private TransformComponent _transform;
         //private IDiagramElement _currentElement;
         //private bool _selected;
@@ -28,15 +28,15 @@ namespace ThreeDeeUi.UI.Diagrams
         //    }
         //}
 
-        public override void Start()
-        {
-            base.Start();
+        //public override void Start()
+        //{
+        //    base.Start();
 
-            _modelComponent = Entity.Get<ModelComponent>();
+            //_modelComponent = Entity.GetOrCreate<ModelComponent>();
             //_transform = Entity.Transform;
             //UpdateVisuals();
             //Clicked += OnClicked;
-        }
+        //}
 
         //private void OnClicked(MouseClickEventArgs mouseClickEventArgs)
         //{
@@ -96,5 +96,5 @@ namespace ThreeDeeUi.UI.Diagrams
 
         //    _selected = !_selected;
         //}
-    }
+    //}
 }
