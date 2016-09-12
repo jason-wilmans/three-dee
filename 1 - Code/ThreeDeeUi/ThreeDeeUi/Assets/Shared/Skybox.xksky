@@ -1,0 +1,6 @@
+!SkyboxAsset
+Id: 61a96efc-57f5-4fa4-b725-612a7170e3ca
+Tags: []
+Model: !SkyboxCubeMapModel
+    ~Id: 194fdfaf-1205-4c96-9c2a-f2f0ce93faae
+    CubeMap: a36fdf0f-0408-4aa0-8a6c-b0cddee53a0b/f37aacdf-c6ea-4521-b31b-63b466b3f598:Skybox Texture

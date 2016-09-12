@@ -1,0 +1,48 @@
+!PrefabAsset
+Id: b5afc7ae-90fc-46ac-9bba-f9adaafaa637
+Tags: []
+Hierarchy:
+    ~Id: 4de2f1a9-3286-4c91-a90d-441d9e8983df
+    RootEntities:
+        - b112135f-e647-4dee-9ead-72281e3c120d
+    Entities:
+        -   Entity:
+                Id: b112135f-e647-4dee-9ead-72281e3c120d
+                Name: Sphere
+                Components:
+                    - !TransformComponent
+                        ~Id: 02e44525-1e50-4123-a490-e8a6441681b4
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: []
+                    - !ModelComponent
+                        ~Id: 7e8287e3-8b49-4213-b16a-5e872f621e6b
+                        Model: 81fa77c4-f01c-4e8b-a3d7-d333241c47b6/49883d3e-ea7a-46f7-bd04-f5ef7cef8b7a:models/sphere/Sphere
+                        Materials:
+                            - null
+                    - !ThreeDeeUi.UI.Diagrams.DiagramVertexComponent,ThreeDeeUi.Game
+                        ~Id: 3c1ad686-dc1c-4812-96ea-93092abe54a0
+                        CurrentElement: null
+                    - !RigidbodyComponent
+                        ~Id: 49d80dda-13d9-436e-99c5-2b28ba179df6
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        IsTrigger: false
+                        IsKinematic: false
+                        Mass: 1.0
+                        LinearDamping: 0.0
+                        AngularDamping: 0.0
+                        OverrideGravity: true
+                        Gravity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        NodeName: null
+                        ColliderShapes:
+                            - !SphereColliderShapeDesc
+                                ~Id: 858b4082-bfe3-4697-a5ee-4deabfa61b69
+                                Is2D: false
+                                LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
+            Design: {}
