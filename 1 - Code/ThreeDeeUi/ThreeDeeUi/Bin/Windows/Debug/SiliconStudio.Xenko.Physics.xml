@@ -205,9 +205,16 @@
         </member>
         <member name="M:SiliconStudio.Xenko.Physics.CharacterComponent.Move(SiliconStudio.Core.Mathematics.Vector3)">
             <summary>
-            Moves the specified movement.
+            Moves the character towards the specified movement vector.
+            Motion will stay in place unless modified or canceled passing Vector3.Zero
             </summary>
-            <param name="movement">The movement.</param>
+            <param name="movement">The absolute movement vector, typically direction * delta time `var dt = this.GetSimulation().FixedTimeStep;` * speed.</param>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Physics.CharacterComponent.Orientation">
+            <summary>
+            Sets or gets the orientation of the Entity attached to this character controller
+            </summary>
+            <remarks>This orientation has no impact in the physics simulation</remarks>
         </member>
         <member name="F:SiliconStudio.Xenko.Physics.SphereColliderShapeDesc.Is2D">
             <userdoc>
@@ -312,13 +319,13 @@
         </member>
         <member name="P:SiliconStudio.Xenko.Physics.RigidbodyComponent.OverrideGravity">
             <summary>
-            Gets or sets the angular damping of this rigidbody
+            Gets or sets if this Rigidbody overrides world gravity
             </summary>
             <value>
             true, false
             </value>
             <userdoc>
-            The angular damping of this Rigidbody
+            If this Rigidbody overrides world gravity
             </userdoc>
         </member>
         <member name="P:SiliconStudio.Xenko.Physics.RigidbodyComponent.Gravity">
@@ -522,7 +529,7 @@
             Updates the local transformations, required if you change LocalOffset and/or LocalRotation.
             </summary>
         </member>
-        <member name="P:SiliconStudio.Xenko.Physics.ColliderShape.PositiveCenterMatrix">
+        <member name="F:SiliconStudio.Xenko.Physics.ColliderShape.PositiveCenterMatrix">
             <summary>
             Gets the positive center matrix.
             </summary>
@@ -530,7 +537,7 @@
             The positive center matrix.
             </value>
         </member>
-        <member name="P:SiliconStudio.Xenko.Physics.ColliderShape.NegativeCenterMatrix">
+        <member name="F:SiliconStudio.Xenko.Physics.ColliderShape.NegativeCenterMatrix">
             <summary>
             Gets the negative center matrix.
             </summary>
@@ -1854,6 +1861,17 @@
                 Note: As class because it is shared between the 2 Colliders.. maybe struct is faster?
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Physics.ContactPointEqualityComparer.Default">
+            <summary>
+            Gets the default.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Physics.ContactPointEqualityComparer.Equals(SiliconStudio.Xenko.Physics.ContactPoint,SiliconStudio.Xenko.Physics.ContactPoint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Physics.ContactPointEqualityComparer.GetHashCode(SiliconStudio.Xenko.Physics.ContactPoint)">
+            <inheritdoc/>
+        </member>
         <member name="F:SiliconStudio.Xenko.Physics.RigidBodyTypes.Static">
             <summary>
                 They are supposed to never move, they are not automatically updated by the engine.
@@ -1996,7 +2014,19 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SiliconStudio.Xenko.Engine.PhysicsComponent.DeriveBonePhysicsTransformation(SiliconStudio.Core.Mathematics.Matrix@)">
+            <summary>
+            Computes the physics transformation from the TransformComponent values
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SiliconStudio.Xenko.Engine.PhysicsComponent.UpdateTransformationComponent(SiliconStudio.Core.Mathematics.Matrix@)">
+            <summary>
+            Updades the graphics transformation from the given physics transformation
+            </summary>
+            <param name="physicsTransform"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.PhysicsComponent.UpdateBoneTransformation(SiliconStudio.Core.Mathematics.Matrix@)">
             <summary>
             Updades the graphics transformation from the given physics transformation
             </summary>

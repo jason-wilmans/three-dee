@@ -11,7 +11,7 @@
         </member>
         <member name="F:SiliconStudio.Xenko.Games.AppContextType.Desktop">
             <summary>
-            Game running on desktop in a form or <see cref="!:System.Windows.Forms.Control"/>.
+            Game running on desktop in a form or <see cref="T:System.Windows.Forms.Control"/>.
             </summary>
         </member>
         <member name="F:SiliconStudio.Xenko.Games.AppContextType.DesktopSDL">
@@ -43,71 +43,6 @@
             <summary>
             Game running on iOS in a iPhoneOSGameView.
             </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Games.SDLMessageLoop">
-            <summary>
-            RenderLoop provides a rendering loop infrastructure. See remarks for usage. 
-            </summary>
-            <remarks>
-            Use static <see cref="M:SiliconStudio.Xenko.Games.SDLMessageLoop.Run(SiliconStudio.Xenko.Graphics.SDL.Window,SiliconStudio.Xenko.Games.SDLMessageLoop.RenderCallback)"/>  
-            method to directly use a renderloop with a render callback or use your own loop:
-            <code>
-            control.Show();
-            using (var loop = new RenderLoop(control))
-            {
-                while (loop.NextFrame())
-                {
-                   // Perform draw operations here.
-                }
-            }
-            </code>
-            Note that the main control can be changed at anytime inside the loop.
-            </remarks>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Games.SDLMessageLoop.#ctor(SiliconStudio.Xenko.Graphics.SDL.Window)">
-            <summary>
-            Initializes a new instance of the <see cref="!:WindowsMessageLoop"/> class.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Games.SDLMessageLoop.Control">
-            <summary>
-            Gets or sets the control to associate with the current render loop.
-            </summary>
-            <value>The control.</value>
-            <exception cref="T:System.InvalidOperationException">Control is already disposed</exception>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Games.SDLMessageLoop.AllowWindowssKeys">
-            <summary>
-            Gets or sets a value indicating whether [allow windowss keys].
-            </summary>
-            <value><c>true</c> if [allow windowss keys]; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Games.SDLMessageLoop.NextFrame">
-            <summary>
-            Calls this method on each frame.
-            </summary>
-            <returns><c>true</c> if if the control is still active, <c>false</c> otherwise.</returns>
-            <exception cref="T:System.InvalidOperationException">An error occurred </exception>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Games.SDLMessageLoop.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Games.SDLMessageLoop.RenderCallback">
-            <summary>
-            Delegate for the rendering loop.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Games.SDLMessageLoop.Run(SiliconStudio.Xenko.Graphics.SDL.Window,SiliconStudio.Xenko.Games.SDLMessageLoop.RenderCallback)">
-            <summary>
-            Runs the specified main loop for the specified windows form.
-            </summary>
-            <param name="form">The form.</param>
-            <param name="renderCallback">The rendering callback.</param>
-            <exception cref="T:System.ArgumentNullException">form
-            or
-            renderCallback</exception>
         </member>
         <member name="T:SiliconStudio.Xenko.Graphics.BatchBase`1">
             <summary>
@@ -280,11 +215,6 @@
         <member name="F:SiliconStudio.Xenko.Graphics.BatchBase`1.DeviceResourceContext.IsIndexBufferDynamic">
             <summary>
             Gets a boolean indicating if the index buffer is dynamic.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.BatchBase`1.DeviceResourceContext.VertexBufferBinding">
-            <summary>
-            The VertexBufferBinding of the batch.
             </summary>
         </member>
         <member name="F:SiliconStudio.Xenko.Graphics.BatchBase`1.DeviceResourceContext.VertexBufferPosition">
@@ -474,6 +404,14 @@
             </summary>
         </member>
         <member name="M:SiliconStudio.Xenko.Graphics.CommandList.SetConstantBuffer(SiliconStudio.Xenko.Shaders.ShaderStage,System.Int32,SiliconStudio.Xenko.Graphics.Buffer)">
+            <summary>
+                Sets a constant buffer to the shader pipeline.
+            </summary>
+            <param name="stage">The shader stage.</param>
+            <param name="slot">The binding slot.</param>
+            <param name="buffer">The constant buffer to set.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.CommandList.SetConstantBuffer(SiliconStudio.Xenko.Shaders.ShaderStage,System.Int32,System.Int32,SiliconStudio.Xenko.Graphics.Buffer)">
             <summary>
                 Sets a constant buffer to the shader pipeline.
             </summary>
@@ -674,18 +612,28 @@
             <param name="lengthInBytes">The length information in bytes.</param>
             <returns>Pointer to the sub resource to map.</returns>
         </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.CompiledCommandList">
+            <summary>
+            A token for one-time execution of a <see cref="T:SiliconStudio.Xenko.Graphics.CommandList"/> by the <see cref="T:SiliconStudio.Xenko.Graphics.GraphicsDevice"/>
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.DefaultCommandListLock">
+            <summary>
+            Used to prevent concurrent uses of CommandList against the main one.
+            </summary>
+        </member>
         <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.GetNativeDevice(SiliconStudio.Xenko.Graphics.GraphicsDevice)">
             <summary>
-            Gets the DX11 native device
+            Gets the native device (DX11/DX12)
             </summary>
             <param name="device">The Xenko GraphicsDevice</param>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.GetNativeDeviceContext(SiliconStudio.Xenko.Graphics.CommandList)">
+        <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.GetNativeCommandQueue(SiliconStudio.Xenko.Graphics.GraphicsDevice)">
             <summary>
-            Gets the DX11 native device context
+            Gets the native command queue (DX12 only)
             </summary>
-            <param name="commandList">The Xenko CommandList</param>
+            <param name="device">The Xenko GraphicsDevice</param>
             <returns></returns>
         </member>
         <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.GetNativeResource(SiliconStudio.Xenko.Graphics.GraphicsResource)">
@@ -695,7 +643,31 @@
             <param name="resource">The Xenko GraphicsResourceBase</param>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.CreateTextureFromNative(SiliconStudio.Xenko.Graphics.GraphicsDevice,SharpDX.Direct3D11.Texture2D,System.Boolean)">
+        <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.CreateTextureFromNative(SiliconStudio.Xenko.Graphics.GraphicsDevice,System.Object,System.Boolean)">
+            <summary>
+            Creates a Texture from a DirectX11 native texture
+            This method internally will call AddReference on the dxTexture2D texture.
+            </summary>
+            <param name="device">The GraphicsDevice in use</param>
+            <param name="dxTexture2D">The DX11 texture</param>
+            <param name="takeOwnership">If false AddRef will be called on the texture, if true will not, effectively taking ownership</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.GetNativeDeviceImpl(SiliconStudio.Xenko.Graphics.GraphicsDevice)">
+            <summary>
+            Gets the DX11 native device
+            </summary>
+            <param name="device">The Xenko GraphicsDevice</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.GetNativeResourceImpl(SiliconStudio.Xenko.Graphics.GraphicsResource)">
+            <summary>
+            Gets the DX11 native resource handle
+            </summary>
+            <param name="resource">The Xenko GraphicsResourceBase</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.SharpDXInterop.CreateTextureFromNativeImpl(SiliconStudio.Xenko.Graphics.GraphicsDevice,SharpDX.Direct3D11.Texture2D,System.Boolean)">
             <summary>
             Creates a Texture from a DirectX11 native texture
             This method internally will call AddReference on the dxTexture2D texture.
@@ -1805,6 +1777,71 @@
             Set of window states to mimic the Windows forms one.
             </summary>
         </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.SDL.SDLMessageLoop">
+            <summary>
+            RenderLoop provides a rendering loop infrastructure. See remarks for usage. 
+            </summary>
+            <remarks>
+            Use static <see cref="M:SiliconStudio.Xenko.Graphics.SDL.SDLMessageLoop.Run(SiliconStudio.Xenko.Graphics.SDL.Window,SiliconStudio.Xenko.Graphics.SDL.SDLMessageLoop.RenderCallback)"/>  
+            method to directly use a renderloop with a render callback or use your own loop:
+            <code>
+            control.Show();
+            using (var loop = new RenderLoop(control))
+            {
+                while (loop.NextFrame())
+                {
+                   // Perform draw operations here.
+                }
+            }
+            </code>
+            Note that the main control can be changed at anytime inside the loop.
+            </remarks>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.SDL.SDLMessageLoop.#ctor(SiliconStudio.Xenko.Graphics.SDL.Window)">
+            <summary>
+            Initializes a new instance of the <see cref="!:WindowsMessageLoop"/> class.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.SDL.SDLMessageLoop.Control">
+            <summary>
+            Gets or sets the control to associate with the current render loop.
+            </summary>
+            <value>The control.</value>
+            <exception cref="T:System.InvalidOperationException">Control is already disposed</exception>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Graphics.SDL.SDLMessageLoop.AllowWindowssKeys">
+            <summary>
+            Gets or sets a value indicating whether [allow windowss keys].
+            </summary>
+            <value><c>true</c> if [allow windowss keys]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.SDL.SDLMessageLoop.NextFrame">
+            <summary>
+            Calls this method on each frame.
+            </summary>
+            <returns><c>true</c> if if the control is still active, <c>false</c> otherwise.</returns>
+            <exception cref="T:System.InvalidOperationException">An error occurred </exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.SDL.SDLMessageLoop.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Graphics.SDL.SDLMessageLoop.RenderCallback">
+            <summary>
+            Delegate for the rendering loop.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.SDL.SDLMessageLoop.Run(SiliconStudio.Xenko.Graphics.SDL.Window,SiliconStudio.Xenko.Graphics.SDL.SDLMessageLoop.RenderCallback)">
+            <summary>
+            Runs the specified main loop for the specified windows form.
+            </summary>
+            <param name="form">The form.</param>
+            <param name="renderCallback">The rendering callback.</param>
+            <exception cref="T:System.ArgumentNullException">form
+            or
+            renderCallback</exception>
+        </member>
         <member name="M:SiliconStudio.Xenko.Graphics.SDL.Window.#cctor">
             <summary>
             Type initializer for `Window' which automatically initializes the SDL infrastructure.
@@ -2869,11 +2906,11 @@
             This class is threadsafe. Accessing a member will lock globally this instance.
             </remarks>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.GraphicsResourceAllocator.#ctor(SiliconStudio.Core.IServiceRegistry)">
+        <member name="M:SiliconStudio.Xenko.Graphics.GraphicsResourceAllocator.#ctor(SiliconStudio.Xenko.Graphics.GraphicsDevice)">
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Graphics.GraphicsResourceAllocator" /> class.
             </summary>
-            <param name="serviceRegistry">The service registry.</param>
+            <param name="graphicsDevice">The graphics device.</param>
         </member>
         <member name="P:SiliconStudio.Xenko.Graphics.GraphicsResourceAllocator.GraphicsDevice">
             <summary>
@@ -3142,7 +3179,7 @@
             <summary>
             Gets or sets the pixels per scene unit of the sprite.
             </summary>
-            <remarks>The value is trunked to a strictly positive value.</remarks>
+            <remarks>The value is clamped to a strictly positive value.</remarks>
         </member>
         <member name="M:SiliconStudio.Xenko.Graphics.Sprite.Clone">
             <summary>
@@ -4118,6 +4155,11 @@
             Boolean indicating if the Depth buffer can directly be used as a read only RenderTarget
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.GraphicsDeviceFeatures.HasResourceRenaming">
+            <summary>
+            Boolean indicating if the graphics API supports resource renaming (with either <see cref="F:SiliconStudio.Xenko.Graphics.MapMode.WriteDiscard"/> or <see cref="M:SiliconStudio.Xenko.Graphics.CommandList.UpdateSubresource(SiliconStudio.Xenko.Graphics.GraphicsResource,System.Int32,SiliconStudio.Xenko.Graphics.DataBox)"/> with full size).
+            </summary>
+        </member>
         <member name="P:SiliconStudio.Xenko.Graphics.GraphicsDeviceFeatures.Item(SiliconStudio.Xenko.Graphics.PixelFormat)">
             <summary>
             Gets the <see cref="T:SiliconStudio.Xenko.Graphics.GraphicsDeviceFeatures.FeaturesPerFormat" /> for the specified <see cref="T:SharpDX.DXGI.Format" />.
@@ -4450,12 +4492,13 @@
             Constant buffer helper methods.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.Buffer.Constant.New(SiliconStudio.Xenko.Graphics.GraphicsDevice,System.Int32)">
+        <member name="M:SiliconStudio.Xenko.Graphics.Buffer.Constant.New(SiliconStudio.Xenko.Graphics.GraphicsDevice,System.Int32,SiliconStudio.Xenko.Graphics.GraphicsResourceUsage)">
             <summary>
-            Creates a new constant buffer with <see cref="F:SiliconStudio.Xenko.Graphics.GraphicsResourceUsage.Dynamic"/> usage.
+            Creates a new constant buffer with a default <see cref="F:SiliconStudio.Xenko.Graphics.GraphicsResourceUsage.Dynamic"/> usage.
             </summary>
             <param name="device">The <see cref="T:SiliconStudio.Xenko.Graphics.GraphicsDevice"/>.</param>
             <param name="size">The size in bytes.</param>
+            <param name="usage">The usage.</param>
             <returns>A constant buffer</returns>
         </member>
         <member name="M:SiliconStudio.Xenko.Graphics.Buffer.Constant.New``1(SiliconStudio.Xenko.Graphics.GraphicsDevice)">
@@ -5309,11 +5352,17 @@
                 Unmarks context as active on the current thread.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.GraphicsDevice.ExecuteCommandList(SiliconStudio.Xenko.Graphics.CommandList)">
+        <member name="M:SiliconStudio.Xenko.Graphics.GraphicsDevice.ExecuteCommandList(SiliconStudio.Xenko.Graphics.CompiledCommandList)">
             <summary>
             Executes a deferred command list.
             </summary>
             <param name="commandList">The deferred command list.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.GraphicsDevice.ExecuteCommandLists(System.Int32,SiliconStudio.Xenko.Graphics.CompiledCommandList[])">
+            <summary>
+            Executes multiple deferred command lists.
+            </summary>
+            <param name="commandLists">The deferred command lists.</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Graphics.GraphicsDevice.InitializePlatformDevice(SiliconStudio.Xenko.Graphics.GraphicsProfile[],SiliconStudio.Xenko.Graphics.DeviceCreationFlags,System.Object)">
             <summary>
@@ -5372,7 +5421,7 @@
         </member>
         <member name="P:SiliconStudio.Xenko.Graphics.GraphicsDevice.IsDeferred">
             <summary>
-                Gets a value indicating whether this instance is a deferred graphics device context.
+                Indicates wether this device allows for concurrent building and deferred submission of CommandLists
             </summary>
             <value>
                 <c>true</c> if this instance is deferred; otherwise, <c>false</c>.
@@ -7271,6 +7320,25 @@
             <summary>	
             The size of the structure (in bytes) when it represents a structured/typed buffer.
             </summary>	
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.BufferDescription.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.BufferDescription.op_Equality(SiliconStudio.Xenko.Graphics.BufferDescription,SiliconStudio.Xenko.Graphics.BufferDescription)">
+            <summary>
+            Implements the operator ==.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Graphics.BufferDescription.op_Inequality(SiliconStudio.Xenko.Graphics.BufferDescription,SiliconStudio.Xenko.Graphics.BufferDescription)">
+            <summary>
+            Implements the operator !=.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Graphics.ResourceRegion">
             <summary>	

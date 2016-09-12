@@ -72,7 +72,5 @@ namespace ThreeDeeUi.UI.Camera
 
             return hitResult.Collider.Entity;
         }
-
-
     }
 }

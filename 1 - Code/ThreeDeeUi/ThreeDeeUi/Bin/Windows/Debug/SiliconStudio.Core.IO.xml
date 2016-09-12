@@ -335,6 +335,11 @@
             The calling process must open the file with the GENERIC_WRITE access right.
             </summary>
         </member>
+        <member name="F:SiliconStudio.Core.IO.VirtualFileMode.Append">
+            <summary>
+            Opens a file if it exists and go at the end, otherwise creates a new file.
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Core.IO.VirtualFileProviderBase">
             <summary>
             Abstract base class for <see cref="T:SiliconStudio.Core.IO.IVirtualFileProvider"/>.

@@ -10478,6 +10478,22 @@
             <param name="roll">The roll of rotation.</param>
             <returns>The newly created quaternion.</returns>
         </member>
+        <member name="M:SiliconStudio.Core.Mathematics.Quaternion.BetweenDirections(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3)">
+            <summary>
+            Computes a quaternion corresponding to the rotation transforming the vector <paramref name="source"/> to the vector <paramref name="target"/>.
+            </summary>
+            <param name="source">The source vector of the transformation.</param>
+            <param name="target">The target vector of the transformation.</param>
+            <returns>The resulting quaternion corresponding to the transformation of the source vector to the target vector.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Mathematics.Quaternion.BetweenDirections(SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@)">
+            <summary>
+            Computes a quaternion corresponding to the rotation transforming the vector <paramref name="source"/> to the vector <paramref name="target"/>.
+            </summary>
+            <param name="source">The source vector of the transformation.</param>
+            <param name="target">The target vector of the transformation.</param>
+            <param name="result">The resulting quaternion corresponding to the transformation of the source vector to the target vector.</param>
+        </member>
         <member name="M:SiliconStudio.Core.Mathematics.Quaternion.Slerp(SiliconStudio.Core.Mathematics.Quaternion@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Core.Mathematics.Quaternion@)">
             <summary>
             Interpolates between two quaternions, using spherical linear interpolation.

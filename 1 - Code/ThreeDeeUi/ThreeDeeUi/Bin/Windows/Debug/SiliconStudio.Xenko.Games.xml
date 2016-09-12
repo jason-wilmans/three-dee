@@ -49,11 +49,6 @@
             Occurs when [app deactivated].
             </summary>
         </member>
-        <member name="E:SiliconStudio.Xenko.Games.GameForm.MonitorChanged">
-            <summary>
-            Occurs when [monitor changed].
-            </summary>
-        </member>
         <member name="E:SiliconStudio.Xenko.Games.GameForm.PauseRendering">
             <summary>
             Occurs when [pause rendering].
@@ -106,12 +101,6 @@
             Raises the <see cref="E:System.Windows.Forms.Form.ResizeEnd"/> event.
             </summary>
             <param name="e">A <see cref="T:System.EventArgs"/> that contains the event data.</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Games.GameForm.OnLoad(System.EventArgs)">
-            <summary>
-            Raises the <see cref="E:System.Windows.Forms.Form.Load"/> event.
-            </summary>
-            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Games.GameForm.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
             <summary>

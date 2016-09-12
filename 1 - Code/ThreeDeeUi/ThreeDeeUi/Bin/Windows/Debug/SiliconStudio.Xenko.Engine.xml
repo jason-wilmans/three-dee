@@ -423,6 +423,12 @@
         <member name="M:SiliconStudio.Xenko.Animations.ComputeSeparateCurveVector4.UpdateChanges">
             <inheritdoc/>
         </member>
+        <member name="M:SiliconStudio.Xenko.Animations.IComputeCurve.UpdateChanges">
+            <summary>
+            Updates any optimizations in the curve if data has changed.
+            </summary>
+            <returns><c>true</c> there were changes since the last time; otherwise, <c>false</c>.</returns>
+        </member>
         <member name="T:SiliconStudio.Xenko.Animations.IComputeCurve`1">
             <summary>
             Base interface for curve based compute value nodes.
@@ -434,12 +440,6 @@
             </summary>
             <param name="location">Location to sample at</param>
             <returns>Sampled value</returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Animations.IComputeCurve`1.UpdateChanges">
-            <summary>
-            Updates any optimizations in the curve if data has changed.
-            </summary>
-            <returns><c>true</c> there were changes since the last time; otherwise, <c>false</c>.</returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Animations.AnimationBlendOperation">
             <summary>
@@ -1155,6 +1155,7 @@
             <param name="clonedObjects">The cloned objects.</param>
             <param name="mappedObjects">The mapped objects.</param>
             <param name="entity">The entity.</param>
+            <param name="serviceRegistry">The context service registry</param>
             <returns></returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Engine.Design.EntityCloner.CloneContext">
@@ -2027,10 +2028,17 @@
             <exception cref="T:System.ArgumentNullException">The provided <paramref name="sounds"/> is null.</exception>
             <exception cref="T:System.ArgumentException">One or more of the provided Sound is not currently attached to the emitter component.</exception>
         </member>
-        <member name="P:SiliconStudio.Xenko.Engine.AudioEmitterComponent.ShouldBeProcessed">
+        <member name="F:SiliconStudio.Xenko.Engine.AudioEmitterComponent.Sounds">
             <summary>
-            Boolean indicating to the <see cref="T:SiliconStudio.Xenko.Audio.AudioEmitterProcessor"/> if the AudioEmitterComponent need to be processed or can be skipped.
+            The sounds this audio emitter can play and use
             </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.AudioEmitterComponent.Item(System.String)">
+            <summary>
+            The sound controllers associated with the sounds this audio emitter can play and use, use this to access and play sounds.
+            </summary>
+            <param name="soundName">The name of the sound you want to access.</param>
+            <returns>The sound controller.</returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Engine.AudioListenerComponent">
             <summary>
@@ -2505,6 +2513,14 @@
             </summary>
             <userdoc>Ignore the depth of other elements of the scene when rendering the sprite. When checked, the sprite is always put on top of previous elements.</userdoc>
         </member>
+        <member name="P:SiliconStudio.Xenko.Engine.SpriteComponent.Sampler">
+            <summary>
+            Specifies the texture sampling method to be used for this sprite
+            </summary>
+            <userdoc>
+            Specifies the texture sampling method to be used for this sprite
+            </userdoc>
+        </member>
         <member name="M:SiliconStudio.Xenko.Engine.SpriteComponent.#ctor">
             <summary>
             Creates a new instance of <see cref="T:SiliconStudio.Xenko.Engine.SpriteComponent"/>
@@ -2662,6 +2678,15 @@
             </summary>
             <param name="entity">The entity.</param>
             <returns>The parent entity, or null if it has no parent.</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.EntityTransformExtensions.FindChild(SiliconStudio.Xenko.Engine.Entity,System.String)">
+            <summary>
+            Returns the first child in the hierarchy with the provided name.
+            This function can be slow, do not use every frame!
+            </summary>
+            <param name="parentEntity">The parent Entity.</param>
+            <param name="childName">The name of the child to look for.</param>
+            <returns>Null or the first child with the requested name.</returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Engine.LightComponent">
             <summary>
@@ -2929,6 +2954,11 @@
             Gets the sprite animation system.
             </summary>
             <value>The sprite animation system.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.Game.DebugConsoleSystem">
+            <summary>
+            Gets the game profiler system
+            </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Engine.Game.ProfilerSystem">
             <summary>
@@ -3428,6 +3458,72 @@
             Called every frame.
             </summary>
         </member>
+        <member name="M:SiliconStudio.Xenko.Profiling.DebugConsoleSystem.Print(System.String,SiliconStudio.Core.Mathematics.Vector2)">
+            <summary>
+            Print a custom overlay message
+            </summary>
+            <param name="message"></param>
+            <param name="position"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Profiling.DebugConsoleSystem.Print(System.String,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Core.Mathematics.Color4)">
+            <summary>
+            Print a custom overlay message
+            </summary>
+            <param name="message"></param>
+            <param name="position"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Profiling.DebugConsoleSystem.Print(System.String,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Core.Mathematics.Color4,SiliconStudio.Xenko.Graphics.SpriteFont)">
+            <summary>
+            Print a custom overlay message
+            </summary>
+            <param name="message"></param>
+            <param name="position"></param>
+            <param name="color"></param>
+            <param name="font"></param>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Profiling.DebugConsoleSystem.TextColor">
+            <summary>
+            Sets or gets the color to use when drawing the profiling system fonts.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Profiling.DebugConsoleSystem.Font">
+            <summary>
+            Sets or gets the font to use when drawing the profiling system text.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Profiling.DebugConsoleSystem.TailSize">
+            <summary>
+            Sets or gets the size of the messages queue, older messages will be discarded if the size is greater.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Profiling.GameProfilingSystem.EnableProfiling(System.Boolean,SiliconStudio.Core.Diagnostics.ProfilingKey[])">
+            <summary>
+            Enables the profiling system drawing.
+            </summary>
+            <param name="excludeKeys">If true the keys specified after are excluded from rendering, if false they will be exclusively included.</param>
+            <param name="keys">The keys to exclude or include.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Profiling.GameProfilingSystem.DisableProfiling">
+            <summary>
+            Disables the profiling system drawing.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Profiling.GameProfilingSystem.TextColor">
+            <summary>
+            Sets or gets the color to use when drawing the profiling system fonts.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Profiling.GameProfilingSystem.Font">
+            <summary>
+            Sets or gets the font to use when drawing the profiling system text.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Profiling.GameProfilingSystem.SortingMode">
+            <summary>
+            Sets or gets the way the printed information will be sorted.
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Rendering.BackToFrontSortMode">
             <summary>
             Sort elements according to the pattern: [RenderFeature Sort Key 8 bits] [Distance back to front 32 bits] [RenderObject states 24 bits]
@@ -3892,6 +3988,25 @@
         <member name="M:SiliconStudio.Xenko.Rendering.ComputeEffect.ComputeEffectShader.UpdateParameters">
             <summary>
             Updates the effect <see cref="!:ComputeEffectShader.Parameters" /> from properties defined in this instance. See remarks.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Images.AmbientOcclusion">
+            <summary>
+            Applies an ambient occlusion effect to a scene. Ambient occlusion is a technique which fakes occlusion for objects close to other opaque objects.
+            It takes as input a color-buffer where the scene was rendered, with its associated depth-buffer.
+            You also need to provide the camera configuration you used when rendering the scene.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Images.AmbientOcclusion.SetColorDepthInput(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Xenko.Graphics.Texture)">
+            <summary>
+            Provides a color buffer and a depth buffer to apply the depth-of-field to.
+            </summary>
+            <param name="colorBuffer">A color buffer to process.</param>
+            <param name="depthBuffer">The depth buffer corresponding to the color buffer provided.</param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Images.AmbientOcclusionBlurKeys">
+            <summary>
+            Keys used by <see cref="!:AmbientOcclusionBlur"/> and AmbientOcclusionBlurEffect xkfx
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Images.LuminanceToChannelTransform">
@@ -5208,6 +5323,14 @@
             <value>The camera.</value>
             <userdoc>Specifies the camera to use for the sequence of post-effects</userdoc>
         </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Images.PostProcessingEffects.AmbientOcclusion">
+            <summary>
+            Gets the ambient occlusion effect.
+            </summary>
+            <userdoc>
+            The ambient occlusion post-effect allows you to simulate occlusion for opaque objects which are close to or occluded by other opaque objects.
+            </userdoc>
+        </member>
         <member name="P:SiliconStudio.Xenko.Rendering.Images.PostProcessingEffects.DepthOfField">
             <summary>
             Gets the depth of field effect.
@@ -5482,842 +5605,65 @@
             Gets or sets the harmonic order to use during the filtering.
             </summary>
         </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.ResourceResolver">
+        <member name="T:SiliconStudio.Xenko.Rendering.Materials.IMaterialCelShadingLightFunction">
             <summary>
-            Resolves a render target from one render pass to be used as an input resource to another render pass
+            Common interface for the Cel Light part of a cel shading model.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.#ctor(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.IMaterialCelShadingLightFunction.Generate(SiliconStudio.Xenko.Rendering.Materials.MaterialGeneratorContext)">
             <summary>
-            Constructor
+            Generates the shader class source used for the shader composition.
             </summary>
-            <param name="context"><see cref="T:SiliconStudio.Xenko.Rendering.RenderDrawContext"/> to which this resolver belongs</param>
+            <returns>ShaderSource.</returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.GetDepthStencilAsRenderTarget(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Xenko.Graphics.Texture)">
+        <member name="T:SiliconStudio.Xenko.Rendering.Materials.MaterialCelShadingLightDefault">
             <summary>
-            Returns a texture view which should be used as DepthStencil render target while SRV is also used
+            Default Cel Shading ramp function applied
             </summary>
-            <param name="texture">The depthStencil texture originally used for render target</param>
-            <param name="readOnlyCached">The cached view for the texture resource</param>
-            <returns>The texture view which should be used as DepthStencil render target while SRV is also used</returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.GetDepthStenctilAsShaderResource(SiliconStudio.Xenko.Graphics.Texture)">
+        <member name="T:SiliconStudio.Xenko.Rendering.Materials.MaterialCelShadingLightRamp">
             <summary>
-            Returns a texture view which should be used as DepthStencil Shader Resource View. Can be <c>null</c> if not supported
+            Default Cel Shading ramp function applied
             </summary>
-            <param name="texture">The depthStencil texture originally used for render target</param>
-            <returns>The texture view which should be used as DepthStencil SRV. Can be <c>null</c> if not supported</returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.ReleaseDepthStenctilAsShaderResource(SiliconStudio.Xenko.Graphics.Texture)">
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.MaterialCelShadingLightRamp.RampTexture">
             <summary>
-            Frees previously acquired SRV texture. Should be called when the view is no longer needed
+            The texture Reference.
             </summary>
-            <param name="depthAsSR">The previously acquired SRV texture</param>
+            <userdoc>
+            The reference to the texture asset to use.
+            </userdoc>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.GetDepthStenctilAsShaderResource_Copy(SiliconStudio.Xenko.Graphics.Texture)">
+        <member name="T:SiliconStudio.Xenko.Rendering.Materials.MaterialDiffuseCelShadingModelFeature">
             <summary>
-            Gets a texture view which can be used to copy the depth buffer
+            The diffuse Cel Shading for the diffuse material model attribute.
             </summary>
-            <param name="texture">The depthStencil texture originally used for render target</param>
-            <returns>A texture view which can be used to copy the depth buffer</returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.ResolveDepthStencil(SiliconStudio.Xenko.Graphics.Texture)">
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.MaterialDiffuseCelShadingModelFeature.FakeNDotL">
             <summary>
-            Resolves the depth render target so it can be used as a shader resource view. Should only be called once per frame and acquired with <see cref="M:SiliconStudio.Xenko.Rendering.ResourceResolver.GetDepthStenctilAsShaderResource(SiliconStudio.Xenko.Graphics.Texture)"/> after that
+            When positive, the dot product between N and L will be modified to account for light intensity with the specified value as a factor
             </summary>
-            <param name="texture">The depthStencil texture originally used for render target</param>
-            <returns>The texture view which should be used as DepthStencil render target while SRV is also used</returns>
         </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.FrameResourceGroupLayout">
+        <member name="T:SiliconStudio.Xenko.Rendering.Materials.MaterialSpecularCelShadingModelFeature">
             <summary>
-            Implementation of <see cref="!:ResourceGroupLayout"/> specifically for PerFrame cbuffer of <see cref="T:SiliconStudio.Xenko.Rendering.RenderSystem"/>.
+            The Cel Shading specular shading model.
             </summary>
         </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.FrontToBackSortMode">
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.MaterialSpecularCelShadingModelFeature.#ctor">
             <summary>
-            Sort elements according to the pattern: [RenderFeature Sort Key 8 bits] [Distance front to back 16 bits] [RenderObject states 32 bits]
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Materials.MaterialSpecularCelShadingModelFeature"/> class.
             </summary>
         </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.IEntityComponentRenderProcessor">
-            <summary>
-            An <see cref="T:SiliconStudio.Xenko.Engine.EntityProcessor"/> dedicated for rendering.
-            </summary>
-            Note that it might be instantiated multiple times in a given <see cref="T:SiliconStudio.Xenko.Engine.SceneInstance"/>.
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.IRenderCollector.Collect(SiliconStudio.Xenko.Rendering.RenderContext)">
-            <summary>
-            Executed before extract. Should create views, update RenderStages, etc...
-            </summary>
-            <param name="context"></param>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererDynamic">
-            <summary>
-            A light group renderer that can handle a varying number of lights, i.e. point, spots, directional.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererDynamic.NonShadowRenderer">
-            <summary>
-            Next light renderer we can send our unprocessed lights to.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic">
-            <summary>
-            Base class to build light shader groups with <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererDynamic"/>.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.Lights">
-            <summary>
-            List of all available lights.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.CurrentLights">
-            <summary>
-            List of lights selected for this rendering.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.AddView(System.Int32,SiliconStudio.Xenko.Rendering.RenderView,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="viewIndex"></param>
-            <param name="renderView"></param>
-            <param name="lightCount"></param>
-            <returns>The number of lights accepted in <see cref="F:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.CurrentLights"/>.</returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.ComputeLightCount(System.Int32)">
-            <summary>
-            Compute the number of light supported by this shader. Usually a different number of light will trigger a permutation and layout update.
-            </summary>
-            <param name="lightCount"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.AddLight(SiliconStudio.Xenko.Engine.LightComponent,SiliconStudio.Xenko.Rendering.Shadows.LightShadowMapTexture)">
-            <summary>
-            Try to add light to this group (returns false if not possible).
-            </summary>
-            <param name="light"></param>
-            <param name="shadowMapTexture"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.UpdateLayout(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.ApplyViewParameters(SiliconStudio.Xenko.Rendering.RenderDrawContext,System.Int32,SiliconStudio.Xenko.Rendering.ParameterCollection)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.ApplyDrawParameters(SiliconStudio.Xenko.Rendering.RenderDrawContext,System.Int32,SiliconStudio.Xenko.Rendering.ParameterCollection,SiliconStudio.Core.Mathematics.BoundingBoxExt@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightClusteredPointGroupRenderer">
-            <summary>
-            Light renderer for clustered shading.
-            </summary>
-            <remarks>
-            Due to the fact that it handles both Point and Spot with a single logic, it doesn't fit perfectly the current logic of one "direct light groups" per renderer.
-            </remarks>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightClusteredPointGroupRenderer.PointLightShaderGroupData.ComputeLightCount(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightClusteredPointGroupRenderer.PointLightShaderGroupData.SetViews(SiliconStudio.Core.Collections.FastList{SiliconStudio.Xenko.Rendering.RenderView})">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightClusteredPointGroupRenderer.PointLightShaderGroupData.AddView(System.Int32,SiliconStudio.Xenko.Rendering.RenderView,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature">
-            <summary>
-            Compute lighting shaders and data.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.RenderViewLightData.ActiveLightGroups">
-            <summary>
-            Gets the lights without shadow per light type.
-            </summary>
-            <value>The lights.</value>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.Extract">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
-            <param name="context"></param>
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.GetReadonlyShaderSources(SiliconStudio.Xenko.Shaders.ShaderSourceCollection)">
-            <summary>
-            Create a read-only copy of the given shader sources.
-            </summary>
-            <param name="shaderSources"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.CollectVisibleLights">
-            <summary>
-            Collects the visible lights by intersecting them with the frustum.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.LightShaderPermutationEntry.PermutationLightGroups">
-            <summary>
-            Light groups that have <see cref="P:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.HasEffectPermutations"/>.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightAmbientRenderer">
-            <summary>
-            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightAmbient"/>.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection">
-            <summary>
-            A list of <see cref="T:SiliconStudio.Xenko.Engine.LightComponent"/> for a specified <see cref="T:SiliconStudio.Xenko.Engine.EntityGroupMask"/>.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection.#ctor(System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> class.
-            </summary>
-            <param name="capacity">The capacity.</param>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection.CullingMask">
-            <summary>
-            Gets or sets the culling mask.
-            </summary>
-            <value>The culling mask.</value>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection.Tags">
-            <summary>
-            Tags attached.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup">
-            <summary>
-            A list of <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> for a particular type of light (direct light, direct light + shadows, environment lights).
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.#ctor(System.Type)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup"/> class.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.Item(System.Int32)">
-            <summary>
-            Gets the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> at the specified index.
-            </summary>
-            <param name="index">The index.</param>
-            <returns>LightComponentCollection.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">index [{0}] out of range [0, {1}].ToFormat(index, lights.Count - 1)</exception>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.FindLightCollectionByGroup(SiliconStudio.Xenko.Engine.EntityGroup)">
-            <summary>
-            Gets the light affecting a specific group.
-            </summary>
-            <param name="group">The group.</param>
-            <returns>LightComponentCollection.</returns>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.AllLights">
-            <summary>
-            Gets all the lights stored in this group.
-            </summary>
-            <value>All lights.</value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.AllLightsWithShadows">
-            <summary>
-            Gets the lights with shadows.
-            </summary>
-            <value>The lights with shadows.</value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.Count">
-            <summary>
-            Gets the number of <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> stored in this group.
-            </summary>
-            <value>The number of <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> stored in this group.</value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.LightType">
-            <summary>
-            Gets the light type this collection contains.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalGroupRenderer">
-            <summary>
-            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectional"/>.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererBase">
-            <summary>
-            Base class for light renderers.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightPointGroupRenderer">
-            <summary>
-            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightPoint"/>.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightPointGroupRenderer.PointLightShaderGroup.AddView(System.Int32,SiliconStudio.Xenko.Rendering.RenderView,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup">
-            <summary>
-            A group of lights of the same type (single loop in the shader).
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.UpdateLayout(System.String)">
-            <summary>
-            Called when layout is updated, so that parameter keys can be recomputed.
-            </summary>
-            <param name="compositionName"></param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.Reset">
-            <summary>
-            Resets states.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.ApplyEffectPermutations(SiliconStudio.Xenko.Rendering.RenderEffect)">
-            <summary>
-            Applies effect permutations.
-            </summary>
-            <param name="renderEffect"></param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.ApplyViewParameters(SiliconStudio.Xenko.Rendering.RenderDrawContext,System.Int32,SiliconStudio.Xenko.Rendering.ParameterCollection)">
-            <summary>
-            Applies PerView lighting parameters.
-            </summary>
-            <param name="context"></param>
-            <param name="viewIndex"></param>
-            <param name="parameters"></param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.ApplyDrawParameters(SiliconStudio.Xenko.Rendering.RenderDrawContext,System.Int32,SiliconStudio.Xenko.Rendering.ParameterCollection,SiliconStudio.Core.Mathematics.BoundingBoxExt@)">
-            <summary>
-            Applies PerDraw lighting parameters.
-            </summary>
-            <param name="context"></param>
-            <param name="viewIndex"></param>
-            <param name="parameters"></param>
-            <param name="boundingBox"></param>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightSkyboxRenderer">
-            <summary>
-            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightSkybox"/>.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightSkyboxRenderer.Reset">
-            <param name="viewCount"></param>
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightSkyboxRenderer.ProcessLights(SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererBase.ProcessLightsParameters)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightSpotGroupRenderer">
-            <summary>
-            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightSpot"/>.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightSpotGroupRenderer.SpotLightShaderGroup.AddView(System.Int32,SiliconStudio.Xenko.Rendering.RenderView,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap">
-            <summary>
-            A directional shadow map.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap"/> class.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.CascadeCount">
-            <summary>
-            Gets or Sets the number of cascades for this shadow (valid only for directional lights)
-            </summary>
-            <value>The number of cascades for this shadow.</value>
-            <userdoc>The number of cascades for the shadows.</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.StabilizationMode">
-            <summary>
-            Gets or Sets the stabilization mode of the shadow map
-            </summary>
-            <userdoc>The technique used to stabilize the shadow map</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRange">
-            <summary>
-            Gets or sets the depth range mode.
-            </summary>
-            <value>The depth range mode.</value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionMode">
-            <summary>
-            Gets or sets the partition mode.
-            </summary>
-            <value>The partition mode.</value>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionModeBase">
-            <summary>
-            Base class for the partition mode.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionManual">
-            <summary>
-            Manual partition. This class cannot be inherited.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionManual.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="!:LightDirectionalManualPartitionMode"/> class.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionLogarithmic">
-            <summary>
-            Logarithmic and PSSM partition. This class cannot be inherited.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionLogarithmic.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionLogarithmic"/> class.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionLogarithmic.PSSMFactor">
-            <summary>
-            Gets or sets the PSSM factor (0.0f is full logarithmic, 1.0f is full PSSM).
-            </summary>
-            <value>The PSSM factor.</value>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters">
-            <summary>
-            The depth range is set manually. This class cannot be inherited.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.DefaultMinDistance">
-            <summary>
-            The default minimum distance
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.DefaultGuardDistance">
-            <summary>
-            The default guard distance for the auto mode.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.DefaultMaxDistance">
-            <summary>
-            The default maximum distance
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters"/> class.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.IsAutomatic">
-            <summary>
-            Gets or sets a value indicating whether this instance is automatic.
-            </summary>
-            <value><c>true</c> if this instance is automatic; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.GuardDistance">
-            <summary>
-            Gets or sets the guard distance.
-            </summary>
-            <value>The guard distance.</value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.ManualMinDistance">
-            <summary>
-            Gets or sets the minimum distance in world space unit.
-            </summary>
-            <value>The minimum distance.</value>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.MaterialSpecularCelShadingModelFeature.Fresnel">
+            <userdoc>Specify the function to use to calculate the Fresnel component of the micro-facet lighting equation. 
+            This defines the amount of the incoming light that is reflected.</userdoc>
         </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.ManualMaxDistance">
-            <summary>
-            Gets or sets the maximum distance in world space unit.
-            </summary>
-            <value>The maximum distance.</value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.IsBlendingCascades">
-            <summary>
-            Gets or sets a value indicating whether this instance is filtering accross cascades.
-            </summary>
-            <value><c>true</c> if this instance is filtering accross cascades; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode">
-            <summary>
-            The stabilization mode used for the shadow maps.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.None">
-            <summary>
-            No stabilization is performed.
-            </summary>
-            <userdoc>No stabilization is performed.</userdoc>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.ProjectionSnapping">
-            <summary>
-            The light projection is snapped to the closest pixel according to the size of the shadow map. This will decrease filtering but lower the quality of the shadow map (more than <see cref="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.None"/>).
-            </summary>
-            <userdoc>The light projection is snapped to the closest pixel according to the size of the shadow map. This will decrease filtering but lower the quality of the shadow map (more than <see cref="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.None"/>)</userdoc>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.ViewSnapping">
-            <summary>
-            The light target view is snapped according to the size of the shadow map. Gives better results but decrease the quality of the shadow map (more than <see cref="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.ProjectionSnapping"/>).
-            </summary>
-            <userdoc>The light target view is snapped according to the size of the shadow map. Gives better results but decrease the quality of the shadow map (more than <see cref="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.ProjectionSnapping"/>).</userdoc>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightStandardShadowMap">
-            <summary>
-            A standard shadow map.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.ColorLightBase">
-            <summary>
-            Base implementation of <see cref="T:SiliconStudio.Xenko.Rendering.Lights.IColorLight"/>
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.ColorLightBase.Color">
-            <summary>
-            Gets or sets the light color.
-            </summary>
-            <value>The color.</value>
-            <userdoc>The color emitted by the light.</userdoc>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ColorLightBase.ComputeColor(SiliconStudio.Xenko.Graphics.ColorSpace,System.Single)">
-            <summary>
-            Computes the color with intensity, result is in linear space.
-            </summary>
-            <returns>Gets the color of this light in linear space.</returns>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.DirectLightBase">
-            <summary>
-            Base implementation of <see cref="T:SiliconStudio.Xenko.Rendering.Lights.IDirectLight"/>.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.DirectLightBase.Shadow">
-            <summary>
-            Gets or sets the shadow.
-            </summary>
-            <value>The shadow.</value>
-            <userdoc>The settings of the light shadow</userdoc>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.IColorLight">
-            <summary>
-            Base interface for a light with a color
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.IColorLight.Color">
-            <summary>
-            Gets or sets the light color.
-            </summary>
-            <value>The color.</value>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.IColorLight.ComputeColor(SiliconStudio.Xenko.Graphics.ColorSpace,System.Single)">
-            <summary>
-            Computes the color to the proper <see cref="T:SiliconStudio.Xenko.Graphics.ColorSpace"/> with the specified intensity.
-            </summary>
-            <param name="colorSpace"></param>
-            <param name="intensity">The intensity.</param>
-            <returns>Color3.</returns>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.ILightShadowMapFilterType">
-            <summary>
-            Common interface of a shadowmap filter.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightPoint">
-            <summary>
-            A point light.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightPoint.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightPoint"/> class.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightPoint.Radius">
-            <summary>
-            Gets or sets the radius of influence of this light.
-            </summary>
-            <value>The range.</value>
-            <userdoc>The radius range of the point light in scene units.</userdoc>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapCascadeCount">
-            <summary>
-            Number of cascades used for a shadow map.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapCascadeCount.OneCascade">
-            <summary>
-            A shadow map with one cascade.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapCascadeCount.TwoCascades">
-            <summary>
-            A shadow map with two cascades.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapCascadeCount.FourCascades">
-            <summary>
-            A shadow map with four cascades.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapFilterTypePcf">
-            <summary>
-            No shadowmap filter.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapFilterTypePcf.FilterSize">
-            <summary>
-            Gets or sets the size of the filter.
-            </summary>
-            <value>The size of the filter.</value>
-            <userdoc>The size of the filter (size of the kernel).</userdoc>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapSize">
-            <summary>
-            Size hint of a shadow map. See remarks.
-            </summary>
-            <remarks>This is a hint to determine the size of a shadow map</remarks>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapSize.XSmall">
-            <summary>
-            Use a xtra-small size.
-            </summary>
-            <userodc>A smaller shadow map (1/8 of the reference size)</userodc>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapSize.Small">
-            <summary>
-            Use a small size.
-            </summary>
-            <userodc>A small shadow map (1/4 of the reference size)</userodc>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapSize.Medium">
-            <summary>
-            Use a medium size.
-            </summary>
-            <userodc>A medium shadow map (1/2 of the reference size)</userodc>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapSize.Large">
-            <summary>
-            Use a large size.
-            </summary>
-            <userodc>A large shadow map(x 1 of the reference size)</userodc>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapSize.XLarge">
-            <summary>
-            Use a xtra-large size.
-            </summary>
-            <userodc>A larger shadow map (x 2 of the reference size)</userodc>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.IDirectLight">
-            <summary>
-            Base interface for all direct lights.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.IDirectLight.Shadow">
-            <summary>
-            Gets or sets the shadow.
-            </summary>
-            <value>The shadow.</value>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.MaterialSpecularCelShadingModelFeature.Visibility">
+            <userdoc>Specify the function to use to calculate the visibility component of the micro-facet lighting equation.</userdoc>
         </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.IDirectLight.HasBoundingBox">
-            <summary>
-            Gets a value indicating whether this instance has a bounding box.
-            </summary>
-            <value><c>true</c> if this instance has a bounding box; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.IDirectLight.ComputeBounds(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3)">
-            <summary>
-            Computes the bounds of this light..
-            </summary>
-            <param name="position">The position.</param>
-            <param name="direction">The direction.</param>
-            <returns>BoundingBox.</returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.IDirectLight.ComputeScreenCoverage(SiliconStudio.Xenko.Rendering.RenderView,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3)">
-            <summary>
-            Computes the screen coverage of this light in pixel.
-            </summary>
-            <param name="renderView">The render view.</param>
-            <param name="position">The position of the light in world space.</param>
-            <param name="direction">The direction of the light in world space.</param>
-            <returns>The largest screen coverage width or height size in pixels of this light.</returns>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.IEnvironmentLight">
-            <summary>
-            Base interface for all environment lights.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.ILight">
-            <summary>
-            Base interface for all lights.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.ILightShadow">
-            <summary>
-            Interface for the shadow of a light.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.ILightShadow.Enabled">
-            <summary>
-            Gets or sets a value indicating whether this <see cref="T:SiliconStudio.Xenko.Rendering.Lights.ILightShadow"/> is enabled.
-            </summary>
-            <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightAmbient">
-            <summary>
-            An ambient light.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectional">
-            <summary>
-            A directional light.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightProcessor">
-            <summary>
-            Process <see cref="T:SiliconStudio.Xenko.Engine.LightComponent"/> stored in an <see cref="T:SiliconStudio.Xenko.Engine.EntityManager"/> by providing grouped lights per types/shadows.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightProcessor.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightProcessor"/> class.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightProcessor.Lights">
-            <summary>
-            Gets the active lights.
-            </summary>
-            <value>The lights.</value>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap">
-            <summary>
-            Base class for a shadow map.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap"/> class.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.Enabled">
-            <summary>
-            Gets or sets a value indicating whether this <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap"/> is enabled.
-            </summary>
-            <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
-            <userdoc>If checked, display the shadow of the engendered by the light.</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.Filter">
-            <summary>
-            Gets or sets the shadow map filtering.
-            </summary>
-            <value>The filter type.</value>
-            <userdoc>The type of filter to apply onto the shadow.</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.Size">
-            <summary>
-            Gets or sets the size of the shadow-map.
-            </summary>
-            <value>The size.</value>
-            <userdoc>The size of texture to use for shadow mapping. Large textures produces better shadows edges but are much more costly.</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.BiasParameters">
-            <summary>
-            Gets the bias parameters.
-            </summary>
-            <value>The bias parameters.</value>
-            <userdoc>Offset values to add during to the depth calculation process of the shadow map.</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.Debug">
-            <summary>
-            Gets or sets a value indicating whether this <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap"/> is debug.
-            </summary>
-            <value><c>true</c> if debug; otherwise, <c>false</c>.</value>
-            <userdoc>If checked, render the shadow map in debug mode.</userdoc>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.ShadowMapBiasParameters">
-            <summary>
-            Bias parameters used for shadow map.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.ShadowMapBiasParameters.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.ShadowMapBiasParameters"/> class.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.ShadowMapBiasParameters.DepthBias">
-            <summary>
-            Gets or sets the depth bias used for shadow map comparison.
-            </summary>
-            <value>The bias.</value>
-            <userdoc>An absolute value to add to the calculated depth.</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.ShadowMapBiasParameters.NormalOffsetScale">
-            <summary>
-            Gets or sets the offset scale in world space unit along the surface normal.
-            </summary>
-            <value>The offset scale.</value>
-            <userdoc>A factor specifying the offset to add to the calculated depth with respect to the surface normal.</userdoc>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightSkybox">
-            <summary>
-            A light coming from a skybox. The <see cref="P:SiliconStudio.Xenko.Rendering.Lights.LightSkybox.SkyboxComponent"/> must be set on the entity in order to see a skybox. 
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightSkybox.SkyboxComponent">
-            <summary>
-            Gets the skybox component (this is set after the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightProcessor"/> has processed this light.
-            </summary>
-            <value>The skybox component.</value>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightSpot">
-            <summary>
-            A spot light.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightSpot.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightSpot"/> class.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightSpot.Range">
-            <summary>
-            Gets or sets the range distance the light is affecting.
-            </summary>
-            <value>The range.</value>
-            <userdoc>The range of the spot light in scene units</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightSpot.AngleInner">
-            <summary>
-            Gets or sets the spot angle in degrees.
-            </summary>
-            <value>The spot angle in degrees.</value>
-            <userdoc>The angle of the main beam of the light spot.</userdoc>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightSpot.AngleOuter">
-            <summary>
-            Gets or sets the spot angle in degrees.
-            </summary>
-            <value>The spot angle in degrees.</value>
-            <userdoc>The angle of secondary beam of the light spot</userdoc>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.LogicalGroup">
-            <summary>
-            Defines a group of descriptors and cbuffer range that are updated together.
-            It can be declared in shader using the syntax <c>cbuffer PerView_LogicalGroupName</c> (also works with <c>rgroup</c>).
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.LogicalGroupReference">
-            <summary>
-            Handle used to query logical group information.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.MaterialNull">
-            <summary>
-            Used as a replacement for a null material stored in a <see cref="T:SiliconStudio.Xenko.Engine.ModelComponent"/>, only valid at design time
-            </summary>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.MaterialSpecularCelShadingModelFeature.NormalDistribution">
+            <userdoc>Specify the function to use to calculate the normal distribution in the micro-facet lighting equation. 
+            This defines how the normal is distributed.</userdoc>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ColorVertexStreamDefinition">
             <summary>
@@ -6350,6 +5696,9 @@
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeVertexStreamColor"/> class.
             </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeVertexStreamColor.HasChanged">
+            <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.VertexStreamDefinitionBase">
             <summary>
@@ -6410,6 +5759,12 @@
             Gets the name of the semantic.
             </summary>
             <returns>A string with the name of the stream semantic.</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.IVertexStreamDefinition.GetSemanticNameHash">
+            <summary>
+            Gets the hash code of the semantic name.
+            </summary>
+            <returns>An int with the hash code of the semantic name.</returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.IndexedVertexStreamDefinition">
             <summary>
@@ -6643,6 +5998,9 @@
             A node that describe a binary operation between two <see cref="T:SiliconStudio.Xenko.Rendering.Materials.IComputeColor"/>
             </summary>
         </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeBinaryColor.HasChanged">
+            <inheritdoc/>
+        </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeBinaryScalar">
             <summary>
             A node that describe a binary operation between two <see cref="T:SiliconStudio.Xenko.Rendering.Materials.IComputeScalar"/>
@@ -6682,6 +6040,9 @@
             <param name="value">The value.</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeColor.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeColor.HasChanged">
             <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeColorParameter">
@@ -6741,6 +6102,9 @@
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeFloat4"/> class.
             </summary>
             <param name="value">The value.</param>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeFloat4.HasChanged">
+            <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeFloat4.ToString">
             <inheritdoc/>
@@ -6823,54 +6187,19 @@
             The editables values of this shader. There is no need to edit the list, it is automatically filled when the shader is loaded.
             </userdoc>
         </member>
-        <member name="F:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeShaderClassBase`1.mixinReference">
-            <summary>
-            The reference to the shader.
-            </summary>
-        </member>
         <member name="M:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeShaderClassBase`1.GetChildren(System.Object)">
             <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeShaderClassBase`1.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeShaderClassBase`1.AddMember``1(System.String,System.Collections.Generic.Dictionary{SiliconStudio.Xenko.Rendering.ParameterKey,System.Object})">
-            <summary>
-            Add a new member.
-            </summary>
-            <typeparam name="TMember">The type of the member.</typeparam>
-            <param name="linkName">The name of the parameter key.</param>
-            <param name="members">The target parameter collection.</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeShaderClassBase`1.AddKey``1(System.String,SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeColorParameters)">
-            <summary>
-            Add a new generic parameter.
-            </summary>
-            <typeparam name="TValue">The type of the generic.</typeparam>
-            <param name="keyName">The name of the generic.</param>
-            <param name="generics">The target ComputeColorParameters.</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeShaderClassBase`1.AddToCollection``1(SiliconStudio.Xenko.Rendering.ParameterKey,``0,SiliconStudio.Xenko.Rendering.ParameterCollection)">
-            <summary>
-            Add the parameter to the collection.
-            </summary>
-            <typeparam name="TValue">The type of the parameter.</typeparam>
-            <param name="key">The key of the variable.</param>
-            <param name="value"></param>
-            <param name="collection"></param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeShaderClassBase`1.GetTypedParameterKey``1(System.String)">
-            <summary>
-            Get the correct parameter key.
-            </summary>
-            <typeparam name="TValue">The type of the parameter.</typeparam>
-            <param name="linkName">The name of the parameter key.</param>
-            <returns>The parameter key.</returns>
-        </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeShaderClassColor">
             <summary>
             A shader outputing a single scalar value.
             </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeShaderClassColor.HasChanged">
+            <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeShaderClassScalar">
             <summary>
@@ -6988,6 +6317,9 @@
             <param name="texcoordIndex">Index of the texcoord.</param>
             <param name="scale">The scale.</param>
             <param name="offset">The offset.</param>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeTextureColor.HasChanged">
+            <inheritdoc/>
         </member>
         <member name="P:SiliconStudio.Xenko.Rendering.Materials.ComputeColors.ComputeTextureColor.FallbackValue">
             <summary>
@@ -7361,6 +6693,12 @@
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.IComputeColor">
             <summary>
             Base interface for vector/color based compute color nodes.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.IComputeColor.HasChanged">
+            <summary>
+            Indicates if the IComputeColor has changed since the last time it was checked, which might require recompilation of the shader mixins.
+            Once polled, it will reset all cached states and revert to false until other changes have been triggered.
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.IComputeNode">
@@ -8251,6 +7589,843 @@
             </summary>
             <value>The filter.</value>
         </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.ResourceResolver">
+            <summary>
+            Resolves a render target from one render pass to be used as an input resource to another render pass
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.#ctor(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="context"><see cref="T:SiliconStudio.Xenko.Rendering.RenderDrawContext"/> to which this resolver belongs</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.GetDepthStencilAsRenderTarget(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Xenko.Graphics.Texture)">
+            <summary>
+            Returns a texture view which should be used as DepthStencil render target while SRV is also used
+            </summary>
+            <param name="texture">The depthStencil texture originally used for render target</param>
+            <param name="readOnlyCached">The cached view for the texture resource</param>
+            <returns>The texture view which should be used as DepthStencil render target while SRV is also used</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.GetDepthStenctilAsShaderResource(SiliconStudio.Xenko.Graphics.Texture)">
+            <summary>
+            Returns a texture view which should be used as DepthStencil Shader Resource View. Can be <c>null</c> if not supported
+            </summary>
+            <param name="texture">The depthStencil texture originally used for render target</param>
+            <returns>The texture view which should be used as DepthStencil SRV. Can be <c>null</c> if not supported</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.ReleaseDepthStenctilAsShaderResource(SiliconStudio.Xenko.Graphics.Texture)">
+            <summary>
+            Frees previously acquired SRV texture. Should be called when the view is no longer needed
+            </summary>
+            <param name="depthAsSR">The previously acquired SRV texture</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.GetDepthStenctilAsShaderResource_Copy(SiliconStudio.Xenko.Graphics.Texture)">
+            <summary>
+            Gets a texture view which can be used to copy the depth buffer
+            </summary>
+            <param name="texture">The depthStencil texture originally used for render target</param>
+            <returns>A texture view which can be used to copy the depth buffer</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.ResourceResolver.ResolveDepthStencil(SiliconStudio.Xenko.Graphics.Texture)">
+            <summary>
+            Resolves the depth render target so it can be used as a shader resource view. Should only be called once per frame and acquired with <see cref="M:SiliconStudio.Xenko.Rendering.ResourceResolver.GetDepthStenctilAsShaderResource(SiliconStudio.Xenko.Graphics.Texture)"/> after that
+            </summary>
+            <param name="texture">The depthStencil texture originally used for render target</param>
+            <returns>The texture view which should be used as DepthStencil render target while SRV is also used</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.FrameResourceGroupLayout">
+            <summary>
+            Implementation of <see cref="!:ResourceGroupLayout"/> specifically for PerFrame cbuffer of <see cref="T:SiliconStudio.Xenko.Rendering.RenderSystem"/>.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.FrontToBackSortMode">
+            <summary>
+            Sort elements according to the pattern: [RenderFeature Sort Key 8 bits] [Distance front to back 16 bits] [RenderObject states 32 bits]
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.IEntityComponentRenderProcessor">
+            <summary>
+            An <see cref="T:SiliconStudio.Xenko.Engine.EntityProcessor"/> dedicated for rendering.
+            </summary>
+            Note that it might be instantiated multiple times in a given <see cref="T:SiliconStudio.Xenko.Engine.SceneInstance"/>.
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.IRenderCollector.Collect(SiliconStudio.Xenko.Rendering.RenderContext)">
+            <summary>
+            Executed before extract. Should create views, update RenderStages, etc...
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererDynamic">
+            <summary>
+            A light group renderer that can handle a varying number of lights, i.e. point, spots, directional.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererDynamic.NonShadowRenderer">
+            <summary>
+            Next light renderer we can send our unprocessed lights to.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic">
+            <summary>
+            Base class to build light shader groups with <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererDynamic"/>.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.Lights">
+            <summary>
+            List of all available lights.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.CurrentLights">
+            <summary>
+            List of lights selected for this rendering.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.AddView(System.Int32,SiliconStudio.Xenko.Rendering.RenderView,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="viewIndex"></param>
+            <param name="renderView"></param>
+            <param name="lightCount"></param>
+            <returns>The number of lights accepted in <see cref="F:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.CurrentLights"/>.</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.ComputeLightCount(System.Int32)">
+            <summary>
+            Compute the number of light supported by this shader. Usually a different number of light will trigger a permutation and layout update.
+            </summary>
+            <param name="lightCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.AddLight(SiliconStudio.Xenko.Engine.LightComponent,SiliconStudio.Xenko.Rendering.Shadows.LightShadowMapTexture)">
+            <summary>
+            Try to add light to this group (returns false if not possible).
+            </summary>
+            <param name="light"></param>
+            <param name="shadowMapTexture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.UpdateLayout(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.ApplyViewParameters(SiliconStudio.Xenko.Rendering.RenderDrawContext,System.Int32,SiliconStudio.Xenko.Rendering.ParameterCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroupDynamic.ApplyDrawParameters(SiliconStudio.Xenko.Rendering.RenderDrawContext,System.Int32,SiliconStudio.Xenko.Rendering.ParameterCollection,SiliconStudio.Core.Mathematics.BoundingBoxExt@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightClusteredPointGroupRenderer">
+            <summary>
+            Light renderer for clustered shading.
+            </summary>
+            <remarks>
+            Due to the fact that it handles both Point and Spot with a single logic, it doesn't fit perfectly the current logic of one "direct light groups" per renderer.
+            </remarks>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightClusteredPointGroupRenderer.PointLightShaderGroupData.ComputeLightCount(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightClusteredPointGroupRenderer.PointLightShaderGroupData.SetViews(SiliconStudio.Core.Collections.FastList{SiliconStudio.Xenko.Rendering.RenderView})">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightClusteredPointGroupRenderer.PointLightShaderGroupData.AddView(System.Int32,SiliconStudio.Xenko.Rendering.RenderView,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature">
+            <summary>
+            Compute lighting shaders and data.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.RenderViewLightData.ActiveLightGroups">
+            <summary>
+            Gets the lights without shadow per light type.
+            </summary>
+            <value>The lights.</value>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.Extract">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.PrepareEffectPermutations(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
+            <param name="context"></param>
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.GetReadonlyShaderSources(SiliconStudio.Xenko.Shaders.ShaderSourceCollection)">
+            <summary>
+            Create a read-only copy of the given shader sources.
+            </summary>
+            <param name="shaderSources"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.CollectVisibleLights">
+            <summary>
+            Collects the visible lights by intersecting them with the frustum.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.ForwardLightingRenderFeature.LightShaderPermutationEntry.PermutationLightGroups">
+            <summary>
+            Light groups that have <see cref="P:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.HasEffectPermutations"/>.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightAmbientRenderer">
+            <summary>
+            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightAmbient"/>.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection">
+            <summary>
+            A list of <see cref="T:SiliconStudio.Xenko.Engine.LightComponent"/> for a specified <see cref="T:SiliconStudio.Xenko.Engine.EntityGroupMask"/>.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> class.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> class.
+            </summary>
+            <param name="capacity">The capacity.</param>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection.CullingMask">
+            <summary>
+            Gets or sets the culling mask.
+            </summary>
+            <value>The culling mask.</value>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection.Tags">
+            <summary>
+            Tags attached.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup">
+            <summary>
+            A list of <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> for a particular type of light (direct light, direct light + shadows, environment lights).
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup"/> class.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>LightComponentCollection.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">index [{0}] out of range [0, {1}].ToFormat(index, lights.Count - 1)</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.FindLightCollectionByGroup(SiliconStudio.Xenko.Engine.EntityGroup)">
+            <summary>
+            Gets the light affecting a specific group.
+            </summary>
+            <param name="group">The group.</param>
+            <returns>LightComponentCollection.</returns>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.AllLights">
+            <summary>
+            Gets all the lights stored in this group.
+            </summary>
+            <value>All lights.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.AllLightsWithShadows">
+            <summary>
+            Gets the lights with shadows.
+            </summary>
+            <value>The lights with shadows.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.Count">
+            <summary>
+            Gets the number of <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> stored in this group.
+            </summary>
+            <value>The number of <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollection"/> stored in this group.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightComponentCollectionGroup.LightType">
+            <summary>
+            Gets the light type this collection contains.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalGroupRenderer">
+            <summary>
+            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectional"/>.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererBase">
+            <summary>
+            Base class for light renderers.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightPointGroupRenderer">
+            <summary>
+            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightPoint"/>.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightPointGroupRenderer.PointLightShaderGroup.AddView(System.Int32,SiliconStudio.Xenko.Rendering.RenderView,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup">
+            <summary>
+            A group of lights of the same type (single loop in the shader).
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.UpdateLayout(System.String)">
+            <summary>
+            Called when layout is updated, so that parameter keys can be recomputed.
+            </summary>
+            <param name="compositionName"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.Reset">
+            <summary>
+            Resets states.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.ApplyEffectPermutations(SiliconStudio.Xenko.Rendering.RenderEffect)">
+            <summary>
+            Applies effect permutations.
+            </summary>
+            <param name="renderEffect"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.ApplyViewParameters(SiliconStudio.Xenko.Rendering.RenderDrawContext,System.Int32,SiliconStudio.Xenko.Rendering.ParameterCollection)">
+            <summary>
+            Applies PerView lighting parameters.
+            </summary>
+            <param name="context"></param>
+            <param name="viewIndex"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShaderGroup.ApplyDrawParameters(SiliconStudio.Xenko.Rendering.RenderDrawContext,System.Int32,SiliconStudio.Xenko.Rendering.ParameterCollection,SiliconStudio.Core.Mathematics.BoundingBoxExt@)">
+            <summary>
+            Applies PerDraw lighting parameters.
+            </summary>
+            <param name="context"></param>
+            <param name="viewIndex"></param>
+            <param name="parameters"></param>
+            <param name="boundingBox"></param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightSkyboxRenderer">
+            <summary>
+            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightSkybox"/>.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightSkyboxRenderer.Reset">
+            <param name="viewCount"></param>
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightSkyboxRenderer.ProcessLights(SiliconStudio.Xenko.Rendering.Lights.LightGroupRendererBase.ProcessLightsParameters)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightSpotGroupRenderer">
+            <summary>
+            Light renderer for <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightSpot"/>.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightSpotGroupRenderer.SpotLightShaderGroup.AddView(System.Int32,SiliconStudio.Xenko.Rendering.RenderView,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap">
+            <summary>
+            A directional shadow map.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap"/> class.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.CascadeCount">
+            <summary>
+            Gets or Sets the number of cascades for this shadow (valid only for directional lights)
+            </summary>
+            <value>The number of cascades for this shadow.</value>
+            <userdoc>The number of cascades for the shadows.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.StabilizationMode">
+            <summary>
+            Gets or Sets the stabilization mode of the shadow map
+            </summary>
+            <userdoc>The technique used to stabilize the shadow map</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRange">
+            <summary>
+            Gets or sets the depth range mode.
+            </summary>
+            <value>The depth range mode.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionMode">
+            <summary>
+            Gets or sets the partition mode.
+            </summary>
+            <value>The partition mode.</value>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionModeBase">
+            <summary>
+            Base class for the partition mode.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionManual">
+            <summary>
+            Manual partition. This class cannot be inherited.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionManual.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="!:LightDirectionalManualPartitionMode"/> class.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionLogarithmic">
+            <summary>
+            Logarithmic and PSSM partition. This class cannot be inherited.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionLogarithmic.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionLogarithmic"/> class.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.PartitionLogarithmic.PSSMFactor">
+            <summary>
+            Gets or sets the PSSM factor (0.0f is full logarithmic, 1.0f is full PSSM).
+            </summary>
+            <value>The PSSM factor.</value>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters">
+            <summary>
+            The depth range is set manually. This class cannot be inherited.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.DefaultMinDistance">
+            <summary>
+            The default minimum distance
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.DefaultGuardDistance">
+            <summary>
+            The default guard distance for the auto mode.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.DefaultMaxDistance">
+            <summary>
+            The default maximum distance
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters"/> class.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.IsAutomatic">
+            <summary>
+            Gets or sets a value indicating whether this instance is automatic.
+            </summary>
+            <value><c>true</c> if this instance is automatic; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.GuardDistance">
+            <summary>
+            Gets or sets the guard distance.
+            </summary>
+            <value>The guard distance.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.ManualMinDistance">
+            <summary>
+            Gets or sets the minimum distance in world space unit.
+            </summary>
+            <value>The minimum distance.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.ManualMaxDistance">
+            <summary>
+            Gets or sets the maximum distance in world space unit.
+            </summary>
+            <value>The maximum distance.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightDirectionalShadowMap.DepthRangeParameters.IsBlendingCascades">
+            <summary>
+            Gets or sets a value indicating whether this instance is filtering accross cascades.
+            </summary>
+            <value><c>true</c> if this instance is filtering accross cascades; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode">
+            <summary>
+            The stabilization mode used for the shadow maps.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.None">
+            <summary>
+            No stabilization is performed.
+            </summary>
+            <userdoc>No stabilization is performed.</userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.ProjectionSnapping">
+            <summary>
+            The light projection is snapped to the closest pixel according to the size of the shadow map. This will decrease filtering but lower the quality of the shadow map (more than <see cref="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.None"/>).
+            </summary>
+            <userdoc>The light projection is snapped to the closest pixel according to the size of the shadow map. This will decrease filtering but lower the quality of the shadow map (more than <see cref="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.None"/>)</userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.ViewSnapping">
+            <summary>
+            The light target view is snapped according to the size of the shadow map. Gives better results but decrease the quality of the shadow map (more than <see cref="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.ProjectionSnapping"/>).
+            </summary>
+            <userdoc>The light target view is snapped according to the size of the shadow map. Gives better results but decrease the quality of the shadow map (more than <see cref="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapStabilizationMode.ProjectionSnapping"/>).</userdoc>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightStandardShadowMap">
+            <summary>
+            A standard shadow map.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.ColorLightBase">
+            <summary>
+            Base implementation of <see cref="T:SiliconStudio.Xenko.Rendering.Lights.IColorLight"/>
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.ColorLightBase.Color">
+            <summary>
+            Gets or sets the light color.
+            </summary>
+            <value>The color.</value>
+            <userdoc>The color emitted by the light.</userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.ColorLightBase.ComputeColor(SiliconStudio.Xenko.Graphics.ColorSpace,System.Single)">
+            <summary>
+            Computes the color with intensity, result is in linear space.
+            </summary>
+            <returns>Gets the color of this light in linear space.</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.DirectLightBase">
+            <summary>
+            Base implementation of <see cref="T:SiliconStudio.Xenko.Rendering.Lights.IDirectLight"/>.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.DirectLightBase.Shadow">
+            <summary>
+            Gets or sets the shadow.
+            </summary>
+            <value>The shadow.</value>
+            <userdoc>The settings of the light shadow</userdoc>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.IColorLight">
+            <summary>
+            Base interface for a light with a color
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.IColorLight.Color">
+            <summary>
+            Gets or sets the light color.
+            </summary>
+            <value>The color.</value>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.IColorLight.ComputeColor(SiliconStudio.Xenko.Graphics.ColorSpace,System.Single)">
+            <summary>
+            Computes the color to the proper <see cref="T:SiliconStudio.Xenko.Graphics.ColorSpace"/> with the specified intensity.
+            </summary>
+            <param name="colorSpace"></param>
+            <param name="intensity">The intensity.</param>
+            <returns>Color3.</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.ILightShadowMapFilterType">
+            <summary>
+            Common interface of a shadowmap filter.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightPoint">
+            <summary>
+            A point light.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightPoint.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightPoint"/> class.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightPoint.Radius">
+            <summary>
+            Gets or sets the radius of influence of this light.
+            </summary>
+            <value>The range.</value>
+            <userdoc>The radius range of the point light in scene units.</userdoc>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapCascadeCount">
+            <summary>
+            Number of cascades used for a shadow map.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapCascadeCount.OneCascade">
+            <summary>
+            A shadow map with one cascade.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapCascadeCount.TwoCascades">
+            <summary>
+            A shadow map with two cascades.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapCascadeCount.FourCascades">
+            <summary>
+            A shadow map with four cascades.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapFilterTypePcf">
+            <summary>
+            No shadowmap filter.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapFilterTypePcf.FilterSize">
+            <summary>
+            Gets or sets the size of the filter.
+            </summary>
+            <value>The size of the filter.</value>
+            <userdoc>The size of the filter (size of the kernel).</userdoc>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapSize">
+            <summary>
+            Size hint of a shadow map. See remarks.
+            </summary>
+            <remarks>This is a hint to determine the size of a shadow map</remarks>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapSize.XSmall">
+            <summary>
+            Use a xtra-small size.
+            </summary>
+            <userodc>A smaller shadow map (1/8 of the reference size)</userodc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapSize.Small">
+            <summary>
+            Use a small size.
+            </summary>
+            <userodc>A small shadow map (1/4 of the reference size)</userodc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapSize.Medium">
+            <summary>
+            Use a medium size.
+            </summary>
+            <userodc>A medium shadow map (1/2 of the reference size)</userodc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapSize.Large">
+            <summary>
+            Use a large size.
+            </summary>
+            <userodc>A large shadow map(x 1 of the reference size)</userodc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.Lights.LightShadowMapSize.XLarge">
+            <summary>
+            Use a xtra-large size.
+            </summary>
+            <userodc>A larger shadow map (x 2 of the reference size)</userodc>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.IDirectLight">
+            <summary>
+            Base interface for all direct lights.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.IDirectLight.Shadow">
+            <summary>
+            Gets or sets the shadow.
+            </summary>
+            <value>The shadow.</value>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.IDirectLight.HasBoundingBox">
+            <summary>
+            Gets a value indicating whether this instance has a bounding box.
+            </summary>
+            <value><c>true</c> if this instance has a bounding box; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.IDirectLight.ComputeBounds(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3)">
+            <summary>
+            Computes the bounds of this light..
+            </summary>
+            <param name="position">The position.</param>
+            <param name="direction">The direction.</param>
+            <returns>BoundingBox.</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.IDirectLight.ComputeScreenCoverage(SiliconStudio.Xenko.Rendering.RenderView,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3)">
+            <summary>
+            Computes the screen coverage of this light in pixel.
+            </summary>
+            <param name="renderView">The render view.</param>
+            <param name="position">The position of the light in world space.</param>
+            <param name="direction">The direction of the light in world space.</param>
+            <returns>The largest screen coverage width or height size in pixels of this light.</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.IEnvironmentLight">
+            <summary>
+            Base interface for all environment lights.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.ILight">
+            <summary>
+            Base interface for all lights.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.ILightShadow">
+            <summary>
+            Interface for the shadow of a light.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.ILightShadow.Enabled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:SiliconStudio.Xenko.Rendering.Lights.ILightShadow"/> is enabled.
+            </summary>
+            <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightAmbient">
+            <summary>
+            An ambient light.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightDirectional">
+            <summary>
+            A directional light.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightProcessor">
+            <summary>
+            Process <see cref="T:SiliconStudio.Xenko.Engine.LightComponent"/> stored in an <see cref="T:SiliconStudio.Xenko.Engine.EntityManager"/> by providing grouped lights per types/shadows.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightProcessor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightProcessor"/> class.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightProcessor.Lights">
+            <summary>
+            Gets the active lights.
+            </summary>
+            <value>The lights.</value>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap">
+            <summary>
+            Base class for a shadow map.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap"/> class.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.Enabled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap"/> is enabled.
+            </summary>
+            <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
+            <userdoc>If checked, display the shadow of the engendered by the light.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.Filter">
+            <summary>
+            Gets or sets the shadow map filtering.
+            </summary>
+            <value>The filter type.</value>
+            <userdoc>The type of filter to apply onto the shadow.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.Size">
+            <summary>
+            Gets or sets the size of the shadow-map.
+            </summary>
+            <value>The size.</value>
+            <userdoc>The size of texture to use for shadow mapping. Large textures produces better shadows edges but are much more costly.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.BiasParameters">
+            <summary>
+            Gets the bias parameters.
+            </summary>
+            <value>The bias parameters.</value>
+            <userdoc>Offset values to add during to the depth calculation process of the shadow map.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.Debug">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap"/> is debug.
+            </summary>
+            <value><c>true</c> if debug; otherwise, <c>false</c>.</value>
+            <userdoc>If checked, render the shadow map in debug mode.</userdoc>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.ShadowMapBiasParameters">
+            <summary>
+            Bias parameters used for shadow map.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.ShadowMapBiasParameters.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.ShadowMapBiasParameters"/> class.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.ShadowMapBiasParameters.DepthBias">
+            <summary>
+            Gets or sets the depth bias used for shadow map comparison.
+            </summary>
+            <value>The bias.</value>
+            <userdoc>An absolute value to add to the calculated depth.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightShadowMap.ShadowMapBiasParameters.NormalOffsetScale">
+            <summary>
+            Gets or sets the offset scale in world space unit along the surface normal.
+            </summary>
+            <value>The offset scale.</value>
+            <userdoc>A factor specifying the offset to add to the calculated depth with respect to the surface normal.</userdoc>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightSkybox">
+            <summary>
+            A light coming from a skybox. The <see cref="P:SiliconStudio.Xenko.Rendering.Lights.LightSkybox.SkyboxComponent"/> must be set on the entity in order to see a skybox. 
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightSkybox.SkyboxComponent">
+            <summary>
+            Gets the skybox component (this is set after the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightProcessor"/> has processed this light.
+            </summary>
+            <value>The skybox component.</value>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.Lights.LightSpot">
+            <summary>
+            A spot light.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.Lights.LightSpot.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.Lights.LightSpot"/> class.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightSpot.Range">
+            <summary>
+            Gets or sets the range distance the light is affecting.
+            </summary>
+            <value>The range.</value>
+            <userdoc>The range of the spot light in scene units</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightSpot.AngleInner">
+            <summary>
+            Gets or sets the spot angle in degrees.
+            </summary>
+            <value>The spot angle in degrees.</value>
+            <userdoc>The angle of the main beam of the light spot.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Lights.LightSpot.AngleOuter">
+            <summary>
+            Gets or sets the spot angle in degrees.
+            </summary>
+            <value>The spot angle in degrees.</value>
+            <userdoc>The angle of secondary beam of the light spot</userdoc>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.LogicalGroup">
+            <summary>
+            Defines a group of descriptors and cbuffer range that are updated together.
+            It can be declared in shader using the syntax <c>cbuffer PerView_LogicalGroupName</c> (also works with <c>rgroup</c>).
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.LogicalGroupReference">
+            <summary>
+            Handle used to query logical group information.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Rendering.MaterialNull">
+            <summary>
+            Used as a replacement for a null material stored in a <see cref="T:SiliconStudio.Xenko.Engine.ModelComponent"/>, only valid at design time
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Rendering.ConstantBufferOffsetReference">
             <summary>
             Handle used to query what's the actual offset of a given variable in a constant buffer, through <see cref="!:ResourceGroupLayout.GetConstantBufferOffset"/>.
@@ -8436,6 +8611,12 @@
             <summary>
             Extract data from entities, should be as fast as possible to not block simulation loop. It should be mostly copies, and the actual processing should be part of Prepare().
             </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.RenderSystem.Flush(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
+            <summary>
+            Finalizes the render features work and releases temporary resources if necessary.
+            </summary>
+            <param name="context"></param>
         </member>
         <member name="M:SiliconStudio.Xenko.Rendering.RenderSystem.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <summary>
@@ -8769,6 +8950,12 @@
             <param name="renderViewStage"></param>
             <param name="startIndex"></param>
             <param name="endIndex"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Rendering.RenderFeature.Flush(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
+            <summary>
+            Releases temporary resources and cleans the state. Should be called once after all <see cref="M:SiliconStudio.Xenko.Rendering.RenderFeature.Draw(SiliconStudio.Xenko.Rendering.RenderDrawContext,SiliconStudio.Xenko.Rendering.RenderView,SiliconStudio.Xenko.Rendering.RenderViewStage,System.Int32,System.Int32)"/> calls have finished.
+            </summary>
+            <param name="context"></param>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.PipelinePlugin`1">
             <summary>
@@ -9638,11 +9825,6 @@
         <member name="T:SiliconStudio.Xenko.Rendering.RenderDrawContext.StateAndTargets">
             <summary>
             Holds current viewports and render targets.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.RenderDrawContext.CommandListLock">
-            <summary>
-            Used to prevent concurrent uses of CommandList.
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.ViewResourceGroupLayout">
@@ -11407,12 +11589,11 @@
             Rendering context.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Rendering.RenderContext.#ctor(SiliconStudio.Core.IServiceRegistry,SiliconStudio.Xenko.Graphics.GraphicsResourceAllocator)">
+        <member name="M:SiliconStudio.Xenko.Rendering.RenderContext.#ctor(SiliconStudio.Core.IServiceRegistry)">
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Rendering.RenderContext" /> class.
             </summary>
             <param name="services">The services.</param>
-            <param name="allocator">The allocator.</param>
             <exception cref="T:System.ArgumentNullException">services</exception>
         </member>
         <member name="E:SiliconStudio.Xenko.Rendering.RenderContext.RendererInitialized">
@@ -11631,11 +11812,21 @@
             <param name="index2">The index of the third vertex.</param>
             <param name="triangleIndex">The original index of the triangle.</param>
         </member>
+        <member name="M:SiliconStudio.Xenko.Extensions.TransformExtensions.TransformBuffer(SiliconStudio.Xenko.Graphics.VertexBufferBinding,System.Byte[],SiliconStudio.Core.Mathematics.Matrix@)">
+            <summary>
+            Transform a vertex buffer positions, normals, tangents and bitangents using the given matrix.
+            Using as source/destination data the provided bufferData byte array.
+            </summary>
+            <param name="vertexBufferBinding">The vertex container to transform</param>
+            <param name="bufferData">The source/destination data array to transform</param>
+            <param name="matrix">The matrix to use for the transform</param>
+        </member>
         <member name="M:SiliconStudio.Xenko.Extensions.TransformExtensions.TransformBuffer(SiliconStudio.Xenko.Graphics.VertexBufferBinding,SiliconStudio.Core.Mathematics.Matrix@)">
             <summary>
             Transform a vertex buffer positions, normals, tangents and bitangents using the given matrix.
             </summary>
-            <param name="meshData">The mesh data.</param>
+            <param name="vertexBufferBinding">The vertex container to transform</param>
+            <param name="matrix">The matrix to use for the transform</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Extensions.EntityExtensions.GetChildren(SiliconStudio.Xenko.Engine.Entity)">
             <summary>
@@ -11760,7 +11951,7 @@
             <param name="sound">The underlying Sound to be controlled</param>
             <remarks>A <see cref="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.sound"/> can be associated to several controllers.</remarks>
         </member>
-        <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.CreateSoundInstance(SiliconStudio.Xenko.Engine.AudioListenerComponent)">
+        <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.CreateSoundInstance(SiliconStudio.Xenko.Engine.AudioListenerComponent,System.Boolean)">
             <summary>
             Create an new instance of underlying sound, and register it in the controller's sound instance list.
             </summary>
@@ -11769,6 +11960,11 @@
         <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.DestroyAllSoundInstances">
             <summary>
             Dispose and removes all the controller sound instances.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.IsLooping">
+            <summary>
+            Gets or sets whether the sound is automatically looping from beginning when it reaches the end.
             </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.IsLooped">
@@ -11780,6 +11976,12 @@
             <summary>
             Indicate the <see cref="T:SiliconStudio.Xenko.Audio.AudioListenerProcessor"/> if the controller's sound instances need to be played.
             This variable is need because <see cref="M:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.Play"/> is asynchronous and actually starts playing only on next system update.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.PlayAndForget">
+            <summary>
+            Plays the attached sound in a new instance and let's the engine handle it's disposal.
+            This is useful for very fast overlapping sounds, gun shots, machine gun etc. Where you don't care about controlling each sound.
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Audio.AudioEngineInternalExceptions">
@@ -11844,6 +12046,11 @@
         <member name="F:SiliconStudio.Xenko.Audio.AudioEmitterProcessor.AssociatedData.TransformComponent">
             <summary>
             The <see cref="F:SiliconStudio.Xenko.Audio.AudioEmitterProcessor.AssociatedData.TransformComponent"/> associated to the entity
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Audio.AudioEmitterProcessor.AssociatedData.IsPlaying">
+            <summary>
+            If this emitter has some instances playing
             </summary>
         </member>
         <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterProcessor.#ctor">

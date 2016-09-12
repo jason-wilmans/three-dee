@@ -108,5 +108,35 @@
             Wrapper around OpenAL
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Native.OculusOvr.SessionStatus.IsVisible">
+            <summary>
+            True if the process has VR focus and thus is visible in the HMD.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Native.OculusOvr.SessionStatus.HmdPresent">
+            <summary>
+            True if an HMD is present.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Native.OculusOvr.SessionStatus.HmdMounted">
+            <summary>
+            True if the HMD is on the user's head.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Native.OculusOvr.SessionStatus.DisplayLost">
+            <summary>
+            True if the session is in a display-lost state. See ovr_SubmitFrame.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Native.OculusOvr.SessionStatus.ShouldQuit">
+            <summary>
+            True if the application should initiate shutdown.    
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Native.OculusOvr.SessionStatus.ShouldRecenter">
+            <summary>
+            True if UX has requested re-centering. 
+            </summary>
+        </member>
     </members>
 </doc>

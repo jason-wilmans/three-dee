@@ -469,6 +469,22 @@
         <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialSpawnOrder.Initialize(SiliconStudio.Xenko.Particles.ParticlePool,System.Int32,System.Int32,System.Int32)">
             <inheritdoc />
         </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Initializers.InitialSpawnOrderGroup">
+            <summary>
+            The <see cref="T:SiliconStudio.Xenko.Particles.Initializers.InitialSpawnOrderGroup"/> is an initializer which assigns all particles an increasing number based on the order of their spawning while keeping all particles spawned in the same frame in a separate spawn group (this is important for ribbons)
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialSpawnOrderGroup.ResetSimulation">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialSpawnOrderGroup.#ctor">
+            <summary>
+            Default constructor which also registers the fields required by this updater
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Initializers.InitialSpawnOrderGroup.Initialize(SiliconStudio.Xenko.Particles.ParticlePool,System.Int32,System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:SiliconStudio.Xenko.Particles.Initializers.InitialVelocityParent">
             <summary>
             The <see cref="T:SiliconStudio.Xenko.Particles.Initializers.InitialVelocityParent"/> is an initializer which sets the particle's velocity based on a followed (parent) particle's velocity
@@ -716,6 +732,11 @@
             Display the Particle Module's bounds as a wireframe debug shape. Temporary feature (will be removed later)!
             </userdoc>
         </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Initializers.SpawnOrderConst">
+            <summary>
+            Spawn order can be additionally subdivided in groups
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Particles.Materials.ParticleMaterial">
             <summary>
             Base class for the particle materials which uses a dynamic effect compiler to generate shaders at runtime
@@ -736,12 +757,11 @@
             Sets the name of the effect or shader which the material will use
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterial.PrepareForDraw(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterial.PrepareVertexLayout(SiliconStudio.Xenko.Particles.ParticlePoolFieldsList)">
             <summary>
-            Prepares the material for drawing the current frame with the current <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder"/> and <see cref="T:SiliconStudio.Xenko.Particles.Sorters.ParticleSorter"/>
+            Prepares the material for drawing the current frame with the current <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder"/> and <see cref="!:ParticleSorter"/>
             </summary>
-            <param name="vertexBuilder">Current <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder"/></param>
-            <param name="sorter">Current <see cref="T:SiliconStudio.Xenko.Particles.Sorters.ParticleSorter"/></param>
+            <param name="fieldsList">A container for the <see cref="T:SiliconStudio.Xenko.Particles.ParticlePool"/> which can poll if a certain field exists as an attribute</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterial.UpdateVertexBuilder(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder)">
             <summary>
@@ -765,12 +785,12 @@
             <param name="renderContext"></param>
             <param name="pipelineState"></param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterial.PatchVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterial.PatchVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
             <summary>
             Patch the particle's vertex buffer which was already built by the <see cref="T:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilder"/>
             This involes animating hte uv coordinates and filling per-particle fields, such as the color field
             </summary>
-            <param name="vertexBuilder">The target buffer builder to use for patching the vertex data</param>
+            <param name="bufferState">The particle buffer state which is used to build the assigned vertex buffer</param>
             <param name="invViewX">Unit vector X (right) in camera space, extracted from the inverse view matrix</param>
             <param name="invViewY">Unit vector Y (up) in camera space, extracted from the inverse view matrix</param>
             <param name="sorter">Particle enumerator which can be iterated and returns sported particles</param>
@@ -825,7 +845,7 @@
         <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialComputeColor.UpdateVertexBuilder(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialComputeColor.PatchVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialComputeColor.PatchVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
             <inheritdoc />
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialSimple">
@@ -870,13 +890,13 @@
             Indicates if this material requires a color field in the vertex stream
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialSimple.PrepareForDraw(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialSimple.PrepareVertexLayout(SiliconStudio.Xenko.Particles.ParticlePoolFieldsList)">
             <inheritdoc />
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialSimple.Setup(SiliconStudio.Xenko.Rendering.RenderContext)">
             <inheritdoc />
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialSimple.PatchVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialSimple.PatchVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
             <inheritdoc />
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.Materials.UVBuilder">
@@ -884,13 +904,13 @@
             Base class for building and animating the texture coordinates in a particle vertex buffer stream
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Materials.UVBuilder.BuildUVCoordinates(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter,SiliconStudio.Xenko.Particles.VertexLayouts.AttributeDescription)">
+        <member name="M:SiliconStudio.Xenko.Particles.Materials.UVBuilder.BuildUVCoordinates(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Xenko.Particles.Sorters.ParticleList@,SiliconStudio.Xenko.Particles.VertexLayouts.AttributeDescription)">
             <summary>
             Enhances or animates the texture coordinates using already existing base coordinates of (0, 0, 1, 1) or similar
             (base texture coordinates may differ depending on the actual shape)
             </summary>
-            <param name="vertexBuilder">Target vertex buffer builder to use</param>
-            <param name="sorter"><see cref="T:SiliconStudio.Xenko.Particles.Sorters.ParticleSorter"/> to use to iterate over all particles drawn this frame</param>
+            <param name="bufferState">The particle buffer state which is used to build the assigned vertex buffer</param>
+            <param name="sorter"><see cref="!:ParticleSorter"/> to use to iterate over all particles drawn this frame</param>
             <param name="texCoordsDescription">Attribute description of the texture coordinates in the current vertex layout</param>
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.Materials.UVBuilderFlipbook">
@@ -932,7 +952,7 @@
             How many frames does the animation have over the particle's lifetime. Speed = X * Y means all frames are played exactly once.
             </userdoc>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Materials.UVBuilderFlipbook.BuildUVCoordinates(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter,SiliconStudio.Xenko.Particles.VertexLayouts.AttributeDescription)">
+        <member name="M:SiliconStudio.Xenko.Particles.Materials.UVBuilderFlipbook.BuildUVCoordinates(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Xenko.Particles.Sorters.ParticleList@,SiliconStudio.Xenko.Particles.VertexLayouts.AttributeDescription)">
             <inheritdoc />
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.Materials.UVBuilderScroll">
@@ -956,7 +976,7 @@
             The rectangular sub-region of the texture where the scrolling should end at the particle life's end, given as (Xmin, Ymin, Xmax, Ymax) ( (0, 0, 1, 1) being the entire texture). Numbers also can be negative or bigger than 1.
             </userdoc>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Materials.UVBuilderScroll.BuildUVCoordinates(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter,SiliconStudio.Xenko.Particles.VertexLayouts.AttributeDescription)">
+        <member name="M:SiliconStudio.Xenko.Particles.Materials.UVBuilderScroll.BuildUVCoordinates(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Xenko.Particles.Sorters.ParticleList@,SiliconStudio.Xenko.Particles.VertexLayouts.AttributeDescription)">
             <inheritdoc />
         </member>
         <member name="P:SiliconStudio.Xenko.Particles.ParticleSystemSettings.WarmupTime">
@@ -1007,10 +1027,19 @@
         <member name="M:SiliconStudio.Xenko.Particles.Rendering.ParticleEmitterRenderFeature.Prepare(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <inheritdoc/>
         </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Rendering.ParticleEmitterRenderFeature.BuildParticleBuffers(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
+            <summary>
+            Builds the shared vertex and index buffers used by the particle systems
+            </summary>
+            <param name="renderDrawContext"><see cref="T:SiliconStudio.Xenko.Rendering.RenderDrawContext"/> to access the command list and the graphics context</param>
+        </member>
         <member name="M:SiliconStudio.Xenko.Particles.Rendering.ParticleEmitterRenderFeature.ProcessPipelineState(SiliconStudio.Xenko.Rendering.RenderContext,SiliconStudio.Xenko.Rendering.RenderNodeReference,SiliconStudio.Xenko.Rendering.RenderNode@,SiliconStudio.Xenko.Rendering.RenderObject,SiliconStudio.Xenko.Graphics.PipelineStateDescription)">
             <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.Rendering.ParticleEmitterRenderFeature.Draw(SiliconStudio.Xenko.Rendering.RenderDrawContext,SiliconStudio.Xenko.Rendering.RenderView,SiliconStudio.Xenko.Rendering.RenderViewStage,System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Rendering.ParticleEmitterRenderFeature.Flush(SiliconStudio.Xenko.Rendering.RenderDrawContext)">
             <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.Rendering.RenderParticleEmitter">
@@ -1044,7 +1073,7 @@
              assuming that all derived shape builders will have position and size fields
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderCommon.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderCommon.PreUpdate">
             <inheritdoc />
         </member>
         <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderCommon.SamplerPosition">
@@ -1097,7 +1126,10 @@
             Additive animation for the particle rotation. If present, particle's own rotation will be added to the sampled curve value
             </userdoc>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderHexagon.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderHexagon.PreUpdate">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderHexagon.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
             <inheritdoc />
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderHexagon.GetParticleRotation(SiliconStudio.Xenko.Particles.Particle,SiliconStudio.Xenko.Particles.ParticleFieldAccessor{System.Single},SiliconStudio.Xenko.Particles.ParticleFieldAccessor{System.Single})">
@@ -1133,7 +1165,7 @@
         <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderOrientedQuad.QuadsPerParticle">
             <inheritdoc />
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderOrientedQuad.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderOrientedQuad.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
             <inheritdoc />
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderQuad">
@@ -1152,7 +1184,10 @@
             Additive animation for the particle rotation. If present, particle's own rotation will be added to the sampled curve value
             </userdoc>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderQuad.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderQuad.PreUpdate">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderQuad.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
             <inheritdoc />
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderQuad.GetParticleRotation(SiliconStudio.Xenko.Particles.Particle,SiliconStudio.Xenko.Particles.ParticleFieldAccessor{SiliconStudio.Core.Mathematics.Quaternion},SiliconStudio.Xenko.Particles.ParticleFieldAccessor{System.Single})">
@@ -1215,44 +1250,13 @@
         <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.SetRequiredQuads(System.Int32,System.Int32,System.Int32)">
             <inheritdoc />
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
             <inheritdoc />
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer">
             <summary>
             The <see cref="T:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer"/> takes a list of points and creates a ribbon (connected quads), adjusting its texture coordinates accordingly
             </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer.TextureCoordinatePolicy">
-            <summary>
-            This property is exposed to the ShapeBuilder class
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer.SmoothingPolicy">
-            <summary>
-            This property is exposed to the ShapeBuilder class
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer.Segments">
-            <summary>
-            This property is exposed to the ShapeBuilder class
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer.TexCoordsFactor">
-            <summary>
-            This property is exposed to the ShapeBuilder class
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer.UVRotate">
-            <summary>
-            This property is exposed to the ShapeBuilder class
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer.Restart(System.Int32,System.Int32)">
-            <summary>
-            Restarts the point string, potentially expanding the capacity
-            </summary>
-            <param name="newCapacity">Required minimum capacity</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer.RibbonSplit">
             <summary>
@@ -1286,17 +1290,14 @@
             Simple interpolation using Catmull-Rom
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer.Ribbonize(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,System.Int32)">
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderRibbon.Ribbonizer.Ribbonize(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,System.Int32)">
             <summary>
             Constructs the ribbon by outputting vertex stream based on the positions and sizes specified previously
             </summary>
-            <param name="vtxBuilder">Target <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder"/></param> to use
+            <param name="bufferState">Target <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState"/></param> to use
             <param name="invViewX">Unit vector X in clip space as calculated from the inverse view matrix</param>
             <param name="invViewY">Unit vector Y in clip space as calculated from the inverse view matrix</param>
             <param name="quadsPerParticle">The required number of quads per each particle</param>
-            <param name="texPolicy">Texture coordinates stretching and stitching policy</param>
-            <param name="texFactor">Texture coordinates stretching and stitching coefficient</param>
-            <param name="uvRotate">Texture coordinates rotate and flip policy</param>
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail">
             <summary>
@@ -1357,49 +1358,13 @@
         <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.SetRequiredQuads(System.Int32,System.Int32,System.Int32)">
             <inheritdoc />
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
             <inheritdoc />
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer">
             <summary>
             The <see cref="T:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer"/> takes a list of points and creates a ribbon (connected quads), adjusting its texture coordinates accordingly
             </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer.EdgePolicy">
-            <summary>
-            This property is exposed to the ShapeBuilder class
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer.TextureCoordinatePolicy">
-            <summary>
-            This property is exposed to the ShapeBuilder class
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer.SmoothingPolicy">
-            <summary>
-            This property is exposed to the ShapeBuilder class
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer.Segments">
-            <summary>
-            This property is exposed to the ShapeBuilder class
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer.TexCoordsFactor">
-            <summary>
-            This property is exposed to the ShapeBuilder class
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer.UVRotate">
-            <summary>
-            This property is exposed to the ShapeBuilder class
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer.Restart(System.Int32,System.Int32)">
-            <summary>
-            Restarts the point string, potentially expanding the capacity
-            </summary>
-            <param name="newCapacity">Required minimum capacity</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer.RibbonSplit">
             <summary>
@@ -1423,7 +1388,7 @@
             Simple interpolation using Catmull-Rom
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer.Ribbonize(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,System.Int32)">
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderTrail.Ribbonizer.Ribbonize(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,System.Int32)">
             <summary>
             Constructs the ribbon by outputting vertex stream based on the positions and sizes specified previously
             </summary>
@@ -1530,7 +1495,10 @@
             Additive animation for the particle rotation. If present, particle's own rotation will be added to the sampled curve value
             </userdoc>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderBillboard.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderBillboard.PreUpdate">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderBillboard.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
             <inheritdoc />
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilderBillboard.GetParticleRotation(SiliconStudio.Xenko.Particles.Particle,SiliconStudio.Xenko.Particles.ParticleFieldAccessor{System.Single},SiliconStudio.Xenko.Particles.ParticleFieldAccessor{System.Single})">
@@ -1557,11 +1525,11 @@
             Indicates that the required vertex layout has changed and <see cref="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilder.UpdateVertexBuilder(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder)"/> should be called
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilder.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilder.BuildVertexBuffer(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState@,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
             <summary>
             Builds the actual vertex buffer for the current frame using the particle data
             </summary>
-            <param name="vtxBuilder">Target vertex buffer builder</param>
+            <param name="bufferState">Target particle buffer state, used to populate the assigned vertex buffer</param>
             <param name="invViewX">Unit vector X (right) in camera space, extracted from the inverse view matrix</param>
             <param name="invViewY">Unit vector Y (up) in camera space, extracted from the inverse view matrix</param>
             <param name="spaceTranslation">Translation of the target draw space in regard to the particle data (world or local)</param>
@@ -1570,12 +1538,11 @@
             <param name="sorter">Particle enumerator which can be iterated and returns sported particles</param>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilder.PrepareForDraw(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder,SiliconStudio.Xenko.Particles.Sorters.ParticleSorter)">
+        <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilder.PrepareVertexLayout(SiliconStudio.Xenko.Particles.ParticlePoolFieldsList)">
             <summary>
             Check if ParticleVertexElements should be changed and set HasVertexLayoutChanged = true; if they do
             </summary>
-            <param name="vertexBuilder">Target vertex buffer stream builder which will be used for the current frame</param>
-            <param name="sorter">Enumerator which accesses all particles in a sorted manner</param>
+            <param name="fieldsList">A container for the <see cref="T:SiliconStudio.Xenko.Particles.ParticlePool"/> which can poll if a certain field exists as an attribute</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.ShapeBuilders.ShapeBuilder.UpdateVertexBuilder(SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder)">
             <summary>
@@ -1596,28 +1563,33 @@
             Finds the circumcenter coordinates for triangle ABC
             </summary>
         </member>
-        <member name="T:SiliconStudio.Xenko.Particles.Sorters.ParticleSorter">
+        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleList.GetField``1(SiliconStudio.Xenko.Particles.ParticleFieldDescription{``0})">
             <summary>
-            Base enumerator which accesses all particles in a <see cref="F:SiliconStudio.Xenko.Particles.Sorters.ParticleSorter.ParticlePool"/> in a sorted manner
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Particles.Sorters.ParticleSorter.ParticlePool">
-            <summary>
-            Target <see cref="F:SiliconStudio.Xenko.Particles.Sorters.ParticleSorter.ParticlePool"/> to iterate and sort
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleSorter.GetField``1(SiliconStudio.Xenko.Particles.ParticleFieldDescription{``0})">
-            <summary>
-            Returns a particle field accessor for the contained <see cref="F:SiliconStudio.Xenko.Particles.Sorters.ParticleSorter.ParticlePool"/>
+            Returns a particle field accessor for the contained <see cref="T:SiliconStudio.Xenko.Particles.ParticlePool"/>
             </summary>
             <typeparam name="T">Type data for the field</typeparam>
             <param name="fieldDesc">The field description</param>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleSorter.Sort">
+        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleList.Enumerator.Reset">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleList.Enumerator.MoveNext">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleList.Enumerator.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterAge">
             <summary>
-            Sorts the particles. Should be called once per frame, after the particles have been updated and before they are drawn
+            Sorts the particles by descending order of their remaining Life
             </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterAge.FreeSortedList(SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
+            <summary>
+            In case an array was used it must be freed back to the pool
+            </summary>
+            <param name="sortedList">Reference to the <see cref="T:SiliconStudio.Xenko.Particles.Sorters.ParticleList"/> to be freed</param>
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterCustom`1">
             <summary>
@@ -1638,23 +1610,38 @@
             The default sorter doesn not sort the particles, but only passes them directly to the renderer
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterDefault.Sort">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterDefault.GetEnumerator">
-            <inheritdoc />
-        </member>
-        <member name="T:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterLiving">
+        <member name="F:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterDefault.ParticlePool">
             <summary>
-            The <see cref="T:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterLiving"/> collects all living particles, rather than sorting them
-            It is useful for some pool policies, like Ring, which iterate over all particles, not only living ones
+            Target <see cref="F:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterDefault.ParticlePool"/> to iterate and sort
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterLiving.Sort">
-            <inheritdoc />
+        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterDefault.FreeSortedList(SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
+            <summary>
+            The default sorter does not allocate any resources so there is nothing to free
+            </summary>
+            <param name="sortedList">Reference to the <see cref="T:SiliconStudio.Xenko.Particles.Sorters.ParticleList"/> to be freed</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterLiving.GetEnumerator">
-            <inheritdoc />
+        <member name="T:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterDepth">
+            <summary>
+            Sorts the particles by ascending order of their Depth (position on the camera's Z axis)
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterDepth.FreeSortedList(SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
+            <summary>
+            In case an array was used it must be freed back to the pool
+            </summary>
+            <param name="sortedList">Reference to the <see cref="T:SiliconStudio.Xenko.Particles.Sorters.ParticleList"/> to be freed</param>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterOrder">
+            <summary>
+            Sorts the particles by ascending order of their Order attribute
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Sorters.ParticleSorterOrder.FreeSortedList(SiliconStudio.Xenko.Particles.Sorters.ParticleList@)">
+            <summary>
+            In case an array was used it must be freed back to the pool
+            </summary>
+            <param name="sortedList">Reference to the <see cref="T:SiliconStudio.Xenko.Particles.Sorters.ParticleList"/> to be freed</param>
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.Spawners.ParticleSpawnTriggerBirth">
             <summary>
@@ -2119,6 +2106,9 @@
             Seed offset. You can use this offset to bind the randomness to other random values, or to make them completely unrelated
             </userdoc>
         </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Updaters.UpdaterColorOverTime.PreUpdate">
+            <inheritdoc />
+        </member>
         <member name="M:SiliconStudio.Xenko.Particles.Updaters.UpdaterColorOverTime.Update(System.Single,SiliconStudio.Xenko.Particles.ParticlePool)">
             <inheritdoc />
         </member>
@@ -2171,6 +2161,9 @@
             Seed offset. You can use this offset to bind the randomness to other random values, or to make them completely unrelated
             </userdoc>
         </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Updaters.UpdaterRotationOverTime.PreUpdate">
+            <inheritdoc />
+        </member>
         <member name="M:SiliconStudio.Xenko.Particles.Updaters.UpdaterRotationOverTime.Update(System.Single,SiliconStudio.Xenko.Particles.ParticlePool)">
             <inheritdoc />
         </member>
@@ -2222,6 +2215,9 @@
             <userdoc>
             Seed offset. You can use this offset to bind the randomness to other random values, or to make them completely unrelated
             </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.Updaters.UpdaterSizeOverTime.PreUpdate">
+            <inheritdoc />
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.Updaters.UpdaterSizeOverTime.Update(System.Single,SiliconStudio.Xenko.Particles.ParticlePool)">
             <inheritdoc />
@@ -2612,11 +2608,6 @@
             The sorting policy we used for the <see cref="F:SiliconStudio.Xenko.Particles.ParticleEmitter.ParticleSorter"/>
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Particles.ParticleEmitter.depthSortVector">
-            <summary>
-            Depth vector to use in case of depth policy sorting
-            </summary>
-        </member>
         <member name="F:SiliconStudio.Xenko.Particles.ParticleEmitter.particlesToSpawn">
             <summary>
             Number of particles waiting to be spawned
@@ -2837,6 +2828,12 @@
             </summary>
             <param name="parentSystem">The parent <see cref="T:SiliconStudio.Xenko.Particles.ParticleSystem"/> containing this emitter</param>
         </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ParticleEmitter.PreUpdate">
+            <summary>
+            Updates all data changes before the emitter is updated this frame.
+            This method is not thread-safe!
+            </summary>
+        </member>
         <member name="M:SiliconStudio.Xenko.Particles.ParticleEmitter.Update(System.Single,SiliconStudio.Xenko.Particles.ParticleSystem)">
             <summary>
             Updates the emitter and all its particles, and applies all updaters and spawners.
@@ -2901,17 +2898,16 @@
             </summary>
             <param name="description"></param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ParticleEmitter.PrepareForDraw">
+        <member name="M:SiliconStudio.Xenko.Particles.ParticleEmitter.PrepareForDraw(System.Boolean@,System.Int32@,System.Int32@)">
             <summary>
-            <see cref="M:SiliconStudio.Xenko.Particles.ParticleEmitter.PrepareForDraw"/> prepares and updates the Material, ShapeBuilder and VertexBuilder if necessary
+            <see cref="M:SiliconStudio.Xenko.Particles.ParticleEmitter.PrepareForDraw(System.Boolean@,System.Int32@,System.Int32@)"/> prepares and updates the Material, ShapeBuilder and VertexBuilder if necessary
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Particles.ParticleEmitter.BuildVertexBuffer(SiliconStudio.Xenko.Graphics.CommandList,SiliconStudio.Core.Mathematics.Matrix@)">
+        <member name="M:SiliconStudio.Xenko.Particles.ParticleEmitter.BuildVertexBuffer(System.IntPtr,SiliconStudio.Core.Mathematics.Matrix@)">
             <summary>
             Build the vertex buffer from particle data
-            Should come before <see cref="!:KickVertexBuffer"/>
             </summary>
-            <param name="device">The graphics device, used to rebuild vertex layouts and shaders if needed</param>
+            <param name="sharedBufferPtr">The shared vertex buffer position where the particle data should be output</param>
             <param name="invViewMatrix">The current camera's inverse view matrix</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.ParticleEmitter.EmitParticles(System.Int32)">
@@ -3061,6 +3057,9 @@
             <summary>
             Invalidates relation of this emitter to any other emitters that might be referenced
             </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ParticleModule.PreUpdate">
+            <inheritdoc />
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.ParticlePool">
             <summary>
@@ -3291,6 +3290,14 @@
         <member name="P:SiliconStudio.Xenko.Particles.ParticlePool.Enumerator.Current">
             <inheritdoc />
         </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ParticlePoolFieldsList.GetField``1(SiliconStudio.Xenko.Particles.ParticleFieldDescription{``0})">
+            <summary>
+            Returns a particle field accessor for the contained <see cref="T:SiliconStudio.Xenko.Particles.ParticlePool"/>
+            </summary>
+            <typeparam name="T">Type data for the field</typeparam>
+            <param name="fieldDesc">The field description</param>
+            <returns></returns>
+        </member>
         <member name="F:SiliconStudio.Xenko.Particles.RandomOffset.Lifetime">
             <summary>
             Lifetime offset should always be 0 so that it can easily be retrieved from the random seed.
@@ -3477,6 +3484,64 @@
             Attribute description code used for defining vertex attributes in the <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder"/>
             </summary>
         </member>
+        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState.SetVerticesPerSegment(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Sets how many vertices are associated with the first, middle and last quad segments of the buffer. In case of billboards 1 segment = 1 quad but other shapes might be laid out differently
+            </summary>
+            <param name="verticesForFirstSegment">Number of vertices for the first segment</param>
+            <param name="verticesForMiddleSegment">Number of vertices for the middle segments</param>
+            <param name="verticesForLastSegment">Number of vertices for the last segment</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState.SetAttribute(SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,System.IntPtr)">
+            <summary>
+            Sets the data for the current vertex using the provided <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor"/>
+            </summary>
+            <param name="accessor">Accessor to the vertex data</param>
+            <param name="ptrRef">Pointer to the source data</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState.SetAttributePerParticle(SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,System.IntPtr)">
+            <summary>
+            Sets the same data for the all vertices in the current particle using the provided <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor"/>
+            </summary>
+            <param name="accessor">Accessor to the vertex data</param>
+            <param name="ptrRef">Pointer to the source data</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState.SetAttributePerSegment(SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,System.IntPtr)">
+            <summary>
+            Sets the same data for the all vertices in the current particle using the provided <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor"/>
+            </summary>
+            <param name="accessor">Accessor to the vertex data</param>
+            <param name="ptrRef">Pointer to the source data</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState.TransformAttributePerSegment``2(SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,SiliconStudio.Xenko.Particles.VertexLayouts.IAttributeTransformer{``0,``1},``1@)">
+            <summary>
+            Transforms attribute data using already written data from another attribute
+            </summary>
+            <typeparam name="T">Type data</typeparam>
+            <param name="accessorTo">Vertex attribute accessor to the destination attribute</param>
+            <param name="accessorFrom">Vertex attribute accessor to the source attribute</param>
+            <param name="transformMethod">Transform method for the type data</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState.NextVertex">
+            <summary>
+            Advances the pointer to the next vertex in the buffer, so that it can be written
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState.NextParticle">
+            <summary>
+            Advances the pointer to the next particle in the buffer, so that its first vertex can be written
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState.NextSegment">
+            <summary>
+            Advances the pointer to the next segment in the buffer, so that its first vertex can be written
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleBufferState.StartOver">
+            <summary>
+            Moves the index to the beginning of the buffer so that the data can be filled from the first particle again
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder">
             <summary>
             Manager class for the vertex buffer stream which can dynamically change the required vertex layout and rebuild the buffer based on the particle fields
@@ -3490,6 +3555,11 @@
         <member name="P:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.VertexDeclaration">
             <summary>
             The current <see cref="T:SiliconStudio.Xenko.Graphics.VertexDeclaration"/> of the contained vertex buffer
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.VertexCount">
+            <summary>
+            The current number of vertices which have to be drawn
             </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.DefaultTexCoords">
@@ -3524,127 +3594,6 @@
         <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.Reset">
             <summary>
             Resets the <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder"/> to its initial state, freeing any graphics memory used
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.SetVerticesPerSegment(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Sets how many vertices are associated with the first, middle and last quad segments of the buffer. In case of billboards 1 segment = 1 quad but other shapes might be laid out differently
-            </summary>
-            <param name="verticesForFirstSegment">Number of vertices for the first segment</param>
-            <param name="verticesForMiddleSegment">Number of vertices for the middle segments</param>
-            <param name="verticesForLastSegment">Number of vertices for the last segment</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.InitializeIndexBuffer(SiliconStudio.Xenko.Graphics.CommandList,System.Int32)">
-            <summary>
-            Initiates a new vertex and index buffers
-            </summary>
-            <param name="device"><see cref="T:SiliconStudio.Xenko.Graphics.GraphicsDevice"/> to use</param>
-            <param name="vertexCount">Required vertices count. Stride is estimated from the vertex declaration</param>
-            <param name="indexCount">Required indices count. Stride is automatically estimated</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.MapBuffer(SiliconStudio.Xenko.Graphics.CommandList)">
-            <summary>
-            Maps a subresource so that particle data can be written to the vertex buffer
-            </summary>
-            <param name="device"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.RestartBuffer">
-            <summary>
-            Moves the index to the beginning of the buffer so that the data can be filled from the first particle again
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.UnmapBuffer(SiliconStudio.Xenko.Graphics.CommandList)">
-            <summary>
-            Unmaps the subresource after all the particle data has been updated
-            </summary>
-            <param name="device"></param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.NextVertex">
-            <summary>
-            Advances the pointer to the next vertex in the buffer, so that it can be written
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.NextParticle">
-            <summary>
-            Advances the pointer to the next particle in the buffer, so that its first vertex can be written
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.NextSegment">
-            <summary>
-            Advances the pointer to the next segment in the buffer, so that its first vertex can be written
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.SetAttribute(SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,System.IntPtr)">
-            <summary>
-            Sets the data for the current vertex using the provided <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor"/>
-            </summary>
-            <param name="accessor">Accessor to the vertex data</param>
-            <param name="ptrRef">Pointer to the source data</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.SetAttributePerParticle(SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,System.IntPtr)">
-            <summary>
-            Sets the same data for the all vertices in the current particle using the provided <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor"/>
-            </summary>
-            <param name="accessor">Accessor to the vertex data</param>
-            <param name="ptrRef">Pointer to the source data</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.SetAttributePerSegment(SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,System.IntPtr)">
-            <summary>
-            Sets the same data for the all vertices in the current particle using the provided <see cref="T:SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor"/>
-            </summary>
-            <param name="accessor">Accessor to the vertex data</param>
-            <param name="ptrRef">Pointer to the source data</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.TransformAttributePerSegment``1(SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,SiliconStudio.Xenko.Particles.VertexLayouts.IAttributeTransformer{``0})">
-            <summary>
-            Transforms attribute data using already written data from another attribute
-            </summary>
-            <typeparam name="T">Type data</typeparam>
-            <param name="accessorTo">Vertex attribute accessor to the destination attribute</param>
-            <param name="accessorFrom">Vertex attribute accessor to the source attribute</param>
-            <param name="transformMethod">Transform method for the type data</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.TransformAttributePerParticle``1(SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.TransformAttributeDelegate{``0})">
-            <summary>
-            Transforms already written attribute data using the provided transform method
-            </summary>
-            <typeparam name="T">Type data</typeparam>
-            <param name="accessor">Vertex attribute accessor</param>
-            <param name="transformMethod">Transform method for the type data</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.TransformAttributePerParticle``1(SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,SiliconStudio.Xenko.Particles.VertexLayouts.AttributeAccessor,SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.TransformAttributeDelegate{``0})">
-            <summary>
-            Transforms attribute data using already written data from another attribute
-            </summary>
-            <typeparam name="T">Type data</typeparam>
-            <param name="accessorTo">Vertex attribute accessor to the destination attribute</param>
-            <param name="accessorFrom">Vertex attribute accessor to the source attribute</param>
-            <param name="transformMethod">Transform method for the type data</param>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.DeviceResourceContext">
-            <summary>
-            Use a ResourceContext per GraphicsDevice (DeviceContext)
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.DeviceResourceContext.VertexCount">
-            <summary>
-            Gets the number of vertices.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.DeviceResourceContext.IndexCount">
-            <summary>
-            Gets the number of indices.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.DeviceResourceContext.VertexBufferPosition">
-            <summary>
-            The current position in vertex into the vertex array buffer.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexBuilder.DeviceResourceContext.IndexBufferPosition">
-            <summary>
-            The current position in index into the index array buffer.
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Particles.VertexLayouts.ParticleVertexElements">
