@@ -1,0 +1,72 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI", "GUI", "{273FB970-9299-44A9-AF51-ECA267009B9A}"
+	ProjectSection(SiliconStudioPackage) = preProject
+		ThreeDee/ThreeDee.xkpkg = ThreeDee/ThreeDee.xkpkg
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "GUI\UI\UI.csproj", "{A4ACED56-4CAE-49C3-B12C-5CE678A55545}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreeDee.Windows", "GUI\ThreeDee.Windows\ThreeDee.Windows.csproj", "{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI3D", "GUI\UI3D\UI3D.csproj", "{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		AppStore|Any CPU = AppStore|Any CPU
+		CoreCLR_Debug|Any CPU = CoreCLR_Debug|Any CPU
+		CoreCLR_Release|Any CPU = CoreCLR_Release|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Testing|Any CPU = Testing|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545}.AppStore|Any CPU.Build.0 = AppStore|Any CPU
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545}.CoreCLR_Debug|Any CPU.ActiveCfg = CoreCLR_Debug|Any CPU
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545}.CoreCLR_Debug|Any CPU.Build.0 = CoreCLR_Debug|Any CPU
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545}.CoreCLR_Release|Any CPU.ActiveCfg = CoreCLR_Release|Any CPU
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545}.CoreCLR_Release|Any CPU.Build.0 = CoreCLR_Release|Any CPU
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}.AppStore|Any CPU.Build.0 = AppStore|Any CPU
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}.CoreCLR_Debug|Any CPU.ActiveCfg = CoreCLR_Debug|Any CPU
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}.CoreCLR_Debug|Any CPU.Build.0 = CoreCLR_Debug|Any CPU
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}.CoreCLR_Release|Any CPU.ActiveCfg = CoreCLR_Release|Any CPU
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}.CoreCLR_Release|Any CPU.Build.0 = CoreCLR_Release|Any CPU
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}.AppStore|Any CPU.Build.0 = AppStore|Any CPU
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}.CoreCLR_Debug|Any CPU.ActiveCfg = CoreCLR_Debug|Any CPU
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}.CoreCLR_Debug|Any CPU.Build.0 = CoreCLR_Debug|Any CPU
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}.CoreCLR_Release|Any CPU.ActiveCfg = CoreCLR_Release|Any CPU
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}.CoreCLR_Release|Any CPU.Build.0 = CoreCLR_Release|Any CPU
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90}.Testing|Any CPU.Build.0 = Testing|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A4ACED56-4CAE-49C3-B12C-5CE678A55545} = {273FB970-9299-44A9-AF51-ECA267009B9A}
+		{A9A28FFA-4F3F-4AE3-B04A-96159EED4534} = {273FB970-9299-44A9-AF51-ECA267009B9A}
+		{1861B43C-B3BA-4BE6-BC4C-05FC009E1E90} = {273FB970-9299-44A9-AF51-ECA267009B9A}
+	EndGlobalSection
+EndGlobal

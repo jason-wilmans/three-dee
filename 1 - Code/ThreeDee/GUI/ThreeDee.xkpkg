@@ -1,0 +1,43 @@
+!Package
+Id: 273fb970-9299-44a9-af51-eca267009b9a
+SerializedVersion: {Assets: 0.0.2}
+Tags: []
+Meta:
+    Name: ThreeDee
+    Version: 1.0.0.0
+    Authors: []
+    Owners: []
+    RootNamespace: ThreeDee
+    Dependencies:
+        -   Name: Xenko
+            Version: 1.8.1-beta
+            RootAssets: []
+LocalDependencies: []
+Profiles:
+    -   Name: Shared
+        Platform: Shared
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Shared
+            -   Path: UI/Effects
+        OutputGroupDirectories: {}
+        Properties: {}
+        ProjectReferences:
+            -   Id: a4aced56-4cae-49c3-b12c-5ce678a55545
+                Location: UI/UI.csproj
+                Type: Library
+    -   Name: Windows
+        Platform: Windows
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Windows
+        OutputGroupDirectories: {}
+        Properties: {}
+        ProjectReferences:
+            -   Id: a9a28ffa-4f3f-4ae3-b04a-96159eed4534
+                Location: ThreeDee.Windows/ThreeDee.Windows.csproj
+                Type: Executable
+ExplicitFolders: []
+Bundles: []
+TemplateFolders: []
+RootAssets: []
