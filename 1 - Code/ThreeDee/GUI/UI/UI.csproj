@@ -104,6 +104,18 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\..\Common\ZeroTypes\ZeroTypes.csproj">
+      <Project>{947485c9-3e19-48a2-9631-b6266eb433bb}</Project>
+      <Name>ZeroTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\CoreFacade\CoreFacade.csproj">
+      <Project>{1F293D61-F8C1-4DC7-AA59-8C42678CEC08}</Project>
+      <Name>CoreFacade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\DiagramLogic\DiagramLogic.csproj">
+      <Project>{713454CC-A90E-4A7A-B0DA-12686825E58B}</Project>
+      <Name>DiagramLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UI3D\UI3D.csproj">
       <Project>{1861b43c-b3ba-4be6-bc4c-05fc009e1e90}</Project>
       <Name>UI3D</Name>
@@ -111,7 +123,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicCameraController.cs" />
+    <Compile Include="Camera\CameraAngle.cs" />
+    <Compile Include="Camera\CameraMovementScript.cs" />
+    <Compile Include="Diagrams\DiagramVertexComponent.cs" />
+    <Compile Include="Diagrams\DiagramViewComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\EditorScreen.cs" />
+    <Compile Include="Screens\FileLoadingScreen.cs" />
+    <Compile Include="Screens\IScreenManager.cs" />
+    <Compile Include="Screens\MainMenuScreen.cs" />
+    <Compile Include="Screens\Screen.cs" />
+    <Compile Include="Screens\ScreenManagerComponent.cs" />
+    <Compile Include="Screens\VertexManipulationTool.cs" />
+    <Compile Include="Utilities\ConversionTools.cs" />
+    <Compile Include="Utilities\TransformComponentExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SiliconStudioPackageProps)" Condition="Exists('$(SiliconStudioPackageProps)')" />

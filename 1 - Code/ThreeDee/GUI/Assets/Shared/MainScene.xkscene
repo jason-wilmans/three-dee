@@ -157,14 +157,6 @@ Hierarchy:
                     - !CameraComponent
                         ~Id: 66b67eae-9b22-4890-976c-7fd411f22d90
                         Projection: Perspective
-                    - !ThreeDee.BasicCameraController,ThreeDee.Game
-                        ~Id: f123b7ef-4dcd-4deb-b17d-26ff6fee5b0d
-                        KeyboardMovementSpeed: {X: 5.0, Y: 5.0, Z: 5.0}
-                        TouchMovementSpeed: {X: 40.0, Y: 40.0, Z: 20.0}
-                        SpeedFactor: 5.0
-                        KeyboardRotationSpeed: {X: 3.0, Y: 3.0}
-                        MouseRotationSpeed: {X: 90.0, Y: 60.0}
-                        TouchRotationSpeed: {X: 60.0, Y: 40.0}
         -   Entity:
                 Id: aa3c9b96-828a-4cb8-ade8-fc8905c81a42
                 Name: Directional light
