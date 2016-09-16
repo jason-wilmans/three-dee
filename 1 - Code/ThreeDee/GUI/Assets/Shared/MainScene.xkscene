@@ -143,7 +143,20 @@ Hierarchy:
         - f62d9cf5-608b-4d33-9cf9-37834ea4ed76
         - c92b0754-6ef4-4d9e-8054-81f318b5d78a
         - 83b4c71e-a2bb-4f74-8fa9-e4abbe3ef1f9
+        - 1a108769-ffe4-43c2-8f1c-4c8a111b81eb
     Parts:
+        -   Entity:
+                Id: 1a108769-ffe4-43c2-8f1c-4c8a111b81eb
+                Name: Diagram
+                Components:
+                    - !TransformComponent
+                        ~Id: 339e7b82-ec0e-48ef-90c5-99a895656909
+                        Children: []
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                    - !ThreeDeeUi.UI.Diagrams.DiagramViewComponent,UI
+                        ~Id: 0c4d1948-007a-494e-b481-9ff626739118
         -   Entity:
                 Id: 83b4c71e-a2bb-4f74-8fa9-e4abbe3ef1f9
                 Name: UI
