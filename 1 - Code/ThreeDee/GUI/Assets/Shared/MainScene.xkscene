@@ -142,7 +142,45 @@ Hierarchy:
         - aa3c9b96-828a-4cb8-ade8-fc8905c81a42
         - f62d9cf5-608b-4d33-9cf9-37834ea4ed76
         - c92b0754-6ef4-4d9e-8054-81f318b5d78a
+        - 83b4c71e-a2bb-4f74-8fa9-e4abbe3ef1f9
     Parts:
+        -   Entity:
+                Id: 83b4c71e-a2bb-4f74-8fa9-e4abbe3ef1f9
+                Name: UI
+                Components:
+                    - !TransformComponent
+                        ~Id: 80dc17f8-ef9a-451c-a47e-afb613740977
+                        Children: []
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                    - !UIComponent
+                        ~Id: 8e01242b-ba9b-42c7-bcfd-e13f15ea2fe7
+                        Page: null
+                        Resolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
+                        Size: {X: 1.0, Y: 1.0, Z: 1.0}
+                    - !ThreeDeeUi.UI.Screens.ScreenManagerComponent,UI
+                        ~Id: cb9bca8d-be45-47a2-93de-90db37feb8bb
+                    - !GameClient.GUI.Ui3D.Ui3DEventSystem,UI3D
+                        ~Id: da788c25-19bf-45d6-b442-15d867314cc2
+                        Camera: 944576b9-178e-470f-9eba-b3ee73b33c24/66b67eae-9b22-4890-976c-7fd411f22d90
+                    - !RigidbodyComponent
+                        ~Id: 1f541d71-ff40-4cd0-9dea-f93b7851eb06
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        IsTrigger: false
+                        IsKinematic: false
+                        Mass: 1.0
+                        LinearDamping: 0.0
+                        AngularDamping: 0.0
+                        OverrideGravity: false
+                        Gravity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        NodeName: null
+                        ColliderShapes: []
         -   Entity:
                 Id: 944576b9-178e-470f-9eba-b3ee73b33c24
                 Name: Camera
