@@ -142,7 +142,6 @@ Hierarchy:
         - aa3c9b96-828a-4cb8-ade8-fc8905c81a42
         - f62d9cf5-608b-4d33-9cf9-37834ea4ed76
         - c92b0754-6ef4-4d9e-8054-81f318b5d78a
-        - ef1310ee-a280-4f86-8a3a-843fd41c9565
     Parts:
         -   Entity:
                 Id: 944576b9-178e-470f-9eba-b3ee73b33c24
@@ -201,21 +200,6 @@ Hierarchy:
                     - !ModelComponent
                         ~Id: d2b5e7d4-9e64-415d-8ad7-9229acba8fae
                         Model: 6947b2aa-bc17-40bc-a3e1-954440b949fd/8938f474-ae6f-4bca-baa7-886eee7fecc4:Ground
-                        Materials:
-                            - null
-        -   Entity:
-                Id: ef1310ee-a280-4f86-8a3a-843fd41c9565
-                Name: Sphere
-                Components:
-                    - !TransformComponent
-                        ~Id: 1c144f83-9865-42a9-81c8-63295c3a332e
-                        Children: []
-                        Position: {X: 0.0, Y: 0.5, Z: 0.0}
-                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                    - !ModelComponent
-                        ~Id: 2f48baa6-0ee2-466f-af2f-1ea1359e0b17
-                        Model: e949bfd9-544b-444b-87cc-9de98ebde4fe/aa5710b6-321a-452f-88d3-e8d71c428456:Sphere
                         Materials:
                             - null
         -   Entity:

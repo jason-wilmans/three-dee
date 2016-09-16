@@ -1,5 +1,4 @@
 ﻿using System;
-using Portable.IO;
 
 namespace PortabilityLayer.IO
 {
@@ -7,7 +6,7 @@ namespace PortabilityLayer.IO
     {
         public bool Exists(string file)
         {
-            
+            throw new NotImplementedException();
         }
 
         public void Delete(string file)
