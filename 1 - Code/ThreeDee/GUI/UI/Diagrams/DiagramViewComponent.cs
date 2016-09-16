@@ -34,12 +34,12 @@ namespace ThreeDeeUi.UI.Diagrams
 
         private void AddVisualElement(IDiagramElement diagramElement)
         {
-            if (!Content.IsLoaded(Url))
+            if (!Content.IsLoaded(DiagramViewComponent.Url))
             {
-                Content.Load<Prefab>(Url);
+                Content.Load<Prefab>(DiagramViewComponent.Url);
             }
 
-            Prefab vertexPrefab = Content.Get<Prefab>(Url);
+            Prefab vertexPrefab = Content.Get<Prefab>(DiagramViewComponent.Url);
             FastCollection<Entity> entities = vertexPrefab.Instantiate();
             SceneSystem.SceneInstance.Scene.Entities.AddRange(entities);
             //entities[0].Get<DiagramVertexComponent>().CurrentElement = diagramElement;

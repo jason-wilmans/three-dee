@@ -144,7 +144,7 @@ namespace UI.Camera
 
         public void Scrolling()
         {
-            if (Math.Abs(Input.MouseWheelDelta) > ScrollDelta)
+            if (Math.Abs(Input.MouseWheelDelta) > CameraMovementScript.ScrollDelta)
             {
                 var direction = Input.MouseWheelDelta > 0
                     ? _transform.LocalMatrix.Forward

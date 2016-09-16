@@ -17,7 +17,7 @@ namespace Tests.TestDiagramLogic
         [TestMethod]
         public void SimpleSavingAndLoading()
         {
-            DiagramComponent diagramComponent = new DiagramComponent();
+            DiagramComponent diagramComponent = new DiagramComponent(null);
             diagramComponent.CreateNewDiagram("Test Diagram 1");
 
             IDiagramElement ellipsoid = new Ellipsoid

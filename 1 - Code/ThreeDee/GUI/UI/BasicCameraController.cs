@@ -175,7 +175,7 @@ namespace ThreeDee
 
             // Adjust pitch. Prevent it from exceeding up and down facing. Stabilize edge cases.
             var currentPitch = MathUtil.PiOverTwo - (float)Math.Acos(Vector3.Dot(rotation.Forward, upVector));
-            pitch = MathUtil.Clamp(currentPitch + pitch, -MaximumPitch, MaximumPitch) - currentPitch;
+            pitch = MathUtil.Clamp(currentPitch + pitch, -BasicCameraController.MaximumPitch, BasicCameraController.MaximumPitch) - currentPitch;
 
             // Move in local coordinates
             Entity.Transform.Position += Vector3.TransformCoordinate(translation, rotation);

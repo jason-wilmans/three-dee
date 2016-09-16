@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Text;
 using DiagramLogic.Interface;
 using DiagramLogic.Interface.Elements;
 using Newtonsoft.Json;
 using PortabilityLayer.IO;
-using PortabilityLayer.ServiceRegistry;
-using SiliconStudio.Core.Serialization.Serializers;
 using ZeroTypes;
 using ZeroTypes.Exceptions;
 
@@ -16,15 +14,14 @@ namespace DiagramLogic.Implementation
 {
     internal class DiagramComponent : IDiagramComponent
     {
-        private readonly IServiceLocator _serviceLocator;
+        private readonly IFileAccess _fileAccess;
         private readonly Encoding _encoding;
         private IDiagram _currentDiagram;
-        private JsonSerializer _serializer;
+        private readonly JsonSerializer _serializer;
 
-        public DiagramComponent(IServiceLocator serviceLocator)
+        public DiagramComponent(IFileAccess fileAccess)
         {
-            _serviceLocator = serviceLocator;
-
+            _fileAccess = fileAccess;
             _encoding = Encoding.UTF8;
             _serializer = new JsonSerializer();
         }
@@ -61,58 +58,43 @@ namespace DiagramLogic.Implementation
         {
             if (CurrentDiagram == null) throw new InvalidOperationException("There is no diagram currently loaded that could be saved.");
 
-            var fileAccess = _serviceLocator.GetServiceInstance<IFileAccess>();
-
-            if (overWrite && fileAccess.Exists(file))
+            if (overWrite && _fileAccess.Exists(file))
             {
-                fileAccess.Delete(file);
+                _fileAccess.Delete(file);
             }
-            else if (!overWrite && fileAccess.Exists(file))
+            else if (!overWrite && _fileAccess.Exists(file))
             {
                 throw new FileAlreadyExistsException();
             }
 
-            var stringWriter = new StringWriter();
-            _serializer.Serialize(new JsonTextWriter(stringWriter), CurrentDiagram);
-                    fileStream.Write(jsonBytes, 0, jsonBytes.Length);
-                    fileStream.Flush();
-                    fileStream.Close();
-
-            stringWriter.
-                }
-                catch (Exception exception)
-                {
-                    throw new TechnicalException($"Could not write file '{file.FullName}'.", exception);
-                }
-            }
-        }
-
-        private byte[] Serialize(Diagram diagram)
-        {
             try
             {
-                
-                string json = TypeSerializer.SerializeToString(diagram);
-                byte[] bytes = _encoding.GetBytes(json);
-                return bytes;
+                var stringWriter = new StringWriter(CultureInfo.InvariantCulture);
+                _serializer.Serialize(new JsonTextWriter(stringWriter), CurrentDiagram);
+                _fileAccess.WriteFile(file, stringWriter.ToString());
             }
             catch (Exception exception)
             {
-                throw new SerializationException("An error occurred while serializing this diagram.", exception);
+                throw new TechnicalException($"Could not write file '{file}'.", exception);
             }
         }
 
         public void Load(string file)
         {
-            file.Refresh();
-            if (!file.Exists)
+            if (!_fileAccess.Exists(file))
             {
-                throw new ArgumentException($"The file '{file.FullName}' does not exist.");
+                throw new ArgumentException($"The file '{file}' does not exist.");
             }
-            using (StreamReader fileStream = file.OpenText())
+
+            try
             {
-                string json = fileStream.ReadToEnd();
-                CurrentDiagram = TypeSerializer.DeserializeFromString<Diagram>(json);
+                string serialized = _fileAccess.LoadFile(file);
+                var jsonTextReader = new JsonTextReader(new StringReader(serialized));
+                CurrentDiagram = _serializer.Deserialize<Diagram>(jsonTextReader);
+            }
+            catch (Exception exception)
+            {
+                throw new TechnicalException($"Could not load file '{file}'.", exception);
             }
         }
     }
