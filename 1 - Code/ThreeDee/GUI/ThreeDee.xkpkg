@@ -43,4 +43,7 @@ Profiles:
 ExplicitFolders: []
 Bundles: []
 TemplateFolders: []
-RootAssets: []
+RootAssets:
+    - 148883c3-94cd-401d-b58a-8fc2c6718f07:fonts/title
+    - 58cf9719-8acb-414e-ab5c-076f9f37fcb8:fonts/simple
+    - 90a650d9-5e3c-4aca-ad0a-94b1188b6596:fonts/elements

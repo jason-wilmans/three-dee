@@ -15,12 +15,12 @@ namespace CoreFacade.Interface
 
         public static IThreeDeeCore GetProductionCore()
         {
-            if (ThreeDeeCoreFactory._serviceLocator == null)
+            if (_serviceLocator == null)
             {
-                ThreeDeeCoreFactory._serviceLocator = new ServiceLocator();
+                _serviceLocator = new ServiceLocator();
             }
 
-            return new ThreeDeeCoreFacade(new DiagramComponent(ThreeDeeCoreFactory._serviceLocator.GetServiceInstance<IFileAccess>()));
+            return new ThreeDeeCoreFacade(new DiagramComponent(_serviceLocator.GetServiceInstance<IFileAccess>()));
         }
     }
 }

@@ -17,7 +17,7 @@ namespace XenkoUtilities
             //Clean(-verticalAngle + Math.PI)
 
             transform.Rotation = Quaternion.RotationYawPitchRoll(
-                TransformComponentExtensions.Clean(-horizontalAngle - MathUtil.PiOverTwo),
+                Clean(-horizontalAngle - MathUtil.PiOverTwo),
                 0,
                 0
             );

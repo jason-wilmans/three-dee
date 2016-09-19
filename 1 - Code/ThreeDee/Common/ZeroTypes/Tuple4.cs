@@ -101,7 +101,7 @@
 
         public override bool Equals(object obj)
         {
-            if (object.ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(null, obj)) return false;
             return obj is Tuple4 && Equals((Tuple4) obj);
         }
 

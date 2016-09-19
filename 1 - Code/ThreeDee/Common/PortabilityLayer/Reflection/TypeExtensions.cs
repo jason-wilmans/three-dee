@@ -8,7 +8,7 @@ namespace PortabilityLayer.Reflection
     {
         public static ConstructorInfo GetConstructor(this Type type, Type[] parameterTypes)
         {
-            return type.GetTypeInfo().DeclaredConstructors.Single(ctor => TypeExtensions.IsCompatible(ctor, parameterTypes));
+            return type.GetTypeInfo().DeclaredConstructors.Single(ctor => IsCompatible(ctor, parameterTypes));
         }
 
         private static bool IsCompatible(ConstructorInfo ctor, Type[] parameterTypes)

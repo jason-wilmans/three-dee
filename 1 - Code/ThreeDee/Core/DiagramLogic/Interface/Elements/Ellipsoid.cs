@@ -52,8 +52,8 @@ namespace DiagramLogic.Interface.Elements
 
         public override bool Equals(object obj)
         {
-            if (object.ReferenceEquals(null, obj)) return false;
-            if (object.ReferenceEquals(this, obj)) return true;
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
             if (!(obj is IDiagramElement)) return false;
             return Equals((IDiagramElement) obj);
         }
