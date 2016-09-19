@@ -2,11 +2,13 @@
 using CoreFacade.Interface;
 using DiagramLogic.Interface;
 using DiagramLogic.Interface.Elements;
+using SiliconStudio.Core;
 using SiliconStudio.Core.Collections;
 using SiliconStudio.Xenko.Engine;
 
-namespace ThreeDeeUi.UI.Diagrams
+namespace UI.Diagrams
 {
+    [DataContract]
     public class DiagramViewComponent : StartupScript
     {
         private readonly IThreeDeeCore _core;
@@ -42,7 +44,7 @@ namespace ThreeDeeUi.UI.Diagrams
             Prefab vertexPrefab = Content.Get<Prefab>(Url);
             FastCollection<Entity> entities = vertexPrefab.Instantiate();
             SceneSystem.SceneInstance.Scene.Entities.AddRange(entities);
-            //entities[0].Get<DiagramVertexComponent>().CurrentElement = diagramElement;
+            entities[0].Get<DiagramVertexComponent>().CurrentElement = diagramElement;
         }
 
         private void InitializeVisualScene(IDiagram diagram)

@@ -6,7 +6,7 @@ using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.Input;
 using SiliconStudio.Xenko.Physics;
 
-namespace GameClient.GUI.Ui3D
+namespace UI3D
 {
     public class Ui3DEventSystem : SyncScript
     {

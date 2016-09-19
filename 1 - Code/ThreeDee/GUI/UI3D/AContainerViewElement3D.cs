@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SiliconStudio.Xenko.Engine;
+using UI3D;
 
 namespace GameClient.GUI.Ui3D
 {

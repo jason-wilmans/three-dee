@@ -3,7 +3,7 @@ using System.Linq;
 using GameClient.GUI.Ui3D.EventArgs;
 using SiliconStudio.Xenko.Engine;
 
-namespace GameClient.GUI.Ui3D
+namespace UI3D
 {
     public abstract class AViewElement3D : StartupScript
     {
