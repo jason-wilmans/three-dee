@@ -10,6 +10,7 @@ namespace PortabilityLayer.IO
     {
         bool Exists(string file);
         void Delete(string file);
-        FileStream OpenWrite(string file);
+        void WriteFile(string file, string content);
+        string LoadFile(string file);
     }
 }

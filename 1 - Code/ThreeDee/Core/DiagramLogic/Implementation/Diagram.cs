@@ -118,13 +118,13 @@ namespace DiagramLogic.Implementation
 
         protected bool Equals(Diagram other)
         {
-            return Equals(Elements, other.Elements) && string.Equals(Name, other.Name);
+            return object.Equals(Elements, other.Elements) && string.Equals(Name, other.Name);
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
+            if (object.ReferenceEquals(null, obj)) return false;
+            if (object.ReferenceEquals(this, obj)) return true;
             var other = obj as Diagram;
             return other != null && Equals(other);
         }

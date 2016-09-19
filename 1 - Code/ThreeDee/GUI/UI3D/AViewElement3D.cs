@@ -25,7 +25,7 @@ namespace GameClient.GUI.Ui3D
 
                 if (invocationList != null && invocationList.Length > 0)
                 {
-                    if (TryHandle(invocationList, eventArgs))
+                    if (AViewElement3D.TryHandle(invocationList, eventArgs))
                     {
                         return;
                     };

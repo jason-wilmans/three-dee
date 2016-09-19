@@ -17,7 +17,7 @@ namespace Tests.TestDiagramLogic
             diagramUnderTest.ElementAdded += element => addedElement = element;
 
             //  Act
-            diagramUnderTest.Add(new DiagramElementType("Ellipsoid", typeof(Ellipsoid)));
+            diagramUnderTest.Add(new DiagramElementType("Ellipsoid", typeof (Ellipsoid)));
 
             // Assert
             Assert.IsNotNull(addedElement);

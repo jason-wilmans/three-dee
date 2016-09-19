@@ -55,6 +55,10 @@
     <Compile Include="TestDiagramLogic\TestDiagramComponent.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\PortabilityLayer\PortabilityLayer.csproj">
+      <Project>{0b034be1-ce6d-4ab2-8f25-0aa02aaf4d75}</Project>
+      <Name>PortabilityLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\ZeroTypes\ZeroTypes.csproj">
       <Project>{947485c9-3e19-48a2-9631-b6266eb433bb}</Project>
       <Name>ZeroTypes</Name>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace DiagramLogic.Interface
 {
@@ -15,7 +16,7 @@ namespace DiagramLogic.Interface
         /// <summary>
         /// the CLR type of this element type.
         /// </summary>
-        public Type Type { get; }
+        internal Type Type { get; }
 
         internal DiagramElementType(string displayName, Type type)
         {

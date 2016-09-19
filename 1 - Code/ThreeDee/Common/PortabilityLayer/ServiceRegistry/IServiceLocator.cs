@@ -14,6 +14,6 @@ namespace PortabilityLayer.ServiceRegistry
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="UnknownServiceException"></exception>
-        T GetServiceInstance<T>();
+        T GetServiceInstance<T>() where T : class;
     }
 }

@@ -41,8 +41,8 @@ namespace ThreeDeeUi.UI.Screens
                 Columns = 2
             };
 
-            menu.SetCanvasRelativePosition(new Vector3(1.0f-RelativeWidth, 0, 0));
-            menu.SetCanvasRelativeSize(new Vector3(RelativeWidth, 1.0f, 0));
+            menu.SetCanvasRelativePosition(new Vector3(1.0f-EditorScreen.RelativeWidth, 0, 0));
+            menu.SetCanvasRelativeSize(new Vector3(EditorScreen.RelativeWidth, 1.0f, 0));
 
             return menu;
         }
