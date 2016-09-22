@@ -3,7 +3,7 @@ using Microsoft.Practices.Unity;
 
 namespace PortabilityLayer.ServiceRegistry
 {
-    public static class ServiceLocator
+    public class ServiceLocator : IServiceLocator
     {
         public enum InstantiationStrategy
         {
@@ -11,15 +11,15 @@ namespace PortabilityLayer.ServiceRegistry
             InstancePerRequest
         }
 
-        private static readonly UnityContainer Container = new UnityContainer();
+        private readonly UnityContainer Container = new UnityContainer();
 
-        public static T GetServiceInstance<T>() where T : class
+        public T GetInstance<T>() where T : class
 
         {
             return Container.Resolve<T>();
         }
 
-        public static void RegisterServiceImplementation<TInterfaceType, TImplementorType>
+        public void RegisterImplementation<TInterfaceType, TImplementorType>
             (InstantiationStrategy strategy = InstantiationStrategy.InstancePerRequest)
             where TImplementorType : TInterfaceType
         {
@@ -39,7 +39,7 @@ namespace PortabilityLayer.ServiceRegistry
             Container.RegisterType<TInterfaceType, TImplementorType>(lifetimeManager);
         }
 
-        public static void RegisterInstance<T>(T serviceInstance)
+        public void RegisterInstance<T>(T serviceInstance)
         {
             Container.RegisterInstance(serviceInstance, new ContainerControlledLifetimeManager());
         }

@@ -2,11 +2,13 @@
 using CoreFacade.Interface;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Core.Serialization.Assets;
+using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.UI;
 using SiliconStudio.Xenko.UI.Controls;
 using SiliconStudio.Xenko.UI.Events;
 using SiliconStudio.Xenko.UI.Panels;
+using UI.Diagrams;
 
 namespace ThreeDeeUi.UI.Screens
 {
@@ -82,6 +84,8 @@ namespace ThreeDeeUi.UI.Screens
         private void OnNewDiagramClicked(object sender, RoutedEventArgs e)
         {
             _core.CreateNewDiagram("Test");
+            Entity diagramEntity = new Entity();
+            diagramEntity.GetOrCreate<DiagramView3D>();
             _screenManager.ChangeTo(Screen.Editor);
         }
 

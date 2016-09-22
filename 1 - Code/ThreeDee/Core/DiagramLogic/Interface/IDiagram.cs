@@ -14,22 +14,23 @@ namespace DiagramLogic.Interface
 
         ICollection<IDiagramElement> Elements { get; }
 
+        /// <summary>
+        /// Fired, if an element was added to this diagram.
+        /// </summary>
         event Action<IDiagramElement> ElementAdded;
 
         /// <summary>
         /// Adds the element to this diagram.
         /// </summary>
-        /// <param name="element">Not null</param>
+        /// <param name="elementType">Not null</param>
         /// <param name="recommendedSpawnPosition">see other overload</param>
-        void Add(IDiagramElement element, Tuple3? recommendedSpawnPosition = null);
-
-        void Add(DiagramElementType elementType, Tuple3? recommendedSpawnPosition = null);
+        IDiagramElement Add(DiagramElementType elementType, Tuple3? recommendedSpawnPosition = null);
 
         /// <summary>
         /// Copies the element and places it i this diagram (with a slightly offsetted position).
         /// </summary>
         /// <param name="element">Not null, already contained.</param>
-        void Copy(IDiagramElement element);
+        IDiagramElement Copy(IDiagramElement element);
 
         Tuple3 CalculateGeometricCenter();
 

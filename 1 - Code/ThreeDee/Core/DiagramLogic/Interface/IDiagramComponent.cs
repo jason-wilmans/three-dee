@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using DiagramLogic.Interface.Elements;
 using DiagramLogic.Interface.Exceptions;
 using ZeroTypes;
 using ZeroTypes.Exceptions;

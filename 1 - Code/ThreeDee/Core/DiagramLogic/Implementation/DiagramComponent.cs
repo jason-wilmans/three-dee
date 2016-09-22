@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using DiagramLogic.Interface;
 using DiagramLogic.Interface.Elements;
@@ -13,26 +14,46 @@ using ZeroTypes.Exceptions;
 namespace DiagramLogic.Implementation
 {
     internal class DiagramComponent : IDiagramComponent
-    {
+    {public Tuple3 RecommendedSpawnPosition { get; set; }
+
+        public event Action<IDiagram> DiagramChanged;
+
         private readonly IFileAccess _fileAccess;
         private readonly Encoding _encoding;
         private IDiagram _currentDiagram;
         private readonly JsonSerializer _serializer;
+        private DiagramElementType _selectedElement;
+        private List<DiagramElementType> _availableElements;
 
         public DiagramComponent(IFileAccess fileAccess)
         {
             _fileAccess = fileAccess;
             _encoding = Encoding.UTF8;
             _serializer = new JsonSerializer();
+            FindAvailableElementTypes();
+            _selectedElement = _availableElements.First();
         }
 
-        public IEnumerable<DiagramElementType> GetAvailableElementTypes()
+        private void FindAvailableElementTypes()
         {
-            return new List<DiagramElementType>
+            _availableElements = new List<DiagramElementType>
             {
                 new DiagramElementType("Ellipsoid", typeof(Ellipsoid)),
                 new DiagramElementType("Cuboid", typeof(Cuboid))
             };
+        }
+
+        public event Action<IDiagramElement> ElementAdded;
+
+        public IEnumerable<DiagramElementType> GetAvailableElementTypes()
+        {
+            return _availableElements;
+        }
+
+        public void SelectElementType(DiagramElementType elementType)
+        {
+            if(!GetAvailableElementTypes().Any(type => type.Equals(elementType))) throw new ArgumentException($"Unknown element type: {elementType.TechnicalName}", nameof(elementType));
+            _selectedElement = elementType;
         }
 
         public IDiagram CurrentDiagram
@@ -44,10 +65,6 @@ namespace DiagramLogic.Implementation
                 DiagramChanged?.Invoke(_currentDiagram);
             }
         }
-
-        public Tuple3 RecommendedSpawnPosition { get; set; }
-
-        public event Action<IDiagram> DiagramChanged;
 
         public void CreateNewDiagram(string diagramName)
         {

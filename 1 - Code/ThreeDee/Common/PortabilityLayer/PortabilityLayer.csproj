@@ -479,6 +479,7 @@
   <ItemGroup>
     <Compile Include="IO\FileAccess.cs" />
     <Compile Include="IO\IFileAccess.cs" />
+    <Compile Include="PortabilityServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\TypeExtensions.cs" />
     <Compile Include="ServiceRegistry\IServiceLocator.cs" />

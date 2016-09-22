@@ -18,9 +18,9 @@ namespace DiagramLogic.Implementation
         /// </summary>
         public string Name { get; set; }
 
-        public event Action<IDiagramElement> ElementAdded;
-
         public ICollection<IDiagramElement> Elements { get; private set; }
+
+        public event Action<IDiagramElement> ElementAdded;
 
         private int _nextElementId;
 
@@ -40,13 +40,20 @@ namespace DiagramLogic.Implementation
             Elements = new List<IDiagramElement>();
         }
 
+        public IDiagramElement Add(DiagramElementType elementType, Tuple3? position = null)
+        {
+            IDiagramElement element = _instanceFactory.GetInstanceForType(elementType);
+            Add(element, position);
+            return element;
+        }
+
         /// <summary>
         /// Adds the element to this diagram.
         /// </summary>
         /// <param name="element">Not null</param>
         /// <param name="position">Optional starting position. <br/>
         /// If null, the diagram's geometric center is used.</param>
-        public void Add(IDiagramElement element, Tuple3? position = null)
+        internal void Add(IDiagramElement element, Tuple3? position = null)
         {
             element.Parent = null;
             element.Id = _nextElementId;
@@ -55,21 +62,14 @@ namespace DiagramLogic.Implementation
             element.Position = position ?? CalculateGeometricCenter();
 
             _nextElementId++;
-
             ElementAdded?.Invoke(element);
-        }
-        
-        public void Add(DiagramElementType elementType, Tuple3? position = null)
-        {
-            IDiagramElement element = _instanceFactory.GetInstanceForType(elementType);
-            Add(element, position);
         }
 
         /// <summary>
         /// Copies the element and places it in this diagram (with a slightly offsetted position).
         /// </summary>
         /// <param name="element">Not null, already contained.</param>
-        public void Copy(IDiagramElement element)
+        public IDiagramElement Copy(IDiagramElement element)
         {
             if (!Elements.Contains(element))
             {
@@ -86,6 +86,8 @@ namespace DiagramLogic.Implementation
             copy.Position = copy.Position - offset;
 
             Add(copy);
+
+            return copy;
         }
 
         public Tuple3 CalculateGeometricCenter()

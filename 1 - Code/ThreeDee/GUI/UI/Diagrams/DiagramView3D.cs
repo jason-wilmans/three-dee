@@ -2,39 +2,31 @@ using System.Linq;
 using CoreFacade.Interface;
 using DiagramLogic.Interface;
 using DiagramLogic.Interface.Elements;
-using PortabilityLayer.ServiceRegistry;
 using SiliconStudio.Core;
 using SiliconStudio.Xenko.Engine;
 using UI.Resources;
+using UI.Utilities;
 
 namespace UI.Diagrams
 {
     [DataContract]
     public class DiagramView3D : StartupScript
     {
-        private readonly IThreeDeeCore _core;
+        private IThreeDeeCore _core;
         private IResourceProvider _resources;
-
-        public DiagramView3D()
-        {
-            _core = ThreeDeeCoreFactory.GetProductionCore();
-
-            _core.DiagramChanged += OnDiagramChanged;
-        }
+        private IDiagram _diagramModel;
 
         public override void Start()
         {
             base.Start();
 
-            _resources = ServiceLocator.GetServiceInstance<IResourceProvider>();
+            _core = ThreeDeeCoreFactory.GetProductionCore();
+            _diagramModel = _core.CurrentDiagram;
+            if (_diagramModel == null) return;
 
-            if (_core.CurrentDiagram != null) InitializeVisualScene(_core.CurrentDiagram);
-        }
-
-        private void OnDiagramChanged(IDiagram diagram)
-        {
-            diagram.ElementAdded += AddVisualElement;
-            InitializeVisualScene(diagram);
+            _resources = UIServices.Locator.GetInstance<IResourceProvider>();
+            InitializeVisualScene();
+            _diagramModel.ElementAdded += AddVisualElement;
         }
 
         private void AddVisualElement(IDiagramElement diagramElement)
@@ -43,11 +35,11 @@ namespace UI.Diagrams
             entity.Get<DiagramElementView3D>().CurrentElement = diagramElement;
         }
 
-        private void InitializeVisualScene(IDiagram diagram)
+        private void InitializeVisualScene()
         {
             Clear();
 
-            foreach (var element in diagram.Elements)
+            foreach (var element in _diagramModel.Elements)
             {
                 AddVisualElement(element);
             }

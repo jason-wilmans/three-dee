@@ -1,5 +1,6 @@
 ﻿using CoreFacade.Implementation;
 using DiagramLogic.Implementation;
+using PortabilityLayer;
 using PortabilityLayer.IO;
 using PortabilityLayer.ServiceRegistry;
 
@@ -14,13 +15,7 @@ namespace CoreFacade.Interface
 
         public static IThreeDeeCore GetProductionCore()
         {
-            if (!Initialized)
-            {
-                ServiceLocator.RegisterServiceImplementation<IFileAccess, FileAccess>();
-                Initialized = true;
-            }
-
-            return new ThreeDeeCoreFacade(new DiagramComponent(ServiceLocator.GetServiceInstance<IFileAccess>()));
+            return new ThreeDeeCoreFacade(new DiagramComponent(PortabilityServices.Locator.GetInstance<IFileAccess>()));
         }
     }
 }

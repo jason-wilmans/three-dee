@@ -1,11 +1,12 @@
-﻿using PortabilityLayer.ServiceRegistry;
+﻿using System;
+using CoreFacade.Interface;
+using DiagramLogic.Interface;
 using SiliconStudio.Core;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Physics;
 using ThreeDeeUi.UI.Screens;
 using UI.Diagrams;
-using UI.Resources;
 using UI3D;
 
 namespace UI.Utilities
@@ -13,6 +14,8 @@ namespace UI.Utilities
     [DataContract]
     public class GUISystemInitializer : StartupScript
     {
+        private Entity _diagramView;
+
         public override void Start()
         {
             base.Start();
@@ -20,12 +23,24 @@ namespace UI.Utilities
             InitializeServiceLocator();
             InitializeEventSystem();
             InitializeUiComponents();
+            ThreeDeeCoreFactory.GetProductionCore().DiagramChanged += OnDiagramChanged;
+        }
+
+        private void OnDiagramChanged(IDiagram diagram)
+        {
+            if (_diagramView != null)
+            {
+                SceneSystem.SceneInstance.Scene.Entities.Remove(_diagramView);
+
+                _diagramView = new Entity("DiagramView");
+                _diagramView.GetOrCreate<DiagramView3D>();
+                SceneSystem.SceneInstance.Scene.Entities.Add(_diagramView);
+            }
         }
 
         private void InitializeServiceLocator()
         {
-            ServiceLocator.RegisterInstance(Content);
-            ServiceLocator.RegisterServiceImplementation<IResourceProvider, ResourceProvider>();
+            UIServices.Locator.RegisterInstance(Content);
         }
 
         private void InitializeEventSystem()
@@ -45,7 +60,6 @@ namespace UI.Utilities
         private void InitializeUiComponents()
         {
             Entity.GetOrCreate<ScreenManagerComponent>();
-            Entity.GetOrCreate<DiagramView3D>();
         }
     }
 }

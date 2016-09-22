@@ -15,13 +15,11 @@ namespace ThreeDeeUi.UI.Screens
         private const float RelativeWidth = 0.125f;
 
         private readonly IThreeDeeCore _core;
-        private IScreenManager _screenManager;
         private readonly SpriteFont _elementsFont;
         private VertexManipulationTool _vertexManipulationTool;
 
-        public EditorScreen(IScreenManager screenManager, ContentManager content)
+        public EditorScreen(ContentManager content)
         {
-            _screenManager = screenManager;
             _core = ThreeDeeCoreFactory.GetProductionCore();
             _elementsFont = content.Load<SpriteFont>("fonts/elements");
 
@@ -72,15 +70,12 @@ namespace ThreeDeeUi.UI.Screens
                 }
             };
 
-            button.Click += (sender, args) => AddElement(elementType);
+            button.Click += (sender, args) =>
+            {
+                _core.CurrentDiagram.Add(elementType, _core.CurrentDiagram.CalculateGeometricCenter());
+            };
 
             return button;
-        }
-
-        private void AddElement(DiagramElementType elementType)
-        {
-            _core.CreateNewDiagram("Test1");
-            _core.CurrentDiagram.Add(elementType, _core.RecommendedSpawnPosition);
         }
     }
 }

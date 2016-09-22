@@ -157,13 +157,6 @@ Hierarchy:
                     - !CameraComponent
                         ~Id: 66b67eae-9b22-4890-976c-7fd411f22d90
                         Projection: Perspective
-                    - !CameraMovementScript
-                        ~Id: 8481748d-2039-485c-88d2-6d763d8b07e4
-                        ScrollingSpeed: 0.25
-                        PanSpeed: 1.0
-                        CurrentAngle: 0.0
-                        Distance: 0.0
-                        TurnSpeed: 0.0
         -   Entity:
                 Id: aa3c9b96-828a-4cb8-ade8-fc8905c81a42
                 Name: Directional light

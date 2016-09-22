@@ -14,14 +14,12 @@ namespace Tests.TestDiagramLogic
             // Arrange
             Diagram diagramUnderTest = new Diagram("Test Diagram", new TestInstanceFactory());
             IDiagramElement addedElement = null;
-            diagramUnderTest.ElementAdded += element => addedElement = element;
 
             //  Act
             diagramUnderTest.Add(new DiagramElementType("Ellipsoid", typeof (Ellipsoid)));
 
             // Assert
             Assert.IsNotNull(addedElement);
-            Assert.IsTrue(diagramUnderTest.Elements.Contains(addedElement));
         }
     }
 

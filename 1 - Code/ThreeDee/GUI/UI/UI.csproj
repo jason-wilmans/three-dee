@@ -144,6 +144,7 @@
     <Compile Include="Utilities\ConversionTools.cs" />
     <Compile Include="Utilities\GUISystemInitializer.cs" />
     <Compile Include="Utilities\TransformComponentExtensions.cs" />
+    <Compile Include="Utilities\UIServices.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

@@ -26,7 +26,7 @@ namespace ThreeDeeUi.UI.Screens
             {
                 {Screen.MainMenu, new MainMenuScreen(this, Content) },
                 {Screen.FileLoading, new FileLoadingScreen(this) },
-                {Screen.Editor, new EditorScreen(this, Content) }
+                {Screen.Editor, new EditorScreen(Content) }
             };
         }
 
