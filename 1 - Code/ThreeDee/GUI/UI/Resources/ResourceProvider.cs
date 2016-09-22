@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using DiagramLogic.Interface;
 using SiliconStudio.Core.Collections;
 using SiliconStudio.Core.Serialization.Assets;
 using SiliconStudio.Xenko.Engine;
@@ -9,22 +8,16 @@ namespace UI.Resources
     public class ResourceProvider : IResourceProvider
     {
         private readonly ContentManager _assetManager;
-        private const string DiagramElementPrefix = "Diagrams/Elements/";
+        private const string DiagramElementUrl = "Diagrams/Elements/DiagramElement";
 
         public ResourceProvider(ContentManager assetManager)
         {
             _assetManager = assetManager;
         }
 
-        public Entity GetDiagramElement(DiagramElementType elementType)
+        public Entity GetDiagramNewElement()
         {
-            string url = $"{DiagramElementPrefix}{elementType.TechnicalName}/{elementType.TechnicalName}";
-            return SingleEntityPrefab(url);
-        }
-
-        public Entity GetUiEntity()
-        {
-            return SingleEntityPrefab("UI");
+            return SingleEntityPrefab(DiagramElementUrl);
         }
 
         private Entity SingleEntityPrefab(string url)

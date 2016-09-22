@@ -39,9 +39,9 @@ namespace PortabilityLayer.ServiceRegistry
             Container.RegisterType<TInterfaceType, TImplementorType>(lifetimeManager);
         }
 
-        public static void RegisterInstance(object serviceInstance)
+        public static void RegisterInstance<T>(T serviceInstance)
         {
-            Container.RegisterInstance(serviceInstance);
+            Container.RegisterInstance(serviceInstance, new ContainerControlledLifetimeManager());
         }
     }
 }

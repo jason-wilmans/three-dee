@@ -4,6 +4,7 @@ using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Physics;
 using ThreeDeeUi.UI.Screens;
+using UI.Diagrams;
 using UI.Resources;
 using UI3D;
 
@@ -21,8 +22,9 @@ namespace UI.Utilities
             InitializeUiComponents();
         }
 
-        private static void InitializeServiceLocator()
+        private void InitializeServiceLocator()
         {
+            ServiceLocator.RegisterInstance(Content);
             ServiceLocator.RegisterServiceImplementation<IResourceProvider, ResourceProvider>();
         }
 
@@ -43,6 +45,7 @@ namespace UI.Utilities
         private void InitializeUiComponents()
         {
             Entity.GetOrCreate<ScreenManagerComponent>();
+            Entity.GetOrCreate<DiagramView3D>();
         }
     }
 }

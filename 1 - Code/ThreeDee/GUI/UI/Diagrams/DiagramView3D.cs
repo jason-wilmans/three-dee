@@ -2,9 +2,10 @@ using System.Linq;
 using CoreFacade.Interface;
 using DiagramLogic.Interface;
 using DiagramLogic.Interface.Elements;
+using PortabilityLayer.ServiceRegistry;
 using SiliconStudio.Core;
-using SiliconStudio.Core.Collections;
 using SiliconStudio.Xenko.Engine;
+using UI.Resources;
 
 namespace UI.Diagrams
 {
@@ -12,19 +13,21 @@ namespace UI.Diagrams
     public class DiagramView3D : StartupScript
     {
         private readonly IThreeDeeCore _core;
-        private const string Url = "prefabs/Vertex";
+        private IResourceProvider _resources;
 
         public DiagramView3D()
         {
             _core = ThreeDeeCoreFactory.GetProductionCore();
-            
+
             _core.DiagramChanged += OnDiagramChanged;
         }
 
         public override void Start()
         {
             base.Start();
-            
+
+            _resources = ServiceLocator.GetServiceInstance<IResourceProvider>();
+
             if (_core.CurrentDiagram != null) InitializeVisualScene(_core.CurrentDiagram);
         }
 
@@ -36,15 +39,8 @@ namespace UI.Diagrams
 
         private void AddVisualElement(IDiagramElement diagramElement)
         {
-            if (!Content.IsLoaded(Url))
-            {
-                Content.Load<Prefab>(Url);
-            }
-
-            Prefab vertexPrefab = Content.Get<Prefab>(Url);
-            FastCollection<Entity> entities = vertexPrefab.Instantiate();
-            SceneSystem.SceneInstance.Scene.Entities.AddRange(entities);
-            entities[0].Get<DiagramElementComponent>().CurrentElement = diagramElement;
+            Entity entity = _resources.GetDiagramNewElement();
+            entity.Get<DiagramElementView3D>().CurrentElement = diagramElement;
         }
 
         private void InitializeVisualScene(IDiagram diagram)
