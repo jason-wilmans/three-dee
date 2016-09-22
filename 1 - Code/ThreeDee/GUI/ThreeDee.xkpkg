@@ -45,7 +45,10 @@ Bundles: []
 TemplateFolders: []
 RootAssets:
     - 148883c3-94cd-401d-b58a-8fc2c6718f07:fonts/title
-    - 1ab09bd0-be4c-4fbd-af21-1bda51a9348c:Diagrams/Elements/Cuboid/Cuboid
+    - 5126d277-e1f0-40c7-8c16-1302bffaf76c:MainMenu/Material
     - 58cf9719-8acb-414e-ab5c-076f9f37fcb8:fonts/simple
+    - 8a7a0b17-d805-4fd8-aaca-4dddb77cfd2d:Diagrams/Elements/Capsule
     - 90a650d9-5e3c-4aca-ad0a-94b1188b6596:fonts/elements
+    - 9dbd739c-1087-4e77-8948-991cb0ebf542:Diagrams/Elements/DiagramElement
     - b94cc9ae-f8d8-46c3-8228-ee208e548472:Diagrams/Elements/ElementMaterial
+    - c1cd7b1e-b6f9-4edf-a412-f3d0ce1f3516:MainMenu/Plane

@@ -142,6 +142,7 @@ Hierarchy:
         - aa3c9b96-828a-4cb8-ade8-fc8905c81a42
         - f62d9cf5-608b-4d33-9cf9-37834ea4ed76
         - c75c9009-144e-45dd-92f7-e52aaa579493
+        - fac8b0f6-3244-4099-a131-5272acee9ad0
     Parts:
         -   Entity:
                 Id: 944576b9-178e-470f-9eba-b3ee73b33c24
@@ -218,3 +219,18 @@ Hierarchy:
                         Type: !LightSkybox
                             ~Id: 4f86415b-ac22-42a1-8499-f55164ec2e2b
                         Intensity: 0.25
+        -   Entity:
+                Id: fac8b0f6-3244-4099-a131-5272acee9ad0
+                Name: Plane
+                Components:
+                    - !TransformComponent
+                        ~Id: c2b8eccd-1ecb-4758-b453-2a50f87d6313
+                        Children: []
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 3.0, Y: 3.0, Z: 3.0}
+                    - !ModelComponent
+                        ~Id: 1da5e32f-1eb5-421f-9d74-6c4bfb76496d
+                        Model: 648b2f46-814a-44d0-b83c-def57d32bd6f/c1cd7b1e-b6f9-4edf-a412-f3d0ce1f3516:MainMenu/Plane
+                        Materials:
+                            - null

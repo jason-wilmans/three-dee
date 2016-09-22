@@ -1,0 +1,24 @@
+!PrefabAsset
+Id: 9dbd739c-1087-4e77-8948-991cb0ebf542
+SerializedVersion: {Xenko: 1.7.0-beta04}
+Tags: []
+Hierarchy:
+    ~Id: 641d1557-52c5-4fcf-865b-57242634c2ec
+    RootPartIds:
+        - f5b44041-3cd3-4a41-9998-4fc39e378770
+    Parts:
+        -   Entity:
+                Id: f5b44041-3cd3-4a41-9998-4fc39e378770
+                Name: Capsule
+                Components:
+                    - !TransformComponent
+                        ~Id: 29a59152-a689-4c2e-a765-fe25ee957acc
+                        Children: []
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                    - !ModelComponent
+                        ~Id: 6e247c33-ad8b-4133-b13d-8a7569f0e41a
+                        Model: b630a568-a733-483b-9d2f-b83055a2d87b/8a7a0b17-d805-4fd8-aaca-4dddb77cfd2d:Diagrams/Elements/Capsule
+                        Materials:
+                            - null

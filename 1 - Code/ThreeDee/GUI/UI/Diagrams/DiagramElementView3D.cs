@@ -10,7 +10,7 @@ using UI3D;
 
 namespace UI.Diagrams
 {
-    public class DiagramVertexComponent : AViewElement3D
+    public class DiagramElementView3D : AViewElement3D
     {
         private ModelComponent _modelComponent;
         private TransformComponent _transform;

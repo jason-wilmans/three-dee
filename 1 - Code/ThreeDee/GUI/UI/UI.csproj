@@ -128,8 +128,9 @@
   <ItemGroup>
     <Compile Include="Camera\CameraAngle.cs" />
     <Compile Include="Camera\CameraMovementScript.cs" />
-    <Compile Include="Diagrams\DiagramVertexComponent.cs" />
-    <Compile Include="Diagrams\DiagramViewComponent.cs" />
+    <Compile Include="Diagrams\DiagramElementComponent.cs" />
+    <Compile Include="Diagrams\DiagramElementView3D.cs" />
+    <Compile Include="Diagrams\DiagramView3D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\IResourceProvider.cs" />
     <Compile Include="Resources\MalformedPrefabException.cs" />

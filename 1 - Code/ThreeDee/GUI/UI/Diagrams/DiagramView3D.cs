@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using CoreFacade.Interface;
 using DiagramLogic.Interface;
 using DiagramLogic.Interface.Elements;
@@ -9,12 +9,12 @@ using SiliconStudio.Xenko.Engine;
 namespace UI.Diagrams
 {
     [DataContract]
-    public class DiagramViewComponent : StartupScript
+    public class DiagramView3D : StartupScript
     {
         private readonly IThreeDeeCore _core;
         private const string Url = "prefabs/Vertex";
 
-        public DiagramViewComponent()
+        public DiagramView3D()
         {
             _core = ThreeDeeCoreFactory.GetProductionCore();
             
@@ -44,7 +44,7 @@ namespace UI.Diagrams
             Prefab vertexPrefab = Content.Get<Prefab>(Url);
             FastCollection<Entity> entities = vertexPrefab.Instantiate();
             SceneSystem.SceneInstance.Scene.Entities.AddRange(entities);
-            entities[0].Get<DiagramVertexComponent>().CurrentElement = diagramElement;
+            entities[0].Get<DiagramElementComponent>().CurrentElement = diagramElement;
         }
 
         private void InitializeVisualScene(IDiagram diagram)
