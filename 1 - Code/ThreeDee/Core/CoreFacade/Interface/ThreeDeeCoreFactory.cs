@@ -1,6 +1,5 @@
 ﻿using CoreFacade.Implementation;
 using DiagramLogic.Implementation;
-using DiagramLogic.Interface;
 using PortabilityLayer.IO;
 using PortabilityLayer.ServiceRegistry;
 
@@ -11,16 +10,17 @@ namespace CoreFacade.Interface
     /// </summary>
     public static class ThreeDeeCoreFactory
     {
-        private static IServiceLocator _serviceLocator;
+        private static bool Initialized;
 
         public static IThreeDeeCore GetProductionCore()
         {
-            if (_serviceLocator == null)
+            if (!Initialized)
             {
-                _serviceLocator = new ServiceLocator();
+                ServiceLocator.RegisterServiceImplementation<IFileAccess, FileAccess>();
+                Initialized = true;
             }
 
-            return new ThreeDeeCoreFacade(new DiagramComponent(_serviceLocator.GetServiceInstance<IFileAccess>()));
+            return new ThreeDeeCoreFacade(new DiagramComponent(ServiceLocator.GetServiceInstance<IFileAccess>()));
         }
     }
 }

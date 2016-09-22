@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using DiagramLogic.Implementation;
 using DiagramLogic.Interface;
 using DiagramLogic.Interface.Elements;

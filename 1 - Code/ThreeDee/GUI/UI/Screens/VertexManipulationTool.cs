@@ -1,5 +1,4 @@
 ﻿using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Xenko.UI;
 using SiliconStudio.Xenko.UI.Panels;
 
 namespace ThreeDeeUi.UI.Screens

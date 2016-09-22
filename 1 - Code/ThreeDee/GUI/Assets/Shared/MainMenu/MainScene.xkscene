@@ -141,44 +141,7 @@ Hierarchy:
         - 944576b9-178e-470f-9eba-b3ee73b33c24
         - aa3c9b96-828a-4cb8-ade8-fc8905c81a42
         - f62d9cf5-608b-4d33-9cf9-37834ea4ed76
-        - c92b0754-6ef4-4d9e-8054-81f318b5d78a
-        - 83b4c71e-a2bb-4f74-8fa9-e4abbe3ef1f9
-        - b3024b79-2167-4b06-9fe3-f333bc021525
     Parts:
-        -   Entity:
-                Id: 83b4c71e-a2bb-4f74-8fa9-e4abbe3ef1f9
-                Name: UI
-                Components:
-                    - !TransformComponent
-                        ~Id: 80dc17f8-ef9a-451c-a47e-afb613740977
-                        Children: []
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
-                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                    - !UIComponent
-                        ~Id: 8e01242b-ba9b-42c7-bcfd-e13f15ea2fe7
-                        Page: null
-                        Resolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
-                        Size: {X: 1.0, Y: 1.0, Z: 1.0}
-                    - !RigidbodyComponent
-                        ~Id: 1f541d71-ff40-4cd0-9dea-f93b7851eb06
-                        CanSleep: false
-                        Restitution: 0.0
-                        Friction: 0.5
-                        RollingFriction: 0.0
-                        CcdMotionThreshold: 0.0
-                        CcdSweptSphereRadius: 0.0
-                        IsTrigger: false
-                        IsKinematic: true
-                        Mass: 1.0
-                        LinearDamping: 0.0
-                        AngularDamping: 0.0
-                        OverrideGravity: true
-                        Gravity: {X: 0.0, Y: 0.0, Z: 0.0}
-                        NodeName: null
-                        ColliderShapes: []
-                    - !ThreeDeeUi.UI.Screens.ScreenManagerComponent,UI
-                        ~Id: b8179744-0a63-49c9-9c00-424756b27ac4
         -   Entity:
                 Id: 944576b9-178e-470f-9eba-b3ee73b33c24
                 Name: Camera
@@ -223,33 +186,6 @@ Hierarchy:
                                 BiasParameters:
                                     ~Id: 1cc98b43-bcdd-4331-9a4d-7e04e37b5661
                         Intensity: 5.0
-        -   Entity:
-                Id: b3024b79-2167-4b06-9fe3-f333bc021525
-                Name: Diagram
-                Components:
-                    - !TransformComponent
-                        ~Id: f774d42d-09c6-4d88-8b21-9908d75dac85
-                        Children: []
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
-                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                    - !UI.Diagrams.DiagramViewComponent,UI
-                        ~Id: db403c52-f167-429e-8fee-b2425b3313d5
-        -   Entity:
-                Id: c92b0754-6ef4-4d9e-8054-81f318b5d78a
-                Name: Ground
-                Components:
-                    - !TransformComponent
-                        ~Id: cb6b0927-924a-4afa-b4d1-2687d79d6d2d
-                        Children: []
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
-                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                    - !ModelComponent
-                        ~Id: d2b5e7d4-9e64-415d-8ad7-9229acba8fae
-                        Model: 6947b2aa-bc17-40bc-a3e1-954440b949fd/8938f474-ae6f-4bca-baa7-886eee7fecc4:Ground
-                        Materials:
-                            - null
         -   Entity:
                 Id: f62d9cf5-608b-4d33-9cf9-37834ea4ed76
                 Name: Skybox

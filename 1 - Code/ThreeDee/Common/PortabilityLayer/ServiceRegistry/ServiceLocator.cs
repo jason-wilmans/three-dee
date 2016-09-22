@@ -1,26 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PortabilityLayer.IO;
+using Microsoft.Practices.Unity;
 
 namespace PortabilityLayer.ServiceRegistry
 {
-    class ServiceLocator : IServiceLocator
+    public static class ServiceLocator
     {
-        public T GetServiceInstance<T>() where T : class
+        public enum InstantiationStrategy
+        {
+            Singleton,
+            InstancePerRequest
+        }
+
+        private static readonly UnityContainer Container = new UnityContainer();
+
+        public static T GetServiceInstance<T>() where T : class
 
         {
-            var typeName = typeof (T).Name;
-            switch (typeName)
+            return Container.Resolve<T>();
+        }
+
+        public static void RegisterServiceImplementation<TInterfaceType, TImplementorType>
+            (InstantiationStrategy strategy = InstantiationStrategy.InstancePerRequest)
+            where TImplementorType : TInterfaceType
+        {
+            LifetimeManager lifetimeManager;
+            switch (strategy)
             {
-                case nameof(IFileAccess):
-                    return new FileAccess() as T;
-                    
+                case InstantiationStrategy.Singleton:
+                    lifetimeManager = new ContainerControlledLifetimeManager();
+                    break;
+                case InstantiationStrategy.InstancePerRequest:
+                    lifetimeManager = new TransientLifetimeManager();
+                    break;
                 default:
-                    throw new ArgumentException($"No service compatible to '{typeName}' registered.", nameof(T));
+                    throw new ArgumentException($"Unknown strategy: {strategy}", nameof(strategy));
             }
+
+            Container.RegisterType<TInterfaceType, TImplementorType>(lifetimeManager);
+        }
+
+        public static void RegisterInstance(object serviceInstance)
+        {
+            Container.RegisterInstance(serviceInstance);
         }
     }
 }

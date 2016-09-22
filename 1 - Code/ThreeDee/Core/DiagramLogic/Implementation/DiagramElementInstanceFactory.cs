@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using PortabilityLayer.Reflection;
 using DiagramLogic.Interface;
 using DiagramLogic.Interface.Elements;
-
+using PortabilityLayer.Reflection;
 
 namespace DiagramLogic.Implementation
 {

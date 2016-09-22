@@ -1,7 +1,6 @@
 using System;
 using DiagramLogic.Interface.Elements;
 using GameClient.GUI.Ui3D.EventArgs;
-using SiliconStudio.Core;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Rendering;
@@ -11,7 +10,6 @@ using UI3D;
 
 namespace UI.Diagrams
 {
-    [DataContract]
     public class DiagramVertexComponent : AViewElement3D
     {
         private ModelComponent _modelComponent;
@@ -45,7 +43,7 @@ namespace UI.Diagrams
             ToggleColor();
         }
 
-        public void Update()
+        public override void Update()
         {
             //TODO: What the fuck, why does position get overridden in first update?
             if (Game.GameSystems.IsFirstUpdateDone)

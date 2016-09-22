@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 
 namespace DiagramLogic.Interface
 {
@@ -12,6 +11,11 @@ namespace DiagramLogic.Interface
         /// The name for this element type in UI.
         /// </summary>
         public string DisplayName { get; }
+
+        /// <summary>
+        /// Use this name for all technical descriptions, i.e. asset names, etc.
+        /// </summary>
+        public string TechnicalName => Type.Name;
 
         /// <summary>
         /// the CLR type of this element type.

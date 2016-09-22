@@ -1,11 +1,13 @@
 using System;
 using System.Linq;
 using GameClient.GUI.Ui3D.EventArgs;
+using SiliconStudio.Core;
 using SiliconStudio.Xenko.Engine;
 
 namespace UI3D
 {
-    public abstract class AViewElement3D : StartupScript
+    [DataContract(Inherited = true)]
+    public abstract class AViewElement3D : SyncScript
     {
         public event Action<MouseClickEventArgs> Clicked;
 

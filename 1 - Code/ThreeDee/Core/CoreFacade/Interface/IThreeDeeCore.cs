@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using DiagramLogic.Interface;
-using DiagramLogic.Interface.Elements;
+﻿using DiagramLogic.Interface;
 
 namespace CoreFacade.Interface
 {

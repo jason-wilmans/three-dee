@@ -2,7 +2,7 @@ using System;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 
-namespace XenkoUtilities
+namespace UI.Utilities
 {
     public static class TransformComponentExtensions
     {

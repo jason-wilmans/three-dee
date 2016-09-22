@@ -1,5 +1,4 @@
-﻿using System.Xml;
-using ZeroTypes;
+﻿using ZeroTypes;
 
 namespace DiagramLogic.Interface.Elements
 {

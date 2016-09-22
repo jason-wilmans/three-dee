@@ -1,6 +1,5 @@
-using ZeroTypes;
-
 using SiliconStudio.Core.Mathematics;
+using ZeroTypes;
 
 namespace UI.Utilities
 {

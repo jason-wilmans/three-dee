@@ -7,7 +7,6 @@ using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Input;
 using ThreeDeeUi.UI.Camera;
 using UI.Utilities;
-using XenkoUtilities;
 
 namespace UI.Camera
 {
