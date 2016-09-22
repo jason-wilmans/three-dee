@@ -44,6 +44,8 @@ ExplicitFolders: []
 Bundles: []
 TemplateFolders: []
 RootAssets:
-    - 0cddb476-41fa-481e-815f-6b6aae951ad6:UI
+    - 148883c3-94cd-401d-b58a-8fc2c6718f07:fonts/title
     - 1ab09bd0-be4c-4fbd-af21-1bda51a9348c:Diagrams/Elements/Cuboid/Cuboid
+    - 58cf9719-8acb-414e-ab5c-076f9f37fcb8:fonts/simple
+    - 90a650d9-5e3c-4aca-ad0a-94b1188b6596:fonts/elements
     - b94cc9ae-f8d8-46c3-8228-ee208e548472:Diagrams/Elements/ElementMaterial

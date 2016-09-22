@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using GameClient.GUI.Ui3D.EventArgs;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
@@ -8,9 +9,9 @@ using SiliconStudio.Xenko.Physics;
 
 namespace UI3D
 {
-    public class Ui3DEventSystem : SyncScript
+    public class Ui3DEventSystemComponent : SyncScript
     {
-        public CameraComponent Camera;
+        private CameraComponent _camera;
         private Simulation _simulation;
 
         public override void Start()
@@ -18,6 +19,28 @@ namespace UI3D
             base.Start();
 
             _simulation = this.GetSimulation();
+            _camera = SearchCameraInScene();
+        }
+
+        private CameraComponent SearchCameraInScene()
+        {
+            try
+            {
+                var cameraEntity = SceneSystem.SceneInstance.Scene.Entities.SingleOrDefault(
+                    entity => entity.Components.Any(component => component is CameraComponent)
+                    );
+
+                if (cameraEntity == null)
+                {
+                    throw new InvalidOperationException("There is no camera on the top level in this scene.");
+                }
+
+                return cameraEntity.Get<CameraComponent>();
+            }
+            catch (InvalidOperationException)
+            {
+                throw new InvalidOperationException("There was more than one camera in the scene.");
+            }
         }
 
         public override void Update()
@@ -54,15 +77,15 @@ namespace UI3D
             Vector3 unprojectedNear =
                 viewport.Unproject(
                     new Vector3(screenPos, 0.0f),
-                    Camera.ProjectionMatrix,
-                    Camera.ViewMatrix,
+                    _camera.ProjectionMatrix,
+                    _camera.ViewMatrix,
                     Matrix.Identity);
 
             Vector3 unprojectedFar =
                 viewport.Unproject(
                     new Vector3(screenPos, 1.0f),
-                    Camera.ProjectionMatrix,
-                    Camera.ViewMatrix,
+                    _camera.ProjectionMatrix,
+                    _camera.ViewMatrix,
                     Matrix.Identity);
             
             HitResult hitResult = _simulation.Raycast(unprojectedNear, unprojectedFar);

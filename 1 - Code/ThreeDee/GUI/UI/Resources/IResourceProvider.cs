@@ -12,7 +12,5 @@ namespace UI.Resources
         /// <returns></returns>
         /// <exception cref="MalformedPrefabException"></exception>
         Entity GetDiagramElement(DiagramElementType elementType);
-
-        Entity GetUiEntity();
     }
 }
