@@ -22,3 +22,7 @@ Hierarchy:
                         Model: b630a568-a733-483b-9d2f-b83055a2d87b/8a7a0b17-d805-4fd8-aaca-4dddb77cfd2d:Diagrams/Elements/Capsule
                         Materials:
                             - null
+                    - !UI.Diagrams.DiagramElementView3D,UI
+                        ~Id: 1954d68d-d23f-43df-9449-db836358f3aa
+                        Parent: null
+                        CurrentElement: null
