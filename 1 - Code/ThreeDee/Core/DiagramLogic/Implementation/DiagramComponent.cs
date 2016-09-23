@@ -69,6 +69,7 @@ namespace DiagramLogic.Implementation
         public void CreateNewDiagram(string diagramName)
         {
             CurrentDiagram = new Diagram(diagramName, new DiagramElementInstanceFactory());
+            DiagramChanged?.Invoke(CurrentDiagram);
         }
 
         public void Save(string file, bool overWrite)

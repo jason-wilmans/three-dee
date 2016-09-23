@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using CoreFacade.Interface;
 using DiagramLogic.Interface;
-using DiagramLogic.Interface.Elements;
 using ZeroTypes;
 
 namespace CoreFacade.Implementation
 {
     internal class ThreeDeeCoreFacade : IThreeDeeCore
     {
-        public event Action<IDiagramElement> ElementAdded;
         public event Action<IDiagram> DiagramChanged;
 
         private readonly IDiagramComponent _diagramComponent;

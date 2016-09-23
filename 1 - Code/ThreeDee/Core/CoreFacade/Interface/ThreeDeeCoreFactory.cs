@@ -2,7 +2,6 @@
 using DiagramLogic.Implementation;
 using PortabilityLayer;
 using PortabilityLayer.IO;
-using PortabilityLayer.ServiceRegistry;
 
 namespace CoreFacade.Interface
 {
@@ -11,11 +10,16 @@ namespace CoreFacade.Interface
     /// </summary>
     public static class ThreeDeeCoreFactory
     {
-        private static bool Initialized;
+        private static IThreeDeeCore _singleton;
 
         public static IThreeDeeCore GetProductionCore()
         {
-            return new ThreeDeeCoreFacade(new DiagramComponent(PortabilityServices.Locator.GetInstance<IFileAccess>()));
+            if (_singleton == null)
+            {
+                _singleton = new ThreeDeeCoreFacade(new DiagramComponent(PortabilityServices.Locator.GetInstance<IFileAccess>()));
+            }
+
+            return _singleton;
         }
     }
 }

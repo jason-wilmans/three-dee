@@ -20,10 +20,11 @@ namespace UI.Utilities
         {
             base.Start();
 
+            ThreeDeeCoreFactory.GetProductionCore().DiagramChanged += OnDiagramChanged;
+
             InitializeServiceLocator();
             InitializeEventSystem();
             InitializeUiComponents();
-            ThreeDeeCoreFactory.GetProductionCore().DiagramChanged += OnDiagramChanged;
         }
 
         private void OnDiagramChanged(IDiagram diagram)
@@ -31,7 +32,10 @@ namespace UI.Utilities
             if (_diagramView != null)
             {
                 SceneSystem.SceneInstance.Scene.Entities.Remove(_diagramView);
+            }
 
+            if (diagram != null)
+            {
                 _diagramView = new Entity("DiagramView");
                 _diagramView.GetOrCreate<DiagramView3D>();
                 SceneSystem.SceneInstance.Scene.Entities.Add(_diagramView);
