@@ -8,7 +8,7 @@ using SiliconStudio.Xenko.UI;
 using SiliconStudio.Xenko.UI.Controls;
 using SiliconStudio.Xenko.UI.Panels;
 
-namespace ThreeDeeUi.UI.Screens
+namespace UI.Screens
 {
     internal class EditorScreen : Canvas
     {

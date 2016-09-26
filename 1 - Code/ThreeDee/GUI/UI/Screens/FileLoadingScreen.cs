@@ -1,6 +1,6 @@
 ﻿using SiliconStudio.Xenko.UI;
 
-namespace ThreeDeeUi.UI.Screens
+namespace UI.Screens
 {
     internal class FileLoadingScreen : UIElement
     {

@@ -1,9 +1,8 @@
 using System;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Animations;
-using UI.Camera;
 
-namespace ThreeDeeUi.UI.Camera
+namespace UI.Camera
 {
     internal class CameraAngle
     {

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using GameClient.GUI.Ui3D.EventArgs;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.Input;
 using SiliconStudio.Xenko.Physics;
+using UI3D.EventArgs;
 
 namespace UI3D
 {

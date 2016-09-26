@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.UI;
 
-namespace ThreeDeeUi.UI.Screens
+namespace UI.Screens
 {
     public class ScreenManagerComponent : StartupScript , IScreenManager
     {

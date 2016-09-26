@@ -1,7 +1,7 @@
 ﻿using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.UI.Panels;
 
-namespace ThreeDeeUi.UI.Screens
+namespace UI.Screens
 {
     internal class VertexManipulationTool : Panel
     {

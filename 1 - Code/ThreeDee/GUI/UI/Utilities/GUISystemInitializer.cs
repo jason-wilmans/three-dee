@@ -5,8 +5,8 @@ using SiliconStudio.Core;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Physics;
-using ThreeDeeUi.UI.Screens;
 using UI.Diagrams;
+using UI.Screens;
 using UI3D;
 
 namespace UI.Utilities

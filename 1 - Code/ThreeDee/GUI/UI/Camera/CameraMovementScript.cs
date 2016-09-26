@@ -5,7 +5,6 @@ using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Animations;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Input;
-using ThreeDeeUi.UI.Camera;
 using UI.Utilities;
 
 namespace UI.Camera

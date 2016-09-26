@@ -1,6 +1,6 @@
 ﻿using SiliconStudio.Core.Mathematics;
 
-namespace GameClient.GUI.Ui3D.EventArgs
+namespace UI3D.EventArgs
 {
     public class MouseClickEventArgs : UI3DEventArgs
     {

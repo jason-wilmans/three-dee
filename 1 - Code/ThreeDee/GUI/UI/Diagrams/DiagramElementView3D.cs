@@ -1,12 +1,13 @@
 using System;
 using DiagramLogic.Interface.Elements;
-using GameClient.GUI.Ui3D.EventArgs;
+using SiliconStudio.Core;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Rendering;
 using SiliconStudio.Xenko.Rendering.Materials;
 using UI.Utilities;
 using UI3D;
+using UI3D.EventArgs;
 
 namespace UI.Diagrams
 {
@@ -18,6 +19,7 @@ namespace UI.Diagrams
         private bool _selected;
         private static readonly Color4 DarkColor = new Color4(new Color3(0.025f, 0.025f, 0.025f), 1.0f);
 
+        [DataMemberIgnore]
         public IDiagramElement CurrentElement
         {
             get { return _currentElement; }

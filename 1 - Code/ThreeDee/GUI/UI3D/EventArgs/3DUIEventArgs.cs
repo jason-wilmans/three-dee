@@ -1,4 +1,4 @@
-﻿namespace GameClient.GUI.Ui3D.EventArgs
+﻿namespace UI3D.EventArgs
 {
     public class UI3DEventArgs : System.EventArgs
     {

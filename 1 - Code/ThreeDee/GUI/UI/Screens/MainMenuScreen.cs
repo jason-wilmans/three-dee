@@ -10,7 +10,7 @@ using SiliconStudio.Xenko.UI.Events;
 using SiliconStudio.Xenko.UI.Panels;
 using UI.Diagrams;
 
-namespace ThreeDeeUi.UI.Screens
+namespace UI.Screens
 {
     internal class MainMenuScreen : Canvas
     {

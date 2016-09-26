@@ -1,4 +1,4 @@
-﻿namespace ThreeDeeUi.UI.Screens
+﻿namespace UI.Screens
 {
     public enum Screen
     {

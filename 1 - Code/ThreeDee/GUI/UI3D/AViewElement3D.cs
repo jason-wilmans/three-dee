@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using GameClient.GUI.Ui3D.EventArgs;
 using SiliconStudio.Core;
 using SiliconStudio.Xenko.Engine;
+using UI3D.EventArgs;
 
 namespace UI3D
 {
@@ -18,8 +18,6 @@ namespace UI3D
         
         internal void Bubble(UI3DEventArgs eventArgs)
         {
-            //Contract.Requires(eventArgs != null);
-
             AViewElement3D currentElement = this;
             while (currentElement != null)
             {
