@@ -6,8 +6,8 @@ using UI3D.EventArgs;
 
 namespace UI3D
 {
-    //[DataContract(Inherited = true)]
-    public abstract class AViewElement3D : SyncScript
+    [DataContract]
+    public abstract class AViewElement3D : StartupScript
     {
         public event Action<MouseClickEventArgs> Clicked;
 
@@ -16,7 +16,7 @@ namespace UI3D
         /// </summary>
         public AViewElement3D Parent { get; set; }
         
-        internal void Bubble(UI3DEventArgs eventArgs)
+        internal void Bubble(Ui3DEventArgs eventArgs)
         {
             AViewElement3D currentElement = this;
             while (currentElement != null)
@@ -35,7 +35,7 @@ namespace UI3D
             }
         }
 
-        private Delegate[] GetInvocationList(UI3DEventArgs eventArgs)
+        private Delegate[] GetInvocationList(Ui3DEventArgs eventArgs)
         {
             if (eventArgs is MouseClickEventArgs)
             {
@@ -45,7 +45,7 @@ namespace UI3D
             throw new ArgumentException($"Unknown event type '{eventArgs.GetType()}'.", nameof(eventArgs));
         }
 
-        private static bool TryHandle(Delegate[] invocationList, UI3DEventArgs eventArgs)
+        private static bool TryHandle(Delegate[] invocationList, Ui3DEventArgs eventArgs)
         {
             return invocationList.Any(eventHandler =>
             {

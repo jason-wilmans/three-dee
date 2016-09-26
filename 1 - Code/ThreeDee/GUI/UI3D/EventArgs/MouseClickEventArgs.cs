@@ -1,8 +1,11 @@
-﻿using SiliconStudio.Core.Mathematics;
+﻿
+using SiliconStudio.Core;
+using SiliconStudio.Core.Mathematics;
 
 namespace UI3D.EventArgs
 {
-    public class MouseClickEventArgs : UI3DEventArgs
+    [DataContract]
+    public class MouseClickEventArgs : Ui3DEventArgs
     {
         public Vector2 ScreenPosition { get; }
 

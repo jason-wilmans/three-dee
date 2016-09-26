@@ -12,7 +12,7 @@ using UI3D.EventArgs;
 namespace UI.Diagrams
 {
     [DataContract]
-    public class DiagramElementView3D : SyncScript
+    public class DiagramElementView3D : AViewElement3D
     {
         //private ModelComponent _modelComponent;
         //private TransformComponent _transform;
@@ -46,14 +46,14 @@ namespace UI.Diagrams
         //    ToggleColor();
         //}
 
-        public override void Update()
-        {
+        //public override void Update()
+        //{
             //TODO: What the fuck, why does position get overridden in first update?
             //if (Game.GameSystems.IsFirstUpdateDone)
             //{
             //    UpdateVisuals();
             //}
-        }
+        //}
 
         //private void UpdateVisuals()
         //{

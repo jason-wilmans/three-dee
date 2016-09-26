@@ -1,6 +1,9 @@
-﻿namespace UI3D.EventArgs
+﻿using SiliconStudio.Core;
+
+namespace UI3D.EventArgs
 {
-    public class UI3DEventArgs : System.EventArgs
+    [DataContract]
+    public class Ui3DEventArgs
     {
         public bool Handled { get; set; }
     }

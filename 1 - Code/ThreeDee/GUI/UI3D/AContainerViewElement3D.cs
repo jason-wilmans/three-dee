@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using SiliconStudio.Core;
 using SiliconStudio.Xenko.Engine;
 
 namespace UI3D
 {
+    [DataContract]
     public abstract class AContainerViewElement3D : AViewElement3D
     {
         public IEnumerable<AViewElement3D> Children => _children;

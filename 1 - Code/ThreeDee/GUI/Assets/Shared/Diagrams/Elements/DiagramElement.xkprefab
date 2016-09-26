@@ -23,4 +23,5 @@ Hierarchy:
                         Materials:
                             - null
                     - !UI.Diagrams.DiagramElementView3D,UI
-                        ~Id: 16d211d5-e2c1-4c1d-a417-1bcad9733867
+                        ~Id: 58cd564e-0ede-470d-9e9b-f2b2ce45946e
+                        Parent: null

@@ -6,11 +6,12 @@ using SiliconStudio.Core;
 using SiliconStudio.Xenko.Engine;
 using UI.Resources;
 using UI.Utilities;
+using UI3D;
 
 namespace UI.Diagrams
 {
     [DataContract]
-    public class DiagramView3D : StartupScript
+    public class DiagramView3D : AContainerViewElement3D
     {
         private IThreeDeeCore _core;
         private IResourceProvider _resources;
@@ -32,8 +33,8 @@ namespace UI.Diagrams
         private void AddVisualElement(IDiagramElement diagramElement)
         {
             Entity entity = _resources.GetNewDiagramElement();
-            Entity.AddChild(entity);
-            //entity.Get<DiagramElementView3D>().CurrentElement = diagramElement;
+            DiagramElementView3D elementView = entity.Get<DiagramElementView3D>();
+            AddChild(elementView);
         }
 
         private void InitializeVisualScene()
