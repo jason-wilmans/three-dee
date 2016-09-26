@@ -6,7 +6,7 @@ using UI3D.EventArgs;
 
 namespace UI3D
 {
-    [DataContract(Inherited = true)]
+    //[DataContract(Inherited = true)]
     public abstract class AViewElement3D : SyncScript
     {
         public event Action<MouseClickEventArgs> Clicked;

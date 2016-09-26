@@ -22,3 +22,5 @@ Hierarchy:
                         Model: cc1f0f99-3d86-4aa8-836e-fa4dd7645bc7/8a7a0b17-d805-4fd8-aaca-4dddb77cfd2d:Diagrams/Elements/Capsule
                         Materials:
                             - null
+                    - !UI.Diagrams.DiagramElementView3D,UI
+                        ~Id: 16d211d5-e2c1-4c1d-a417-1bcad9733867

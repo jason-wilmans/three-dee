@@ -15,7 +15,7 @@ namespace UI.Resources
             _assetManager = assetManager;
         }
 
-        public Entity GetDiagramNewElement()
+        public Entity GetNewDiagramElement()
         {
             return SingleEntityPrefab(DiagramElementUrl);
         }
