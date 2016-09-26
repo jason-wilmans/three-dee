@@ -10,7 +10,7 @@ using UI.Utilities;
 
 namespace UI.Camera
 {
-    [DataContract(nameof(CameraMovementScript))]
+    [DataContract]
     public class CameraMovementScript : SyncScript
     {
         public float Distance { get; set; }
@@ -20,7 +20,6 @@ namespace UI.Camera
         public float ScrollingSpeed = 0.25f;
         public float PanSpeed = 1.0f;
 
-        [DataMember]
         public float CurrentAngle;
 
 
@@ -34,12 +33,7 @@ namespace UI.Camera
         private Vector3 _pivot;
         private bool _isTurning;
 
-        private readonly IThreeDeeCore _core;
-
-        public CameraMovementScript()
-        {
-            _core = ThreeDeeCoreFactory.GetProductionCore();
-        }
+        private IThreeDeeCore _core;
 
         public override void Start()
         {
@@ -59,6 +53,8 @@ namespace UI.Camera
             CurrentAngle = (float)_angles[_currentAngleIndex].Angle;
             UpdatePivot();
             PositionFromAngle();
+
+            _core = ThreeDeeCoreFactory.GetProductionCore();
         }
 
         public override void Update()
