@@ -1,13 +1,12 @@
-﻿using System;
+using System;
 using System.Linq;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.Input;
 using SiliconStudio.Xenko.Physics;
-using UI3D.EventArgs;
 
-namespace UI3D
+namespace UI.Ui3D
 {
     public class Ui3DEventSystemComponent : SyncScript
     {

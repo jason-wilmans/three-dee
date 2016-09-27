@@ -120,10 +120,6 @@
       <Project>{713454CC-A90E-4A7A-B0DA-12686825E58B}</Project>
       <Name>DiagramLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UI3D\UI3D.csproj">
-      <Project>{1861b43c-b3ba-4be6-bc4c-05fc009e1e90}</Project>
-      <Name>UI3D</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera\CameraAngle.cs" />
@@ -141,6 +137,11 @@
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\ScreenManagerComponent.cs" />
     <Compile Include="Screens\VertexManipulationTool.cs" />
+    <Compile Include="Ui3D\3DUIEventSystem.cs" />
+    <Compile Include="Ui3D\AContainerViewElement3D.cs" />
+    <Compile Include="Ui3D\AViewElement3D.cs" />
+    <Compile Include="Ui3D\EventArgs\3DUIEventArgs.cs" />
+    <Compile Include="Ui3D\EventArgs\MouseClickEventArgs.cs" />
     <Compile Include="Utilities\ConversionTools.cs" />
     <Compile Include="Utilities\GUISystemInitializer.cs" />
     <Compile Include="Utilities\TransformComponentExtensions.cs" />

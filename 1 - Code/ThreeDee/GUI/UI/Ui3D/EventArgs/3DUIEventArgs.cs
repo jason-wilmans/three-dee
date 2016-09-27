@@ -1,6 +1,6 @@
-﻿using SiliconStudio.Core;
+using SiliconStudio.Core;
 
-namespace UI3D.EventArgs
+namespace UI.Ui3D.EventArgs
 {
     [DataContract]
     public class Ui3DEventArgs

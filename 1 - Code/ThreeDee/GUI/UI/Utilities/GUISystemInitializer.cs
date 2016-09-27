@@ -7,7 +7,7 @@ using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Physics;
 using UI.Diagrams;
 using UI.Screens;
-using UI3D;
+using UI.Ui3D;
 
 namespace UI.Utilities
 {

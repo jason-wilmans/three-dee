@@ -19,8 +19,8 @@ Hierarchy:
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                     - !ModelComponent
                         ~Id: 89984ecf-a80b-4c7d-9c32-990f342c5355
-                        Model: cc1f0f99-3d86-4aa8-836e-fa4dd7645bc7/8a7a0b17-d805-4fd8-aaca-4dddb77cfd2d:Diagrams/Elements/Capsule
-                        Materials:
-                            - null
+                        Model: null
+                        Materials: []
                     - !UI.Diagrams.DiagramElementView3D,UI
                         ~Id: be20fb5c-d351-4470-9f2e-b2ec9c2cdfd8
+                        Parent: null
