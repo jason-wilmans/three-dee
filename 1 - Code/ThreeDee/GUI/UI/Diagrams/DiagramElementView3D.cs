@@ -12,17 +12,14 @@ using UI.Utilities;
 
 namespace UI.Diagrams
 {
-    [DataContract]
     public class DiagramElementView3D : AViewElement3D
     {
         private ModelComponent _modelComponent;
-        private TransformComponent _transform;
         private ADiagramElement _currentElement;
         private bool _selected;
         private static readonly Color4 DarkColor = new Color4(new Color3(0.025f, 0.025f, 0.025f), 1.0f);
         private IResourceProvider _resources;
-
-        [DataMemberIgnore]
+        
         public ADiagramElement CurrentElement
         {
             get { return _currentElement; }
@@ -40,8 +37,8 @@ namespace UI.Diagrams
             _modelComponent = Entity.GetOrCreate<ModelComponent>();
             _resources = UIServices.Locator.GetInstance<IResourceProvider>();
 
-            UpdateVisuals();
             Clicked += OnClicked;
+            UpdateVisuals();
         }
 
         private void OnClicked(MouseClickEventArgs mouseClickEventArgs)
@@ -52,20 +49,19 @@ namespace UI.Diagrams
         public override void Update()
         {
             //TODO: What the fuck, why does position get overridden in first update?
-            if (Game.GameSystems.IsFirstUpdateDone)
-            {
-                UpdateVisuals();
-            }
+            //if (Game.GameSystems.IsFirstUpdateDone)
+            //{
+            //    UpdateVisuals();
+            //}
         }
 
         private void UpdateVisuals()
         {
-            if (_currentElement != null && _transform != null && _modelComponent != null)
-            {
-                _transform.Position = ConversionTools.ToXenko(_currentElement.Position);
+            if (_currentElement == null || !_currentElement.Type.IsValid || Entity.Transform == null || _modelComponent == null) return;
+
+            Entity.Transform.Position = ConversionTools.ToXenko(_currentElement.Position);
                 
-                _modelComponent.Model = _resources.GetModelForElementType(CurrentElement.Type);
-            }
+            _modelComponent.Model = _resources.GetModelForElementType(CurrentElement.Type);
         }
 
         public void ToggleColor()

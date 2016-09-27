@@ -17,6 +17,8 @@ namespace DiagramLogic.Interface
         /// </summary>
         public string TechnicalName => Type.Name;
 
+        public bool IsValid => ValidtityCheckDoesNotThrowException();
+
         /// <summary>
         /// the CLR type of this element type.
         /// </summary>
@@ -26,6 +28,27 @@ namespace DiagramLogic.Interface
         {
             DisplayName = displayName;
             Type = type;
+
+            CheckValidity();
+        }
+
+        private bool ValidtityCheckDoesNotThrowException()
+        {
+            try
+            {
+                CheckValidity();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        private void CheckValidity()
+        {
+            if (string.IsNullOrWhiteSpace(DisplayName)) throw new ArgumentException(nameof(DisplayName));
+            if (Type == null) throw new ArgumentNullException(nameof(Type));
         }
     }
 }
