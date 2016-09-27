@@ -18,9 +18,9 @@ namespace DiagramLogic.Implementation
         /// </summary>
         public string Name { get; set; }
 
-        public ICollection<IDiagramElement> Elements { get; private set; }
+        public ICollection<ADiagramElement> Elements { get; }
 
-        public event Action<IDiagramElement> ElementAdded;
+        public event Action<ADiagramElement> ElementAdded;
 
         private int _nextElementId;
 
@@ -37,12 +37,12 @@ namespace DiagramLogic.Implementation
                 throw new ArgumentException("A diagram must have a meaningful name, but the argument was: '" + name + "'", nameof(name));
             }
             Name = name;
-            Elements = new List<IDiagramElement>();
+            Elements = new List<ADiagramElement>();
         }
 
-        public IDiagramElement Add(DiagramElementType elementType, Tuple3? position = null)
+        public ADiagramElement Add(DiagramElementType elementType, Tuple3? position = null)
         {
-            IDiagramElement element = _instanceFactory.GetInstanceForType(elementType);
+            ADiagramElement element = _instanceFactory.GetInstanceForType(elementType);
             Add(element, position);
             return element;
         }
@@ -53,7 +53,7 @@ namespace DiagramLogic.Implementation
         /// <param name="element">Not null</param>
         /// <param name="position">Optional starting position. <br/>
         /// If null, the diagram's geometric center is used.</param>
-        internal void Add(IDiagramElement element, Tuple3? position = null)
+        internal void Add(ADiagramElement element, Tuple3? position = null)
         {
             element.Parent = null;
             element.Id = _nextElementId;
@@ -69,7 +69,7 @@ namespace DiagramLogic.Implementation
         /// Copies the element and places it in this diagram (with a slightly offsetted position).
         /// </summary>
         /// <param name="element">Not null, already contained.</param>
-        public IDiagramElement Copy(IDiagramElement element)
+        public ADiagramElement Copy(ADiagramElement element)
         {
             if (!Elements.Contains(element))
             {
@@ -82,7 +82,7 @@ namespace DiagramLogic.Implementation
                 Math.Abs(element.Position.Z * 0.1 * -1)
                 );
 
-            IDiagramElement copy = element.CreateCopy();
+            ADiagramElement copy = element.CreateCopy();
             copy.Position = copy.Position - offset;
 
             Add(copy);
@@ -96,7 +96,7 @@ namespace DiagramLogic.Implementation
             double y = 0;
             double z = 0;
             
-            foreach (IDiagramElement diagramElement in Elements)
+            foreach (ADiagramElement diagramElement in Elements)
             {
                 x += diagramElement.Position.X;
                 y += diagramElement.Position.Y;
@@ -111,7 +111,7 @@ namespace DiagramLogic.Implementation
         /// If the element was part of the diagram, removes it.
         /// </summary>
         /// <param name="element">Not null.</param>
-        public void Delete(IDiagramElement element)
+        public void Delete(ADiagramElement element)
         {
             Elements.Remove(element);
         }

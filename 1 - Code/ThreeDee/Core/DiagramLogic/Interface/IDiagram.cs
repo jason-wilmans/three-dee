@@ -12,25 +12,25 @@ namespace DiagramLogic.Interface
         /// </summary>
         string Name { get; set; }
 
-        ICollection<IDiagramElement> Elements { get; }
+        ICollection<ADiagramElement> Elements { get; }
 
         /// <summary>
         /// Fired, if an element was added to this diagram.
         /// </summary>
-        event Action<IDiagramElement> ElementAdded;
+        event Action<ADiagramElement> ElementAdded;
 
         /// <summary>
         /// Adds the element to this diagram.
         /// </summary>
         /// <param name="elementType">Not null</param>
         /// <param name="recommendedSpawnPosition">see other overload</param>
-        IDiagramElement Add(DiagramElementType elementType, Tuple3? recommendedSpawnPosition = null);
+        ADiagramElement Add(DiagramElementType elementType, Tuple3? recommendedSpawnPosition = null);
 
         /// <summary>
         /// Copies the element and places it i this diagram (with a slightly offsetted position).
         /// </summary>
         /// <param name="element">Not null, already contained.</param>
-        IDiagramElement Copy(IDiagramElement element);
+        ADiagramElement Copy(ADiagramElement element);
 
         Tuple3 CalculateGeometricCenter();
 
@@ -38,6 +38,6 @@ namespace DiagramLogic.Interface
         /// If the element was part of the diagram, removes it.
         /// </summary>
         /// <param name="element">Not null.</param>
-        void Delete(IDiagramElement element);
+        void Delete(ADiagramElement element);
     }
 }

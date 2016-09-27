@@ -493,9 +493,9 @@
     <Compile Include="Implementation\DiagramElementInstanceFactory.cs" />
     <Compile Include="Implementation\IDiagramElementInstanceFactory.cs" />
     <Compile Include="Interface\DiagramElementType.cs" />
+    <Compile Include="Interface\Elements\ADiagramElement.cs" />
     <Compile Include="Interface\Elements\Cuboid.cs" />
     <Compile Include="Interface\Elements\Ellipsoid.cs" />
-    <Compile Include="Interface\Elements\IDiagramElement.cs" />
     <Compile Include="Interface\Exceptions\InvalidDiagramFormatException.cs" />
     <Compile Include="Interface\Exceptions\UnsavedChangesException.cs" />
     <Compile Include="Interface\IDiagram.cs" />

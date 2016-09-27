@@ -17,13 +17,13 @@ namespace UI.Diagrams
     {
         private ModelComponent _modelComponent;
         private TransformComponent _transform;
-        private IDiagramElement _currentElement;
+        private ADiagramElement _currentElement;
         private bool _selected;
         private static readonly Color4 DarkColor = new Color4(new Color3(0.025f, 0.025f, 0.025f), 1.0f);
         private IResourceProvider _resources;
 
         [DataMemberIgnore]
-        public IDiagramElement CurrentElement
+        public ADiagramElement CurrentElement
         {
             get { return _currentElement; }
             set
@@ -64,26 +64,8 @@ namespace UI.Diagrams
             {
                 _transform.Position = ConversionTools.ToXenko(_currentElement.Position);
                 
-                //_modelComponent.Model = _resources.GetModelForElementType(CurrentElement.);
+                _modelComponent.Model = _resources.GetModelForElementType(CurrentElement.Type);
             }
-        }
-
-        private Model GetModelForType(IDiagramElement currentElement)
-        {
-            string url;
-            switch (currentElement.GetType().Name)
-            {
-                case nameof(Ellipsoid):
-                    url = "models/sphere/Sphere";
-                    break;
-                case nameof(Cuboid):
-                    url = "models/cuboid/Cuboid";
-                    break;
-                default:
-                    throw new ArgumentException("Unknown element type", nameof(currentElement));
-            }
-
-            return !Content.IsLoaded(url) ? Content.Load<Model>(url) : Content.Get<Model>(url);
         }
 
         public void ToggleColor()

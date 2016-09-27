@@ -3,8 +3,8 @@ using DiagramLogic.Interface.Elements;
 
 namespace DiagramLogic.Implementation
 {
-    public interface IDiagramElementInstanceFactory
+    internal interface IDiagramElementInstanceFactory
     {
-        IDiagramElement GetInstanceForType(DiagramElementType elementType);
+        ADiagramElement GetInstanceForType(DiagramElementType elementType);
     }
 }

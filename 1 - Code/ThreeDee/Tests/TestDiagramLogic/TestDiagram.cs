@@ -13,7 +13,7 @@ namespace Tests.TestDiagramLogic
         {
             // Arrange
             Diagram diagramUnderTest = new Diagram("Test Diagram", new TestInstanceFactory());
-            IDiagramElement addedElement = null;
+            ADiagramElement addedElement = null;
 
             //  Act
             diagramUnderTest.Add(new DiagramElementType("Ellipsoid", typeof (Ellipsoid)));
@@ -25,7 +25,7 @@ namespace Tests.TestDiagramLogic
 
     public class TestInstanceFactory : IDiagramElementInstanceFactory
     {
-        public IDiagramElement GetInstanceForType(DiagramElementType elementType)
+        public ADiagramElement GetInstanceForType(DiagramElementType elementType)
         {
             return new Ellipsoid();
         }

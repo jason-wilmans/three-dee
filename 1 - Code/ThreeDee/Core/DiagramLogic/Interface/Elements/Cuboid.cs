@@ -1,18 +1,27 @@
-﻿using System;
-using ZeroTypes;
-
-namespace DiagramLogic.Interface.Elements
+﻿namespace DiagramLogic.Interface.Elements
 {
-    public class Cuboid : IDiagramElement
+    public class Cuboid : ADiagramElement
     {
-        public int Id { get; set; }
-        public Tuple3 Position { get; set; }
-        public Tuple3 Rotation { get; set; }
-        public Tuple3 Scale { get; set; }
-        public IDiagramElement Parent { get; set; }
-        public IDiagramElement CreateCopy()
+        /// <summary>
+        /// Gets or sets.
+        /// </summary>
+        public override DiagramElementType Type { get; }
+        
+        public Cuboid()
         {
-            throw new NotImplementedException();
+            Type = new DiagramElementType(nameof(Cuboid), GetType());
+        }
+        
+        public override ADiagramElement CreateCopy()
+        {
+            return new Cuboid
+            {
+                Id = Id, //TODO: Is there a good way to control this via e.g. the diagram?
+                Parent = Parent,
+                Position = Position,
+                Rotation = Rotation,
+                Scale = Scale
+            };
         }
     }
 }

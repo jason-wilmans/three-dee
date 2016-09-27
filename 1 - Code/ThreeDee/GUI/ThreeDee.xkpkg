@@ -48,7 +48,8 @@ RootAssets:
     - 3569dae4-1901-4f5d-96e9-2fbeee264095:Diagrams/Elements/DiagramElement
     - 5126d277-e1f0-40c7-8c16-1302bffaf76c:MainMenu/Material
     - 58cf9719-8acb-414e-ab5c-076f9f37fcb8:fonts/simple
-    - 8a7a0b17-d805-4fd8-aaca-4dddb77cfd2d:Diagrams/Elements/Capsule
     - 90a650d9-5e3c-4aca-ad0a-94b1188b6596:fonts/elements
+    - ab839342-bc26-4fcf-a8ab-a1b0ee2dea5b:Diagrams/Elements/Models/Ellipsoid
+    - b832e21e-b139-47c0-929b-cda3d59ce1c4:Diagrams/Elements/Models/Cuboid
     - b94cc9ae-f8d8-46c3-8228-ee208e548472:Diagrams/Elements/ElementMaterial
     - c1cd7b1e-b6f9-4edf-a412-f3d0ce1f3516:MainMenu/Plane
