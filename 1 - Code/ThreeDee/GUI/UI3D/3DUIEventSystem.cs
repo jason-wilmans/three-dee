@@ -56,7 +56,8 @@ namespace UI3D
 
             Entity hitEntity = hitResult.Collider.Entity;
             AViewElement3D hit3DUiElement = Search3DUIElement(hitEntity);
-            hit3DUiElement?.Bubble(new MouseClickEventArgs(Input.MousePosition, hitResult.Point));
+            //TODO: Put me back in
+            //hit3DUiElement?.Bubble(new MouseClickEventArgs(Input.MousePosition, hitResult.Point));
         }
 
         private AViewElement3D Search3DUIElement(Entity entity)
