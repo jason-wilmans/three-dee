@@ -49,11 +49,6 @@
             Occurs when [app deactivated].
             </summary>
         </member>
-        <member name="E:SiliconStudio.Xenko.Games.GameForm.MonitorChanged">
-            <summary>
-            Occurs when [monitor changed].
-            </summary>
-        </member>
         <member name="E:SiliconStudio.Xenko.Games.GameForm.PauseRendering">
             <summary>
             Occurs when [pause rendering].
@@ -106,12 +101,6 @@
             Raises the <see cref="E:System.Windows.Forms.Form.ResizeEnd"/> event.
             </summary>
             <param name="e">A <see cref="T:System.EventArgs"/> that contains the event data.</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Games.GameForm.OnLoad(System.EventArgs)">
-            <summary>
-            Raises the <see cref="E:System.Windows.Forms.Form.Load"/> event.
-            </summary>
-            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Games.GameForm.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
             <summary>
@@ -251,7 +240,7 @@
             Calls this method on each frame.
             </summary>
             <returns><c>true</c> if if the control is still active, <c>false</c> otherwise.</returns>
-            <exception cref="T:System.InvalidOperationException">An error occured </exception>
+            <exception cref="T:System.InvalidOperationException">An error occurred </exception>
         </member>
         <member name="M:SiliconStudio.Xenko.Games.WindowsMessageLoop.Dispose">
             <summary>
@@ -450,6 +439,11 @@
             </summary>
             <param name="gameContext">The window Context for this game.</param>
             <exception cref="T:System.InvalidOperationException">Cannot run this instance while it is already running</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Games.GameBase.PrepareContext">
+            <summary>
+            Creates or updates <see cref="P:SiliconStudio.Xenko.Games.GameBase.Context"/> before window and device are created.
+            </summary>
         </member>
         <member name="M:SiliconStudio.Xenko.Games.GameBase.SuppressDraw">
             <summary>
@@ -728,6 +722,11 @@
         <member name="F:SiliconStudio.Xenko.Games.GameGraphicsParameters.ColorSpace">
             <summary>
             Gets or sets the colorspace.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Games.GameGraphicsParameters.RequiredAdapterUid">
+            <summary>
+            If populated the engine will try to initialize the device with the same unique id
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Games.GameProfilingKeys">
@@ -1211,6 +1210,11 @@
             </summary>
             <value>The device creation flags.</value>
         </member>
+        <member name="P:SiliconStudio.Xenko.Games.GraphicsDeviceManager.RequiredAdapterUid">
+            <summary>
+            If populated the engine will try to initialize the device with the same unique id
+            </summary>
+        </member>
         <member name="P:SiliconStudio.Xenko.Games.GraphicsDeviceManager.PreferredColorSpace">
             <summary>
             Gets or sets the default color space.
@@ -1559,6 +1563,11 @@
             This method can be used for tasks like querying for services the component needs and setting up non-graphics resources.
             </remarks>
         </member>
+        <member name="T:SiliconStudio.Xenko.Games.IGameSystemCollection">
+            <summary>
+            A list of game systems.
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Games.IGraphicsDeviceManager">
             <summary>
             Defines the interface for an object that manages a GraphicsDevice.
@@ -1720,7 +1729,7 @@
         </member>
         <member name="T:SiliconStudio.Xenko.Games.Time.TimerTick">
             <summary>
-            This provides timing information similar to <see cref="T:System.Diagnostics.Stopwatch"/> but an update occuring only on a <see cref="M:SiliconStudio.Xenko.Games.Time.TimerTick.Tick"/> method.
+            This provides timing information similar to <see cref="T:System.Diagnostics.Stopwatch"/> but an update occurring only on a <see cref="M:SiliconStudio.Xenko.Games.Time.TimerTick.Tick"/> method.
             </summary>
         </member>
         <member name="M:SiliconStudio.Xenko.Games.Time.TimerTick.#ctor">

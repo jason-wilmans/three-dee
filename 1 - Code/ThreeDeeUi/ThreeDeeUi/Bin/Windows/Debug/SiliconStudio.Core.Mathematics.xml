@@ -7772,12 +7772,12 @@
         </member>
         <member name="M:SiliconStudio.Core.Mathematics.MathUtil.Array``1(``0,System.Int32)">
             <summary>
-            Does something with arrays.
+            Creates a one-dimensional array of the specified <typeparamref name="T"/> and <paramref name="length"/> filled with the specified <paramref name="value"/>.
             </summary>
-            <typeparam name="T">Most likely the type of elements in the array.</typeparam>
-            <param name="value">Who knows what this is for.</param>
-            <param name="count">Probably the length of the array.</param>
-            <returns>An array of who knows what.</returns>
+            <typeparam name="T">The Type of the array to create.</typeparam>
+            <param name="value">The value to fill the array with.</param>
+            <param name="length">The size of the array to create.</param>
+            <returns>A new one-dimensional array of the specified type with the specified length and filled with the specified value.</returns>
         </member>
         <member name="M:SiliconStudio.Core.Mathematics.MathUtil.RevolutionsToDegrees(System.Single)">
             <summary>
@@ -8019,6 +8019,46 @@
             Get the previous power of two of the provided float.
             </summary>
             <param name="size">The value</param>
+        </member>
+        <member name="M:SiliconStudio.Core.Mathematics.MathUtil.Snap(System.Single,System.Single)">
+            <summary>
+            Snaps a value to the nearest interval.
+            </summary>
+            <param name="value">The value to snap.</param>
+            <param name="gap">The interval gap.</param>
+            <returns>The nearest interval to the provided value.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Mathematics.MathUtil.Snap(System.Double,System.Double)">
+            <summary>
+            Snaps a value to the nearest interval.
+            </summary>
+            <param name="value">The value to snap.</param>
+            <param name="gap">The interval gap.</param>
+            <returns>The nearest interval to the provided value.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Mathematics.MathUtil.Snap(SiliconStudio.Core.Mathematics.Vector2,System.Single)">
+            <summary>
+            Snaps all vector components to the nearest interval.
+            </summary>
+            <param name="value">The vector to snap.</param>
+            <param name="gap">The interval gap.</param>
+            <returns>A vector which components are snapped to the nearest interval.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Mathematics.MathUtil.Snap(SiliconStudio.Core.Mathematics.Vector3,System.Single)">
+            <summary>
+            Snaps all vector components to the nearest interval.
+            </summary>
+            <param name="value">The vector to snap.</param>
+            <param name="gap">The interval gap.</param>
+            <returns>A vector which components are snapped to the nearest interval.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Mathematics.MathUtil.Snap(SiliconStudio.Core.Mathematics.Vector4,System.Single)">
+            <summary>
+            Snaps all vector components to the nearest interval.
+            </summary>
+            <param name="value">The vector to snap.</param>
+            <param name="gap">The interval gap.</param>
+            <returns>A vector which components are snapped to the nearest interval.</returns>
         </member>
         <member name="T:SiliconStudio.Core.Mathematics.Matrix">
             <summary>
@@ -9601,6 +9641,11 @@
             <returns>The value of the component at the specified index.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the <paramref name="index"/> is out of the range [0, 3].</exception>
         </member>
+        <member name="M:SiliconStudio.Core.Mathematics.Plane.Negate">
+            <summary>
+            Negates a plane by negating all its coefficients, which result in a plane in opposite direction.
+            </summary>
+        </member>
         <member name="M:SiliconStudio.Core.Mathematics.Plane.Normalize">
             <summary>
             Changes the coefficients of the normal vector of the plane to make it of unit length.
@@ -9747,6 +9792,22 @@
             <param name="right">The source vector.</param>
             <returns>The dot product of the specified vector and the normal of the plane.</returns>
         </member>
+        <member name="M:SiliconStudio.Core.Mathematics.Plane.Project(SiliconStudio.Core.Mathematics.Plane@,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Vector3@)">
+            <summary>
+            Projects a point onto a plane.
+            </summary>
+            <param name="plane">The plane to project the point to.</param>
+            <param name="point">The point to project.</param>
+            <param name="result">The projected point.</param>
+        </member>
+        <member name="M:SiliconStudio.Core.Mathematics.Plane.Project(SiliconStudio.Core.Mathematics.Plane,SiliconStudio.Core.Mathematics.Vector3)">
+            <summary>
+            Projects a point onto a plane.
+            </summary>
+            <param name="plane">The plane to project the point to.</param>
+            <param name="point">The point to project.</param>
+            <returns>The projected point.</returns>
+        </member>
         <member name="M:SiliconStudio.Core.Mathematics.Plane.Normalize(SiliconStudio.Core.Mathematics.Plane@,SiliconStudio.Core.Mathematics.Plane@)">
             <summary>
             Changes the coefficients of the normal vector of the plane to make it of unit length.
@@ -9760,6 +9821,20 @@
             </summary>
             <param name="plane">The source plane.</param>
             <returns>The normalized plane.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Mathematics.Plane.Negate(SiliconStudio.Core.Mathematics.Plane@,SiliconStudio.Core.Mathematics.Plane@)">
+            <summary>
+            Negates a plane by negating all its coefficients, which result in a plane in opposite direction.
+            </summary>
+            <param name="plane">The source plane.</param>
+            <param name="result">When the method completes, contains the flipped plane.</param>
+        </member>
+        <member name="M:SiliconStudio.Core.Mathematics.Plane.Negate(SiliconStudio.Core.Mathematics.Plane)">
+            <summary>
+            Negates a plane by negating all its coefficients, which result in a plane in opposite direction.
+            </summary>
+            <param name="plane">The source plane.</param>
+            <returns>The flipped plane.</returns>
         </member>
         <member name="M:SiliconStudio.Core.Mathematics.Plane.Transform(SiliconStudio.Core.Mathematics.Plane@,SiliconStudio.Core.Mathematics.Quaternion@,SiliconStudio.Core.Mathematics.Plane@)">
             <summary>
@@ -9824,6 +9899,12 @@
             <param name="plane">The plane to scale.</param>
             <param name="scale">The amount by which to scale the plane.</param>
             <returns>The scaled plane.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Mathematics.Plane.op_UnaryNegation(SiliconStudio.Core.Mathematics.Plane)">
+            <summary>
+            Negates a plane by negating all its coefficients, which result in a plane in opposite direction.
+            </summary>
+            <returns>The negated plane.</returns>
         </member>
         <member name="M:SiliconStudio.Core.Mathematics.Plane.op_Equality(SiliconStudio.Core.Mathematics.Plane,SiliconStudio.Core.Mathematics.Plane)">
             <summary>
@@ -10396,6 +10477,22 @@
             <param name="pitch">The pitch of rotation.</param>
             <param name="roll">The roll of rotation.</param>
             <returns>The newly created quaternion.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Mathematics.Quaternion.BetweenDirections(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3)">
+            <summary>
+            Computes a quaternion corresponding to the rotation transforming the vector <paramref name="source"/> to the vector <paramref name="target"/>.
+            </summary>
+            <param name="source">The source vector of the transformation.</param>
+            <param name="target">The target vector of the transformation.</param>
+            <returns>The resulting quaternion corresponding to the transformation of the source vector to the target vector.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Mathematics.Quaternion.BetweenDirections(SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@)">
+            <summary>
+            Computes a quaternion corresponding to the rotation transforming the vector <paramref name="source"/> to the vector <paramref name="target"/>.
+            </summary>
+            <param name="source">The source vector of the transformation.</param>
+            <param name="target">The target vector of the transformation.</param>
+            <param name="result">The resulting quaternion corresponding to the transformation of the source vector to the target vector.</param>
         </member>
         <member name="M:SiliconStudio.Core.Mathematics.Quaternion.Slerp(SiliconStudio.Core.Mathematics.Quaternion@,SiliconStudio.Core.Mathematics.Quaternion@,System.Single,SiliconStudio.Core.Mathematics.Quaternion@)">
             <summary>

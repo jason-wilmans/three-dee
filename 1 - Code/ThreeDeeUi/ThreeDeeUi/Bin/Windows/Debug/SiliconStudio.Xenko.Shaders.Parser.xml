@@ -155,7 +155,7 @@
             <param name="compilationContext">List of all the mixin in the compilation context</param>
             <returns>true if the shader is correct, false otherwise</returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderTypeName)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.Xenko.ShaderTypeName)">
             <summary>
             Visits the specified shader type name.
             </summary>
@@ -224,7 +224,7 @@
             </summary>
             <param name="memberReference">the MemberReferenceExpression</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.FindMemberTypeReference(SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderClassType,SiliconStudio.Shaders.Ast.MemberReferenceExpression)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.FindMemberTypeReference(SiliconStudio.Shaders.Ast.Xenko.ShaderClassType,SiliconStudio.Shaders.Ast.MemberReferenceExpression)">
             <summary>
             Finds the member type reference.
             </summary>
@@ -325,7 +325,7 @@
             </summary>
             <param name="expression">the method reference expression</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Xenko.Shaders.Parser.Ast.ForEachStatement)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.Visit(SiliconStudio.Shaders.Ast.Xenko.ForEachStatement)">
             <summary>
             Visits the ForEachStatement Node and collects information from it.
             </summary>
@@ -382,620 +382,12 @@
             <param name="expression">the Expression</param>
             <returns>true if it is a stream, false otherwise</returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.IsInputOutputMember(SiliconStudio.Shaders.Ast.MemberReferenceExpression)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Analysis.XenkoSemanticAnalysis.IsMutableMember(SiliconStudio.Shaders.Ast.MemberReferenceExpression)">
             <summary>
             Tests if a MemberReferenceExpression is a reference to a stream from an Input/Output type
             </summary>
             <param name="expression">the expression to analyze</param>
             <returns>true if it is a member of an Input/Output type</returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ClassIdentifierGeneric.#ctor">
-            <summary>
-              Initializes a new instance of the <see cref = "T:SiliconStudio.Xenko.Shaders.Parser.Ast.ClassIdentifierGeneric" /> class.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.ClassIdentifierGeneric.Generics">
-            <summary>
-              Gets or sets the path.
-            </summary>
-            <value>
-              The path.
-            </value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.ClassIdentifierGeneric.Separator">
-            <summary>
-            Gets the separator.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ClassIdentifierGeneric.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ClassIdentifierGeneric.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ClassIdentifierGeneric.Childrens">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ClassIdentifierGeneric.ToString">
-            <inheritdoc />
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.EnumType">
-            <summary>
-            An enum.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.EnumType.#ctor">
-            <summary>
-              Initializes a new instance of the <see cref = "T:SiliconStudio.Xenko.Shaders.Parser.Ast.EnumType" /> class.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.EnumType.Values">
-            <summary>
-              Gets or sets the fields.
-            </summary>
-            <value>
-              The fields.
-            </value>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.EnumType.Childrens">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.EnumType.ToString">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.EnumType.Equals(SiliconStudio.Xenko.Shaders.Parser.Ast.EnumType)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.EnumType.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.EnumType.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ForEachStatement">
-            <summary>
-            For statement.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ForEachStatement.#ctor">
-            <summary>
-              Initializes a new instance of the <see cref = "T:SiliconStudio.Shaders.Ast.ForStatement" /> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ForEachStatement.#ctor(SiliconStudio.Shaders.Ast.Variable,SiliconStudio.Shaders.Ast.Expression)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ForEachStatement"/> class.
-            </summary>
-            <param name="variable">The variable.</param>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.ForEachStatement.Collection">
-            <summary>
-              Gets or sets the condition.
-            </summary>
-            <value>
-              The condition.
-            </value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.ForEachStatement.Variable">
-            <summary>
-              Gets or sets the initializer.
-            </summary>
-            <value>
-              The initializer.
-            </value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.ForEachStatement.Body">
-            <summary>
-              Gets or sets the condition.
-            </summary>
-            <value>
-              The condition.
-            </value>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ForEachStatement.Childrens">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ForEachStatement.ToString">
-            <inheritdoc />
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.IGenericStringArgument">
-            <summary>
-            Interface used to tag generic parameters used as string replacement.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.LinkType.#ctor">
-            <summary>
-              Initializes a new instance of the <see cref = "T:SiliconStudio.Xenko.Shaders.Parser.Ast.LinkType" /> class.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatement">
-            <summary>
-            A mixin statement.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatement.#ctor">
-            <summary>
-              Initializes a new instance of the <see cref = "T:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatement" /> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatement.#ctor(SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatementType,SiliconStudio.Shaders.Ast.Expression)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatement" /> class.
-            </summary>
-            <param name="type">The type.</param>
-            <param name="mixin">The mixin.</param>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatement.Type">
-            <summary>
-            Gets or sets the type.
-            </summary>
-            <value>The type.</value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatement.Value">
-            <summary>
-            Gets or sets the target of this mixin.
-            </summary>
-            <value>The target.</value>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatement.Childrens">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatement.ToString">
-            <inheritdoc />
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatementType">
-            <summary>
-            Type of a mixin.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatementType.Default">
-            <summary>
-            The default mixin (standard mixin).
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatementType.Compose">
-            <summary>
-            The compose mixin used to specifiy a composition.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatementType.Child">
-            <summary>
-            The child mixin used to specifiy a children shader.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatementType.Clone">
-            <summary>
-            The clone mixin to clone the current mixins where the clone is emitted.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatementType.Remove">
-            <summary>
-            The remove mixin to remove a mixin from current mixins.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatementType.Macro">
-            <summary>
-            The macro mixin to declare a variable to be exposed in the mixin
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.NamespaceBlock.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.NamespaceBlock"/> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.NamespaceBlock.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Shaders.Ast.TypeBase" /> class.
-            </summary>
-            <param name="name">The name.</param>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.NamespaceBlock.Body">
-            <summary>
-            Gets or sets the body.
-            </summary>
-            <value>The body.</value>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.NamespaceBlock.Childrens">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.NamespaceBlock.ToString">
-            <inheritdoc />
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoConstantBufferType.ResourceGroup">
-            <summary>
-              Resource group keyword (rgroup).
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoConstantBufferType.Map">
-            <summary>
-              Internal map used for parsing.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoConstantBufferType.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier"/> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoConstantBufferType.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier"/> class.
-            </summary>
-            <param name="key">
-            The key.
-            </param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoConstantBufferType.Parse(System.String)">
-            <summary>
-            Parses the specified enum name.
-            </summary>
-            <param name="enumName">
-            Name of the enum.
-            </param>
-            <returns>
-            A qualifier
-            </returns>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.Stream">
-            <summary>
-              Stream keyword (stream).
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.PatchStream">
-            <summary>
-              Patch stream keyword (patchstream).
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.Stage">
-            <summary>
-              Stage keyword (stage).
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.Clone">
-            <summary>
-              Clone keyword (clone).
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.Override">
-            <summary>
-              Override keyword (override).
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.Abstract">
-            <summary>
-              Override keyword (override).
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.Compose">
-            <summary>
-              Compose keyword (compose).
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.Internal">
-            <summary>
-              Internal keyword (internal).
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.Map">
-            <summary>
-              Internal map used for parsing.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier"/> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier"/> class.
-            </summary>
-            <param name="key">
-            The key.
-            </param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.Parse(System.String)">
-            <summary>
-            Parses the specified enum name.
-            </summary>
-            <param name="enumName">
-            Name of the enum.
-            </param>
-            <returns>
-            A qualifier
-            </returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.op_BitwiseAnd(SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier,SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier)">
-            <summary>
-              Implements the operator ==.
-            </summary>
-            <param name = "left">The left.</param>
-            <param name = "right">The right.</param>
-            <returns>
-              The result of the operator.
-            </returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.op_BitwiseOr(SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier,SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier)">
-            <summary>
-              Implements the operator |.
-            </summary>
-            <param name = "left">The left.</param>
-            <param name = "right">The right.</param>
-            <returns>
-              The result of the operator.
-            </returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier.op_ExclusiveOr(SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier,SiliconStudio.Xenko.Shaders.Parser.Ast.XenkoStorageQualifier)">
-            <summary>
-              Implements the operator ^.
-            </summary>
-            <param name = "left">The left.</param>
-            <param name = "right">The right.</param>
-            <returns>
-              The result of the operator.
-            </returns>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ParametersBlock">
-            <summary>
-            A params block.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ParametersBlock.#ctor">
-            <summary>
-              Initializes a new instance of the <see cref = "T:SiliconStudio.Xenko.Shaders.Parser.Ast.ParametersBlock" /> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ParametersBlock.#ctor(SiliconStudio.Shaders.Ast.Identifier,SiliconStudio.Shaders.Ast.BlockStatement)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ParametersBlock" /> class.
-            </summary>
-            <param name="name">The name.</param>
-            <param name="statements">The statements.</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ParametersBlock.Childrens">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ParametersBlock.ToString">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.SemanticType.#ctor">
-            <summary>
-              Initializes a new instance of the <see cref = "T:SiliconStudio.Xenko.Shaders.Parser.Ast.SemanticType" /> class.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderBlock">
-            <summary>
-            A Shader block.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderBlock.IsPartial">
-            <summary>
-            Gets or sets a value indicating whether this instance is partial.
-            </summary>
-            <value><c>true</c> if this instance is partial; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderBlock.Body">
-            <summary>
-            Gets or sets the body.
-            </summary>
-            <value>The body.</value>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderBlock.Childrens">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderBlock.ToString">
-            <inheritdoc />
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderClassType">
-            <summary>
-            Shader Class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderClassType.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderClassType"/> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderClassType.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderClassType"/> class.
-            </summary>
-            <param name="name">The name.</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderClassType.Childrens">
-            <inheritdoc />
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderRootClassType">
-            <summary>
-            Shader Class that supports adding mixin class to its base classes.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderRootClassType.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderRootClassType"/> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderRootClassType.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderRootClassType"/> class.
-            </summary>
-            <param name="name">The name.</param>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderTypeName">
-            <summary>
-            A typeless reference.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderTypeName.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderTypeName"/> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderTypeName.#ctor(SiliconStudio.Shaders.Ast.TypeBase)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderTypeName"/> class.
-            </summary>
-            <param name="typeBase">The type base.</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderTypeName.#ctor(SiliconStudio.Shaders.Ast.Identifier)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderTypeName"/> class.
-            </summary>
-            <param name="name">The name.</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.MemberName.#ctor">
-            <summary>
-              Initializes a new instance of the <see cref = "T:SiliconStudio.Xenko.Shaders.Parser.Ast.MemberName" /> class.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType">
-            <summary>
-            A State type.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.Constants">
-            <summary>
-            The constants streams.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.Input">
-            <summary>
-            The Input streams.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.Input2">
-            <summary>
-            The Input2 type streams.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.Output">
-            <summary>
-            The output type streams.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.Streams">
-            <summary>
-            The streams type streams.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.ThisStreams">
-            <summary>
-            A fake variable of custom type stream
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.GetStreams">
-            <summary>
-            Gets the streams.
-            </summary>
-            <returns>IEnumerable&lt;StreamsType&gt;.</returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType"/> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.#ctor(System.String,System.Boolean)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType" /> class.
-            </summary>
-            <param name="name">The name.</param>
-            <param name="isInputOutput">if set to <c>true</c> [is input output].</param>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.IsInputOutput">
-            <summary>
-            Gets or sets a value indicating whether this instance is input output.
-            </summary>
-            <value><c>true</c> if this instance is input output; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.Equals(SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.op_Equality(SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType,SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType)">
-            <summary>
-            Implements the operator ==.
-            </summary>
-            <param name="left">The left.</param>
-            <param name="right">The right.</param>
-            <returns>
-            The result of the operator.
-            </returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.op_Inequality(SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType,SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType)">
-            <summary>
-            Implements the operator !=.
-            </summary>
-            <param name="left">The left.</param>
-            <param name="right">The right.</param>
-            <returns>
-            The result of the operator.
-            </returns>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.StreamsType.Parse(System.String)">
-            <summary>
-            Parses the specified name.
-            </summary>
-            <param name="name">The name.</param>
-            <returns></returns>
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.UsingParametersStatement">
-            <summary>
-            A using params statement.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.UsingParametersStatement.Name">
-            <summary>
-            Gets or sets the name.
-            </summary>
-            <value>The name.</value>
-        </member>
-        <member name="P:SiliconStudio.Xenko.Shaders.Parser.Ast.UsingParametersStatement.Body">
-            <summary>
-            Gets or sets the body.
-            </summary>
-            <value>The body.</value>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.UsingParametersStatement.Childrens">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.UsingParametersStatement.ToString">
-            <inheritdoc />
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.UsingStatement">
-            <summary>
-            A using statement.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.UsingStatement.#ctor">
-            <summary>
-              Initializes a new instance of the <see cref = "T:SiliconStudio.Xenko.Shaders.Parser.Ast.UsingStatement" /> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.UsingStatement.Childrens">
-            <inheritdoc />
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.UsingStatement.ToString">
-            <inheritdoc />
-        </member>
-        <member name="T:SiliconStudio.Xenko.Shaders.Parser.Ast.VarType">
-            <summary>
-            A structure.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Ast.VarType.#ctor">
-            <summary>
-              Initializes a new instance of the <see cref = "T:SiliconStudio.Shaders.Ast.StructType" /> class.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Grammar.XenkoGrammar.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Grammar.XenkoGrammar"/> class.
-            </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.MixinVirtualTable.Methods">
             <summary>
@@ -1110,9 +502,9 @@
             The result of the parsing
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.OccurenceId">
+        <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.OccurrenceId">
             <summary>
-            Occurence ID in the inheritance tree
+            Occurrence ID in the inheritance tree
             </summary>
         </member>
         <member name="F:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.PotentialConflictingVariables">
@@ -1155,7 +547,7 @@
             A flag to state if the mixin semantic analysis was performed
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.SetShaderAst(SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderClassType)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin.SetShaderAst(SiliconStudio.Shaders.Ast.Xenko.ShaderClassType)">
             <summary>
             Constructor
             </summary>
@@ -1577,9 +969,9 @@
             </summary>
             <param name="mixin">the mixin to add</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ComputeMixinOccurence">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ComputeMixinOccurrence">
             <summary>
-            Compute the occurence Id of each mixin
+            Compute the occurrence Id of each mixin
             </summary>
         </member>
         <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.FindVariable(SiliconStudio.Shaders.Ast.Expression,SiliconStudio.Xenko.Shaders.Parser.Mixins.ModuleMixin@)">
@@ -1743,7 +1135,7 @@
             </summary>
             <param name="mixin">the mixin</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ExpandForEachStatement(SiliconStudio.Xenko.Shaders.Parser.Ast.ForEachStatement)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.XenkoShaderMixer.ExpandForEachStatement(SiliconStudio.Shaders.Ast.Xenko.ForEachStatement)">
             <summary>
             Creates a ForStatement with the same behavior
             </summary>
@@ -2299,7 +1691,7 @@
         <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.Variable)">
             <inheritdoc />
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Xenko.Shaders.Parser.Ast.NamespaceBlock)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.Xenko.NamespaceBlock)">
             <summary>
             Visits the specified namespace block.
             </summary>
@@ -2332,7 +1724,7 @@
             </summary>
             <param name="type">the type.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.Hlsl.StateType)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.ObjectType)">
             <summary>
             Visits the specified type.
             </summary>
@@ -2344,15 +1736,9 @@
             </summary>
             <param name="type">the type.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderKeyGeneratorBase.Visit(SiliconStudio.Shaders.Ast.TypeBase)">
-            <summary>
-            Visits the specified type.
-            </summary>
-            <param name="type">the type.</param>
-        </member>
         <member name="T:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderLoader">
             <summary>
-            Provides methods for loading a <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderClassType"/>.
+            Provides methods for loading a <see cref="T:SiliconStudio.Shaders.Ast.Xenko.ShaderClassType"/>.
             </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderLoader.SourceManager">
@@ -2376,7 +1762,7 @@
         </member>
         <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderLoader.LoadClassSource(SiliconStudio.Xenko.Shaders.ShaderClassSource,SiliconStudio.Shaders.Parser.ShaderMacro[],SiliconStudio.Shaders.Utility.LoggerResult,System.Boolean)">
             <summary>
-            Loads the <see cref="T:SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderClassType" />.
+            Loads the <see cref="T:SiliconStudio.Shaders.Ast.Xenko.ShaderClassType" />.
             </summary>
             <param name="shaderClassSource">The shader class source.</param>
             <param name="shaderMacros">The shader macros.</param>
@@ -2413,13 +1799,13 @@
             Runs the code generation. Results is accessible from <see cref="P:SiliconStudio.Shaders.Writer.ShaderWriter.Text"/> property.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Xenko.Shaders.Parser.Ast.EnumType)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.EnumType)">
             <summary>
             Visits the specified enum type.
             </summary>
             <param name="enumType">Type of the enum.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Xenko.Shaders.Parser.Ast.ParametersBlock)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.ParametersBlock)">
             <summary>
             Visits the specified params block.
             </summary>
@@ -2431,31 +1817,31 @@
             </summary>
             <param name="keywordExpression">The keyword expression.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Xenko.Shaders.Parser.Ast.ForEachStatement)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.ForEachStatement)">
             <summary>
             Visits the specified for each statement.
             </summary>
             <param name="forEachStatement">For each statement.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Xenko.Shaders.Parser.Ast.ShaderBlock)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.EffectBlock)">
             <summary>
             Visits the specified shader block.
             </summary>
-            <param name="shaderBlock">The shader block.</param>
+            <param name="effectBlock">The shader block.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Xenko.Shaders.Parser.Ast.MixinStatement)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.MixinStatement)">
             <summary>
             Visits the specified mixin statement.
             </summary>
             <param name="mixinStatement">The mixin statement.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Xenko.Shaders.Parser.Ast.UsingStatement)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.UsingStatement)">
             <summary>
             Visits the specified using statement.
             </summary>
             <param name="usingStatement">The using statement.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Xenko.Shaders.Parser.Ast.UsingParametersStatement)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderMixinCodeGen.Visit(SiliconStudio.Shaders.Ast.Xenko.UsingParametersStatement)">
             <summary>
             Visits the specified using parameters statement.
             </summary>
@@ -2544,7 +1930,7 @@
         </member>
         <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderVirtualTable.ReplaceVirtualMethod(SiliconStudio.Shaders.Ast.MethodDeclaration,SiliconStudio.Shaders.Utility.LoggerResult)">
             <summary>
-            Replace the method occurence with its last definition
+            Replace the method occurrence with its last definition
             </summary>
             <param name="methodDeclaration">the overriding method</param>
             <param name="errorLogger"></param>
@@ -2574,7 +1960,7 @@
         </member>
         <member name="M:SiliconStudio.Xenko.Shaders.Parser.Mixins.ShaderVirtualTable.LookForBaseDeclarationMixin(SiliconStudio.Shaders.Ast.MethodDeclaration,SiliconStudio.Shaders.Utility.LoggerResult)">
             <summary>
-            Find the base definition of the method and override its occurence
+            Find the base definition of the method and override its occurrence
             </summary>
             <param name="methodDeclaration"></param>
             <param name="errorLogger"></param>
@@ -2779,7 +2165,7 @@
             <param name="constantBuffer">The constant buffer.</param>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderLinker.Visit(SiliconStudio.Shaders.Ast.Node)">
+        <member name="M:SiliconStudio.Xenko.Shaders.Parser.ShaderLinker.VisitNode(SiliconStudio.Shaders.Ast.Node)">
             <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Shaders.Parser.ShaderNavigation">

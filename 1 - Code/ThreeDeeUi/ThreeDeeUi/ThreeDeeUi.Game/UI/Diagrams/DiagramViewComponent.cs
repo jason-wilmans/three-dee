@@ -10,7 +10,7 @@ namespace ThreeDeeUi.UI.Diagrams
     public class DiagramViewComponent : StartupScript
     {
         private readonly IThreeDeeCore _core;
-        private const string Url = "prefabs/DiagramVertex";
+        private const string Url = "prefabs/Vertex";
 
         public DiagramViewComponent()
         {
@@ -42,7 +42,7 @@ namespace ThreeDeeUi.UI.Diagrams
             Prefab vertexPrefab = Content.Get<Prefab>(Url);
             FastCollection<Entity> entities = vertexPrefab.Instantiate();
             SceneSystem.SceneInstance.Scene.Entities.AddRange(entities);
-            entities[0].Get<DiagramVertexComponent>().CurrentElement = diagramElement;
+            //entities[0].Get<DiagramVertexComponent>().CurrentElement = diagramElement;
         }
 
         private void InitializeVisualScene(IDiagram diagram)

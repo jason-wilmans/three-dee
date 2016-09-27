@@ -33,7 +33,7 @@ namespace ThreeDeeUi.UI.Camera
         private Vector3 _pivot;
         private bool _isTurning;
 
-        private IThreeDeeCore _core;
+        private readonly IThreeDeeCore _core;
 
         public CameraMovementScript()
         {

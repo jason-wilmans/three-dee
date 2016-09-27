@@ -11,7 +11,7 @@
         </member>
         <member name="E:SiliconStudio.Core.IO.DirectoryWatcher.Modified">
             <summary>
-            Occurs when a file/directory change occured.
+            Occurs when a file/directory change occurred.
             </summary>
         </member>
         <member name="M:SiliconStudio.Core.IO.DirectoryWatcher.#ctor(System.String)">
@@ -56,7 +56,7 @@
         </member>
         <member name="M:SiliconStudio.Core.IO.DirectoryWatcher.OnModified(System.Object,SiliconStudio.Core.IO.FileEvent)">
             <summary>
-            Called when a file event occured.
+            Called when a file event occurred.
             </summary>
             <param name="sender">The sender.</param>
             <param name="e">The file event.</param>
@@ -333,6 +333,11 @@
             <summary>
             Opens a file and truncates it so that its size is 0 (zero) bytes. The function fails if the file does not exist.
             The calling process must open the file with the GENERIC_WRITE access right.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Core.IO.VirtualFileMode.Append">
+            <summary>
+            Opens a file if it exists and go at the end, otherwise creates a new file.
             </summary>
         </member>
         <member name="T:SiliconStudio.Core.IO.VirtualFileProviderBase">

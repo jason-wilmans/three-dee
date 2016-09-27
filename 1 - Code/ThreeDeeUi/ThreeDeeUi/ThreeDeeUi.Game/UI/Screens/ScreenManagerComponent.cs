@@ -14,6 +14,7 @@ namespace ThreeDeeUi.UI.Screens
             base.Start();
 
             _ui = Entity.GetOrCreate<UIComponent>();
+            _ui.Page = new UIPage();
 
             Screens = SetupScreens();
             ChangeTo(Screen.MainMenu);
@@ -31,7 +32,7 @@ namespace ThreeDeeUi.UI.Screens
 
         public void ChangeTo(Screen screen)
         {
-            _ui.RootElement = Screens[screen];
+            _ui.Page.RootElement = Screens[screen];
         }
 
         public void QuitProgram()

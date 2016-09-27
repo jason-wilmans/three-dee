@@ -17,6 +17,7 @@ namespace ThreeDeeUi.UI.Screens
         private readonly IThreeDeeCore _core;
         private IScreenManager _screenManager;
         private readonly SpriteFont _elementsFont;
+        private VertexManipulationTool _vertexManipulationTool;
 
         public EditorScreen(IScreenManager screenManager, ContentManager content)
         {
@@ -28,6 +29,9 @@ namespace ThreeDeeUi.UI.Screens
             Children.Add(elementsMenu);
 
             SetupElements(elementsMenu);
+
+            _vertexManipulationTool = new VertexManipulationTool();
+            Children.Add(_vertexManipulationTool);
         }
         
         private UniformGrid SetupElementsMenu()

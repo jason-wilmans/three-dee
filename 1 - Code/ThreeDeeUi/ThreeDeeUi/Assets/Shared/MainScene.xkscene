@@ -1,171 +1,7 @@
 !SceneAsset
 Id: 439e16ff-cbb4-4ebd-bf54-2532d451d968
-SerializedVersion: {Xenko: 1.6.0-beta03}
+SerializedVersion: {Xenko: 1.7.0-beta04}
 Tags: []
-Hierarchy:
-    ~Id: cf5981d3-e5fa-4555-823f-6b2bbc44dfe7
-    RootEntities:
-        - d92ada62-7103-49b6-a97a-d9ffbb465945
-        - 91fdba0c-444d-4270-94d8-57a8bb0d0e7c
-        - f418757a-f5d1-4b9d-af05-5158700ed862
-        - 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
-        - d7425857-7229-4eae-b6ca-e59b88b615e4
-        - b3d3bff6-17fb-400d-95eb-235e5044fc5c
-        - a1f32447-f1ff-4f5e-b909-6b7b1b92cb7c
-    Entities:
-        -   Entity:
-                Id: 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
-                Name: UI
-                Components:
-                    - !TransformComponent
-                        ~Id: 9fc7e171-2ddf-4942-be62-a834e0dd4d2d
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !UIComponent
-                        ~Id: 4b0d0518-eab6-4f5e-ab81-bc5b027f91e0
-                        VirtualResolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
-                    - !ThreeDeeUi.UI.Screens.ScreenManagerComponent,ThreeDeeUi.Game
-                        ~Id: 15ee2dd4-4047-412b-9efb-1cc0dc37a3e2
-            Design: {}
-        -   Entity:
-                Id: 91fdba0c-444d-4270-94d8-57a8bb0d0e7c
-                Name: Directional light
-                Components:
-                    - !TransformComponent
-                        ~Id: 1b84eabe-5f39-4cf8-b950-2c91f3e03afd
-                        Position: {X: 0.0, Y: 2.0, Z: 0.0}
-                        Rotation: {W: 0.7912401, X: -0.5540323, Y: 0.212012157, Z: 0.1484525}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !LightComponent
-                        ~Id: c1093c86-6acd-4c22-8a0d-479a7256b603
-                        Type: !LightDirectional
-                            ~Id: 34478357-1f6d-4b5b-8b49-ca92f23dd4aa
-                            Color: !ColorRgbProvider
-                                ~Id: 1631e915-8c1e-4dea-af6d-b63cce4f7924
-                                Value: {R: 1.0, G: 1.0, B: 1.0}
-                            Shadow:
-                                ~Id: 5a90d59c-ec35-44ed-abbc-ab02f963d77d
-                                Enabled: true
-                                Filter: !LightShadowMapFilterTypePcf
-                                    ~Id: a6471365-dc15-4ed6-b6d7-9fa0836ef84c
-                                    FilterSize: Filter5x5
-                                Size: XLarge
-                                DepthRange:
-                                    ~Id: 18f52786-b4b1-4ab8-9110-b0ac87b870bf
-                                PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic
-                                    ~Id: 7af50043-e7dd-46e7-a73f-b6a0a45402e5
-                                BiasParameters:
-                                    ~Id: b7d6c2b2-dcfc-42b3-87c3-932941329cfa
-                        Intensity: 5.0
-            Design: {}
-        -   Entity:
-                Id: a1f32447-f1ff-4f5e-b909-6b7b1b92cb7c
-                Name: Sphere
-                Components:
-                    - !TransformComponent
-                        ~Id: 2161def7-f605-4eb4-955a-85157837526b
-                        Position: {X: 0.062721014, Y: 0.6120898, Z: 0.9296968}
-                        Rotation: {W: 0.834069252, X: 0.0, Y: -0.5516597, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !ModelComponent
-                        ~Id: e047a217-0c8a-4a88-bd34-be45d6ff4ed4
-                        Model: 98f35b36-3642-4af9-a14b-e79ad8837b22/49883d3e-ea7a-46f7-bd04-f5ef7cef8b7a:models/sphere/Sphere
-                        Materials:
-                            - null
-            Design: {}
-        -   Entity:
-                Id: b3d3bff6-17fb-400d-95eb-235e5044fc5c
-                Name: Cuboid
-                Components:
-                    - !TransformComponent
-                        ~Id: 0b2f00ef-652e-468a-8788-88f519ef2460
-                        Position: {X: 0.5, Y: 0.0, Z: 0.5}
-                        Rotation: {W: 0.834069252, X: 0.0, Y: -0.5516597, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !ModelComponent
-                        ~Id: 32269963-3fec-4881-8f42-8f7217c49f3a
-                        Model: 53cbe5bd-956b-4341-8c80-cc314bd14ea8/f7bd7746-a3d1-4ed2-b072-ab8a0a830c4a:models/cuboid/Cuboid
-                        Materials:
-                            - null
-            Design: {}
-        -   Entity:
-                Id: d7425857-7229-4eae-b6ca-e59b88b615e4
-                Name: Entity
-                Components:
-                    - !TransformComponent
-                        ~Id: 75493a11-c330-4697-b683-0112affb042c
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !ThreeDeeUi.UI.Diagrams.DiagramViewComponent,ThreeDeeUi.Game
-                        ~Id: bb004816-70a3-4e2e-8a63-096b00d49a45
-            Design: {}
-        -   Entity:
-                Id: d92ada62-7103-49b6-a97a-d9ffbb465945
-                Name: Camera
-                Components:
-                    - !TransformComponent
-                        ~Id: 3387e39b-1d53-40a1-bb75-f2d64910db35
-                        Position: {X: 0.0, Y: 0.0, Z: 9.700351}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !CameraComponent
-                        ~Id: 8090d6b6-7d8c-486d-872a-aff33ee54e16
-                        Projection: Perspective
-                    - !CameraMovementScript
-                        ~Id: d9dd7964-2a8b-4997-b8a3-2aa8c329ef1c
-                        CurrentAngle: 0.0
-                        Distance: 5.0
-                        PanSpeed: 1.5
-                        ScrollingSpeed: 0.25
-                        TurnSpeed: 0.25
-                    - !ThreeDeeUi.UI.Camera.RaycastingScript,ThreeDeeUi.Game
-                        ~Id: 24fc1aaa-1149-442f-8e5b-00feac756ee5
-                    - !RigidbodyComponent
-                        ~Id: 0943050a-4602-459c-88c0-745537f69463
-                        CanSleep: false
-                        Restitution: 0.0
-                        Friction: 0.5
-                        RollingFriction: 0.0
-                        CcdMotionThreshold: 0.0
-                        CcdSweptSphereRadius: 0.0
-                        IsTrigger: false
-                        IsKinematic: true
-                        Mass: 1.0
-                        LinearDamping: 0.0
-                        AngularDamping: 0.0
-                        OverrideGravity: false
-                        Gravity: {X: 0.0, Y: 0.0, Z: 0.0}
-                        NodeName: null
-                        ColliderShapes:
-                            - !SphereColliderShapeDesc
-                                ~Id: da6468da-6f93-43cb-8261-941bbb3aa3e8
-                                Is2D: false
-                                Radius: 0.01
-                                LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
-            Design: {}
-        -   Entity:
-                Id: f418757a-f5d1-4b9d-af05-5158700ed862
-                Name: Skybox
-                Components:
-                    - !TransformComponent
-                        ~Id: a48fd998-4868-462d-8e05-f32045abf6e4
-                        Position: {X: 0.0, Y: 2.0, Z: -2.0}
-                        Rotation: {W: 1.0, X: 0.0, Y: 0.0, Z: 0.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: []
-                    - !SkyboxComponent
-                        ~Id: a70a2035-ee35-4740-8018-e4a67c9751ca
-                        Skybox: c6a24fe9-7d91-4a89-8a29-f9f79bdc4f91/61a96efc-57f5-4fa4-b725-612a7170e3ca:Skybox
-                        Intensity: 0.5
-            Design: {}
 SceneSettings:
     ~Id: f0556744-ec0c-4c2d-a3cf-1ab109150a00
     GraphicsCompositor: !SceneGraphicsCompositorLayers
@@ -173,9 +9,7 @@ SceneSettings:
         Cameras:
             -   ~Id: f748ba6e-f8b2-409a-940c-750680180657
                 Name: null
-                Camera:
-                    Entity: {Id: d92ada62-7103-49b6-a97a-d9ffbb465945}
-                    Id: 8090d6b6-7d8c-486d-872a-aff33ee54e16
+                Camera: d92ada62-7103-49b6-a97a-d9ffbb465945/8090d6b6-7d8c-486d-872a-aff33ee54e16
         Layers:
             -   ~Id: 3d16fd7b-d935-429e-939e-a640378d6c98
                 Name: SceneGraphicsLayer
@@ -196,6 +30,7 @@ SceneSettings:
                             Index: 0
                         Output: !CurrentRenderFrameProvider {}
                         Viewport: {X: 0.0, Y: 0.0, Width: 100.0, Height: 100.0}
+                        ForceAspectRatio: false
         Master:
             ~Id: ff8e2129-77cc-4ad6-b254-92cb2b3883c4
             Name: SceneGraphicsLayer
@@ -209,6 +44,8 @@ SceneSettings:
                         Camera:
                             ~Id: a03bb591-26a0-4acb-bcb7-d4a2a2163334
                             Index: 0
+                        AmbientOcclusion:
+                            ~Id: 70329284-7bf0-44db-83d8-3f37a2424111
                         DepthOfField:
                             ~Id: e3d72d45-04e9-4966-87d7-b4a0a8afa174
                             Enabled: false
@@ -256,6 +93,8 @@ SceneSettings:
                 Camera:
                     ~Id: 8bf930a3-9129-4cd7-b8b5-0e25dd860cf7
                     Index: 0
+                AmbientOcclusion:
+                    ~Id: 17c2e00b-f7e7-4154-9437-5f5f23c2cec9
                 DepthOfField:
                     ~Id: 22d6e9ad-4578-4dda-affd-d743c2aeef62
                     Enabled: false
@@ -294,3 +133,142 @@ SceneSettings:
                 Antialiasing: !FXAAEffect
                     ~Id: d99b629d-4611-479d-aba3-ba5a211816fa
                     Enabled: false
+Hierarchy:
+    ~Id: cf5981d3-e5fa-4555-823f-6b2bbc44dfe7
+    RootPartIds:
+        - d92ada62-7103-49b6-a97a-d9ffbb465945
+        - 91fdba0c-444d-4270-94d8-57a8bb0d0e7c
+        - f418757a-f5d1-4b9d-af05-5158700ed862
+        - 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
+        - d7425857-7229-4eae-b6ca-e59b88b615e4
+        - b3d3bff6-17fb-400d-95eb-235e5044fc5c
+    Parts:
+        -   Entity:
+                Id: 63ed4a5b-f3b1-44a8-87ca-85f7e38eaec9
+                Name: UI
+                Components:
+                    - !TransformComponent
+                        ~Id: 9fc7e171-2ddf-4942-be62-a834e0dd4d2d
+                        Children: []
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                    - !UIComponent
+                        ~Id: 4b0d0518-eab6-4f5e-ab81-bc5b027f91e0
+                        Page: null
+                        Resolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
+                        Size: {X: 1.0, Y: 1.0, Z: 1.0}
+                    - !ThreeDeeUi.UI.Screens.ScreenManagerComponent,ThreeDeeUi.Game
+                        ~Id: 15ee2dd4-4047-412b-9efb-1cc0dc37a3e2
+                    - !GameClient.GUI.Ui3D.Ui3DEventSystem,Ui3DToolkit
+                        ~Id: 14003781-ab58-4ceb-a85d-a63c2f93412f
+                        Camera: d92ada62-7103-49b6-a97a-d9ffbb465945/8090d6b6-7d8c-486d-872a-aff33ee54e16
+                    - !RigidbodyComponent
+                        ~Id: d08147d7-a4d8-4a8f-9526-0bee98625a2c
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        IsTrigger: false
+                        IsKinematic: true
+                        Mass: 1.0
+                        LinearDamping: 0.0
+                        AngularDamping: 0.0
+                        OverrideGravity: true
+                        Gravity: {X: 0.0, Y: 0.0, Z: 0.0}
+                        NodeName: null
+                        ColliderShapes: []
+        -   Entity:
+                Id: 91fdba0c-444d-4270-94d8-57a8bb0d0e7c
+                Name: Directional light
+                Components:
+                    - !TransformComponent
+                        ~Id: 1b84eabe-5f39-4cf8-b950-2c91f3e03afd
+                        Children: []
+                        Position: {X: 0.0, Y: 2.0, Z: 0.0}
+                        Rotation: {X: -0.5540323, Y: 0.212012157, Z: 0.1484525, W: 0.7912401}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                    - !LightComponent
+                        ~Id: c1093c86-6acd-4c22-8a0d-479a7256b603
+                        Type: !LightDirectional
+                            ~Id: 34478357-1f6d-4b5b-8b49-ca92f23dd4aa
+                            Color: !ColorRgbProvider
+                                ~Id: 1631e915-8c1e-4dea-af6d-b63cce4f7924
+                                Value: {R: 1.0, G: 1.0, B: 1.0}
+                            Shadow:
+                                ~Id: 5a90d59c-ec35-44ed-abbc-ab02f963d77d
+                                Enabled: true
+                                Filter: !LightShadowMapFilterTypePcf
+                                    ~Id: a6471365-dc15-4ed6-b6d7-9fa0836ef84c
+                                    FilterSize: Filter5x5
+                                Size: XLarge
+                                DepthRange:
+                                    ~Id: 18f52786-b4b1-4ab8-9110-b0ac87b870bf
+                                PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic
+                                    ~Id: 7af50043-e7dd-46e7-a73f-b6a0a45402e5
+                                BiasParameters:
+                                    ~Id: b7d6c2b2-dcfc-42b3-87c3-932941329cfa
+                        Intensity: 5.0
+        -   Entity:
+                Id: b3d3bff6-17fb-400d-95eb-235e5044fc5c
+                Name: Cuboid
+                Components:
+                    - !TransformComponent
+                        ~Id: 0b2f00ef-652e-468a-8788-88f519ef2460
+                        Children: []
+                        Position: {X: -1.890451, Y: 0.0, Z: 4.259017}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                    - !ModelComponent
+                        ~Id: 32269963-3fec-4881-8f42-8f7217c49f3a
+                        Model: 53cbe5bd-956b-4341-8c80-cc314bd14ea8/f7bd7746-a3d1-4ed2-b072-ab8a0a830c4a:models/cuboid/Cuboid
+                        Materials:
+                            - null
+        -   Entity:
+                Id: d7425857-7229-4eae-b6ca-e59b88b615e4
+                Name: DiagramView
+                Components:
+                    - !TransformComponent
+                        ~Id: 75493a11-c330-4697-b683-0112affb042c
+                        Children: []
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                    - !ThreeDeeUi.UI.Diagrams.DiagramViewComponent,ThreeDeeUi.Game
+                        ~Id: bb004816-70a3-4e2e-8a63-096b00d49a45
+        -   Entity:
+                Id: d92ada62-7103-49b6-a97a-d9ffbb465945
+                Name: Camera
+                Components:
+                    - !TransformComponent
+                        ~Id: 3387e39b-1d53-40a1-bb75-f2d64910db35
+                        Children: []
+                        Position: {X: 0.0, Y: 0.0, Z: 7.93149328}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                    - !CameraComponent
+                        ~Id: 8090d6b6-7d8c-486d-872a-aff33ee54e16
+                        Projection: Perspective
+                    - !CameraMovementScript
+                        ~Id: d9dd7964-2a8b-4997-b8a3-2aa8c329ef1c
+                        ScrollingSpeed: 0.25
+                        PanSpeed: 1.5
+                        CurrentAngle: 0.0
+                        Distance: 5.0
+                        TurnSpeed: 0.25
+        -   Entity:
+                Id: f418757a-f5d1-4b9d-af05-5158700ed862
+                Name: Skybox
+                Components:
+                    - !TransformComponent
+                        ~Id: a48fd998-4868-462d-8e05-f32045abf6e4
+                        Children: []
+                        Position: {X: 0.0, Y: 2.0, Z: -2.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                    - !SkyboxComponent
+                        ~Id: a70a2035-ee35-4740-8018-e4a67c9751ca
+                        Skybox: c6a24fe9-7d91-4a89-8a29-f9f79bdc4f91/61a96efc-57f5-4fa4-b725-612a7170e3ca:Skybox
+                        Intensity: 0.5
