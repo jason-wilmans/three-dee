@@ -48,56 +48,61 @@ namespace UI.Diagrams
 
         //public override void Update()
         //{
-            //TODO: What the fuck, why does position get overridden in first update?
-            //if (Game.GameSystems.IsFirstUpdateDone)
-            //{
-            //    UpdateVisuals();
-            //}
+        //TODO: What the fuck, why does position get overridden in first update?
+        //if (Game.GameSystems.IsFirstUpdateDone)
+        //{
+        //    UpdateVisuals();
+        //}
         //}
 
         //private void UpdateVisuals()
         //{
-            //if (_currentElement != null && _transform != null && _modelComponent != null)
-            //{
-            //    _transform.Position = ConversionTools.ToXenko(_currentElement.Position);
+        //if (_currentElement != null && _transform != null && _modelComponent != null)
+        //{
+        //    _transform.Position = ConversionTools.ToXenko(_currentElement.Position);
 
-            //    Model model = GetModelForType(_currentElement);
-            //    _modelComponent.Model = model;
-            //}
+        //    Model model = GetModelForType(_currentElement);
+        //    _modelComponent.Model = model;
+        //}
         //}
 
         //private Model GetModelForType(IDiagramElement currentElement)
         //{
-            //string url;
-            //switch (currentElement.GetType().Name)
-            //{
-            //    case nameof(Ellipsoid):
-            //        url = "models/sphere/Sphere";
-            //        break;
-            //    case nameof(Cuboid):
-            //        url = "models/cuboid/Cuboid";
-            //        break;
-            //    default:
-            //        throw new ArgumentException("Unknown element type", nameof(currentElement));
-            //}
+        //string url;
+        //switch (currentElement.GetType().Name)
+        //{
+        //    case nameof(Ellipsoid):
+        //        url = "models/sphere/Sphere";
+        //        break;
+        //    case nameof(Cuboid):
+        //        url = "models/cuboid/Cuboid";
+        //        break;
+        //    default:
+        //        throw new ArgumentException("Unknown element type", nameof(currentElement));
+        //}
 
-            //return !Content.IsLoaded(url) ? Content.Load<Model>(url) : Content.Get<Model>(url);
+        //return !Content.IsLoaded(url) ? Content.Load<Model>(url) : Content.Get<Model>(url);
         //}
 
         //public void ToggleColor()
         //{
-            //Material material = _modelComponent.GetMaterial(0);
+        //Material material = _modelComponent.GetMaterial(0);
 
-            //if (_selected)
-            //{
-            //    material.Parameters.Set(MaterialKeys.DiffuseValue, Color4.White);
-            //}
-            //else
-            //{
-            //    material.Parameters.Set(MaterialKeys.DiffuseValue, DarkColor);
-            //}
-
-            //_selected = !_selected;
+        //if (_selected)
+        //{
+        //    material.Parameters.Set(MaterialKeys.DiffuseValue, Color4.White);
         //}
+        //else
+        //{
+        //    material.Parameters.Set(MaterialKeys.DiffuseValue, DarkColor);
+        //}
+
+        //_selected = !_selected;
+        //}
+
+        /// <summary>
+        /// Empty implementation, needed because subclasses might need to override this.
+        /// </summary>
+        public override void Update() { }
     }
 }

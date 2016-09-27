@@ -54,5 +54,10 @@ namespace UI.Diagrams
         //        SceneSystem.SceneInstance.Scene.Entities.Remove(child);
         //    }
         //}
+
+        /// <summary>
+        /// Empty implementation, needed because subclasses might need to override this.
+        /// </summary>
+        public override void Update() { }
     }
 }
