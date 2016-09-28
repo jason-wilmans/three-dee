@@ -39,7 +39,7 @@ namespace Tests.TestDiagramLogic
 
         private class TestElement : ADiagramElement
         {
-            public override DiagramElementType Type { get; }
+            public override DiagramElementType Type => new DiagramElementType(nameof(TestElement), GetType());
 
             public TestElement()
             {

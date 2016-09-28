@@ -118,6 +118,11 @@ namespace DiagramLogic.Implementation
             Elements.Remove(element);
         }
 
+        public override string ToString()
+        {
+            return $"Diagram[{Name}]";
+        }
+
         #region Equality Members
 
         protected bool Equals(Diagram other)

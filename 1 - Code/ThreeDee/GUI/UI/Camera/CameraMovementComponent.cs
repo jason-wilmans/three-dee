@@ -9,26 +9,22 @@ using UI.Utilities;
 
 namespace UI.Camera
 {
-    [DataContract]
-    public class CameraMovementScript : SyncScript
+    [DataContract(nameof(CameraMovementComponent))]
+    public class CameraMovementComponent : SyncScript
     {
-        public float Distance { get; set; }
-
-        public float TurnSpeed { get; set; }
-
+        public float Distance = 5;
+        public float TurnSpeed = 0.75f;
         public float ScrollingSpeed = 0.25f;
         public float PanSpeed = 1.0f;
 
-        public float CurrentAngle;
-
-
+        // Set by animation component
+        [DataMember] public float CurrentAngle;
         private const float ScrollDelta = 0.00005f;
         private CameraAngle[] _angles;
         private AnimationComponent _animation;
         private int _currentAngleIndex;
         private Vector2 _oldMousePosition;
-
-        private TransformComponent _transform;
+        
         private Vector3 _pivot;
         private bool _isTurning;
 
@@ -37,8 +33,7 @@ namespace UI.Camera
         public override void Start()
         {
             base.Start();
-
-            _transform = Entity.GetOrCreate<TransformComponent>();
+            
             _animation = Entity.GetOrCreate<AnimationComponent>();
 
             _angles = new[]
@@ -71,7 +66,7 @@ namespace UI.Camera
 
         private void RecommendSpawnPosition()
         {
-            Vector3 recommendedPosition = _transform.Position + _transform.LocalMatrix.Forward*Distance;
+            Vector3 recommendedPosition = Entity.Transform.Position + Entity.Transform.LocalMatrix.Forward*Distance;
             _core.RecommendedSpawnPosition = ConversionTools.ToModel(recommendedPosition);
         }
 
@@ -82,7 +77,7 @@ namespace UI.Camera
             if (_isTurning)
             {
                 PositionFromAngle();
-                _transform.LookAt(_pivot);
+                Entity.Transform.LookAt(_pivot);
             }
 
             _isTurning = CheckAndTurn();
@@ -111,7 +106,7 @@ namespace UI.Camera
 
         private void PositionFromAngle()
         {
-            _transform.Position = _pivot + new Vector3(
+            Entity.Transform.Position = _pivot + new Vector3(
                 Distance * (float)Math.Sin(CurrentAngle),
                 0,
                 Distance * (float)Math.Cos(CurrentAngle)
@@ -130,7 +125,7 @@ namespace UI.Camera
 
         private void UpdatePivot()
         {
-            _pivot = _transform.Position + _transform.LocalMatrix.Forward * Distance;
+            _pivot = Entity.Transform.Position + Entity.Transform.LocalMatrix.Forward * Distance;
         }
 
 
@@ -141,10 +136,10 @@ namespace UI.Camera
             if (Math.Abs(Input.MouseWheelDelta) > ScrollDelta)
             {
                 var direction = Input.MouseWheelDelta > 0
-                    ? _transform.LocalMatrix.Forward
-                    : _transform.LocalMatrix.Backward;
+                    ? Entity.Transform.LocalMatrix.Forward
+                    : Entity.Transform.LocalMatrix.Backward;
 
-                _transform.Position += direction * ScrollingSpeed;
+                Entity.Transform.Position += direction * ScrollingSpeed;
             }
         }
 
@@ -157,8 +152,8 @@ namespace UI.Camera
             if (Input.IsMouseButtonDown(MouseButton.Right))
             {
                 var delta = (Input.MousePosition - _oldMousePosition) * PanSpeed;
-                _transform.Position += _transform.WorldMatrix.Left * delta.X;
-                _transform.Position += _transform.WorldMatrix.Up * delta.Y;
+                Entity.Transform.Position += Entity.Transform.WorldMatrix.Left * delta.X;
+                Entity.Transform.Position += Entity.Transform.WorldMatrix.Up * delta.Y;
             }
 
             _oldMousePosition = Input.MousePosition;

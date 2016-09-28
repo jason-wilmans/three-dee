@@ -19,7 +19,17 @@ namespace UI.Diagrams
         private bool _selected;
         private static readonly Color4 DarkColor = new Color4(new Color3(0.025f, 0.025f, 0.025f), 1.0f);
         private IResourceProvider _resources;
-        
+
+        public DiagramElementView3D()
+        {
+            
+        }
+
+        public DiagramElementView3D(ADiagramElement diagramElement)
+        {
+            _currentElement = diagramElement;
+        }
+
         public ADiagramElement CurrentElement
         {
             get { return _currentElement; }

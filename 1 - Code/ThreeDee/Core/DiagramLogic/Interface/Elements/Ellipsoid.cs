@@ -4,6 +4,15 @@ namespace DiagramLogic.Interface.Elements
 {
     public class Ellipsoid : ADiagramElement
     {
+        public override DiagramElementType Type => _type;
+
+        private readonly DiagramElementType _type;
+
+        public Ellipsoid()
+        {
+            _type = new DiagramElementType(nameof(Ellipsoid), GetType());
+        }
+
         /// <summary>
         /// <inheritdoc />
         /// </summary>

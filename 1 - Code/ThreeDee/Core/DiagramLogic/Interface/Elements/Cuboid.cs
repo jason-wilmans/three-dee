@@ -5,11 +5,13 @@
         /// <summary>
         /// Gets or sets.
         /// </summary>
-        public override DiagramElementType Type { get; }
+        public override DiagramElementType Type => _type;
+
+        private DiagramElementType _type;
         
         public Cuboid()
         {
-            Type = new DiagramElementType(nameof(Cuboid), GetType());
+            _type = new DiagramElementType(nameof(Cuboid), GetType());
         }
         
         public override ADiagramElement CreateCopy()

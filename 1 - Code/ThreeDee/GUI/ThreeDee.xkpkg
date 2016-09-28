@@ -26,9 +26,6 @@ Profiles:
             -   Id: a4aced56-4cae-49c3-b12c-5ce678a55545
                 Location: UI/UI.csproj
                 Type: Library
-            -   Id: 1861b43c-b3ba-4be6-bc4c-05fc009e1e90
-                Location: UI3D/UI3D.csproj
-                Type: Library
     -   Name: Windows
         Platform: Windows
         InheritProfiles: []

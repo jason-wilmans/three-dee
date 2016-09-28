@@ -123,7 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera\CameraAngle.cs" />
-    <Compile Include="Camera\CameraMovementScript.cs" />
+    <Compile Include="Camera\CameraMovementComponent.cs" />
     <Compile Include="Diagrams\DiagramElementView3D.cs" />
     <Compile Include="Diagrams\DiagramView3D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
