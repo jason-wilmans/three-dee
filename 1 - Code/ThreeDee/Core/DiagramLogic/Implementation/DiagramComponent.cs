@@ -14,9 +14,10 @@ using ZeroTypes.Exceptions;
 namespace DiagramLogic.Implementation
 {
     internal class DiagramComponent : IDiagramComponent
-    {public Tuple3 RecommendedSpawnPosition { get; set; }
-
+    {
         public event Action<IDiagram> DiagramChanged;
+
+        public Tuple3 RecommendedSpawnPosition { get; set; }
 
         private readonly IFileAccess _fileAccess;
         private readonly Encoding _encoding;
@@ -42,8 +43,6 @@ namespace DiagramLogic.Implementation
                 new DiagramElementType("Cuboid", typeof(Cuboid))
             };
         }
-
-        public event Action<IDiagramElement> ElementAdded;
 
         public IEnumerable<DiagramElementType> GetAvailableElementTypes()
         {

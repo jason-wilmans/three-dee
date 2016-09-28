@@ -82,7 +82,7 @@ namespace UI.Camera
                 }
             };
 
-            animationClip.AddCurve($"[{nameof(CameraMovementScript)}.Key].CurrentAngle", curve);
+            animationClip.AddCurve($"[{nameof(CameraMovementComponent)}.Key].CurrentAngle", curve);
             animationClip.Optimize();
 
             return animationClip;

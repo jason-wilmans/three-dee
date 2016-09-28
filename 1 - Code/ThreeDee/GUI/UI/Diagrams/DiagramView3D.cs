@@ -28,10 +28,12 @@ namespace UI.Diagrams
             _diagramModel.ElementAdded += AddVisualElement;
         }
 
-        private void AddVisualElement(IDiagramElement diagramElement)
+        private void AddVisualElement(ADiagramElement diagramElement)
         {
-            Entity entity = _resources.GetNewDiagramElement();
-            DiagramElementView3D elementView = entity.Get<DiagramElementView3D>();
+            //Entity entity = _resources.GetNewDiagramElement();
+            DiagramElementView3D elementView = new DiagramElementView3D(diagramElement);
+            Entity entity = new Entity(diagramElement.Type.TechnicalName);
+            entity.Add(elementView);
             AddChild(elementView);
         }
 

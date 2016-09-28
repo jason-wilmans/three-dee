@@ -1,0 +1,11 @@
+!ProceduralModelAsset
+Id: b832e21e-b139-47c0-929b-cda3d59ce1c4
+SerializedVersion: {Xenko: 1.5.0-alpha01}
+Tags: []
+Type: !CubeProceduralModel
+    Size: {X: 1.0, Y: 1.0, Z: 1.0}
+    Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+    UvScale: {X: 1.0, Y: 1.0}
+    MaterialInstance:
+        ~Id: e4e12e4b-e6c9-442d-a844-381be0f3080a
+        Material: 06d1d59c-0487-4f6a-9718-f30eb15d2729/b94cc9ae-f8d8-46c3-8228-ee208e548472:Diagrams/Elements/ElementMaterial

@@ -2,38 +2,22 @@
 
 namespace DiagramLogic.Interface.Elements
 {
-    public class Ellipsoid : IDiagramElement
+    public class Ellipsoid : ADiagramElement
     {
-        /// <summary>
-        /// <inheritdoc />
-        /// </summary>
-        public int Id { get; set; }
+        public override DiagramElementType Type => _type;
 
-        /// <summary>
-        /// <inheritdoc />
-        /// </summary>
-        public Tuple3 Position { get; set; }
+        private readonly DiagramElementType _type;
 
-        /// <summary>
-        /// <inheritdoc />
-        /// </summary>
-        public Tuple3 Rotation { get; set; }
-
-        /// <summary>
-        /// <inheritdoc />
-        /// </summary>
-        public Tuple3 Scale { get; set; }
-
-        /// <summary>
-        /// <inheritdoc />
-        /// </summary>
-        public IDiagramElement Parent { get; set; }
+        public Ellipsoid()
+        {
+            _type = new DiagramElementType(nameof(Ellipsoid), GetType());
+        }
 
         /// <summary>
         /// <inheritdoc />
         /// </summary>
         /// <returns></returns>
-        public IDiagramElement CreateCopy()
+        public override ADiagramElement CreateCopy()
         {
             return new Ellipsoid
             {
@@ -45,7 +29,7 @@ namespace DiagramLogic.Interface.Elements
             };
         }
 
-        protected bool Equals(IDiagramElement other)
+        protected bool Equals(ADiagramElement other)
         {
             return Id == other.Id;
         }
@@ -54,8 +38,8 @@ namespace DiagramLogic.Interface.Elements
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (!(obj is IDiagramElement)) return false;
-            return Equals((IDiagramElement) obj);
+            if (!(obj is ADiagramElement)) return false;
+            return Equals((ADiagramElement) obj);
         }
 
         public override int GetHashCode()

@@ -19,7 +19,7 @@ namespace Tests.TestDiagramLogic
             DiagramComponent diagramComponent = new DiagramComponent(null);
             diagramComponent.CreateNewDiagram("Test Diagram 1");
 
-            IDiagramElement ellipsoid = new Ellipsoid
+            ADiagramElement ellipsoid = new Ellipsoid
             {
                 Position = new Tuple3(10, 20, 30),
                 Scale = Tuple3.One
@@ -37,16 +37,25 @@ namespace Tests.TestDiagramLogic
             Assert.IsTrue(diagram.Elements.All(elem => original.Elements.Contains(elem)), "Additional elements appeared.");
         }
 
-        private class TestElement : IDiagramElement
+        private class TestElement : ADiagramElement
         {
-            public int Id { get; set; }
-            public Tuple3 Position { get; set; }
-            public Tuple3 Rotation { get; set; }
-            public Tuple3 Scale { get; set; }
-            public IDiagramElement Parent { get; set; }
-            public IDiagramElement CreateCopy()
+            public override DiagramElementType Type => new DiagramElementType(nameof(TestElement), GetType());
+
+            public TestElement()
             {
-                return new TestElement();
+                Type = new DiagramElementType(nameof(TestElement), GetType());
+            }
+
+            public override ADiagramElement CreateCopy()
+            {
+                return new TestElement
+                {
+                    Id = Id,
+                    Parent = Parent,
+                    Position = Position,
+                    Scale = Scale,
+                    Rotation = Rotation
+                };
             }
         }
     }

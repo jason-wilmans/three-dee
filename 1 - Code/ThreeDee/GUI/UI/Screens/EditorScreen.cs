@@ -7,6 +7,7 @@ using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.UI;
 using SiliconStudio.Xenko.UI.Controls;
 using SiliconStudio.Xenko.UI.Panels;
+using ZeroTypes;
 
 namespace UI.Screens
 {
@@ -72,7 +73,7 @@ namespace UI.Screens
 
             button.Click += (sender, args) =>
             {
-                _core.CurrentDiagram.Add(elementType, _core.CurrentDiagram.CalculateGeometricCenter());
+                _core.CurrentDiagram.Add(elementType, _core.CurrentDiagram.CalculateGeometricCenter() + new Tuple3(0.1, 0.1, 0.1));
             };
 
             return button;

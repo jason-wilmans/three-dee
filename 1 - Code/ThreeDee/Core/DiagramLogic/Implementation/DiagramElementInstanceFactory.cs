@@ -8,10 +8,10 @@ namespace DiagramLogic.Implementation
 {
     internal class DiagramElementInstanceFactory : IDiagramElementInstanceFactory
     {
-        public IDiagramElement GetInstanceForType(DiagramElementType elementType)
+        public ADiagramElement GetInstanceForType(DiagramElementType elementType)
         {
             ConstructorInfo ctor = elementType.Type.GetConstructor(new Type[0]);
-            return ctor.Invoke(new object[0]) as IDiagramElement;
+            return ctor.Invoke(new object[0]) as ADiagramElement;
         }
     }
 }

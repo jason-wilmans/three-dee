@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Reflection;
+using DiagramLogic.Interface.Elements;
+using PortabilityLayer.Reflection;
 
 namespace DiagramLogic.Interface
 {
@@ -17,6 +20,8 @@ namespace DiagramLogic.Interface
         /// </summary>
         public string TechnicalName => Type.Name;
 
+        public bool IsValid => ValidtityCheckDoesNotThrowException();
+
         /// <summary>
         /// the CLR type of this element type.
         /// </summary>
@@ -26,6 +31,51 @@ namespace DiagramLogic.Interface
         {
             DisplayName = displayName;
             Type = type;
+
+            CheckValidity();
+        }
+
+        private bool ValidtityCheckDoesNotThrowException()
+        {
+            try
+            {
+                CheckValidity();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        private void CheckValidity()
+        {
+            if (string.IsNullOrWhiteSpace(DisplayName)) throw new ArgumentException(nameof(DisplayName));
+            if (Type == null) throw new ArgumentNullException(nameof(Type));
+        }
+
+        public override string ToString()
+        {
+            return $"ElementType[{TechnicalName}]";
+        }
+
+        public bool Equals(DiagramElementType other)
+        {
+            return string.Equals(DisplayName, other.DisplayName) && Type == other.Type;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            return obj is DiagramElementType && Equals((DiagramElementType) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((DisplayName != null ? DisplayName.GetHashCode() : 0)*397) ^ (Type != null ? Type.GetHashCode() : 0);
+            }
         }
     }
 }

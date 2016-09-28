@@ -157,13 +157,12 @@ Hierarchy:
                     - !CameraComponent
                         ~Id: 66b67eae-9b22-4890-976c-7fd411f22d90
                         Projection: Perspective
-                    - !UI.Camera.CameraMovementScript,UI
-                        ~Id: 215a38ce-851f-4d03-a64d-9c6d8bcc117a
+                    - !CameraMovementComponent
+                        ~Id: 54f721fd-218b-4060-801f-fc2e804e0067
+                        Distance: 5.0
+                        TurnSpeed: 0.75
                         ScrollingSpeed: 0.25
                         PanSpeed: 1.0
-                        CurrentAngle: 0.0
-                        Distance: 10.0
-                        TurnSpeed: 1.0
         -   Entity:
                 Id: aa3c9b96-828a-4cb8-ade8-fc8905c81a42
                 Name: Directional light
@@ -219,7 +218,7 @@ Hierarchy:
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                     - !SkyboxComponent
                         ~Id: 92ffad79-4dc8-4b53-b654-5b13b6a7beba
-                        Skybox: 16bef15b-bec0-44d3-b7f1-4437dddf313b/c5b882ce-abdb-43a5-9c40-7296819d1e43:Skybox
+                        Skybox: 16bef15b-bec0-44d3-b7f1-4437dddf313b/c5b882ce-abdb-43a5-9c40-7296819d1e43:MainMenu/Skybox
                         Intensity: 3.0
                     - !LightComponent
                         ~Id: 31b99f84-334d-4edc-8403-05de82f0e737

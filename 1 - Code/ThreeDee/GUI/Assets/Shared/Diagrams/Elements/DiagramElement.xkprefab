@@ -24,3 +24,4 @@ Hierarchy:
                     - !UI.Diagrams.DiagramElementView3D,UI
                         ~Id: be20fb5c-d351-4470-9f2e-b2ec9c2cdfd8
                         Parent: null
+                        CurrentElement: null
