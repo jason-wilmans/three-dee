@@ -19,6 +19,7 @@ namespace UI.Camera
 
         // Set by animation component
         [DataMember] public float CurrentAngle;
+
         private const float ScrollDelta = 0.00005f;
         private CameraAngle[] _angles;
         private AnimationComponent _animation;

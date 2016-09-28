@@ -19,7 +19,7 @@ SceneSettings:
                 Renderers:
                     - !ClearRenderFrameRenderer
                         ~Id: a2674ba7-5d88-46a6-8696-9e144840ba65
-                        Color: {R: 0.392156869, G: 0.58431375, B: 0.929411769, A: 1.0}
+                        Color: {R: 0.267834365, G: 0.344254851, B: 0.48150003, A: 1.0}
                         Output: !CurrentRenderFrameProvider {}
                     - !SceneCameraRenderer
                         ~Id: 01a16481-ac7d-4a29-88f5-b664d9bd3f9d
@@ -88,7 +88,7 @@ SceneSettings:
         SceneUnit: 1.0
         Mode: !SceneEditorGraphicsModeHDRSettings
             ~Id: 152167fb-da74-4958-883d-e8c5ca8b75d5
-            BackgroundColor: {R: 0.470588237, G: 0.470588237, B: 0.470588237}
+            BackgroundColor: {R: 0.25025, G: 0.25025, B: 0.25025}
             PostProcessingEffects:
                 ~Id: 4575c416-722d-4e18-9ffa-20ec6a50f58c
                 Camera:
@@ -142,7 +142,6 @@ Hierarchy:
         - aa3c9b96-828a-4cb8-ade8-fc8905c81a42
         - f62d9cf5-608b-4d33-9cf9-37834ea4ed76
         - c75c9009-144e-45dd-92f7-e52aaa579493
-        - fac8b0f6-3244-4099-a131-5272acee9ad0
     Parts:
         -   Entity:
                 Id: 944576b9-178e-470f-9eba-b3ee73b33c24
@@ -157,12 +156,14 @@ Hierarchy:
                     - !CameraComponent
                         ~Id: 66b67eae-9b22-4890-976c-7fd411f22d90
                         Projection: Perspective
+                        VerticalFieldOfView: 65.0
                     - !CameraMovementComponent
                         ~Id: 54f721fd-218b-4060-801f-fc2e804e0067
                         Distance: 5.0
                         TurnSpeed: 0.75
                         ScrollingSpeed: 0.25
                         PanSpeed: 1.0
+                        CurrentAngle: 0.0
         -   Entity:
                 Id: aa3c9b96-828a-4cb8-ade8-fc8905c81a42
                 Name: Directional light
@@ -218,25 +219,9 @@ Hierarchy:
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
                     - !SkyboxComponent
                         ~Id: 92ffad79-4dc8-4b53-b654-5b13b6a7beba
-                        Skybox: 16bef15b-bec0-44d3-b7f1-4437dddf313b/c5b882ce-abdb-43a5-9c40-7296819d1e43:MainMenu/Skybox
-                        Intensity: 3.0
+                        Intensity: 0.0
                     - !LightComponent
                         ~Id: 31b99f84-334d-4edc-8403-05de82f0e737
                         Type: !LightSkybox
                             ~Id: 4f86415b-ac22-42a1-8499-f55164ec2e2b
                         Intensity: 0.25
-        -   Entity:
-                Id: fac8b0f6-3244-4099-a131-5272acee9ad0
-                Name: Plane
-                Components:
-                    - !TransformComponent
-                        ~Id: c2b8eccd-1ecb-4758-b453-2a50f87d6313
-                        Children: []
-                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
-                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
-                        Scale: {X: 3.0, Y: 3.0, Z: 3.0}
-                    - !ModelComponent
-                        ~Id: 1da5e32f-1eb5-421f-9d74-6c4bfb76496d
-                        Model: 648b2f46-814a-44d0-b83c-def57d32bd6f/c1cd7b1e-b6f9-4edf-a412-f3d0ce1f3516:MainMenu/Plane
-                        Materials:
-                            - null

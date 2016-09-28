@@ -61,7 +61,7 @@ namespace UI.Camera
             _rightNeighbour = Angle + _angleDelta;
 
             LowerAnimation = CreateTurnCurve((float) Angle, (float)_leftNeighbour);
-            HigherAnimation = CreateTurnCurve((float)Angle, (float)_rightNeighbour);
+            HigherAnimation = CreateTurnCurve((float) Angle, (float)_rightNeighbour);
         }
 
 

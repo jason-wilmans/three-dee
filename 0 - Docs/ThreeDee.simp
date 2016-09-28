@@ -9,13 +9,13 @@
     <entity-names>
       <counter>
         <item-type stereotype="" type="UmlClass" />
-        <value>7</value>
+        <value>10</value>
       </counter>
     </entity-names>
     <entity-ids>
       <counter>
         <item-type stereotype="" type="UmlClass" />
-        <value>8</value>
+        <value>11</value>
       </counter>
       <counter>
         <item-type stereotype="" type="UmlRealization" />
@@ -30,18 +30,18 @@
         <value>4</value>
       </counter>
       <counter>
-        <item-type stereotype="" type="AbstractElementGroup" />
-        <value>82</value>
-      </counter>
-      <counter>
         <item-type stereotype="" type="UmlFrame" />
         <value>2</value>
+      </counter>
+      <counter>
+        <item-type stereotype="" type="AbstractElementGroup" />
+        <value>23</value>
       </counter>
     </entity-ids>
     <diagrams>
       <counter>
         <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
-        <value>1</value>
+        <value>2</value>
       </counter>
     </diagrams>
     <fields>
@@ -407,7 +407,7 @@
         </layer>
       </diagram>
     </model>
-    <model id="p30414dd5b9c0474d8398035f19683881_956964100" name="Technical Planning" namespace="" order-index="2">
+    <model id="p30414dd5b9c0474d8398035f19683881_956964100" name="Technical Planning" namespace="" order-index="2" expanded="true">
       <meta>
         <authors>
           <author> </author>
@@ -420,6 +420,48 @@
       </meta>
       <abstract-items />
       <sub-models />
+      <diagram type="uml-class" id="p8e39042510f84082800290fef895b4ff_713522505" name="ElementManipulation" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>09/28/2016 18:52:02</creation-date>
+          <change-date>09/28/2016 18:54:08</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di742452602805012884" cid="C008" type="class" name="SelectorView3D" style-class="" visibility="package" change-tracking-state="added" creation-date="09/28/2016 18:52:30">
+            <style class="default" />
+          </item>
+          <item id="di719221263397138270" cid="C009" type="class" name="DiagramElementView" style-class="" visibility="package" change-tracking-state="added" creation-date="09/28/2016 18:52:55">
+            <style class="default" />
+          </item>
+          <item id="di533648769390248711" cid="C010" type="class" name="AManipulator" style-class="" visibility="package" change-tracking-state="added" creation-date="09/28/2016 18:54:08">
+            <style class="default" />
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di742452602805012884" iid="53d9960453f8420e8a3c3fb937369198" creation-date="09/28/2016 18:52:30" order-index="0" type="entity">
+            <layout ax="280" ay="240" awidth="133" aheight="49" x="280" y="240" width="133" height="49" angle="0" />
+            <class />
+          </item>
+          <item id="di533648769390248711" iid="5aab768c41364967a3901ac7d5447e59" creation-date="09/28/2016 18:54:08" order-index="2" type="entity">
+            <layout ax="500" ay="240" awidth="114" aheight="49" x="500" y="240" width="114" height="49" angle="0" />
+            <class />
+          </item>
+          <item id="di719221263397138270" iid="75e6ab96f2fc4d2589a90821dede60f4" creation-date="09/28/2016 18:52:55" order-index="1" type="entity">
+            <layout ax="790" ay="240" awidth="177" aheight="49" x="790" y="240" width="177" height="49" angle="0" />
+            <class />
+          </item>
+        </layer>
+      </diagram>
     </model>
   </models>
   <documents />
