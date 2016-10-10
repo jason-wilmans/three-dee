@@ -5,6 +5,7 @@ using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.Input;
 using SiliconStudio.Xenko.Physics;
+using UI.Ui3D.EventArgs;
 
 namespace UI.Ui3D
 {
@@ -55,8 +56,7 @@ namespace UI.Ui3D
 
             Entity hitEntity = hitResult.Collider.Entity;
             AViewElement3D hit3DUiElement = Search3DUIElement(hitEntity);
-            //TODO: Put me back in
-            //hit3DUiElement?.Bubble(new MouseClickEventArgs(Input.MousePosition, hitResult.Point));
+            hit3DUiElement?.Bubble(new MouseClickEventArgs(Input.MousePosition, hitResult.Point));
         }
 
         private AViewElement3D Search3DUIElement(Entity entity)
