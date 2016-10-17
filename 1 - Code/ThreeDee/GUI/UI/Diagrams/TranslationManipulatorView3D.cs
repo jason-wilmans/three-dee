@@ -26,15 +26,15 @@ namespace UI.Diagrams
                 RootElement = grid
             };
 
-            var size = 5;
-            _upperLeftIndicator = new SelectedIndicator(size);
+            var size = 20;
+            _upperLeftIndicator = new SelectedIndicator(size, GraphicsDevice);
             grid.Children.Add(_upperLeftIndicator);
-            _upperRightIndicator = new SelectedIndicator(size);
-            grid.Children.Add(_upperRightIndicator);
-            _lowerRightIndicator = new SelectedIndicator(size);
-            grid.Children.Add(_lowerRightIndicator);
-            _lowerLeftIndicator = new SelectedIndicator(size);
-            grid.Children.Add(_lowerLeftIndicator);
+            //_upperRightIndicator = new SelectedIndicator(size, GraphicsDevice);
+            //grid.Children.Add(_upperRightIndicator);
+            //_lowerRightIndicator = new SelectedIndicator(size, GraphicsDevice);
+            //grid.Children.Add(_lowerRightIndicator);
+            //_lowerLeftIndicator = new SelectedIndicator(size, GraphicsDevice);
+            //grid.Children.Add(_lowerLeftIndicator);
         }
     }
 }
