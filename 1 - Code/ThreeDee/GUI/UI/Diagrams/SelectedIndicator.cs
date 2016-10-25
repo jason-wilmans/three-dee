@@ -4,6 +4,7 @@
 // // without the prior written consent of the copyright owner.
 // // </copyright>
 
+using System;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.UI;
@@ -12,13 +13,14 @@ using SiliconStudio.Xenko.UI.Panels;
 
 namespace UI.Diagrams
 {
-    public class SelectedIndicator : Button
+    public class SelectedIndicator : Border
     {
         private readonly GraphicsDevice _graphicsDevice;
         private bool _moving;
 
         public SelectedIndicator(float size, GraphicsDevice graphicsDevice)
         {
+            CanBeHitByUser = true;
             _graphicsDevice = graphicsDevice;
             BackgroundColor = Color.Black;
             Width = size;
@@ -35,12 +37,8 @@ namespace UI.Diagrams
 
             Margin = new Thickness(0.5f * screenSize.X, 0.5f * screenSize.Y, 0, 0);
 
-            TouchDown += OnTouchDown;
-        }
-
-        private void OnTouchDown(object sender, TouchEventArgs touchEventArgs)
-        {
-            BackgroundColor = Color.DarkSalmon;
+            MouseOverStateChanged += OnMouseOverstateChanged;
+            TouchMove += OnTouchMove;
         }
 
         private void OnTouchMove(object sender, TouchEventArgs touchEventArgs)
@@ -50,8 +48,11 @@ namespace UI.Diagrams
                 _graphicsDevice.Presenter.BackBuffer.Height
                 );
 
-            Margin = new Thickness(touchEventArgs.ScreenPosition.X*screenSize.X,
-                touchEventArgs.ScreenPosition.Y*screenSize.Y, 0, 0);
+            var widthOffset = Width / 2;
+            var heightOffset = Height / 2;
+
+            Margin = new Thickness(touchEventArgs.ScreenPosition.X * screenSize.X- widthOffset,
+                touchEventArgs.ScreenPosition.Y * screenSize.Y - heightOffset, 0, 0);
         }
 
         private void OnMouseOverstateChanged(object sender, PropertyChangedArgs<MouseOverState> propertyChangedArgs)
