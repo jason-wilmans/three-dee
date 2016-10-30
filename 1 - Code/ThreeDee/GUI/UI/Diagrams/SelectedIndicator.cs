@@ -17,6 +17,7 @@ namespace UI.Diagrams
     {
         private readonly GraphicsDevice _graphicsDevice;
         private bool _moving;
+        private bool _isDragging;
 
         public SelectedIndicator(float size, GraphicsDevice graphicsDevice)
         {
@@ -38,21 +39,41 @@ namespace UI.Diagrams
             Margin = new Thickness(0.5f * screenSize.X, 0.5f * screenSize.Y, 0, 0);
 
             MouseOverStateChanged += OnMouseOverstateChanged;
+            TouchUp += OnTouchUp;
             TouchMove += OnTouchMove;
+            TouchDown += OnTouchDown;
+        }
+
+        private void OnTouchDown(object sender, TouchEventArgs touchEventArgs)
+        {
+            _isDragging = true;
+        }
+
+        private void OnTouchUp(object sender, TouchEventArgs touchEventArgs)
+        {
+            _isDragging = false;
         }
 
         private void OnTouchMove(object sender, TouchEventArgs touchEventArgs)
+        {
+            if (_isDragging)
+            {
+                DragToMousePosition(touchEventArgs);
+            }
+        }
+
+        private void DragToMousePosition(TouchEventArgs touchEventArgs)
         {
             Vector2 screenSize = new Vector2(
                 _graphicsDevice.Presenter.BackBuffer.Width,
                 _graphicsDevice.Presenter.BackBuffer.Height
                 );
 
-            var widthOffset = Width / 2;
-            var heightOffset = Height / 2;
+            var widthOffset = Width/2;
+            var heightOffset = Height/2;
 
-            Margin = new Thickness(touchEventArgs.ScreenPosition.X * screenSize.X- widthOffset,
-                touchEventArgs.ScreenPosition.Y * screenSize.Y - heightOffset, 0, 0);
+            Margin = new Thickness(touchEventArgs.ScreenPosition.X*screenSize.X - widthOffset,
+                touchEventArgs.ScreenPosition.Y*screenSize.Y - heightOffset, 0, 0);
         }
 
         private void OnMouseOverstateChanged(object sender, PropertyChangedArgs<MouseOverState> propertyChangedArgs)
