@@ -1,7 +1,6 @@
 !Package
 Id: 273fb970-9299-44a9-af51-eca267009b9a
-SerializedVersion: {Assets: 0.0.2}
-Tags: []
+SerializedVersion: {Assets: 0.0.4}
 Meta:
     Name: ThreeDee
     Version: 1.0.0.0
@@ -10,7 +9,7 @@ Meta:
     RootNamespace: ThreeDee
     Dependencies:
         -   Name: Xenko
-            Version: 1.8.1-beta
+            Version: 1.9.0-beta
             RootAssets: []
 LocalDependencies: []
 Profiles:
@@ -21,7 +20,6 @@ Profiles:
             -   Path: Assets/Shared
             -   Path: UI/Effects
         OutputGroupDirectories: {}
-        Properties: {}
         ProjectReferences:
             -   Id: a4aced56-4cae-49c3-b12c-5ce678a55545
                 Location: UI/UI.csproj
@@ -32,7 +30,6 @@ Profiles:
         AssetFolders:
             -   Path: Assets/Windows
         OutputGroupDirectories: {}
-        Properties: {}
         ProjectReferences:
             -   Id: a9a28ffa-4f3f-4ae3-b04a-96159eed4534
                 Location: ThreeDee.Windows/ThreeDee.Windows.csproj

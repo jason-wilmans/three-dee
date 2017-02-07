@@ -1,9 +1,8 @@
 !PrefabAsset
 Id: 3569dae4-1901-4f5d-96e9-2fbeee264095
-SerializedVersion: {Xenko: 1.7.0-beta04}
+SerializedVersion: {Xenko: 1.9.0-beta05}
 Tags: []
 Hierarchy:
-    ~Id: d54f93e8-c439-4b16-aaa8-1ac18cf7444b
     RootPartIds:
         - 3c73043a-9534-48c5-91d8-99f10a779d1a
     Parts:
@@ -11,17 +10,17 @@ Hierarchy:
                 Id: 3c73043a-9534-48c5-91d8-99f10a779d1a
                 Name: Capsule
                 Components:
-                    - !TransformComponent
-                        ~Id: 451cc3d3-d3f7-41ec-8ed5-64b6e6416358
-                        Children: []
+                    d3c31c45f7d3ec418ed564b6e6416358: !TransformComponent
+                        Id: 451cc3d3-d3f7-41ec-8ed5-64b6e6416358
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                    - !ModelComponent
-                        ~Id: 89984ecf-a80b-4c7d-9c32-990f342c5355
+                        Children: {}
+                    cf4e98890ba87d4c9c32990f342c5355: !ModelComponent
+                        Id: 89984ecf-a80b-4c7d-9c32-990f342c5355
                         Model: null
-                        Materials: []
-                    - !UI.Diagrams.DiagramElementView3D,UI
-                        ~Id: be20fb5c-d351-4470-9f2e-b2ec9c2cdfd8
+                        Materials: {}
+                    5cfb20be51d370449f2eb2ec9c2cdfd8: !UI.Diagrams.DiagramElementView3D,UI
+                        Id: be20fb5c-d351-4470-9f2e-b2ec9c2cdfd8
                         Parent: null
                         CurrentElement: null

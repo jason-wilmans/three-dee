@@ -46,7 +46,16 @@ namespace UI.Diagrams
             ManipulationHandle handle = new ManipulationHandle(handlePosition, Size, GraphicsDevice);
             handle.TouchDown += OnHandleTouchDown;
             handle.TouchUp += OnHandleTouchUp;
+            handle.PositionChanged += OnHandlePositionChanged;
             _inputRelayGrid.Children.Add(handle);
+        }
+
+        private void OnHandlePositionChanged(float radius)
+        {
+            foreach (var handle in _inputRelayGrid.Children)
+            {
+                (handle as ManipulationHandle).SetRadius(radius);
+            }
         }
 
         private void OnHandleTouchDown(object sender, TouchEventArgs touchEventArgs)

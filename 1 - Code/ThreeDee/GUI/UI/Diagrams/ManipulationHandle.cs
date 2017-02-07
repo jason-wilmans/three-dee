@@ -14,15 +14,17 @@ namespace UI.Diagrams
 {
     public class ManipulationHandle : Border
     {
+        public event Action<float> PositionChanged;
+
         public HandleState State { get; set; }
 
-        private float Radius { get; set; }
-
+        private readonly HandlePosition _handlePosition;
         private readonly GraphicsDevice _graphicsDevice;
 
         public ManipulationHandle(HandlePosition handlePosition, float size, GraphicsDevice graphicsDevice)
         {
             CanBeHitByUser = true;
+            _handlePosition = handlePosition;
             _graphicsDevice = graphicsDevice;
             BackgroundColor = Color.Black;
             Width = size;
@@ -31,13 +33,11 @@ namespace UI.Diagrams
 
             HorizontalAlignment = HorizontalAlignment.Left;
             VerticalAlignment = VerticalAlignment.Top;
-
-            Radius = 20;
-
-            CalculatePosition(handlePosition);
+            
+            SetRadius(20);
         }
 
-        public void CalculatePosition(HandlePosition handlePosition)
+        public void SetRadius(float radius)
         {
             Vector2 screenSize = new Vector2(
                 _graphicsDevice.Presenter.BackBuffer.Width,
@@ -48,7 +48,7 @@ namespace UI.Diagrams
 
             float angle;
 
-            switch (handlePosition)
+            switch (_handlePosition)
             {
                 case HandlePosition.TopLeft:
                     angle = 7 / 8.0f;
@@ -71,13 +71,13 @@ namespace UI.Diagrams
                     break;
 
                 default:
-                    throw new ArgumentException("Unknown position:", nameof(handlePosition));
+                    throw new ArgumentException("Unknown position:", nameof(_handlePosition));
             }
 
             angle += 0.5f; // at library starts 0 at the bottom O_o
 
-            var leftOffset = (float)Math.Sin(angle * 2 * Math.PI) * Radius;
-            var topOffset = (float)Math.Cos(angle * 2 * Math.PI) * Radius;
+            var leftOffset = (float)Math.Sin(angle * 2 * Math.PI) * radius;
+            var topOffset = (float)Math.Cos(angle * 2 * Math.PI) * radius;
             Margin = new Thickness(middle.X + leftOffset, middle.Y + topOffset, 0, 0);
         }
 
@@ -91,8 +91,12 @@ namespace UI.Diagrams
             var widthOffset = Width / 2;
             var heightOffset = Height / 2;
 
-            Margin = new Thickness(touchEventArgs.ScreenPosition.X * screenSize.X - widthOffset,
-                touchEventArgs.ScreenPosition.Y * screenSize.Y - heightOffset, 0, 0);
+            var x = touchEventArgs.ScreenPosition.X * screenSize.X - widthOffset;
+            var y = touchEventArgs.ScreenPosition.Y * screenSize.Y - heightOffset;
+            Margin = new Thickness(x, y, 0, 0);
+
+            var length = new Vector2(-screenSize.X/2 + x, -screenSize.Y/2 + y).Length();
+            PositionChanged?.Invoke(length);
         }
     }
 
