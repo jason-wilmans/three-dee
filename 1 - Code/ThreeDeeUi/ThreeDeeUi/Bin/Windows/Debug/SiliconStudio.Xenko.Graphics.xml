@@ -34,9 +34,9 @@
             Game running on Android in an AndroidXenkoGameView.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Games.AppContextType.WindowsRuntime">
+        <member name="F:SiliconStudio.Xenko.Games.AppContextType.UWP">
             <summary>
-            Game running on Windows Runtime in a SwapChainPanel.
+            Game running on UWP in a SwapChainPanel.
             </summary>
         </member>
         <member name="F:SiliconStudio.Xenko.Games.AppContextType.iOS">
@@ -2069,7 +2069,7 @@
             <param name="effect">The effect to use for the batch session</param>
             <param name="stencilValue">The value of the stencil buffer to take as reference for the batch session</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.SpriteBatch.Draw(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Core.Mathematics.RectangleF,SiliconStudio.Core.Mathematics.Color4)">
+        <member name="M:SiliconStudio.Xenko.Graphics.SpriteBatch.Draw(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Core.Mathematics.RectangleF,SiliconStudio.Core.Mathematics.Color4,SiliconStudio.Core.Mathematics.Color4)">
             <summary>
             Adds a sprite to a batch of sprites for rendering using the specified texture, destination rectangle, and color. 
             </summary>
@@ -2087,7 +2087,7 @@
             <param name="texture">A texture.</param>
             <param name="position">The location (in screen coordinates) to draw the sprite.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.SpriteBatch.Draw(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Core.Mathematics.Color)">
+        <member name="M:SiliconStudio.Xenko.Graphics.SpriteBatch.Draw(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Core.Mathematics.Color,SiliconStudio.Core.Mathematics.Color4)">
             <summary>
             Adds a sprite to a batch of sprites for rendering using the specified texture, position and color. 
             </summary>
@@ -2095,7 +2095,7 @@
             <param name="position">The location (in screen coordinates) to draw the sprite.</param>
             <param name="color">The color to tint a sprite. Use Color.White for full color with no tinting.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.SpriteBatch.Draw(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Core.Mathematics.RectangleF,System.Nullable{SiliconStudio.Core.Mathematics.RectangleF},SiliconStudio.Core.Mathematics.Color4,System.Single,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Xenko.Graphics.SpriteEffects,SiliconStudio.Xenko.Graphics.ImageOrientation,System.Single)">
+        <member name="M:SiliconStudio.Xenko.Graphics.SpriteBatch.Draw(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Core.Mathematics.RectangleF,System.Nullable{SiliconStudio.Core.Mathematics.RectangleF},SiliconStudio.Core.Mathematics.Color4,System.Single,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Xenko.Graphics.SpriteEffects,SiliconStudio.Xenko.Graphics.ImageOrientation,System.Single,SiliconStudio.Core.Mathematics.Color4,SiliconStudio.Xenko.Graphics.SwizzleMode)">
             <summary>
             Adds a sprite to a batch of sprites for rendering using the specified texture, destination rectangle, source rectangle, color, rotation, origin, effects and layer. 
             </summary>
@@ -2137,7 +2137,7 @@
             <param name="orientation">The source image orientation</param>
             <param name="layerDepth">The depth of a layer. By default, 0 represents the front layer and 1 represents a back layer. Use SpriteSortMode if you want sprites to be sorted during drawing.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.SpriteBatch.Draw(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Core.Mathematics.Vector2,System.Nullable{SiliconStudio.Core.Mathematics.RectangleF},SiliconStudio.Core.Mathematics.Color4)">
+        <member name="M:SiliconStudio.Xenko.Graphics.SpriteBatch.Draw(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Core.Mathematics.Vector2,System.Nullable{SiliconStudio.Core.Mathematics.RectangleF},SiliconStudio.Core.Mathematics.Color4,SiliconStudio.Core.Mathematics.Color4)">
             <summary>
             Adds a sprite to a batch of sprites for rendering using the specified texture, position, source rectangle, and color. 
             </summary>
@@ -2146,7 +2146,7 @@
             <param name="sourceRectangle">A rectangle that specifies (in texels) the source texels from a texture. Use null to draw the entire texture. </param>
             <param name="color">The color to tint a sprite. Use Color.White for full color with no tinting.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.SpriteBatch.Draw(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Core.Mathematics.Vector2,System.Nullable{SiliconStudio.Core.Mathematics.RectangleF},SiliconStudio.Core.Mathematics.Color4,System.Single,SiliconStudio.Core.Mathematics.Vector2,System.Single,SiliconStudio.Xenko.Graphics.SpriteEffects,SiliconStudio.Xenko.Graphics.ImageOrientation,System.Single)">
+        <member name="M:SiliconStudio.Xenko.Graphics.SpriteBatch.Draw(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Core.Mathematics.Vector2,System.Nullable{SiliconStudio.Core.Mathematics.RectangleF},SiliconStudio.Core.Mathematics.Color4,System.Single,SiliconStudio.Core.Mathematics.Vector2,System.Single,SiliconStudio.Xenko.Graphics.SpriteEffects,SiliconStudio.Xenko.Graphics.ImageOrientation,System.Single,SiliconStudio.Core.Mathematics.Color4,SiliconStudio.Xenko.Graphics.SwizzleMode)">
             <summary>
             Adds a sprite to a batch of sprites for rendering using the specified texture, position, source rectangle, color, rotation, origin, scale, effects, and layer. 
             </summary>
@@ -2161,7 +2161,7 @@
             <param name="orientation">The source image orientation</param>
             <param name="layerDepth">The depth of a layer. By default, 0 represents the front layer and 1 represents a back layer. Use SpriteSortMode if you want sprites to be sorted during drawing.</param>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.SpriteBatch.Draw(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Core.Mathematics.Vector2,System.Nullable{SiliconStudio.Core.Mathematics.RectangleF},SiliconStudio.Core.Mathematics.Color4,System.Single,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Xenko.Graphics.SpriteEffects,SiliconStudio.Xenko.Graphics.ImageOrientation,System.Single)">
+        <member name="M:SiliconStudio.Xenko.Graphics.SpriteBatch.Draw(SiliconStudio.Xenko.Graphics.Texture,SiliconStudio.Core.Mathematics.Vector2,System.Nullable{SiliconStudio.Core.Mathematics.RectangleF},SiliconStudio.Core.Mathematics.Color4,System.Single,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Xenko.Graphics.SpriteEffects,SiliconStudio.Xenko.Graphics.ImageOrientation,System.Single,SiliconStudio.Core.Mathematics.Color4)">
             <summary>
             Adds a sprite to a batch of sprites for rendering using the specified texture, position, source rectangle, color, rotation, origin, scale, effects, and layer. 
             </summary>
@@ -4367,6 +4367,16 @@
             Take the only the red component of the vector.
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.SwizzleMode.NormalMap">
+            <summary>
+            Reconstructs the Z(B) component from R and G.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.SwizzleMode.RRR1">
+            <summary>
+            Take the only the red component of the vector, but keeps the object opaque
+            </summary>
+        </member>
         <member name="F:SiliconStudio.Xenko.Graphics.SwizzleMode.XXXX">
             <summary>
             Take the only the x component of the vector.
@@ -5549,7 +5559,7 @@
             <summary>
             Called when graphics device has been recreated.
             </summary>
-            <returns>True if item transitionned to a <see cref="F:SiliconStudio.Xenko.Graphics.GraphicsResourceLifetimeState.Active"/> state.</returns>
+            <returns>True if item transitioned to a <see cref="F:SiliconStudio.Xenko.Graphics.GraphicsResourceLifetimeState.Active"/> state.</returns>
         </member>
         <member name="M:SiliconStudio.Xenko.Graphics.GraphicsResourceBase.GetCpuAccessFlagsFromUsage(SiliconStudio.Xenko.Graphics.GraphicsResourceUsage)">
             <summary>
@@ -5587,7 +5597,7 @@
             Called when graphics device is inactive (put in the background and rendering is paused).
             It should voluntarily release objects that can be easily recreated, such as FBO and dynamic buffers.
             </summary>
-            <returns>True if item transitionned to a <see cref="F:SiliconStudio.Xenko.Graphics.GraphicsResourceLifetimeState.Paused"/> state.</returns>
+            <returns>True if item transitioned to a <see cref="F:SiliconStudio.Xenko.Graphics.GraphicsResourceLifetimeState.Paused"/> state.</returns>
         </member>
         <member name="M:SiliconStudio.Xenko.Graphics.GraphicsResourceBase.OnResume">
             <summary>
@@ -6877,7 +6887,7 @@
             Describes a custom vertex format structure that contains position, color, texture and swizzle information. 
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Graphics.VertexPositionColorTextureSwizzle.#ctor(SiliconStudio.Core.Mathematics.Vector4,SiliconStudio.Core.Mathematics.Color,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Xenko.Graphics.SwizzleMode)">
+        <member name="M:SiliconStudio.Xenko.Graphics.VertexPositionColorTextureSwizzle.#ctor(SiliconStudio.Core.Mathematics.Vector4,SiliconStudio.Core.Mathematics.Color,SiliconStudio.Core.Mathematics.Color,SiliconStudio.Core.Mathematics.Vector2,SiliconStudio.Xenko.Graphics.SwizzleMode)">
             <summary>
             Initializes a new <see cref="T:SiliconStudio.Xenko.Graphics.VertexPositionColorTexture"/> instance.
             </summary>
@@ -6891,7 +6901,12 @@
             XYZ position.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Xenko.Graphics.VertexPositionColorTextureSwizzle.Color">
+        <member name="F:SiliconStudio.Xenko.Graphics.VertexPositionColorTextureSwizzle.ColorScale">
+            <summary>
+            The vertex color.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Graphics.VertexPositionColorTextureSwizzle.ColorAdd">
             <summary>
             The vertex color.
             </summary>

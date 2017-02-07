@@ -1528,25 +1528,40 @@
             The list of all elements contained in at least on auto-sized strip.
             </summary>
         </member>
+        <member name="P:SiliconStudio.Xenko.UI.Panels.Grid.ActualRowDefinitions">
+            <summary>
+            The actual definitions of the grid rows.
+            </summary>
+            <remarks>A grid always has at least one default row definition, even when <see cref="P:SiliconStudio.Xenko.UI.Panels.Grid.RowDefinitions"/> is empty.</remarks>
+        </member>
+        <member name="P:SiliconStudio.Xenko.UI.Panels.Grid.ActualColumnDefinitions">
+            <summary>
+            The actual definitions of the grid columns.
+            </summary>
+            <remarks>A grid always has at least one default row definition, even when <see cref="P:SiliconStudio.Xenko.UI.Panels.Grid.ColumnDefinitions"/> is empty.</remarks>
+        </member>
+        <member name="P:SiliconStudio.Xenko.UI.Panels.Grid.ActualLayerDefinitions">
+            <summary>
+            The actual definitions of the grid layers.
+            </summary>
+            <remarks>A grid always has at least one default row definition, even when <see cref="P:SiliconStudio.Xenko.UI.Panels.Grid.LayerDefinitions"/> is empty.</remarks>
+        </member>
         <member name="P:SiliconStudio.Xenko.UI.Panels.Grid.RowDefinitions">
             <summary>
             The definitions of the grid rows.
             </summary>
-            <exception cref="T:System.ArgumentNullException">The provided value is null.</exception>
             <userdoc>The definitions of the grid rows.</userdoc>
         </member>
         <member name="P:SiliconStudio.Xenko.UI.Panels.Grid.ColumnDefinitions">
             <summary>
             The definitions of the grid columns.
             </summary>
-            <exception cref="T:System.ArgumentNullException">The provided value is null.</exception>
             <userdoc>The definitions of the grid columns.</userdoc>
         </member>
         <member name="P:SiliconStudio.Xenko.UI.Panels.Grid.LayerDefinitions">
             <summary>
             The definitions of the grid layers.
             </summary>
-            <exception cref="T:System.ArgumentNullException">The provided value is null.</exception>
             <userdoc>The definitions of the grid layers.</userdoc>
         </member>
         <member name="M:SiliconStudio.Xenko.UI.Panels.Grid.InitializeStripDefinitionActualSize(SiliconStudio.Xenko.UI.StripDefinitionCollection)">
@@ -2058,7 +2073,7 @@
             Base class for UI element renderers
             </summary>
         </member>
-        <member name="P:SiliconStudio.Xenko.UI.Renderers.ElementRenderer.Asset">
+        <member name="P:SiliconStudio.Xenko.UI.Renderers.ElementRenderer.Content">
             <summary>
             A reference to the game asset manager.
             </summary>
@@ -2513,7 +2528,7 @@
             Represents a setter tha sets a property value.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.UI.Setter.ApplyIfNotSet(SiliconStudio.Core.PropertyContainer@)">
+        <member name="M:SiliconStudio.Xenko.UI.Setter.ApplyIfNotSet(SiliconStudio.Core.PropertyContainerClass@)">
             <summary>
             Internal helper to apply value (if not already overriden).
             </summary>
@@ -2535,7 +2550,7 @@
             Gets or sets the value to set to the property.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.UI.Setter`1.ApplyIfNotSet(SiliconStudio.Core.PropertyContainer@)">
+        <member name="M:SiliconStudio.Xenko.UI.Setter`1.ApplyIfNotSet(SiliconStudio.Core.PropertyContainerClass@)">
             <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.UI.StretchDirection">

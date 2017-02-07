@@ -2,7 +2,7 @@
 using CoreFacade.Interface;
 using DiagramLogic.Interface;
 using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Core.Serialization.Assets;
+using SiliconStudio.Core.Serialization.Contents;
 using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.UI;
 using SiliconStudio.Xenko.UI.Controls;

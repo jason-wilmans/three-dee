@@ -126,7 +126,8 @@
     <Compile Include="Camera\CameraMovementComponent.cs" />
     <Compile Include="Diagrams\DiagramElementView3D.cs" />
     <Compile Include="Diagrams\DiagramView3D.cs" />
-    <Compile Include="Diagrams\SelectedIndicator.cs" />
+    <Compile Include="Diagrams\HandlePosition.cs" />
+    <Compile Include="Diagrams\ManipulationHandle.cs" />
     <Compile Include="Diagrams\TranslationManipulatorView3D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\IResourceProvider.cs" />

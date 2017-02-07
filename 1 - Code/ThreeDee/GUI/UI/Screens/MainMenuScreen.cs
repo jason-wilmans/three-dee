@@ -1,7 +1,7 @@
 ﻿using System;
 using CoreFacade.Interface;
 using SiliconStudio.Core.Mathematics;
-using SiliconStudio.Core.Serialization.Assets;
+using SiliconStudio.Core.Serialization.Contents;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Graphics;
 using SiliconStudio.Xenko.UI;

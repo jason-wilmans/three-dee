@@ -4,6 +4,37 @@
         <name>SiliconStudio.Core.Serialization</name>
     </assembly>
     <members>
+        <member name="M:SiliconStudio.Assets.AssetId.op_Equality(SiliconStudio.Assets.AssetId,SiliconStudio.Assets.AssetId)">
+            <summary>
+            Implements the ==.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SiliconStudio.Assets.AssetId.op_Inequality(SiliconStudio.Assets.AssetId,SiliconStudio.Assets.AssetId)">
+            <summary>
+            Implements the !=.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:SiliconStudio.Assets.AssetId.Equals(SiliconStudio.Assets.AssetId)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Assets.AssetId.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Assets.AssetId.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Assets.AssetId.CompareTo(SiliconStudio.Assets.AssetId)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Assets.AssetId.ToString">
+            <inheritdoc/>
+        </member>
         <member name="F:SiliconStudio.Core.IO.DatabaseFileProvider.ObjectIdUrl">
             <summary>
             URL prefix for ObjectId references.
@@ -451,184 +482,77 @@
             <summary>Releases the unmanaged resources used by the <see cref="T:System.IO.Stream" /> and optionally releases the managed resources.</summary>
             <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         </member>
-        <member name="T:SiliconStudio.Core.Reflection.IdentifiableHelper">
-            <summary>
-            An helper class to attach a unique identifier object to runtime objects.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Core.Reflection.IdentifiableHelper.YamlSpecialId">
-            <summary>
-            Special member id used to serialize attached id to an object.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Core.Reflection.ShadowObject">
-            <summary>
-            Allows to attach dynamic properties to an object at runtime. Note that in order to use this object at runtime, you need to set to <c>true</c> the <see cref="P:SiliconStudio.Core.Reflection.ShadowObject.Enable"/> property.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Core.Reflection.ShadowObject.IsSelected">
-            <summary>
-            Gets or sets a boolean indicating whether this object is selected by an editor.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Core.Reflection.ShadowObject.IsHover">
-            <summary>
-            Gets or sets a boolean indicating whether this object is being mouse hovered from an editor.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Core.Reflection.ShadowObject.Enable">
-            <summary>
-            Gets or sets a boolean to enable or disable shadow object. 
-            </summary>
-            <remarks>
-            When disabled, method <see cref="M:SiliconStudio.Core.Reflection.ShadowObject.Get(System.Object)"/> or <see cref="M:SiliconStudio.Core.Reflection.ShadowObject.GetOrCreate(System.Object)"/>
-            </remarks>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ShadowObject.IsObjectSelected(System.Object)">
-            <summary>
-            Checks if the following object instance is selected by an editor.
-            </summary>
-            <param name="instance">A live object instance</param>
-            <returns><c>true</c> if the object is selected, false otherwise</returns>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ShadowObject.IsObjectHover(System.Object)">
-            <summary>
-            Checks if the following object instance is being mouse hovered from an editor.
-            </summary>
-            <param name="instance">A live object instance</param>
-            <returns><c>true</c> if the object is selected, false otherwise</returns>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ShadowObject.TryGet(System.Object,SiliconStudio.Core.Reflection.ShadowObject@)">
-            <summary>
-            Tries to get the <see cref="T:SiliconStudio.Core.Reflection.ShadowObject"/> instance associated.
-            </summary>
-            <param name="instance">The live instance</param>
-            <param name="shadow">The shadow object</param>
-            <returns><c>true</c> if the shadow object was found, <c>false</c> otherwise</returns>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ShadowObject.Get(System.Object)">
-            <summary>
-            Gets the <see cref="T:SiliconStudio.Core.Reflection.ShadowObject"/> instance if it exists or <c>null</c> otherwise.
-            </summary>
-            <param name="instance">The live instance.</param>
-            <returns>The shadow instance or <c>null</c> if none</returns>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ShadowObject.GetOrCreate(System.Object)">
-            <summary>
-            Gets the <see cref="T:SiliconStudio.Core.Reflection.ShadowObject"/> instance. Creates it if it does not exist.
-            </summary>
-            <param name="instance">The live instance.</param>
-            <returns>The shadow instance</returns>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ShadowObject.Copy(System.Object,System.Object)">
-            <summary>
-            Copies all dynamic properties from an instance to another instance.
-            </summary>
-            <param name="fromInstance">The instance to copy the shadow attributes from</param>
-            <param name="toInstance">The instance to copy the shadow attributes to</param>
-        </member>
-        <member name="T:SiliconStudio.Core.Reflection.ShadowObjectPropertyKey">
-            <summary>
-            A key used to attach/retrieve property values from a <see cref="T:SiliconStudio.Core.Reflection.ShadowObject"/>
-            </summary>
-            <remarks>
-            This key allow to associate two pseudo-keys together.
-            </remarks>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ShadowObjectPropertyKey.#ctor(System.Object)">
-            <summary>
-            Initializes a new instance of <see cref="T:SiliconStudio.Core.Reflection.ShadowObjectPropertyKey"/>
-            </summary>
-            <param name="item1">The first part of this key. Cannot be null</param>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ShadowObjectPropertyKey.#ctor(System.Object,System.Object)">
-            <summary>
-            Initializes a new instance of <see cref="T:SiliconStudio.Core.Reflection.ShadowObjectPropertyKey"/>
-            </summary>
-            <param name="item1">The first part of this key. Cannot be null</param>
-            <param name="item2">The second part of this key. Can be null</param>
-        </member>
-        <member name="F:SiliconStudio.Core.Reflection.ShadowObjectPropertyKey.Item1">
-            <summary>
-            First part of this key.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Core.Reflection.ShadowObjectPropertyKey.Item2">
-            <summary>
-            Second part of this key.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Core.Serialization.Assets.ContentManager">
+        <member name="T:SiliconStudio.Core.Serialization.Contents.ContentManager">
             <summary>
             Loads and saves assets.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.IncrementReference(SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference,System.Boolean)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.IncrementReference(SiliconStudio.Core.Serialization.Contents.ContentManager.Reference,System.Boolean)">
             <summary>
-            Increments reference count of an <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference"/>.
+            Increments reference count of an <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager.Reference"/>.
             </summary>
-            <param name="assetReference"></param>
+            <param name="referencerence"></param>
             <param name="publicReference"></param>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.DecrementReference(SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference,System.Boolean)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.DecrementReference(SiliconStudio.Core.Serialization.Contents.ContentManager.Reference,System.Boolean)">
             <summary>
-            Decrements reference count of an <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference"/>.
+            Decrements reference count of an <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager.Reference"/>.
             </summary>
-            <param name="assetReference"></param>
+            <param name="referencerence"></param>
             <param name="publicReference"></param>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.ReleaseAsset(SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.ReleaseAsset(SiliconStudio.Core.Serialization.Contents.ContentManager.Reference)">
             <summary>
             Releases an asset.
             </summary>
-            <param name="assetReference">The asset reference.</param>
+            <param name="referencerence">The asset reference.</param>
         </member>
-        <member name="T:SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference">
+        <member name="T:SiliconStudio.Core.Serialization.Contents.ContentManager.Reference">
             <summary>
             Internal object that represents a loaded asset, with its url and reference counts.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference.Next">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentManager.Reference.Next">
             <summary>
             The next item in the linked list.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference.Prev">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentManager.Reference.Prev">
             <summary>
             The next item in the linked list.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference.Object">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentManager.Reference.Object">
             <summary>
             The object being referenced.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference.Url">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentManager.Reference.Url">
             <summary>
             The URL.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference.PublicReferenceCount">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentManager.Reference.PublicReferenceCount">
             <summary>
             The public reference count (corresponding to ContentManager.Load/Unload).
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference.PrivateReferenceCount">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentManager.Reference.PrivateReferenceCount">
             <summary>
             The private reference count (corresponding to an object being referenced indirectly by other loaded objects).
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.ContentManager.LoadedAssetUrls">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentManager.LoadedAssetUrls">
             <summary>
-            A dictionary mapping, for each loaded object, its url to the corresponding instance of <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference"/>.
+            A dictionary mapping, for each loaded object, its url to the corresponding instance of <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager.Reference"/>.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.ContentManager.LoadedAssetReferences">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentManager.LoadedAssetReferences">
             <summary>
-            A dictionary mapping, for each loaded object, the corresponding instance of <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference"/>.
+            A dictionary mapping, for each loaded object, the corresponding instance of <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager.Reference"/>.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.Save(System.String,System.Object)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.Save(System.String,System.Object)">
             <summary>
             Saves an asset at a specific URL.
             </summary>
@@ -640,7 +564,7 @@
             asset
             </exception>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.Exists(System.String)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.Exists(System.String)">
             <summary>
             Check if the specified asset exists.
             </summary>
@@ -649,17 +573,17 @@
               <c>true</c> if the specified asset url exists, <c>false</c> otherwise.
             </returns>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.Load``1(System.String,SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.Load``1(System.String,SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings)">
             <summary>
             Loads an asset from the specified URL.
             </summary>
             <typeparam name="T">The content type.</typeparam>
             <param name="url">The URL to load from.</param>
-            <param name="settings">The settings. If null, fallback to <see cref="P:SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings.Default" />.</param>
+            <param name="settings">The settings. If null, fallback to <see cref="P:SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings.Default" />.</param>
             <remarks>If the asset is already loaded, it just increases the reference count of the asset and return the same instance.</remarks>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.Load(System.Type,System.String,SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.Load(System.Type,System.String,SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings)">
             <summary>
             Loads an asset from the specified URL.
             </summary>
@@ -670,7 +594,7 @@
             <remarks>If the asset is already loaded, it just increases the reference count of the asset and return the same instance.</remarks>
             <exception cref="T:System.ArgumentNullException">url</exception>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.Reload(System.Object,SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.Reload(System.Object,SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings)">
             <summary>
             Reloads an asset. If possible, same recursively referenced objects are reused.
             </summary>
@@ -679,17 +603,26 @@
             <returns>True if it could be reloaded, false otherwise.</returns>
             <exception cref="T:System.InvalidOperationException">Content not loaded through this ContentManager.</exception>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.LoadAsync``1(System.String,SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.ReloadAsync(System.Object,SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings)">
+            <summary>
+            Reloads an asset asynchronously. If possible, same recursively referenced objects are reused.
+            </summary>
+            <param name="obj">The object.</param>
+            <param name="settings">The settings.</param>
+            <returns>True if it could be reloaded, false otherwise.</returns>
+            <exception cref="T:System.InvalidOperationException">Content not loaded through this ContentManager.</exception>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.LoadAsync``1(System.String,SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings)">
             <summary>
             Loads an asset from the specified URL asynchronously.
             </summary>
             <typeparam name="T">The content type.</typeparam>
             <param name="url">The URL to load from.</param>
-            <param name="settings">The settings. If null, fallback to <see cref="P:SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings.Default" />.</param>
+            <param name="settings">The settings. If null, fallback to <see cref="P:SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings.Default" />.</param>
             <remarks>If the asset is already loaded, it just increases the reference count of the asset and return the same instance.</remarks>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.LoadAsync(System.Type,System.String,SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.LoadAsync(System.Type,System.String,SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings)">
             <summary>
             Loads an asset from the specified URL asynchronously.
             </summary>
@@ -699,7 +632,7 @@
             <remarks>If the asset is already loaded, it just increases the reference count of the asset and return the same instance.</remarks>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.Get``1(System.String)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.Get``1(System.String)">
             <summary>
             Gets a previously loaded asset from its URL.
             </summary>
@@ -708,7 +641,7 @@
             <returns>The loaded asset, or <c>null</c> if the asset has not been loaded.</returns>
             <remarks>This function does not increase the reference count on the asset.</remarks>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.Get(System.Type,System.String)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.Get(System.Type,System.String)">
             <summary>
             Gets a previously loaded asset from its URL.
             </summary>
@@ -717,57 +650,57 @@
             <returns>The loaded asset, or <c>null</c> if the asset has not been loaded.</returns>
             <remarks>This function does not increase the reference count on the asset.</remarks>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.IsLoaded(System.String,System.Boolean)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.IsLoaded(System.String,System.Boolean)">
             <summary>
             Gets or sets whether an asset with the given URL is currently loaded.
             </summary>
             <param name="url">The URL to check.</param>
-            <param name="loadedManuallyOnly">If <c>true</c>, this method will return true only if an asset with the given URL has been manually loaded via <see cref="M:SiliconStudio.Core.Serialization.Assets.ContentManager.Load(System.Type,System.String,SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings)"/>, and not if the asset has been only loaded indirectly from another asset.</param>
+            <param name="loadedManuallyOnly">If <c>true</c>, this method will return true only if an asset with the given URL has been manually loaded via <see cref="M:SiliconStudio.Core.Serialization.Contents.ContentManager.Load(System.Type,System.String,SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings)"/>, and not if the asset has been only loaded indirectly from another asset.</param>
             <returns><c>True</c> if an asset with the given URL is currently loaded, <c>false</c> otherwise.</returns>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.Unload(System.Object)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.Unload(System.Object)">
             <summary>
             Unloads the specified asset.
             </summary>
             <param name="obj">The object to unload.</param>
             <exception cref="T:System.InvalidOperationException">Content not loaded through this ContentManager.</exception>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.Unload(System.String)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.Unload(System.String)">
             <summary>
             Unloads the asset at the specified URL.
             </summary>
             <param name="url">The URL.</param>
             <exception cref="T:System.InvalidOperationException">Content not loaded through this ContentManager.</exception>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.GetStats">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.GetStats">
             <summary>
             Computes statistics about the assets that are currently loaded. This method is intended to be used for debug purpose only.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.SetAssetObject(SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference,System.Object)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.SetAssetObject(SiliconStudio.Core.Serialization.Contents.ContentManager.Reference,System.Object)">
             <summary>
-            Sets AssetReference.Object, and updates loadedAssetByUrl collection.
+            Sets Reference.Object, and updates loadedAssetByUrl collection.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.ContentManager.HandleAssetNotFound(System.String)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManager.HandleAssetNotFound(System.String)">
             <summary>
             Notify debugger and logging when an asset could not be found.
             </summary>
             <param name="url">The URL.</param>
-            <exception cref="T:SiliconStudio.Core.Serialization.Assets.AssetManagerException"></exception>
+            <exception cref="T:SiliconStudio.Core.Serialization.Contents.ContentManagerException"></exception>
         </member>
-        <member name="T:SiliconStudio.Core.Serialization.Assets.AssetManagerException">
+        <member name="T:SiliconStudio.Core.Serialization.Contents.ContentManagerException">
             <summary>
-            A subtype of <see cref="T:System.Exception"/> thrown by the <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>.
+            A subtype of <see cref="T:System.Exception"/> thrown by the <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/>.
             </summary>
         </member>
-        <member name="T:SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings">
+        <member name="T:SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings">
             <summary>
-            Specifies settings for <see cref="M:SiliconStudio.Core.Serialization.Assets.ContentManager.Load``1(System.String,SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings)"/> operations.
+            Specifies settings for <see cref="M:SiliconStudio.Core.Serialization.Contents.ContentManager.Load``1(System.String,SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings)"/> operations.
             </summary>
         </member>
-        <member name="P:SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings.Default">
+        <member name="P:SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings.Default">
             <summary>
             Gets the default loader settings.
             </summary>
@@ -775,7 +708,7 @@
             The default loader settings.
             </value>
         </member>
-        <member name="P:SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings.IgnoreReferences">
+        <member name="P:SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings.IgnoreReferences">
             <summary>
             Gets the loader settings which doesn't load content references.
             </summary>
@@ -783,178 +716,92 @@
             The loader settings which doesn't load content references.
             </value>
         </member>
-        <member name="P:SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings.LoadContentReferences">
+        <member name="P:SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings.LoadContentReferences">
             <summary>
-            Gets or sets a value indicating whether <see cref="T:SiliconStudio.Core.Serialization.IReference"/> should be loaded.
+            Gets or sets a value indicating whether <see cref="T:SiliconStudio.Core.Serialization.Contents.IReference"/> should be loaded.
             </summary>
             <value>
-              <c>true</c> if <see cref="T:SiliconStudio.Core.Serialization.IReference"/> should be loaded; otherwise, <c>false</c>.
+              <c>true</c> if <see cref="T:SiliconStudio.Core.Serialization.Contents.IReference"/> should be loaded; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings.ContentFilter">
+        <member name="P:SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings.ContentFilter">
             <summary>
-            Gets or sets a filter that can indicate whether <see cref="T:SiliconStudio.Core.Serialization.IReference"/> should be loaded.
+            Gets or sets a filter that can indicate whether <see cref="T:SiliconStudio.Core.Serialization.Contents.IReference"/> should be loaded.
             </summary>
             <value>
             The content reference filter.
             </value>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings.NewContentFilterByType(System.Type[])">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings.NewContentFilterByType(System.Type[])">
             <summary>
             Creates a new content filter that won't load chunk if not one of the given types.
             </summary>
             <param name="types">The accepted types.</param>
             <returns></returns>
         </member>
-        <member name="T:SiliconStudio.Core.Serialization.Assets.AssetManagerStats">
+        <member name="T:SiliconStudio.Core.Serialization.Contents.ContentManagerStats">
             <summary>
-            A class representing stats computed for an instance of <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/> at a given time. This class
+            A class representing stats computed for an instance of <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/> at a given time. This class
             is intended to be used for debug purpose only.
             </summary>
         </member>
-        <member name="T:SiliconStudio.Core.Serialization.Assets.AssetManagerStats.LoadedAsset">
+        <member name="T:SiliconStudio.Core.Serialization.Contents.ContentManagerStats.LoadedAsset">
             <summary>
             A class representing information on a single loaded asset. This class is intended to be used for debug purpose only.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.AssetManagerStats.LoadedAsset.Url">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentManagerStats.LoadedAsset.Url">
             <summary>
             The url of the loaded asset.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.AssetManagerStats.LoadedAsset.PublicReferenceCount">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentManagerStats.LoadedAsset.PublicReferenceCount">
             <summary>
             The public reference count, corresponding to the number of times this asset has been manually loaded.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.AssetManagerStats.LoadedAsset.PrivateReferenceCount">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentManagerStats.LoadedAsset.PrivateReferenceCount">
             <summary>
             The private reference count, corresponding to the number of times this asset has been loaded indirectly because it is referenced by another asset.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.AssetManagerStats.LoadedAsset.#ctor(System.String,System.Int32,System.Int32)">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManagerStats.LoadedAsset.#ctor(System.String,System.Int32,System.Int32)">
             <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Core.Serialization.Assets.AssetManagerStats.LoadedAsset"/> class.
+            Initializes a new instance of the <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManagerStats.LoadedAsset"/> class.
             </summary>
             <param name="url">The url of the asset.</param>
             <param name="publicReferenceCount">The public reference count.</param>
             <param name="privateReferenceCount">The private reference count.</param>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.AssetManagerStats.#ctor(System.Collections.Generic.IEnumerable{SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference})">
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentManagerStats.#ctor(System.Collections.Generic.IEnumerable{SiliconStudio.Core.Serialization.Contents.ContentManager.Reference})">
             <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Core.Serialization.Assets.AssetManagerStats"/> class.
+            Initializes a new instance of the <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManagerStats"/> class.
             </summary>
-            <param name="assetReferences">The collection of <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager.AssetReference"/> representing the currently loaded assets.</param>
+            <param name="assetReferences">The collection of <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager.Reference"/> representing the currently loaded assets.</param>
         </member>
-        <member name="P:SiliconStudio.Core.Serialization.Assets.AssetManagerStats.LoadedAssets">
+        <member name="P:SiliconStudio.Core.Serialization.Contents.ContentManagerStats.LoadedAssets">
             <summary>
             Gets a collection representing information on all currently loaded assets.
             </summary>
         </member>
-        <member name="T:SiliconStudio.Core.Serialization.Assets.ContentProfilingKeys">
+        <member name="T:SiliconStudio.Core.Serialization.Contents.ContentProfilingKeys">
             <summary>
             Keys used for profiling the game class.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.ContentProfilingKeys.ContentLoad">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentProfilingKeys.ContentLoad">
             <summary>
             Profiling load of an asset.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.ContentProfilingKeys.ContentReload">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentProfilingKeys.ContentReload">
             <summary>
             Profiling load of an asset.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.ContentProfilingKeys.ContentSave">
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentProfilingKeys.ContentSave">
             <summary>
             Profiling save of an asset.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Core.Serialization.Assets.NamespaceDoc">
-            <summary>
-            The <see cref="N:SiliconStudio.Core.Serialization.Assets"/> namespace contains high-level asset management classes.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.AssetSerializer.RegisterSerializer(SiliconStudio.Core.Serialization.Contents.IContentSerializer)">
-            <summary>
-            Registers a serializer with this AssetSerializer.
-            </summary>
-            <param name="serializer">The serializer.</param>
-        </member>
-        <member name="T:SiliconStudio.Core.Serialization.Assets.ChunkHeader">
-            <summary>
-            This class describes the header of an asset serialized in a blob file. Its (serialized) size has to remain constant
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Core.Serialization.Assets.IAssetManager">
-            <summary>
-            Interface of the asset manager.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.IAssetManager.Exists(System.String)">
-            <summary>
-            Check if the specified asset url exists.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns><c>true</c> if the specified asset url exists, <c>false</c> otherwise.</returns>
-        </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.IAssetManager.OpenAsStream(System.String,SiliconStudio.Core.IO.StreamFlags)">
-            <summary>
-            Opens the specified URL as a stream used for custom raw asset loading.
-            </summary>
-            <param name="url">The URL to the raw asset.</param>
-            <param name="streamFlags">The type of stream needed</param>
-            <returns>A stream to the raw asset.</returns>
-        </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.IAssetManager.Load``1(System.String,SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings)">
-            <summary>
-            Loads content from the specified URL.
-            </summary>
-            <typeparam name="T">The content type.</typeparam>
-            <param name="url">The URL to load from.</param>
-            <param name="settings">The settings. If null, fallback to <see cref="P:SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings.Default"/>.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.IAssetManager.LoadAsync``1(System.String,SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings)">
-            <summary>
-            Loads content from the specified URL asynchronously.
-            </summary>
-            <typeparam name="T">The content type.</typeparam>
-            <param name="url">The URL to load from.</param>
-            <param name="settings">The settings. If null, fallback to <see cref="P:SiliconStudio.Core.Serialization.Assets.AssetManagerLoaderSettings.Default"/>.</param>
-            <returns></returns>
-        </member>
-        <member name="M:SiliconStudio.Core.Serialization.Assets.IAssetManager.Unload(System.Object)">
-            <summary>
-            Unloads the specified object.
-            </summary>
-            <param name="obj">The object to unload.</param>
-        </member>
-        <member name="P:SiliconStudio.Core.Serialization.Assets.IAssetManager.Serializer">
-            <summary>
-            Gets the serializer.
-            </summary>
-            <value>The serializer.</value>
-        </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.UrlType.File">
-            <summary>
-            The location is a file on the disk
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.UrlType.ContentLink">
-            <summary>
-            The location is a IReference just used as a link
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.UrlType.Content">
-            <summary>
-            The location is a IReference and the content is used by the command
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Core.Serialization.Assets.UrlType.Virtual">
-            <summary>
-            TODO: Is it something still used?
             </summary>
         </member>
         <member name="T:SiliconStudio.Core.Serialization.Contents.DataContentSerializerWithReuse`1">
@@ -965,8 +812,187 @@
         </member>
         <member name="T:SiliconStudio.Core.Serialization.Contents.NamespaceDoc">
             <summary>
-            The <see cref="N:SiliconStudio.Core.Serialization.Contents"/> namespace contains types for high-level content management, to be used by the <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>
+            The <see cref="N:SiliconStudio.Core.Serialization.Contents"/> namespace contains classes to handle content serialization and runtime references.
             </summary>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentSerializer.RegisterSerializer(SiliconStudio.Core.Serialization.Contents.IContentSerializer)">
+            <summary>
+            Registers a serializer with this ContentSerializer.
+            </summary>
+            <param name="serializer">The serializer.</param>
+        </member>
+        <member name="T:SiliconStudio.Core.Serialization.Contents.ChunkHeader">
+            <summary>
+            This class describes the header of an asset serialized in a blob file. Its (serialized) size has to remain constant
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Core.Serialization.Contents.IContentManager">
+            <summary>
+            Interface of the asset manager.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.Contents.IContentManager.Exists(System.String)">
+            <summary>
+            Check if the specified asset url exists.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns><c>true</c> if the specified asset url exists, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.Contents.IContentManager.OpenAsStream(System.String,SiliconStudio.Core.IO.StreamFlags)">
+            <summary>
+            Opens the specified URL as a stream used for custom raw asset loading.
+            </summary>
+            <param name="url">The URL to the raw asset.</param>
+            <param name="streamFlags">The type of stream needed</param>
+            <returns>A stream to the raw asset.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.Contents.IContentManager.Load``1(System.String,SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings)">
+            <summary>
+            Loads content from the specified URL.
+            </summary>
+            <typeparam name="T">The content type.</typeparam>
+            <param name="url">The URL to load from.</param>
+            <param name="settings">The settings. If null, fallback to <see cref="P:SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings.Default"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.Contents.IContentManager.LoadAsync``1(System.String,SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings)">
+            <summary>
+            Loads content from the specified URL asynchronously.
+            </summary>
+            <typeparam name="T">The content type.</typeparam>
+            <param name="url">The URL to load from.</param>
+            <param name="settings">The settings. If null, fallback to <see cref="P:SiliconStudio.Core.Serialization.Contents.ContentManagerLoaderSettings.Default"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.Contents.IContentManager.Unload(System.Object)">
+            <summary>
+            Unloads the specified object.
+            </summary>
+            <param name="obj">The object to unload.</param>
+        </member>
+        <member name="P:SiliconStudio.Core.Serialization.Contents.IContentManager.Serializer">
+            <summary>
+            Gets the serializer.
+            </summary>
+            <value>The serializer.</value>
+        </member>
+        <member name="F:SiliconStudio.Core.Serialization.Contents.UrlType.File">
+            <summary>
+            The location is a file on the disk
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Core.Serialization.Contents.UrlType.ContentLink">
+            <summary>
+            The location is a IReference just used as a link
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Core.Serialization.Contents.UrlType.Content">
+            <summary>
+            The location is a IReference and the content is used by the command
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Core.Serialization.Contents.UrlType.Virtual">
+            <summary>
+            TODO: Is it something still used?
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentReferenceState.NeverLoad">
+            <summary>
+            Never try to load the data reference.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentReferenceState.Loaded">
+            <summary>
+            Data reference has already been loaded.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Core.Serialization.Contents.ContentReferenceState.Modified">
+            <summary>
+            Data reference has been set to a new value by the user.
+            It will be changed to <see cref="F:SiliconStudio.Core.Serialization.Contents.ContentReferenceState.Loaded"/> as soon as it has been written by the <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/>.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Core.Serialization.Contents.ContentReference.Location">
+            <summary>
+            Gets or sets the location of the referenced content.
+            </summary>
+            <value>
+            The location of the referenced content.
+            </value>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentReference`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentReference"/> class with the given value.
+            </summary>
+            <param name="value">The value of the referenced conten.t</param>
+            <remarks>This constructor should be used during serialization.</remarks>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ContentReference`1.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentReference"/> class with the given id and location.
+            </summary>
+            <param name="location">The location of the referenced content.</param>
+            <remarks>This constructor should be used during deserialization.</remarks>
+        </member>
+        <member name="P:SiliconStudio.Core.Serialization.Contents.ContentReference`1.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>
+            The value.
+            </value>
+            <exception cref="T:System.InvalidOperationException">Value can't be read in this state.</exception>
+        </member>
+        <member name="T:SiliconStudio.Core.Serialization.Contents.IContentData">
+            <summary>
+            A content data storing its own Location.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Core.Serialization.Contents.IReference">
+            <summary>
+            An interface that provides a reference to an object identified by a <see cref="T:System.Guid"/> and a location.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Core.Serialization.Contents.IReference.Id">
+            <summary>
+            Gets the asset unique identifier.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="P:SiliconStudio.Core.Serialization.Contents.IReference.Location">
+            <summary>
+            Gets the location.
+            </summary>
+            <value>The location.</value>
+        </member>
+        <member name="T:SiliconStudio.Core.Serialization.Contents.ITypedReference">
+            <summary>
+            A typed <see cref="T:SiliconStudio.Core.Serialization.Contents.IReference"/>
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Core.Serialization.Contents.ITypedReference.Type">
+            <summary>
+            Gets the type of this content reference.
+            </summary>
+            <value>The type.</value>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.Contents.ReferenceSerializer.IsReferenceType(System.Type)">
+            <summary>
+            Determines whether the type has a <see cref="T:SiliconStudio.Core.Serialization.Contents.ReferenceSerializer`1"/>.
+            </summary>
+            <param name="type"></param>
+            <returns>True if <see cref="!:type"/> has a <see cref="T:SiliconStudio.Core.Serialization.Contents.ReferenceSerializer`1"/>, false otherwise</returns>
+        </member>
+        <member name="T:SiliconStudio.Core.Serialization.Contents.IReferenceSerializer">
+            <summary>
+            Used to detect whether a serializer is a reference serializer.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Core.Serialization.Contents.ReferenceSerializer`1">
+            <summary>0
+            Serialize object with its underlying Id and Location, and use <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/> to generate a separate chunk.
+            </summary>
+            <typeparam name="T"></typeparam>
         </member>
         <member name="T:SiliconStudio.Core.Serialization.Contents.ChunkReference">
             <summary>
@@ -1027,7 +1053,7 @@
         </member>
         <member name="T:SiliconStudio.Core.Serialization.Contents.IContentSerializer">
             <summary>
-            Serializer for high-level "chunk", used by <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>.
+            Serializer for high-level "chunk", used by <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/>.
             </summary>
         </member>
         <member name="P:SiliconStudio.Core.Serialization.Contents.IContentSerializer.SerializationType">
@@ -1067,89 +1093,9 @@
             </summary>
             <typeparam name="T">Runtime type being serialized. Expected to match <see cref="P:SiliconStudio.Core.Serialization.Contents.IContentSerializer.ActualType"/></typeparam>
         </member>
-        <member name="F:SiliconStudio.Core.Serialization.ContentReferenceState.NeverLoad">
-            <summary>
-            Never try to load the data reference.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Core.Serialization.ContentReferenceState.Loaded">
-            <summary>
-            Data reference has already been loaded.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Core.Serialization.ContentReferenceState.Modified">
-            <summary>
-            Data reference has been set to a new value by the user.
-            It will be changed to <see cref="F:SiliconStudio.Core.Serialization.ContentReferenceState.Loaded"/> as soon as it has been written by the <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Core.Serialization.ContentReference.Location">
-            <summary>
-            Gets or sets the location of the referenced content.
-            </summary>
-            <value>
-            The location of the referenced content.
-            </value>
-        </member>
-        <member name="M:SiliconStudio.Core.Serialization.ContentReference`1.#ctor(`0)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Core.Serialization.ContentReference"/> class with the given value.
-            </summary>
-            <param name="value">The value of the referenced conten.t</param>
-            <remarks>This constructor should be used during serialization.</remarks>
-        </member>
-        <member name="M:SiliconStudio.Core.Serialization.ContentReference`1.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Core.Serialization.ContentReference"/> class with the given id and location.
-            </summary>
-            <param name="location">The location of the referenced content.</param>
-            <remarks>This constructor should be used during deserialization.</remarks>
-        </member>
-        <member name="P:SiliconStudio.Core.Serialization.ContentReference`1.Value">
-            <summary>
-            Gets or sets the value.
-            </summary>
-            <value>
-            The value.
-            </value>
-            <exception cref="T:System.InvalidOperationException">Value can't be read in this state.</exception>
-        </member>
-        <member name="T:SiliconStudio.Core.Serialization.IContentData">
-            <summary>
-            A content data storing its own Location.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Core.Serialization.IReference">
-            <summary>
-            An interface that provides a reference to an object identified by a <see cref="T:System.Guid"/> and a location.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Core.Serialization.IReference.Id">
-            <summary>
-            Gets the asset unique identifier.
-            </summary>
-            <value>The identifier.</value>
-        </member>
-        <member name="P:SiliconStudio.Core.Serialization.IReference.Location">
-            <summary>
-            Gets the location.
-            </summary>
-            <value>The location.</value>
-        </member>
-        <member name="T:SiliconStudio.Core.Serialization.ITypedReference">
-            <summary>
-            A typed <see cref="T:SiliconStudio.Core.Serialization.IReference"/>
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Core.Serialization.ITypedReference.Type">
-            <summary>
-            Gets the type of this content reference.
-            </summary>
-            <value>The type.</value>
-        </member>
         <member name="T:SiliconStudio.Core.Serialization.AttachedReference">
             <summary>
-            Stores the object reference information, so that it is easy to work on partially loaded or CPU version of assets with <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>.
+            Stores the object reference information, so that it is easy to work on partially loaded or CPU version of assets with <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/>.
             </summary>
         </member>
         <member name="F:SiliconStudio.Core.Serialization.AttachedReference.Url">
@@ -1164,7 +1110,7 @@
         </member>
         <member name="F:SiliconStudio.Core.Serialization.AttachedReference.IsProxy">
             <summary>
-            If yes, this object won't be recursively saved in a separate chunk by <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>.
+            If yes, this object won't be recursively saved in a separate chunk by <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/>.
             Use this if you only care about the Url reference.
             </summary>
         </member>
@@ -1207,50 +1153,32 @@
             <param name="obj">The object.</param>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.AttachedReferenceManager.CreateProxyObject``1(SiliconStudio.Core.Serialization.IReference)">
+        <member name="M:SiliconStudio.Core.Serialization.AttachedReferenceManager.CreateProxyObject``1(SiliconStudio.Core.Serialization.Contents.IReference)">
             <summary>
-            Creates a proxy object with <see cref="T:SiliconStudio.Core.Serialization.AttachedReference" /> designing it as a proxy with a given id and location (that can be used with <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager" />). This allows to construct and save object references without actually loading them.
+            Creates a proxy object with <see cref="T:SiliconStudio.Core.Serialization.AttachedReference" /> designing it as a proxy with a given id and location (that can be used with <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager" />). This allows to construct and save object references without actually loading them.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="reference">The content reference.</param>
             <returns>T.</returns>
             <exception cref="T:System.ArgumentNullException">reference</exception>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.AttachedReferenceManager.CreateProxyObject``1(System.Guid,System.String)">
+        <member name="M:SiliconStudio.Core.Serialization.AttachedReferenceManager.CreateProxyObject``1(SiliconStudio.Assets.AssetId,System.String)">
             <summary>
-            Creates a proxy object with <see cref="T:SiliconStudio.Core.Serialization.AttachedReference"/> designing it as a proxy with a given id and location (that can be used with <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>). This allows to construct and save object references without actually loading them.
+            Creates a proxy object with <see cref="T:SiliconStudio.Core.Serialization.AttachedReference"/> designing it as a proxy with a given id and location (that can be used with <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/>). This allows to construct and save object references without actually loading them.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="id">The identifier.</param>
             <param name="location">The location.</param>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Core.Serialization.AttachedReferenceManager.CreateProxyObject(System.Type,System.Guid,System.String)">
+        <member name="M:SiliconStudio.Core.Serialization.AttachedReferenceManager.CreateProxyObject(System.Type,SiliconStudio.Assets.AssetId,System.String)">
             <summary>
-            Creates a proxy object with <see cref="T:SiliconStudio.Core.Serialization.AttachedReference"/> designing it as a proxy with a given id and location (that can be used with <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>). This allows to construct and save object references without actually loading them.
+            Creates a proxy object with <see cref="T:SiliconStudio.Core.Serialization.AttachedReference"/> designing it as a proxy with a given id and location (that can be used with <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/>). This allows to construct and save object references without actually loading them.
             </summary>
             <param name="type">The type.</param>
             <param name="id">The identifier.</param>
             <param name="location">The location.</param>
             <returns></returns>
-        </member>
-        <member name="M:SiliconStudio.Core.Serialization.ReferenceSerializer.IsReferenceType(System.Type)">
-            <summary>
-            Determines whether the type has a <see cref="T:SiliconStudio.Core.Serialization.ReferenceSerializer`1"/>.
-            </summary>
-            <param name="type"></param>
-            <returns>True if <see cref="!:type"/> has a <see cref="T:SiliconStudio.Core.Serialization.ReferenceSerializer`1"/>, false otherwise</returns>
-        </member>
-        <member name="T:SiliconStudio.Core.Serialization.IReferenceSerializer">
-            <summary>
-            Used to detect whether a serializer is a reference serializer.
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Core.Serialization.ReferenceSerializer`1">
-            <summary>0
-            Serialize object with its underlying Id and Location, and use <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/> to generate a separate chunk.
-            </summary>
-            <typeparam name="T"></typeparam>
         </member>
         <member name="T:SiliconStudio.Core.Storage.Blob">
             <summary>
@@ -1318,7 +1246,7 @@
             Object Database Backend (ODB) implementation using <see cref="T:SiliconStudio.Core.IO.VirtualFileSystem"/>
             </summary>
         </member>
-        <member name="P:SiliconStudio.Core.Storage.FileOdbBackend.AssetIndexMap">
+        <member name="P:SiliconStudio.Core.Storage.FileOdbBackend.ContentIndexMap">
             <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Core.Storage.FileOdbBackend.OpenStream(SiliconStudio.Core.Storage.ObjectId,SiliconStudio.Core.IO.VirtualFileMode,SiliconStudio.Core.IO.VirtualFileAccess,SiliconStudio.Core.IO.VirtualFileShare)">
@@ -1350,7 +1278,7 @@
             Base class for custom object database backends (ODB).
             </summary>
         </member>
-        <member name="P:SiliconStudio.Core.Storage.IOdbBackend.AssetIndexMap">
+        <member name="P:SiliconStudio.Core.Storage.IOdbBackend.ContentIndexMap">
             <summary>
             Gets the asset index map.
             </summary>
@@ -1525,24 +1453,24 @@
             <param name="objectId">The object id.</param>
             <returns>The <see cref="T:SiliconStudio.Core.Storage.Blob"/> matching this <see cref="T:SiliconStudio.Core.Storage.ObjectId"/> with an incremented reference count if it exists; [null] otherwise.</returns>
         </member>
-        <member name="T:SiliconStudio.Core.Storage.ObjectDatabaseAssetIndexMap">
+        <member name="T:SiliconStudio.Core.Storage.ObjectDatabaseContentIndexMap">
             <summary>
             Content Index Map implementation which regroups all the asset index maps of every loaded file backend and asset bundle backends.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Core.Storage.ObjectDatabaseAssetIndexMap.Merge(SiliconStudio.Core.Serialization.Assets.IAssetIndexMap)">
+        <member name="M:SiliconStudio.Core.Storage.ObjectDatabaseContentIndexMap.Merge(SiliconStudio.Core.Serialization.Contents.IContentIndexMap)">
             <summary>
             Merges the values from the given asset index map.
             </summary>
-            <param name="assetIndexMap">The asset index map to merge.</param>
+            <param name="contentIndexMap">The asset index map to merge.</param>
         </member>
-        <member name="M:SiliconStudio.Core.Storage.ObjectDatabaseAssetIndexMap.Merge(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,SiliconStudio.Core.Storage.ObjectId}})">
+        <member name="M:SiliconStudio.Core.Storage.ObjectDatabaseContentIndexMap.Merge(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,SiliconStudio.Core.Storage.ObjectId}})">
             <summary>
             Merges the values from the given assets.
             </summary>
             <param name="assets">The assets to merge.</param>
         </member>
-        <member name="M:SiliconStudio.Core.Storage.ObjectDatabaseAssetIndexMap.Unmerge(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,SiliconStudio.Core.Storage.ObjectId}})">
+        <member name="M:SiliconStudio.Core.Storage.ObjectDatabaseContentIndexMap.Unmerge(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,SiliconStudio.Core.Storage.ObjectId}})">
             <summary>
             Unmerges the values from the given assets.
             </summary>
@@ -1568,23 +1496,23 @@
             Bundle resolve event asynchronous handler.
             </summary>
         </member>
-        <member name="P:SiliconStudio.Core.Storage.BundleOdbBackend.AssetIndexMap">
+        <member name="P:SiliconStudio.Core.Storage.BundleOdbBackend.ContentIndexMap">
             <inheritdoc/>
         </member>
-        <member name="M:SiliconStudio.Core.Storage.BundleOdbBackend.LoadBundle(System.String,SiliconStudio.Core.Storage.ObjectDatabaseAssetIndexMap)">
+        <member name="M:SiliconStudio.Core.Storage.BundleOdbBackend.LoadBundle(System.String,SiliconStudio.Core.Storage.ObjectDatabaseContentIndexMap)">
             <summary>
             Loads the specified bundle.
             </summary>
             <param name="bundleName">Name of the bundle.</param>
-            <param name="objectDatabaseAssetIndexMap">The object database asset index map, where newly loaded assets will be merged (ignored if null).</param>
+            <param name="objectDatabaseContentIndexMap">The object database asset index map, where newly loaded assets will be merged (ignored if null).</param>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Core.Storage.BundleOdbBackend.UnloadBundle(System.String,SiliconStudio.Core.Storage.ObjectDatabaseAssetIndexMap)">
+        <member name="M:SiliconStudio.Core.Storage.BundleOdbBackend.UnloadBundle(System.String,SiliconStudio.Core.Storage.ObjectDatabaseContentIndexMap)">
             <summary>
             Unload the specified bundle.
             </summary>
             <param name="bundleName">Name of the bundle.</param>
-            <param name="objectDatabaseAssetIndexMap">The object database asset index map, where newly loaded assets will be merged (ignored if null).</param>
+            <param name="objectDatabaseContentIndexMap">The object database asset index map, where newly loaded assets will be merged (ignored if null).</param>
             <returns></returns>
         </member>
         <member name="M:SiliconStudio.Core.Storage.BundleOdbBackend.ReadBundleDescription(System.IO.Stream)">

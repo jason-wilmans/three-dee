@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using DiagramLogic.Interface;
 using SiliconStudio.Core.Collections;
-using SiliconStudio.Core.Serialization.Assets;
+using SiliconStudio.Core.Serialization.Contents;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Rendering;
 

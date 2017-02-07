@@ -56,7 +56,7 @@ namespace UI.Utilities
             rigidBody.OverrideGravity = true;
             rigidBody.Mass = 0;
             rigidBody.ProcessCollisions = false;
-            rigidBody.ColliderShape = new BoxColliderShape(Vector3.Zero);
+            rigidBody.ColliderShape = new BoxColliderShape(false, Vector3.Zero);
 
             Entity.GetOrCreate<Ui3DEventSystemComponent>();
         }

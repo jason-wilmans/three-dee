@@ -108,6 +108,52 @@
             Wrapper around OpenAL
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Native.Navigation.PathFindResult.PathPoints">
+            <summary>
+            Should point to a preallocated array of <see cref="T:SiliconStudio.Core.Mathematics.Vector3"/>'s matching the amount in <see cref="F:SiliconStudio.Xenko.Native.Navigation.PathFindQuery.MaxPathPoints"/>
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Native.Navigation.CreateNavmesh(System.Single)">
+            <summary>
+            Creates a new navigation mesh object. 
+            You must add tiles to it with AddTile before you can perform navigation queries using Query
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Native.Navigation.AddTile(System.IntPtr,SiliconStudio.Core.Mathematics.Point,System.IntPtr,System.Int32)">
+            <summary>
+            Adds a new tile to the navigation mesh object
+            </summary>
+            <param name="navmesh"></param>
+            <param name="tileCoordinate">Coordinate of the tile to add</param>
+            <param name="data">Navigation mesh binary data in the detour format to load</param>
+            <param name="dataLength">Length of the binary mesh data</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Native.Navigation.RemoveTile(System.IntPtr,SiliconStudio.Core.Mathematics.Point)">
+            <summary>
+            Removes a tile from the navigation mesh object
+            </summary>
+            <param name="navmesh"></param>
+            <param name="tileCoordinate">Coordinate of the tile to remove</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Native.Navigation.DoPathFindQuery(System.IntPtr,SiliconStudio.Xenko.Native.Navigation.PathFindQuery,System.IntPtr)">
+            <summary>
+            Perform a pathfinding query on the navigation mesh
+            </summary>
+            <param name="query"></param>
+            <param name="pathFindQuery">The query to perform</param>
+            <param name="resultStructure">A structure of type PathFindResult, should have the PathPoints field initialized to point to an array of Vector3's with the appropriate size</param>
+            <returns>A PathFindQueryResult</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Native.Navigation.DoRaycastQuery(System.IntPtr,SiliconStudio.Xenko.Native.Navigation.RaycastQuery,System.IntPtr)">
+            <summary>
+            Perform a raycast on the navigation mesh
+            </summary>
+            <param name="query"></param>
+            <param name="pathFindQuery">The query to perform</param>
+            <param name="resultStructure">A structure of type PathFindResult</param>
+            <returns>A RaycastQueryResult</returns>
+        </member>
         <member name="F:SiliconStudio.Xenko.Native.OculusOvr.SessionStatus.IsVisible">
             <summary>
             True if the process has VR focus and thus is visible in the HMD.

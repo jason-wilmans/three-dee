@@ -59,6 +59,16 @@
             Model asset from where the engine will derive the convex hull.
             </userdoc>
         </member>
+        <member name="F:SiliconStudio.Xenko.Physics.ConvexHullColliderShapeDesc.LocalOffset">
+            <userdoc>
+            The offset with the real graphic mesh.
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Physics.ConvexHullColliderShapeDesc.LocalRotation">
+            <userdoc>
+            The local rotation of the collider shape.
+            </userdoc>
+        </member>
         <member name="F:SiliconStudio.Xenko.Physics.ConvexHullColliderShapeDesc.SimpleWrap">
             <userdoc>
             If this is checked the following parameters are totally ignored, as only a simple convex hull of the whole model will be generated.
@@ -104,6 +114,31 @@
             Threshold of concavity, rising this will make the shape simpler.
             </userdoc>
         </member>
+        <member name="F:SiliconStudio.Xenko.Physics.ConeColliderShapeDesc.Height">
+            <userdoc>
+            The height of the cylinder
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Physics.ConeColliderShapeDesc.Radius">
+            <userdoc>
+            The radius of the cylinder
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Physics.ConeColliderShapeDesc.Orientation">
+            <userdoc>
+            The orientation of the cylinder.
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Physics.ConeColliderShapeDesc.LocalOffset">
+            <userdoc>
+            The offset with the real graphic mesh.
+            </userdoc>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Physics.ConeColliderShapeDesc.LocalRotation">
+            <userdoc>
+            The local rotation of the collider shape.
+            </userdoc>
+        </member>
         <member name="F:SiliconStudio.Xenko.Physics.CylinderColliderShapeDesc.Height">
             <userdoc>
             The height of the cylinder
@@ -128,6 +163,11 @@
             <userdoc>
             The local rotation of the collider shape.
             </userdoc>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Physics.CharacterComponent.Jump(SiliconStudio.Core.Mathematics.Vector3)">
+            <summary>
+            Jumps this instance.
+            </summary>
         </member>
         <member name="M:SiliconStudio.Xenko.Physics.CharacterComponent.Jump">
             <summary>
@@ -169,13 +209,13 @@
         </member>
         <member name="P:SiliconStudio.Xenko.Physics.CharacterComponent.JumpSpeed">
             <summary>
-            Gets or sets if this character element max slope
+            Gets or sets if this character jump speed
             </summary>
             <value>
             true, false
             </value>
             <userdoc>
-            The max slope this character can climb
+            The speed of the jump
             </userdoc>
         </member>
         <member name="P:SiliconStudio.Xenko.Physics.CharacterComponent.Gravity">
@@ -206,9 +246,17 @@
         <member name="M:SiliconStudio.Xenko.Physics.CharacterComponent.Move(SiliconStudio.Core.Mathematics.Vector3)">
             <summary>
             Moves the character towards the specified movement vector.
-            Motion will stay in place unless modified or canceled passing Vector3.Zero
+            Motion will stay in place unless modified or canceled passing Vector3.Zero.
             </summary>
-            <param name="movement">The absolute movement vector, typically direction * delta time `var dt = this.GetSimulation().FixedTimeStep;` * speed.</param>
+            <param name="movement">The velocity vector, typically direction * delta time `var dt = this.GetSimulation().FixedTimeStep;` * speed.</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Physics.CharacterComponent.SetVelocity(SiliconStudio.Core.Mathematics.Vector3)">
+            <summary>
+            Sets the character velocity.
+            Velocity will be applied every frame unless modified or canceled passing Vector3.Zero.
+            </summary>
+            <remarks>The engine internally will multiply velocity with the simulation fixed time step.</remarks>
+            <param name="velocity">The velocity vector, typically direction * speed.</param>
         </member>
         <member name="P:SiliconStudio.Xenko.Physics.CharacterComponent.Orientation">
             <summary>
@@ -457,6 +505,14 @@
             <param name="scriptComponent">The script component to query physics from</param>
             <returns>The simulation object or null if there are no simulation running for the current scene.</returns>
         </member>
+        <member name="M:SiliconStudio.Xenko.Physics.ConeColliderShape.#ctor(System.Single,System.Single,SiliconStudio.Xenko.Physics.ShapeOrientation)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Physics.ConeColliderShape"/> class.
+            </summary>
+            <param name="orientation">Up axis.</param>
+            <param name="radius">The radius of the cone</param>
+            <param name="height">The height of the cone</param>
+        </member>
         <member name="T:SiliconStudio.Xenko.Physics.ShapeOrientation">
             <summary>
             Defines the different possible orientations of a shape.
@@ -480,16 +536,11 @@
             </summary>
             <userdoc>The top shape is aligned with the Oz axis.</userdoc>
         </member>
-        <member name="M:SiliconStudio.Xenko.Physics.Box2DColliderShape.#ctor(SiliconStudio.Core.Mathematics.Vector2)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Physics.Box2DColliderShape"/> class.
-            </summary>
-            <param name="size">The half extents.</param>
-        </member>
-        <member name="M:SiliconStudio.Xenko.Physics.BoxColliderShape.#ctor(SiliconStudio.Core.Mathematics.Vector3)">
+        <member name="M:SiliconStudio.Xenko.Physics.BoxColliderShape.#ctor(System.Boolean,SiliconStudio.Core.Mathematics.Vector3)">
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Physics.BoxColliderShape"/> class.
             </summary>
+            <param name="is2D">If this cube is a 2D quad</param>
             <param name="size">The size of the cube</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Physics.CapsuleColliderShape.#ctor(System.Boolean,System.Single,System.Single,SiliconStudio.Xenko.Physics.ShapeOrientation)">
@@ -903,17 +954,56 @@
             <param name="to">To.</param>
             <returns></returns>
         </member>
+        <member name="M:SiliconStudio.Xenko.Physics.Simulation.Raycast(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Physics.CollisionFilterGroups,SiliconStudio.Xenko.Physics.CollisionFilterGroupFlags)">
+            <summary>
+            Raycasts and stops at the first hit.
+            </summary>
+            <param name="from">From.</param>
+            <param name="to">To.</param>
+            <param name="collisionFilterGroups">The collision group of this shape sweep</param>
+            <param name="collisionFilterGroupFlags">The collision group that this shape sweep can collide with</param>
+            <returns>The list with hit results.</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Physics.Simulation.RaycastPenetrating(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,System.Collections.Generic.IList{SiliconStudio.Xenko.Physics.HitResult})">
+            <summary>
+            Raycasts penetrating any shape the ray encounters.
+            </summary>
+            <param name="from">From.</param>
+            <param name="to">To.</param>
+            <param name="resultsOutput">The list to fill with results.</param>
+        </member>
         <member name="M:SiliconStudio.Xenko.Physics.Simulation.RaycastPenetrating(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3)">
             <summary>
             Raycasts penetrating any shape the ray encounters.
             </summary>
             <param name="from">From.</param>
             <param name="to">To.</param>
-            <returns></returns>
+            <returns>The list with hit results.</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Physics.Simulation.RaycastPenetrating(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,System.Collections.Generic.IList{SiliconStudio.Xenko.Physics.HitResult},SiliconStudio.Xenko.Physics.CollisionFilterGroups,SiliconStudio.Xenko.Physics.CollisionFilterGroupFlags)">
+            <summary>
+            Raycasts penetrating any shape the ray encounters.
+            Filtering by CollisionGroup
+            </summary>
+            <param name="from">From.</param>
+            <param name="to">To.</param>
+            <param name="resultsOutput">The list to fill with results.</param>
+            <param name="collisionFilterGroups">The collision group of this shape sweep</param>
+            <param name="collisionFilterGroupFlags">The collision group that this shape sweep can collide with</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Physics.Simulation.RaycastPenetrating(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Physics.CollisionFilterGroups,SiliconStudio.Xenko.Physics.CollisionFilterGroupFlags)">
+            <summary>
+            Raycasts penetrating any shape the ray encounters.
+            </summary>
+            <param name="from">From.</param>
+            <param name="to">To.</param>
+            <param name="collisionFilterGroups">The collision group of this shape sweep</param>
+            <param name="collisionFilterGroupFlags">The collision group that this shape sweep can collide with</param>
+            <returns>The list with hit results.</returns>
         </member>
         <member name="M:SiliconStudio.Xenko.Physics.Simulation.ShapeSweep(SiliconStudio.Xenko.Physics.ColliderShape,SiliconStudio.Core.Mathematics.Matrix,SiliconStudio.Core.Mathematics.Matrix)">
             <summary>
-            Pefrorms a sweep test using a collider shape and stops at the first hit
+            Performs a sweep test using a collider shape and stops at the first hit
             </summary>
             <param name="shape">The shape.</param>
             <param name="from">From.</param>
@@ -921,14 +1011,60 @@
             <returns></returns>
             <exception cref="T:System.Exception">This kind of shape cannot be used for a ShapeSweep.</exception>
         </member>
-        <member name="M:SiliconStudio.Xenko.Physics.Simulation.ShapeSweepPenetrating(SiliconStudio.Xenko.Physics.ColliderShape,SiliconStudio.Core.Mathematics.Matrix,SiliconStudio.Core.Mathematics.Matrix)">
+        <member name="M:SiliconStudio.Xenko.Physics.Simulation.ShapeSweep(SiliconStudio.Xenko.Physics.ColliderShape,SiliconStudio.Core.Mathematics.Matrix,SiliconStudio.Core.Mathematics.Matrix,SiliconStudio.Xenko.Physics.CollisionFilterGroups,SiliconStudio.Xenko.Physics.CollisionFilterGroupFlags)">
             <summary>
-            Pefrorms a sweep test using a collider shape and never stops until "to"
+            Performs a sweep test using a collider shape and stops at the first hit
             </summary>
             <param name="shape">The shape.</param>
             <param name="from">From.</param>
             <param name="to">To.</param>
+            <param name="collisionFilterGroups">The collision group of this shape sweep</param>
+            <param name="collisionFilterGroupFlags">The collision group that this shape sweep can collide with</param>
             <returns></returns>
+            <exception cref="T:System.Exception">This kind of shape cannot be used for a ShapeSweep.</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Physics.Simulation.ShapeSweepPenetrating(SiliconStudio.Xenko.Physics.ColliderShape,SiliconStudio.Core.Mathematics.Matrix,SiliconStudio.Core.Mathematics.Matrix,System.Collections.Generic.IList{SiliconStudio.Xenko.Physics.HitResult})">
+            <summary>
+            Performs a sweep test using a collider shape and never stops until "to"
+            </summary>
+            <param name="shape">The shape.</param>
+            <param name="from">From.</param>
+            <param name="to">To.</param>
+            <param name="resultsOutput">The list to fill with results.</param>
+            <exception cref="T:System.Exception">This kind of shape cannot be used for a ShapeSweep.</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Physics.Simulation.ShapeSweepPenetrating(SiliconStudio.Xenko.Physics.ColliderShape,SiliconStudio.Core.Mathematics.Matrix,SiliconStudio.Core.Mathematics.Matrix)">
+            <summary>
+            Performs a sweep test using a collider shape and never stops until "to"
+            </summary>
+            <param name="shape">The shape.</param>
+            <param name="from">From.</param>
+            <param name="to">To.</param>
+            <returns>The list with hit results.</returns>
+            <exception cref="T:System.Exception">This kind of shape cannot be used for a ShapeSweep.</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Physics.Simulation.ShapeSweepPenetrating(SiliconStudio.Xenko.Physics.ColliderShape,SiliconStudio.Core.Mathematics.Matrix,SiliconStudio.Core.Mathematics.Matrix,System.Collections.Generic.IList{SiliconStudio.Xenko.Physics.HitResult},SiliconStudio.Xenko.Physics.CollisionFilterGroups,SiliconStudio.Xenko.Physics.CollisionFilterGroupFlags)">
+            <summary>
+            Performs a sweep test using a collider shape and never stops until "to"
+            </summary>
+            <param name="shape">The shape.</param>
+            <param name="from">From.</param>
+            <param name="to">To.</param>
+            <param name="resultsOutput">The list to fill with results.</param>
+            <param name="collisionFilterGroups">The collision group of this shape sweep</param>
+            <param name="collisionFilterGroupFlags">The collision group that this shape sweep can collide with</param>
+            <exception cref="T:System.Exception">This kind of shape cannot be used for a ShapeSweep.</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Physics.Simulation.ShapeSweepPenetrating(SiliconStudio.Xenko.Physics.ColliderShape,SiliconStudio.Core.Mathematics.Matrix,SiliconStudio.Core.Mathematics.Matrix,SiliconStudio.Xenko.Physics.CollisionFilterGroups,SiliconStudio.Xenko.Physics.CollisionFilterGroupFlags)">
+            <summary>
+            Performs a sweep test using a collider shape and never stops until "to"
+            </summary>
+            <param name="shape">The shape.</param>
+            <param name="from">From.</param>
+            <param name="to">To.</param>
+            <param name="collisionFilterGroups">The collision group of this shape sweep</param>
+            <param name="collisionFilterGroupFlags">The collision group that this shape sweep can collide with</param>
+            <returns>The list with hit results.</returns>
             <exception cref="T:System.Exception">This kind of shape cannot be used for a ShapeSweep.</exception>
         </member>
         <member name="P:SiliconStudio.Xenko.Physics.Simulation.Gravity">
@@ -1872,6 +2008,16 @@
         <member name="M:SiliconStudio.Xenko.Physics.ContactPointEqualityComparer.GetHashCode(SiliconStudio.Xenko.Physics.ContactPoint)">
             <inheritdoc/>
         </member>
+        <member name="T:SiliconStudio.Xenko.Physics.HitResult">
+            <summary>
+            The result of a Physics Raycast or ShapeSweep operation
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Physics.HitResult.Collider">
+            <summary>
+            The Collider hit if Succeeded
+            </summary>
+        </member>
         <member name="F:SiliconStudio.Xenko.Physics.RigidBodyTypes.Static">
             <summary>
                 They are supposed to never move, they are not automatically updated by the engine.
@@ -1908,6 +2054,9 @@
             <userdoc>
             The collision group of this element, default is DefaultFilter. Cannot change during run-time.
             </userdoc>
+            <remarks>
+            The collider will still produce events, to allow non trigger rigidbodies or static colliders to act as a trigger if required for certain filtering groups.
+            </remarks>
         </member>
         <member name="P:SiliconStudio.Xenko.Engine.PhysicsComponent.CanCollideWith">
             <summary>
@@ -1919,6 +2068,9 @@
             <userdoc>
             Which collider groups this element can collide with, when nothing is selected it will collide with all groups. Cannot change during run-time.
             </userdoc>
+            /// <remarks>
+            The collider will still produce events, to allow non trigger rigidbodies or static colliders to act as a trigger if required for certain filtering groups.
+            </remarks>
         </member>
         <member name="P:SiliconStudio.Xenko.Engine.PhysicsComponent.ProcessCollisions">
             <summary>
@@ -1988,6 +2140,10 @@
             <userdoc>
             The friction of this element
             </userdoc>
+            <remarks>
+            It's importantant to realise that friction and restitution are not values of any particular surface, but rather a value of the interaction of two surfaces. 
+            So why is it defined for each object? In order to determine the overall friction and restitution between any two surfaces in a collision.
+            </remarks>
         </member>
         <member name="P:SiliconStudio.Xenko.Engine.PhysicsComponent.RollingFriction">
             <summary>

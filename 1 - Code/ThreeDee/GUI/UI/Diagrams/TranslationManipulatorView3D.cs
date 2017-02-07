@@ -1,5 +1,8 @@
-﻿using DiagramLogic.Interface.Elements;
+﻿using System;
+using DiagramLogic.Interface.Elements;
+using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
+using SiliconStudio.Xenko.UI;
 using SiliconStudio.Xenko.UI.Panels;
 using UI.Ui3D;
 
@@ -9,32 +12,57 @@ namespace UI.Diagrams
     {
         public ADiagramElement SelectedElement { get; set; }
 
-        private SelectedIndicator _upperLeftIndicator;
-        private SelectedIndicator _upperRightIndicator;
-        private SelectedIndicator _lowerRightIndicator;
-        private SelectedIndicator _lowerLeftIndicator;
         private UIComponent _uiComponent;
+        private Grid _inputRelayGrid;
+        private const int Size = 10;
+        private ManipulationHandle _activeHandle;
+        private Color _oldHandleColor;
 
         public override void Start()
         {
             base.Start();
 
             _uiComponent = Entity.GetOrCreate<UIComponent>();
-            var grid = new Grid();
-            _uiComponent.Page = new UIPage
+            _inputRelayGrid = new Grid
             {
-                RootElement = grid
+                CanBeHitByUser = true
             };
 
-            var size = 20;
-            _upperLeftIndicator = new SelectedIndicator(size, GraphicsDevice);
-            grid.Children.Add(_upperLeftIndicator);
-            //_upperRightIndicator = new SelectedIndicator(size, GraphicsDevice);
-            //grid.Children.Add(_upperRightIndicator);
-            //_lowerRightIndicator = new SelectedIndicator(size, GraphicsDevice);
-            //grid.Children.Add(_lowerRightIndicator);
-            //_lowerLeftIndicator = new SelectedIndicator(size, GraphicsDevice);
-            //grid.Children.Add(_lowerLeftIndicator);
+            _inputRelayGrid.TouchMove += (sender, args) => _activeHandle?.OnTouchMove(sender, args);
+
+            _uiComponent.Page = new UIPage
+            {
+                RootElement = _inputRelayGrid
+            };
+
+            CreateHandle(HandlePosition.TopLeft);
+            CreateHandle(HandlePosition.TopRight);
+            CreateHandle(HandlePosition.BottomRight);
+            CreateHandle(HandlePosition.BottomLeft);
+        }
+
+        private void CreateHandle(HandlePosition handlePosition)
+        {
+            ManipulationHandle handle = new ManipulationHandle(handlePosition, Size, GraphicsDevice);
+            handle.TouchDown += OnHandleTouchDown;
+            handle.TouchUp += OnHandleTouchUp;
+            _inputRelayGrid.Children.Add(handle);
+        }
+
+        private void OnHandleTouchDown(object sender, TouchEventArgs touchEventArgs)
+        {
+            _activeHandle = sender as ManipulationHandle;
+            _oldHandleColor = _activeHandle.BackgroundColor;
+            _activeHandle.BackgroundColor = Color.Orange;
+        }
+
+        private void OnHandleTouchUp(object sender, TouchEventArgs touchEventArgs)
+        {
+            if (_activeHandle != null)
+            {
+                _activeHandle.BackgroundColor = _oldHandleColor;
+                _activeHandle = null;
+            }
         }
     }
 }

@@ -44,6 +44,22 @@
             <param name="obj">The property container.</param>
             <param name="value">The value to set.</param>
         </member>
+        <member name="T:SiliconStudio.Core.Annotations.CanBeNullAttribute">
+            <summary>
+            Indicates that the value of the marked element could be <c>null</c> sometimes,
+            so the check for <c>null</c> is necessary before its usage.
+            </summary>
+            <example>
+            <code>
+            [CanBeNull] object Test() => null;
+            
+            void UseTest() {
+              var p = Test();
+              var s = p.ToString(); // Warning: Possible 'System.NullReferenceException'
+            }
+            </code>
+            </example>
+        </member>
         <member name="T:SiliconStudio.Core.Annotations.CategoryOrderAttribute">
             <summary>
             This attribute allows to associate an <see cref="P:SiliconStudio.Core.Annotations.CategoryOrderAttribute.Order"/> value to a category name.
@@ -81,6 +97,12 @@
             this collection should provide users a way to reorder items.
             </summary>
         </member>
+        <member name="P:SiliconStudio.Core.Annotations.MemberCollectionAttribute.NotNullItems">
+            <summary>
+            Gets or sets whether the items of this collection can be null. If <c>true</c>, applications using
+            this collection should prevent user to add null items to the collection.
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Core.Annotations.DynamicTypeAttributeBase">
             <summary>
             Base class for a dynamic type attribute.
@@ -115,20 +137,36 @@
             Gets or sets whether to expand the inline property in the UI. The default is <see cref="F:SiliconStudio.Core.ExpandRule.Never"/>.
             </summary>
         </member>
+        <member name="T:SiliconStudio.Core.Annotations.NonIdentifiableCollectionItemsAttribute">
+            <summary>
+            This attribute indicates that a collection should not be serialized with identifiers associated to each of its item.
+            </summary>
+            <remarks>
+            When this attribute is attached to a type (class or struct), any collection in that type or in a nested type will be serialized without identifier.
+            When this attribute is attached to a member (property of field) that is a collection, only this collection will be serialized without identifier.
+            </remarks>
+        </member>
         <member name="T:SiliconStudio.Core.Annotations.NonInstantiableAttribute">
             <summary>
             This attribute indicates that the associated type cannot be instanced in the property grid
             </summary>
         </member>
-        <member name="T:SiliconStudio.Core.Annotations.NotNullAttribute">
+        <member name="T:SiliconStudio.Core.Annotations.NonOverridableAttribute">
             <summary>
-            Indicates that the value of the marked element could never be <c>null</c>
+            This attribute notifies that the attached member cannot be overridden.
             </summary>
         </member>
-        <member name="T:SiliconStudio.Core.Annotations.NotNullItemsAttribute">
+        <member name="T:SiliconStudio.Core.Annotations.NotNullAttribute">
             <summary>
-            Indicates that the items of the marked collection could never be <c>null</c>
+            Indicates that the value of the marked element could never be <c>null</c>.
             </summary>
+            <example>
+            <code>
+            [NotNull] object Foo() {
+              return null; // Warning: Possible 'null' assignment
+            }
+            </code>
+            </example>
         </member>
         <member name="T:SiliconStudio.Core.Annotations.DataMemberRangeAttribute">
             <summary>
@@ -205,6 +243,22 @@
             Gets the decimal places.
             </summary>
             <value>The decimal places.</value>
+        </member>
+        <member name="T:SiliconStudio.Core.Annotations.ObjectFactoryAttribute">
+            <summary>
+            An attribute that defines a factory class implementing <see cref="T:SiliconStudio.Core.Reflection.IObjectFactory"/>, used to create instances of the related type in design-time scenarios.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Core.Annotations.ObjectFactoryAttribute.FactoryType">
+            <summary>
+            The type of the factory to use to create instance of the related type.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Core.Annotations.ObjectFactoryAttribute.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SiliconStudio.Core.Annotations.ObjectFactoryAttribute"/> class.
+            </summary>
+            <param name="factoryType">The factory type that implements <see cref="T:SiliconStudio.Core.Reflection.IObjectFactory"/>.</param>
         </member>
         <member name="T:SiliconStudio.Core.AnonymousDisposable">
             <summary>
@@ -1245,24 +1299,6 @@
             <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Core.Collections.TrackingCollection`1.SetItem(System.Int32,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="T:SiliconStudio.Core.Collections.TrackingCollection2`1">
-            <summary>
-            Represents a collection that generates events when items get added or removed.
-            </summary>
-            <typeparam name="T">The type of elements in the collection.</typeparam>
-        </member>
-        <member name="M:SiliconStudio.Core.Collections.TrackingCollection2`1.InsertItem(System.Int32,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Core.Collections.TrackingCollection2`1.RemoveItem(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Core.Collections.TrackingCollection2`1.ClearItems">
-            <inheritdoc/>
-        </member>
-        <member name="M:SiliconStudio.Core.Collections.TrackingCollection2`1.SetItem(System.Int32,`0)">
             <inheritdoc/>
         </member>
         <member name="P:SiliconStudio.Core.Collections.TrackingCollectionChangedEventArgs.Action">
@@ -2421,6 +2457,7 @@
             <summary>
             Logs the specified verbose message with an exception.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="message">The verbose message.</param>
             <param name="exception">An exception to log with the message.</param>
             <param name="callerInfo">Information about the caller. Default is null, otherwise use <see cref="M:SiliconStudio.Core.Diagnostics.CallerInfo.Get(System.String,System.String,System.Int32)"/>.</param>
@@ -2429,6 +2466,7 @@
             <summary>
             Logs the specified verbose message.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="message">The verbose message.</param>
             <param name="callerInfo">Information about the caller. Default is null, otherwise use <see cref="M:SiliconStudio.Core.Diagnostics.CallerInfo.Get(System.String,System.String,System.Int32)"/>.</param>
         </member>
@@ -2436,6 +2474,7 @@
             <summary>
             Logs the specified verbose message.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="messageFormat">The verbose message to format.</param>
             <param name="parameters">The parameters to used with the <see cref="!:messageFormat" />. The last parameter can be used to store <see cref="T:SiliconStudio.Core.Diagnostics.CallerInfo"/></param>
         </member>
@@ -2443,6 +2482,7 @@
             <summary>
             Logs the specified verbose message with an exception.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="messageFormat">The verbose message to format.</param>
             <param name="exception">An exception to log with the message.</param>
             <param name="parameters">The parameters to used with the <see cref="!:messageFormat" />. The last parameter can be used to store <see cref="T:SiliconStudio.Core.Diagnostics.CallerInfo"/></param>
@@ -2452,6 +2492,7 @@
             <summary>
             Logs the specified debug message with an exception.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="message">The debug message.</param>
             <param name="exception">An exception to log with the message.</param>
             <param name="callerInfo">Information about the caller. Default is null, otherwise use <see cref="M:SiliconStudio.Core.Diagnostics.CallerInfo.Get(System.String,System.String,System.Int32)"/>.</param>
@@ -2460,6 +2501,7 @@
             <summary>
             Logs the specified debug message.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="message">The debug message.</param>
             <param name="callerInfo">Information about the caller. Default is null, otherwise use <see cref="M:SiliconStudio.Core.Diagnostics.CallerInfo.Get(System.String,System.String,System.Int32)"/>.</param>
         </member>
@@ -2467,6 +2509,7 @@
             <summary>
             Logs the specified debug message.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="messageFormat">The debug message to format.</param>
             <param name="parameters">The parameters to used with the <see cref="!:messageFormat" />. The last parameter can be used to store <see cref="T:SiliconStudio.Core.Diagnostics.CallerInfo"/></param>
         </member>
@@ -2474,6 +2517,7 @@
             <summary>
             Logs the specified debug message with an exception.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="messageFormat">The debug message to format.</param>
             <param name="exception">An exception to log with the message.</param>
             <param name="parameters">The parameters to used with the <see cref="!:messageFormat" />. The last parameter can be used to store <see cref="T:SiliconStudio.Core.Diagnostics.CallerInfo"/></param>
@@ -2483,6 +2527,7 @@
             <summary>
             Logs the specified info message with an exception.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="message">The info message.</param>
             <param name="exception">An exception to log with the message.</param>
             <param name="callerInfo">Information about the caller. Default is null, otherwise use <see cref="M:SiliconStudio.Core.Diagnostics.CallerInfo.Get(System.String,System.String,System.Int32)"/>.</param>
@@ -2491,6 +2536,7 @@
             <summary>
             Logs the specified info message.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="message">The info message.</param>
             <param name="callerInfo">Information about the caller. Default is null, otherwise use <see cref="M:SiliconStudio.Core.Diagnostics.CallerInfo.Get(System.String,System.String,System.Int32)"/>.</param>
         </member>
@@ -2498,6 +2544,7 @@
             <summary>
             Logs the specified info message.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="messageFormat">The info message to format.</param>
             <param name="parameters">The parameters to used with the <see cref="!:messageFormat" />. The last parameter can be used to store <see cref="T:SiliconStudio.Core.Diagnostics.CallerInfo"/></param>
         </member>
@@ -2505,6 +2552,7 @@
             <summary>
             Logs the specified info message with an exception.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="messageFormat">The info message to format.</param>
             <param name="exception">An exception to log with the message.</param>
             <param name="parameters">The parameters to used with the <see cref="!:messageFormat" />. The last parameter can be used to store <see cref="T:SiliconStudio.Core.Diagnostics.CallerInfo"/></param>
@@ -2514,6 +2562,7 @@
             <summary>
             Logs the specified warning message with an exception.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="message">The warning message.</param>
             <param name="exception">An exception to log with the message.</param>
             <param name="callerInfo">Information about the caller. Default is null, otherwise use <see cref="M:SiliconStudio.Core.Diagnostics.CallerInfo.Get(System.String,System.String,System.Int32)"/>.</param>
@@ -2522,6 +2571,7 @@
             <summary>
             Logs the specified warning message.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="message">The warning message.</param>
             <param name="callerInfo">Information about the caller. Default is null, otherwise use <see cref="M:SiliconStudio.Core.Diagnostics.CallerInfo.Get(System.String,System.String,System.Int32)"/>.</param>
         </member>
@@ -2529,6 +2579,7 @@
             <summary>
             Logs the specified warning message.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="messageFormat">The warning message to format.</param>
             <param name="parameters">The parameters to used with the <see cref="!:messageFormat" />. The last parameter can be used to store <see cref="T:SiliconStudio.Core.Diagnostics.CallerInfo"/></param>
         </member>
@@ -2536,6 +2587,7 @@
             <summary>
             Logs the specified warning message with an exception.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="messageFormat">The warning message to format.</param>
             <param name="exception">An exception to log with the message.</param>
             <param name="parameters">The parameters to used with the <see cref="!:messageFormat" />. The last parameter can be used to store <see cref="T:SiliconStudio.Core.Diagnostics.CallerInfo"/></param>
@@ -2545,6 +2597,7 @@
             <summary>
             Logs the specified error message with an exception.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="message">The error message.</param>
             <param name="exception">An exception to log with the message.</param>
             <param name="callerInfo">Information about the caller. Default is null, otherwise use <see cref="M:SiliconStudio.Core.Diagnostics.CallerInfo.Get(System.String,System.String,System.Int32)"/>.</param>
@@ -2553,6 +2606,7 @@
             <summary>
             Logs the specified error message.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="message">The error message.</param>
             <param name="callerInfo">Information about the caller. Default is null, otherwise use <see cref="M:SiliconStudio.Core.Diagnostics.CallerInfo.Get(System.String,System.String,System.Int32)"/>.</param>
         </member>
@@ -2560,6 +2614,7 @@
             <summary>
             Logs the specified error message.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="messageFormat">The error message to format.</param>
             <param name="parameters">The parameters to used with the <see cref="!:messageFormat" />. The last parameter can be used to store <see cref="T:SiliconStudio.Core.Diagnostics.CallerInfo"/></param>
         </member>
@@ -2567,6 +2622,7 @@
             <summary>
             Logs the specified error message with an exception.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="messageFormat">The error message to format.</param>
             <param name="exception">An exception to log with the message.</param>
             <param name="parameters">The parameters to used with the <see cref="!:messageFormat" />. The last parameter can be used to store <see cref="T:SiliconStudio.Core.Diagnostics.CallerInfo"/></param>
@@ -2576,6 +2632,7 @@
             <summary>
             Logs the specified fatal message with an exception.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="message">The fatal message.</param>
             <param name="exception">An exception to log with the message.</param>
             <param name="callerInfo">Information about the caller. Default is null, otherwise use <see cref="M:SiliconStudio.Core.Diagnostics.CallerInfo.Get(System.String,System.String,System.Int32)"/>.</param>
@@ -2584,6 +2641,7 @@
             <summary>
             Logs the specified fatal message.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="message">The fatal message.</param>
             <param name="callerInfo">Information about the caller. Default is null, otherwise use <see cref="M:SiliconStudio.Core.Diagnostics.CallerInfo.Get(System.String,System.String,System.Int32)"/>.</param>
         </member>
@@ -2591,6 +2649,7 @@
             <summary>
             Logs the specified fatal message.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="messageFormat">The fatal message to format.</param>
             <param name="parameters">The parameters to used with the <see cref="!:messageFormat" />. The last parameter can be used to store <see cref="T:SiliconStudio.Core.Diagnostics.CallerInfo"/></param>
         </member>
@@ -2598,6 +2657,7 @@
             <summary>
             Logs the specified fatal message with an exception.
             </summary>
+            <param name="logger">The logger.</param>
             <param name="messageFormat">The fatal message to format.</param>
             <param name="exception">An exception to log with the message.</param>
             <param name="parameters">The parameters to used with the <see cref="!:messageFormat" />. The last parameter can be used to store <see cref="T:SiliconStudio.Core.Diagnostics.CallerInfo"/></param>
@@ -3391,46 +3451,110 @@
         <member name="M:SiliconStudio.Core.DisposeBase.SiliconStudio#Core#IReferencable#Release">
             <inheritdoc/>
         </member>
+        <member name="T:SiliconStudio.Core.PropertyContainerClass">
+            <summary>
+            Class wrapper around <see cref="T:SiliconStudio.Core.PropertyContainer"/>.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Core.PropertyContainerClass.Count">
+            <inheritdoc />
+        </member>
+        <member name="P:SiliconStudio.Core.PropertyContainerClass.IsReadOnly">
+            <inheritdoc />
+        </member>
+        <member name="P:SiliconStudio.Core.PropertyContainerClass.Keys">
+            <inheritdoc />
+        </member>
+        <member name="P:SiliconStudio.Core.PropertyContainerClass.Owner">
+            <inheritdoc />
+        </member>
+        <member name="P:SiliconStudio.Core.PropertyContainerClass.Values">
+            <inheritdoc />
+        </member>
+        <member name="P:SiliconStudio.Core.PropertyContainerClass.Item(SiliconStudio.Core.PropertyKey)">
+            <inheritdoc />
+        </member>
+        <member name="E:SiliconStudio.Core.PropertyContainerClass.PropertyUpdated">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.Clear">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.Add``1(SiliconStudio.Core.PropertyKey{``0},``0)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.ContainsKey(SiliconStudio.Core.PropertyKey)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.Remove(SiliconStudio.Core.PropertyKey)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.CopyTo(SiliconStudio.Core.PropertyContainer@)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.Get(SiliconStudio.Core.PropertyKey)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.GetSafe``1(SiliconStudio.Core.PropertyKey{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.Get``1(SiliconStudio.Core.PropertyKey{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.TryGetValue(SiliconStudio.Core.PropertyKey,System.Object@)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.TryGetValue``1(SiliconStudio.Core.PropertyKey{``0},``0@)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.Set``1(SiliconStudio.Core.PropertyKey{``0},``0)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.SetObject(SiliconStudio.Core.PropertyKey,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.RaisePropertyContainerUpdated(SiliconStudio.Core.PropertyKey,System.Object,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{SiliconStudio#Core#PropertyKey,System#Object}}#GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{SiliconStudio#Core#PropertyKey,System#Object}}#Add(System.Collections.Generic.KeyValuePair{SiliconStudio.Core.PropertyKey,System.Object})">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{SiliconStudio#Core#PropertyKey,System#Object}}#Contains(System.Collections.Generic.KeyValuePair{SiliconStudio.Core.PropertyKey,System.Object})">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{SiliconStudio#Core#PropertyKey,System#Object}}#CopyTo(System.Collections.Generic.KeyValuePair{SiliconStudio.Core.PropertyKey,System.Object}[],System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{SiliconStudio#Core#PropertyKey,System#Object}}#Remove(System.Collections.Generic.KeyValuePair{SiliconStudio.Core.PropertyKey,System.Object})">
+            <inheritdoc />
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainerClass.System#Collections#Generic#IDictionary{SiliconStudio#Core#PropertyKey,System#Object}#Add(SiliconStudio.Core.PropertyKey,System.Object)">
+            <inheritdoc />
+        </member>
         <member name="T:SiliconStudio.Core.Reflection.IObjectFactory">
             <summary>
-            Interface to create default instance of a type.
+            Interface of a factory that can create instances of a type.
             </summary>
         </member>
         <member name="M:SiliconStudio.Core.Reflection.IObjectFactory.New(System.Type)">
             <summary>
-            Creates a new default instance of a type.
+            Creates a new instance of a type.
             </summary>
-            <param name="type">Type of the instance to create</param>
+            <param name="type">The type of the instance to create.</param>
             <returns>A new default instance of a type.</returns>
         </member>
-        <member name="T:SiliconStudio.Core.Reflection.ObjectFactory">
+        <member name="T:SiliconStudio.Core.Reflection.ObjectFactoryRegistry">
             <summary>
-            A factory to instantiate default instance of types used for the UI.
+            A registry of <see cref="T:SiliconStudio.Core.Reflection.IObjectFactory"/> used to instantiate instances of types used at design-time.
             </summary>
         </member>
-        <member name="M:SiliconStudio.Core.Reflection.ObjectFactory.RegisterFactory(System.Type)">
-            <summary>
-            Registers the factory declared with the <see cref="T:SiliconStudio.Core.Reflection.ObjectFactoryAttribute"/> for the specified object type.
-            </summary>
-            <param name="objectType">Type of the object.</param>
-            <returns>IObjectFactory.</returns>
-            <exception cref="T:System.ArgumentNullException">objectType</exception>
-            <exception cref="T:System.ArgumentException">
-            The type [{0}] for the ObjectFactoryAttribute of [{1}] was not found.ToFormat(factoryAttribute.FactoryTypeName, objectType)
-            or
-            The type [{0}] for the ObjectFactoryAttribute of [{1}] is not a IObjectFactory.ToFormat(factoryAttribute.FactoryTypeName, objectType)
-            </exception>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ObjectFactory.RegisterFactory(System.Type,SiliconStudio.Core.Reflection.IObjectFactory)">
-            <summary>
-            Registers a factory for the specified object type.
-            </summary>
-            <param name="objectType">Type of the object.</param>
-            <param name="factory">The factory.</param>
-            <returns>IObjectFactory.</returns>
-            <exception cref="T:System.ArgumentNullException">objectType</exception>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ObjectFactory.GetFactory(System.Type)">
+        <member name="M:SiliconStudio.Core.Reflection.ObjectFactoryRegistry.GetFactory(System.Type)">
             <summary>
             Gets the factory corresponding to the given object type, if available.
             </summary>
@@ -3438,52 +3562,35 @@
             <returns>The factory corresponding to the given object type if available, <c>null</c> otherwise.</returns>
             <exception cref="T:System.ArgumentNullException">objectType</exception>
         </member>
-        <member name="M:SiliconStudio.Core.Reflection.ObjectFactory.FindRegisteredFactories">
-            <summary>
-            Finds the registered factories.
-            </summary>
-            <returns>List&lt;Type&gt;.</returns>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ObjectFactory.NewInstance``1">
+        <member name="M:SiliconStudio.Core.Reflection.ObjectFactoryRegistry.NewInstance``1">
             <summary>
             Creates a default instance for an object type.
             </summary>
             <typeparam name="T">Type of the object to create</typeparam>
             <returns>A new instance of T</returns>
         </member>
-        <member name="M:SiliconStudio.Core.Reflection.ObjectFactory.NewInstance(System.Type)">
+        <member name="M:SiliconStudio.Core.Reflection.ObjectFactoryRegistry.CanCreateInstance(System.Type)">
+            <summary>
+            Returns true if the object of the specific type can be created.
+            </summary>
+            <param name="objectType">Type of the object.</param>
+            <returns>True if it can be created, false otherwise.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Reflection.ObjectFactoryRegistry.NewInstance(System.Type)">
             <summary>
             Creates a default instance for an object type.
             </summary>
-            <param name="objectType">Type of the object .</param>
+            <param name="objectType">Type of the object.</param>
             <returns>A new default instance of an object.</returns>
-        </member>
-        <member name="T:SiliconStudio.Core.Reflection.ObjectFactoryAttribute">
-            <summary>
-            Attribute to define for a <see cref="T:SiliconStudio.Core.Reflection.IObjectFactory"/> for a <see cref="!:Asset"/>.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Core.Reflection.ObjectFactoryAttribute.FactoryTypeName">
-            <summary>
-            Gets the name of the <see cref="T:SiliconStudio.Core.Reflection.ObjectFactoryAttribute"/> type
-            </summary>
-            <value>The name of the serializable type.</value>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ObjectFactoryAttribute.#ctor(System.Type)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Core.Reflection.ObjectFactoryAttribute"/> class.
-            </summary>
-            <param name="type">The type must be of type <see cref="T:SiliconStudio.Core.Reflection.IObjectFactory"/>.</param>
-        </member>
-        <member name="M:SiliconStudio.Core.Reflection.ObjectFactoryAttribute.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:SiliconStudio.Core.Reflection.ObjectFactoryAttribute"/> class.
-            </summary>
-            <param name="typeName">The type must be of type <see cref="T:SiliconStudio.Core.Reflection.IObjectFactory"/>.</param>
         </member>
         <member name="T:SiliconStudio.Core.Reflection.AssemblyCommonCategories">
             <summary>
             Common categories that can be used with <see cref="T:SiliconStudio.Core.Reflection.AssemblyRegistry"/>
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Core.Reflection.AssemblyCommonCategories.Engine">
+            <summary>
+            The assembly is containing engine data.
             </summary>
         </member>
         <member name="F:SiliconStudio.Core.Reflection.AssemblyCommonCategories.Assets">
@@ -3545,12 +3652,15 @@
             <param name="alias"></param>
             <returns></returns>
         </member>
-        <member name="M:SiliconStudio.Core.Reflection.AssemblyRegistry.GetType(System.String)">
+        <member name="M:SiliconStudio.Core.Reflection.AssemblyRegistry.GetType(System.String,System.Boolean)">
             <summary>
             Gets a type by its typename already loaded in the assembly registry.
             </summary>
             <param name="fullyQualifiedTypeName">The typename</param>
+            <param name="throwOnError"></param>
             <returns>The type instance or null if not found.</returns>
+            <seealso cref="M:System.Type.GetType(System.String,System.Boolean)"/>
+            <seealso cref="M:System.Reflection.Assembly.GetType(System.String,System.Boolean)"/>
         </member>
         <member name="M:SiliconStudio.Core.Reflection.AssemblyRegistry.Find(System.Collections.Generic.IEnumerable{System.String})">
             <summary>
@@ -3636,11 +3746,6 @@
         <member name="P:SiliconStudio.Core.IIdentifiable.Id">
             <summary>
             Gets the id of this instance
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Core.NonIdentifiableAttribute">
-            <summary>
-            Tag a class that should not have an attached unique identifier.
             </summary>
         </member>
         <member name="T:SiliconStudio.Core.IO.NamespaceDoc">
@@ -3823,11 +3928,6 @@
         <member name="P:SiliconStudio.Core.IO.NativeStreamWrapper.WriteTimeout">
             <inheritdoc/>
         </member>
-        <member name="T:SiliconStudio.Core.NativeLibraryInternal">
-            <summary>
-            Internally this file is used by the ExecServer project in order to copy native dlls to shadow copy folders.
-            </summary>
-        </member>
         <member name="T:SiliconStudio.Core.PlatformFolders">
             <summary>
             Folders used for the running platform.
@@ -3876,9 +3976,26 @@
             It could be read-only on some platforms.
             </summary>
         </member>
+        <member name="T:SiliconStudio.Core.Serialization.GenericSerializerFactory">
+            <summary>
+            Simple serializer that will matches specific type using base type and create a data serializer with matched type.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.GenericSerializerFactory.#ctor(System.Type,System.Type)">
+            <summary>
+            Initializes a new instance of the type <see cref="T:SiliconStudio.Core.Serialization.GenericSerializerFactory"/>.
+            </summary>
+            <param name="baseType">The type to match.</param>
+            <param name="serializerGenericType">The generic type that will be used to instantiate serializers.</param>
+        </member>
         <member name="T:SiliconStudio.Core.Serialization.NullSerializer`1">
             <summary>
             A null serializer that can be used to add dummy serialization attributes.
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Core.Serialization.SerializerFactory">
+            <summary>
+            Used as a fallback when <see cref="M:SiliconStudio.Core.Serialization.SerializerSelector.GetSerializer(SiliconStudio.Core.Storage.ObjectId@)"/> didn't find anything.
             </summary>
         </member>
         <member name="T:SiliconStudio.Core.Serialization.Serializers.HashSetSerializer`1">
@@ -4508,22 +4625,49 @@
             Used as a common base class for all data serializers.
             </summary>
         </member>
+        <member name="F:SiliconStudio.Core.Serialization.DataSerializer.SerializationTypeId">
+            <summary>
+            The type id of <see cref="P:SiliconStudio.Core.Serialization.DataSerializer.SerializationType"/>. Used internally to avoid dealing with strings.
+            </summary>
+        </member>
         <member name="F:SiliconStudio.Core.Serialization.DataSerializer.Initialized">
             <summary>
             Used internally to know if the serializer has been initialized.
             </summary>
         </member>
         <member name="P:SiliconStudio.Core.Serialization.DataSerializer.SerializationType">
-            <inheritdoc/>
+            <summary>
+            The type of the object that can be serialized or deserialized.
+            </summary>
         </member>
         <member name="P:SiliconStudio.Core.Serialization.DataSerializer.IsBlittable">
             <inheritdoc/>
         </member>
+        <member name="M:SiliconStudio.Core.Serialization.DataSerializer.Initialize(SiliconStudio.Core.Serialization.SerializerSelector)">
+            <summary>
+            Initializes the specified serializer.
+            </summary>
+            <remarks>This method should be thread-safe and OK to call multiple times.</remarks>
+            <param name="serializerSelector">The serializer.</param>
+        </member>
         <member name="M:SiliconStudio.Core.Serialization.DataSerializer.Serialize(System.Object@,SiliconStudio.Core.Serialization.ArchiveMode,SiliconStudio.Core.Serialization.SerializationStream)">
-            <inheritdoc/>
+            <summary>
+            Serializes or deserializes the given object <paramref name="obj"/>.
+            </summary>
+            <param name="obj">The object to serialize or deserialize.</param>
+            <param name="mode">The serialization mode.</param>
+            <param name="stream">The stream to serialize or deserialize to.</param>
         </member>
         <member name="M:SiliconStudio.Core.Serialization.DataSerializer.PreSerialize(System.Object@,SiliconStudio.Core.Serialization.ArchiveMode,SiliconStudio.Core.Serialization.SerializationStream)">
-            <inheritdoc/>
+            <summary>
+            Performs the first step of serialization or deserialization.
+            </summary>
+            <remarks>
+            Typically, it will instantiate the object if [null], and if it's a collection clear it.
+            </remarks>
+            <param name="obj">The object to process.</param>
+            <param name="mode">The serialization mode.</param>
+            <param name="stream">The stream to serialize or deserialize to.</param>
         </member>
         <member name="T:SiliconStudio.Core.Serialization.DataSerializer`1">
             <summary>
@@ -4541,16 +4685,33 @@
             <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Core.Serialization.DataSerializer`1.Serialize(`0,SiliconStudio.Core.Serialization.SerializationStream)">
-            <inheritdoc/>
+            <summary>
+            Serializes the given object <paramref name="obj"/>.
+            </summary>
+            <param name="obj">The object to serialize or deserialize.</param>
+            <param name="stream">The stream to serialize or deserialize to.</param>
         </member>
         <member name="M:SiliconStudio.Core.Serialization.DataSerializer`1.PreSerialize(System.Object@,SiliconStudio.Core.Serialization.ArchiveMode,SiliconStudio.Core.Serialization.SerializationStream)">
             <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Core.Serialization.DataSerializer`1.PreSerialize(`0@,SiliconStudio.Core.Serialization.ArchiveMode,SiliconStudio.Core.Serialization.SerializationStream)">
-            <inheritdoc/>
+            <summary>
+            Performs the first step of serialization or deserialization.
+            </summary>
+            <remarks>
+            Typically, it will instantiate the object if [null], and if it's a collection clear it.
+            </remarks>
+            <param name="obj">The object to process.</param>
+            <param name="mode">The serialization mode.</param>
+            <param name="stream">The stream to serialize or deserialize to.</param>
         </member>
         <member name="M:SiliconStudio.Core.Serialization.DataSerializer`1.Serialize(`0@,SiliconStudio.Core.Serialization.ArchiveMode,SiliconStudio.Core.Serialization.SerializationStream)">
-            <inheritdoc/>
+            <summary>
+            Serializes or deserializes the given object <paramref name="obj"/>.
+            </summary>
+            <param name="obj">The object to serialize or deserialize.</param>
+            <param name="mode">The serialization mode.</param>
+            <param name="stream">The stream to serialize or deserialize to.</param>
         </member>
         <member name="T:SiliconStudio.Core.Serialization.AssemblySerializerEntry">
             <summary>
@@ -4588,23 +4749,14 @@
         <member name="M:SiliconStudio.Core.Serialization.IDataSerializerGenericInstantiation.EnumerateGenericInstantiations(SiliconStudio.Core.Serialization.SerializerSelector,System.Collections.Generic.IList{System.Type})">
             <summary>
             Enumerates required <see cref="T:SiliconStudio.Core.Serialization.DataSerializer"/> required by this instance of DataSerializer.
-            Null is authorized in enumeration (for now).
             </summary>
+            <remarks>
+            The code won't be executed, it will only be scanned for typeof() operands by the assembly processor.
+            Null is authorized in enumeration (for now).
+            </remarks>
             <param name="serializerSelector"></param>
             <param name="genericInstantiations"></param>
             <returns></returns>
-        </member>
-        <member name="T:SiliconStudio.Core.Serialization.IDataSerializerInitializer">
-            <summary>
-            Adds initialization feature to a <see cref="T:SiliconStudio.Core.Serialization.DataSerializer"/>.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Core.Serialization.IDataSerializerInitializer.Initialize(SiliconStudio.Core.Serialization.SerializerSelector)">
-            <summary>
-            Initializes the specified serializer.
-            </summary>
-            <remarks>This method should be thread-safe and OK to call multiple times.</remarks>
-            <param name="serializerSelector">The serializer.</param>
         </member>
         <member name="T:SiliconStudio.Core.Serialization.MemberSerializer.ObjectReferenceEqualityComparer">
             <summary>
@@ -5120,7 +5272,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Core.Serialization.SerializerSelector"/> class.
             </summary>
-            <param name="reuseReferences">if set to <c>true</c> [reuse references] (allow cycles in the object graph).</param>
+            <param name="reuseReferences">if set to <c>true</c> reuse references (allow cycles in the object graph).</param>
             <param name="profiles">The profiles.</param>
         </member>
         <member name="M:SiliconStudio.Core.Serialization.SerializerSelector.HasProfile(System.String)">
@@ -5132,11 +5284,11 @@
         </member>
         <member name="P:SiliconStudio.Core.Serialization.SerializerSelector.ReuseReferences">
             <summary>
-            Gets or sets a value indicating whether [serialization reuses references]
+            Gets or sets a value indicating whether serialization reuses references 
             (that is, each reference gets assigned an ID and if it is serialized again, same instance will be reused).
             </summary>
             <value>
-              <c>true</c> if [serialization reuses references]; otherwise, <c>false</c>.
+              <c>true</c> if serialization reuses references; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="M:SiliconStudio.Core.Serialization.SerializerSelector.GetSerializer(System.Type)">
@@ -5145,6 +5297,12 @@
             </summary>
             <param name="type">The type that you want to (de)serialize.</param>
             <returns>The <see cref="T:SiliconStudio.Core.Serialization.DataSerializer`1"/> for this type if it exists or can be created, otherwise null.</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.SerializerSelector.EnsureInitialized(SiliconStudio.Core.Serialization.DataSerializer)">
+            <summary>
+            Internal function, for use by <see cref="T:SiliconStudio.Core.Serialization.SerializerFactory"/>.
+            </summary>
+            <param name="dataSerializer"></param>
         </member>
         <member name="M:SiliconStudio.Core.Serialization.SerializerSelector.GetSerializer``1">
             <summary>
@@ -5194,6 +5352,21 @@
             Combinations of both <see cref="F:SiliconStudio.Core.Serialization.DataSerializerGenericMode.Type"/> and <see cref="F:SiliconStudio.Core.Serialization.DataSerializerGenericMode.GenericArguments"/>.
             Example: serializer of A{T1, T2} becomes instantiated as Serializer{A, T1, T2}.
             </summary>
+        </member>
+        <member name="T:SiliconStudio.Core.Serialization.DataSerializerGlobalAttribute">
+            <summary>
+            Declares a serializer like <see cref="T:SiliconStudio.Core.Serialization.DataSerializerAttribute"/> or <see cref="T:SiliconStudio.Core.DataContractAttribute"/>, but externally.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Core.Serialization.DataSerializerGlobalAttribute.#ctor(System.Type,System.Type,SiliconStudio.Core.Serialization.DataSerializerGenericMode,System.Boolean,System.Boolean)">
+            <summary>
+            Declares a data serializer, either by its serializer type (it will act like <see cref="T:SiliconStudio.Core.Serialization.DataSerializerAttribute"/> and guess data type from the generic type of <see cref="T:SiliconStudio.Core.Serialization.DataSerializer`1"/>) or the data type (it will act just like if <see cref="T:SiliconStudio.Core.DataContractAttribute"/> was set on the data type).
+            </summary>
+            <param name="serializerType">The serializer type. Can be null if <paramref name="dataType"/> if set.</param>
+            <param name="dataType">The data type. Can be null if <paramref name="serializerType"/> is set.</param>
+            <param name="mode">Defines how generic type are added to <paramref name="serializerType"/>.</param>
+            <param name="inherited">Similar to <see cref="P:SiliconStudio.Core.DataContractAttribute.Inherited"/></param>
+            <param name="complexSerializer"></param>
         </member>
         <member name="T:SiliconStudio.Core.Storage.ObjectIdSimpleBuilder">
             <summary>
@@ -5409,26 +5582,6 @@
             When specified on a property or field, a serializer won't be needed for this type (useful if serializer is dynamically or manually registered).
             </summary>
         </member>
-        <member name="M:SiliconStudio.Core.NativeLibrary.PreloadLibrary(System.String)">
-            <summary>
-            Try to preload the library.
-            This is useful when we want to have AnyCPU .NET and CPU-specific native code.
-            Only available on Windows for now.
-            </summary>
-            <param name="libraryName">Name of the library.</param>
-            <exception cref="T:System.InvalidOperationException"></exception>
-        </member>
-        <member name="M:SiliconStudio.Core.NativeLibrary.UnLoad(System.String)">
-            <summary>
-            UnLoad a specific native dynamic library loaded previously by <see cref="M:SiliconStudio.Core.NativeLibrary.LoadLibrary(System.String)" />.
-            </summary>
-            <param name="libraryName">Name of the library to unload.</param>
-        </member>
-        <member name="M:SiliconStudio.Core.NativeLibrary.UnLoadAll">
-            <summary>
-            UnLoad all native dynamic library loaded previously by <see cref="M:SiliconStudio.Core.NativeLibrary.LoadLibrary(System.String)"/>.
-            </summary>
-        </member>
         <member name="T:SiliconStudio.Core.NullDisposable">
             <summary>
             This class is an implementation of the <see cref="T:System.IDisposable"/> interface that does nothing when disposed.
@@ -5459,16 +5612,6 @@
             The windows desktop OS.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.PlatformType.WindowsPhone">
-            <summary>
-            The Windows Phone OS.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Core.PlatformType.WindowsStore">
-            <summary>
-            The Windows Store OS.
-            </summary>
-        </member>
         <member name="F:SiliconStudio.Core.PlatformType.Android">
             <summary>
             The android OS.
@@ -5479,9 +5622,9 @@
             The iOS.
             </summary>
         </member>
-        <member name="F:SiliconStudio.Core.PlatformType.Windows10">
+        <member name="F:SiliconStudio.Core.PlatformType.UWP">
             <summary>
-            The Windows 10 OS.
+            The Universal Windows Platform (UWP).
             </summary>
         </member>
         <member name="F:SiliconStudio.Core.PlatformType.Linux">
@@ -5492,6 +5635,11 @@
         <member name="F:SiliconStudio.Core.PlatformType.macOS">
             <summary>
             macOS
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Core.PlatformType.Windows10">
+            <summary>
+            The Universal Windows Platform (UWP). Please use <see cref="F:SiliconStudio.Core.PlatformType.UWP"/> intead.
             </summary>
         </member>
         <member name="T:SiliconStudio.Core.ComponentBase">
@@ -5863,6 +6011,13 @@
             Occurs when when a service is removed.
             </summary>
         </member>
+        <member name="M:SiliconStudio.Core.IServiceRegistry.GetService(System.Type)">
+            <summary>
+            Gets the service object of the specified type.
+            </summary>
+            <param name="serviceType">The type of the service to get.</param>
+            <returns>A service of the requested type, or [null] if not found.</returns>
+        </member>
         <member name="M:SiliconStudio.Core.IServiceRegistry.AddService(System.Type,System.Object)">
             <summary>
             Adds a service to this service provider.
@@ -5948,132 +6103,6 @@
             </summary>
             <param name="invalidationRefCallback">The object invalidation callback.</param>
             <exception cref="T:System.ArgumentNullException">Parameter <paramref name="invalidationRefCallback"/> is null.</exception>
-        </member>
-        <member name="T:SiliconStudio.Core.PropertyContainer">
-            <summary>
-            Represents a container that can hold properties, lightweight to embed (lazy initialized).
-            </summary>
-            <remarks>
-            Tag properties system purpose is to allow binding of properties that aren't logically supposed to be
-            in a general class (probably because the property exists only in a higher level part of the engine).
-            A typical example includes source mesh, collision data and various bouding volumes for a Geometry object:
-            including them directly in the low-level Geometry class would be a terrible design decision !
-            And the other well known solution, which consist of maintaining a Dictionary of object to properties
-            isn't really nice either (especially with non-deterministic object destruction, it's hard to clean it up, would require lot of events).
-            As a result, a specific system has been implemented.
-            A class that could hold such tag properties should have an instance of <see cref="T:SiliconStudio.Core.PropertyContainer"/> as a mutable field member.
-            An cool feature of this system is that if a property doesn't exist, it could be generated during first access from a delegate or come from a default value.
-            </remarks>
-        </member>
-        <member name="T:SiliconStudio.Core.PropertyContainer.Serializer">
-            <summary>
-            Serializer for the PropertyContainer
-            </summary>
-        </member>
-        <member name="T:SiliconStudio.Core.PropertyContainer.PropertyUpdatedDelegate">
-            <summary>
-            Property changed delegate.
-            </summary>
-            <param name="propertyContainer">The property container.</param>
-            <param name="propertyKey">The property key.</param>
-            <param name="newValue">The property new value.</param>
-            <param name="oldValue">The property old value.</param>
-        </member>
-        <member name="E:SiliconStudio.Core.PropertyContainer.PropertyUpdated">
-            <summary>
-            Occurs when a property is modified.
-            </summary>
-        </member>
-        <member name="M:SiliconStudio.Core.PropertyContainer.GetEnumerator">
-            <summary>
-            Gets the key-properties value pairs in this instance.
-            </summary>
-        </member>
-        <member name="P:SiliconStudio.Core.PropertyContainer.Count">
-            <summary>
-            Gets the number of properties stored in this container.
-            </summary>
-            <value>The count of properties.</value>
-        </member>
-        <member name="M:SiliconStudio.Core.PropertyContainer.Add``1(SiliconStudio.Core.PropertyKey{``0},``0)">
-            <summary>
-            Adds the specified key-value pair.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="key">The key.</param>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:SiliconStudio.Core.PropertyContainer.ContainsKey(SiliconStudio.Core.PropertyKey)">
-            <summary>
-            Determines whether the specified instance contains this key.
-            </summary>
-            <param name="key">The key.</param>
-            <returns>
-              <c>true</c> if the specified instance contains this key; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:SiliconStudio.Core.PropertyContainer.CopyTo(SiliconStudio.Core.PropertyContainer@)">
-            <summary>
-            Copies properties from this instance to a container.
-            </summary>
-            <param name="destination">The destination.</param>
-        </member>
-        <member name="M:SiliconStudio.Core.PropertyContainer.Get(SiliconStudio.Core.PropertyKey)">
-            <summary>
-            Gets the specified tag value.
-            </summary>
-            <param name="propertyKey">The tag property.</param>
-            <returns>Value of the tag property</returns>
-        </member>
-        <member name="M:SiliconStudio.Core.PropertyContainer.GetSafe``1(SiliconStudio.Core.PropertyKey{``0})">
-            <summary>
-            Gets the value of a property key or throw an error if the value was not found
-            </summary>
-            <typeparam name="T">Type of the property key</typeparam>
-            <param name="propertyKey">The property key.</param>
-            <returns>The value associated with this property key.</returns>
-            <exception cref="T:System.ArgumentNullException">propertyKey</exception>
-            <exception cref="T:System.ArgumentException">Unable to retrieve value for [{0}].ToFormat(propertyKey)</exception>
-        </member>
-        <member name="M:SiliconStudio.Core.PropertyContainer.Get``1(SiliconStudio.Core.PropertyKey{``0})">
-            <summary>
-            Gets the specified tag value.
-            </summary>
-            <typeparam name="T">Type of the tag value</typeparam>
-            <param name="propertyKey">The tag property.</param>
-            <returns>Typed value of the tag property</returns>
-        </member>
-        <member name="M:SiliconStudio.Core.PropertyContainer.TryGetValue(SiliconStudio.Core.PropertyKey,System.Object@)">
-            <summary>
-            Tries to get a tag value.
-            </summary>
-            <param name="propertyKey">The tag property.</param>
-            <param name="value">The value or default vaue if not found</param>
-            <returns>Returns <c>true</c> if the was found; <c>false</c> otherwise</returns>
-        </member>
-        <member name="M:SiliconStudio.Core.PropertyContainer.TryGetValue``1(SiliconStudio.Core.PropertyKey{``0},``0@)">
-            <summary>
-            Tries to get a tag value.
-            </summary>
-            <typeparam name="T">Type of the tag value</typeparam>
-            <param name="propertyKey">The tag property.</param>
-            <param name="value">The value or default vaue if not found</param>
-            <returns>Returns <c>true</c> if the was found; <c>false</c> otherwise</returns>
-        </member>
-        <member name="M:SiliconStudio.Core.PropertyContainer.Set``1(SiliconStudio.Core.PropertyKey{``0},``0)">
-            <summary>
-            Sets the specified tag value.
-            </summary>
-            <typeparam name="T">Type of the tag value</typeparam>
-            <param name="propertyKey">The tag property.</param>
-            <param name="tagValue">The tag value.</param>
-        </member>
-        <member name="M:SiliconStudio.Core.PropertyContainer.SetObject(SiliconStudio.Core.PropertyKey,System.Object)">
-            <summary>
-            Sets the specified tag value.
-            </summary>
-            <param name="propertyKey">The tag property.</param>
-            <param name="tagValue">The tag value.</param>
         </member>
         <member name="M:SiliconStudio.Core.ReferenceCounting.ReferenceCountingExtensions.AddReferenceInternal(SiliconStudio.Core.IReferencable)">
             <summary>
@@ -6216,12 +6245,6 @@
              Only valid for a property / field that has an  array type of a 
              some value type. The content of the array is stored in a binary
              format encoded in base64 style.
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Core.DataMemberMode.ReadOnly">
-            <summary>
-            Only valid for a property that will be used only as a "read only"
-            property.
             </summary>
         </member>
         <member name="F:SiliconStudio.Core.DataMemberMode.Never">
@@ -6509,6 +6532,127 @@
             Check if running assembly has the DebuggableAttribute set with the `DisableOptimizations` mode enabled.
             This function is called only once.
             </summary>
+        </member>
+        <member name="T:SiliconStudio.Core.PropertyContainer">
+            <summary>
+            Represents a container that can hold properties, lightweight to embed (lazy initialized).
+            </summary>
+            <remarks>
+            Tag properties system purpose is to allow binding of properties that aren't logically supposed to be
+            in a general class (probably because the property exists only in a higher level part of the engine).
+            A typical example includes source mesh, collision data and various bouding volumes for a Geometry object:
+            including them directly in the low-level Geometry class would be a terrible design decision !
+            And the other well known solution, which consist of maintaining a Dictionary of object to properties
+            isn't really nice either (especially with non-deterministic object destruction, it's hard to clean it up, would require lot of events).
+            As a result, a specific system has been implemented.
+            A class that could hold such tag properties should have an instance of <see cref="T:SiliconStudio.Core.PropertyContainer"/> as a mutable field member.
+            An cool feature of this system is that if a property doesn't exist, it could be generated during first access from a delegate or come from a default value.
+            </remarks>
+        </member>
+        <member name="T:SiliconStudio.Core.PropertyContainer.PropertyUpdatedDelegate">
+            <summary>
+            Property changed delegate.
+            </summary>
+            <param name="propertyContainer">The property container.</param>
+            <param name="propertyKey">The property key.</param>
+            <param name="newValue">The property new value.</param>
+            <param name="oldValue">The property old value.</param>
+        </member>
+        <member name="E:SiliconStudio.Core.PropertyContainer.PropertyUpdated">
+            <summary>
+            Occurs when a property is modified.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainer.GetEnumerator">
+            <summary>
+            Gets the key-properties value pairs in this instance.
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Core.PropertyContainer.Count">
+            <summary>
+            Gets the number of properties stored in this container.
+            </summary>
+            <value>The count of properties.</value>
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainer.Add``1(SiliconStudio.Core.PropertyKey{``0},``0)">
+            <summary>
+            Adds the specified key-value pair.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainer.ContainsKey(SiliconStudio.Core.PropertyKey)">
+            <summary>
+            Determines whether the specified instance contains this key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>
+              <c>true</c> if the specified instance contains this key; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainer.CopyTo(SiliconStudio.Core.PropertyContainer@)">
+            <summary>
+            Copies properties from this instance to a container.
+            </summary>
+            <param name="destination">The destination.</param>
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainer.Get(SiliconStudio.Core.PropertyKey)">
+            <summary>
+            Gets the specified tag value.
+            </summary>
+            <param name="propertyKey">The tag property.</param>
+            <returns>Value of the tag property</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainer.GetSafe``1(SiliconStudio.Core.PropertyKey{``0})">
+            <summary>
+            Gets the value of a property key or throw an error if the value was not found
+            </summary>
+            <typeparam name="T">Type of the property key</typeparam>
+            <param name="propertyKey">The property key.</param>
+            <returns>The value associated with this property key.</returns>
+            <exception cref="T:System.ArgumentNullException">propertyKey</exception>
+            <exception cref="T:System.ArgumentException">Unable to retrieve value for [{0}].ToFormat(propertyKey)</exception>
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainer.Get``1(SiliconStudio.Core.PropertyKey{``0})">
+            <summary>
+            Gets the specified tag value.
+            </summary>
+            <typeparam name="T">Type of the tag value</typeparam>
+            <param name="propertyKey">The tag property.</param>
+            <returns>Typed value of the tag property</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainer.TryGetValue(SiliconStudio.Core.PropertyKey,System.Object@)">
+            <summary>
+            Tries to get a tag value.
+            </summary>
+            <param name="propertyKey">The tag property.</param>
+            <param name="value">The value or default vaue if not found</param>
+            <returns>Returns <c>true</c> if the was found; <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainer.TryGetValue``1(SiliconStudio.Core.PropertyKey{``0},``0@)">
+            <summary>
+            Tries to get a tag value.
+            </summary>
+            <typeparam name="T">Type of the tag value</typeparam>
+            <param name="propertyKey">The tag property.</param>
+            <param name="value">The value or default vaue if not found</param>
+            <returns>Returns <c>true</c> if the was found; <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainer.Set``1(SiliconStudio.Core.PropertyKey{``0},``0)">
+            <summary>
+            Sets the specified tag value.
+            </summary>
+            <typeparam name="T">Type of the tag value</typeparam>
+            <param name="propertyKey">The tag property.</param>
+            <param name="tagValue">The tag value.</param>
+        </member>
+        <member name="M:SiliconStudio.Core.PropertyContainer.SetObject(SiliconStudio.Core.PropertyKey,System.Object)">
+            <summary>
+            Sets the specified tag value.
+            </summary>
+            <param name="propertyKey">The tag property.</param>
+            <param name="tagValue">The tag value.</param>
         </member>
         <member name="T:SiliconStudio.Core.PropertyKey">
             <summary>
@@ -7016,15 +7160,15 @@
         </member>
         <member name="M:SiliconStudio.Core.Utilities.Sleep(System.TimeSpan)">
             <summary>
-            Suspends the current thread of a <see cref="!:sleepTimeInMillis"/>.
+            Suspends current thread for a <param name="sleepTime"/>.
             </summary>
-            <param name="sleepTime">The duration to sleep.</param>
+            <param name="sleepTime">The duration of sleep.</param>
         </member>
         <member name="M:SiliconStudio.Core.Utilities.Sleep(System.Int32)">
             <summary>
-            Suspends the current thread of a <see cref="!:sleepTimeInMillis"/>.
+            Suspends current thread for a <see cref="!:sleepTimeInMillis"/>.
             </summary>
-            <param name="sleepTimeInMillis">The duration to sleep in milliseconds.</param>
+            <param name="sleepTimeInMillis">The duration of sleep in milliseconds.</param>
         </member>
         <member name="M:SiliconStudio.Core.Utilities.UnsafeWrite``1(System.IntPtr,``0@)">
             <summary>
@@ -7058,7 +7202,7 @@
             </summary>
             <typeparam name="T">The type to iterate.</typeparam>
             <param name="root">The root item</param>
-            <param name="childrenF">The function to retreive childs</param>
+            <param name="childrenF">The function to retrieve a child</param>
             <returns></returns>
         </member>
         <member name="T:SiliconStudio.Core.Interop">

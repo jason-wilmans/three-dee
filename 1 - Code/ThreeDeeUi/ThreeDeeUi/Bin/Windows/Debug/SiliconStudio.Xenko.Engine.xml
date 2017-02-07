@@ -202,6 +202,11 @@
             Constant Vector4 value for the IComputeCurve interface
             </summary>
         </member>
+        <member name="T:SiliconStudio.Xenko.Animations.ComputeFunctionCurveVector4">
+            <summary>
+            Function Vector4 value for the IComputeCurve interface
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Animations.ComputeAnimationCurveVector4">
             <summary>
             Constant Vector4 value for the IComputeCurve interface
@@ -238,6 +243,11 @@
         <member name="T:SiliconStudio.Xenko.Animations.ComputeConstCurveVector3">
             <summary>
             Constant Vector3 value for the IComputeCurve interface
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Animations.ComputeFunctionCurveVector3">
+            <summary>
+            Function Vector3 value for the IComputeCurve interface
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Animations.ComputeAnimationCurveVector3">
@@ -278,6 +288,11 @@
             Constant Vector2 value for the IComputeCurve interface
             </summary>
         </member>
+        <member name="T:SiliconStudio.Xenko.Animations.ComputeFunctionCurveVector2">
+            <summary>
+            Function Vector2 value for the IComputeCurve interface
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Animations.ComputeAnimationCurveVector2">
             <summary>
             Constant Vector2 value for the IComputeCurve interface
@@ -314,6 +329,11 @@
         <member name="T:SiliconStudio.Xenko.Animations.ComputeConstCurveFloat">
             <summary>
             Constant float value for the IComputeCurve interface
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Animations.ComputeFunctionCurveFloat">
+            <summary>
+            Function float value for the IComputeCurve interface
             </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Animations.ComputeBinaryCurveFloat">
@@ -392,6 +412,11 @@
             Constant Color4 value for the IComputeCurve interface
             </summary>
         </member>
+        <member name="T:SiliconStudio.Xenko.Animations.ComputeFunctionCurveColor4">
+            <summary>
+            Function Color4 value for the IComputeCurve interface
+            </summary>
+        </member>
         <member name="T:SiliconStudio.Xenko.Animations.ComputeAnimationCurveColor4">
             <summary>
             Constant Color4 value for the IComputeCurve interface
@@ -415,6 +440,18 @@
             <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Xenko.Animations.ComputeBinaryCurveColor4.Multiply(SiliconStudio.Core.Mathematics.Color4,SiliconStudio.Core.Mathematics.Color4)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Animations.ComputeFunctionCurve`1">
+            <summary>
+            A node which describes a function over t value for a compute curve
+            </summary>
+            <typeparam name="T">Sampled data's type</typeparam>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Animations.ComputeFunctionCurve`1.UpdateChanges">
+            <inheritdoc/>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Animations.ComputeFunctionCurve`1.Evaluate(System.Single)">
             <inheritdoc/>
         </member>
         <member name="M:SiliconStudio.Xenko.Animations.ComputeSeparateCurveVector3.UpdateChanges">
@@ -1457,6 +1494,12 @@
             <param name="oldComponent">The old component (may be null if newComponent is added)</param>
             <param name="newComponent">The new component (may be null if oldComponent is removed)</param>
         </member>
+        <member name="T:SiliconStudio.Xenko.Engine.IndexingDictionary`1">
+            <summary>
+            A dictionary that maps index values to items. It uses a sparse list internally for storage.
+            </summary>
+            <typeparam name="T">The type of item indexed in this collection.</typeparam>
+        </member>
         <member name="T:SiliconStudio.Xenko.Engine.LightComponentExtensions">
             <summary>
             Extensions for the <see cref="T:SiliconStudio.Xenko.Engine.LightComponent"/> class.
@@ -1488,6 +1531,315 @@
         </member>
         <member name="M:SiliconStudio.Xenko.Engine.ModelViewHierarchyTransformOperation.Process(SiliconStudio.Xenko.Engine.TransformComponent)">
             <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.NavigationComponent">
+            <summary>
+            This is used to interface with the navigation mesh. Supports FindPath and Raycast
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.NavigationComponent.NavigationMesh">
+            <summary>
+            The navigation mesh which is being used
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.NavigationComponent.NavigationMeshLayer">
+            <summary>
+            The layer of the navigation mesh to use, corresponds to the agent setting with the same index (specified during build)
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationComponent.TryFindPath(SiliconStudio.Core.Mathematics.Vector3,System.Collections.Generic.ICollection{SiliconStudio.Core.Mathematics.Vector3})">
+            <summary>
+            Finds a path from the entity's current location to <see cref="!:end"/>
+            </summary>
+            <param name="end">The ending location of the pathfinding query</param>
+            <param name="path">The waypoints for the found path, if any (at least 2 if a path was found)</param>
+            <returns>The found path points or null</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationComponent.TryFindPath(SiliconStudio.Core.Mathematics.Vector3,System.Collections.Generic.ICollection{SiliconStudio.Core.Mathematics.Vector3},SiliconStudio.Xenko.Engine.NavigationQuerySettings)">
+            <summary>
+            Finds a path from the entity's current location to <see cref="!:end"/>
+            </summary>
+            <param name="end">The ending location of the pathfinding query</param>
+            <param name="querySettings">Advanced settings to be provided to the navigation mesh query</param>
+            <param name="path">The waypoints for the found path, if any (at least 2 if a path was found)</param>
+            <returns>The found path points or null</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationComponent.TryFindPath(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,System.Collections.Generic.ICollection{SiliconStudio.Core.Mathematics.Vector3})">
+            <summary>
+            Finds a path from point <see cref="!:start"/> to <see cref="!:end"/>
+            </summary>
+            <param name="start">The starting location of the pathfinding query</param>
+            <param name="end">The ending location of the pathfinding query</param>
+            <param name="path">The waypoints for the found path, if any (at least 2 if a path was found)</param>
+            <returns>The found path points or null</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationComponent.TryFindPath(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,System.Collections.Generic.ICollection{SiliconStudio.Core.Mathematics.Vector3},SiliconStudio.Xenko.Engine.NavigationQuerySettings)">
+            <summary>
+            Finds a path from point <see cref="!:start"/> to <see cref="!:end"/>
+            </summary>
+            <param name="start">The starting location of the pathfinding query</param>
+            <param name="end">The ending location of the pathfinding query</param>
+            <param name="querySettings">Advanced settings to be provided to the navigation mesh query</param>
+            <param name="path">The waypoints for the found path, if any (at least 2 if a path was found)</param>
+            <returns>The found path points or null</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationComponent.Raycast(SiliconStudio.Core.Mathematics.Vector3)">
+            <summary>
+            Performs a raycast on the navigation mesh to perform line of sight or similar checks. Starts from the entity's current world position
+            </summary>
+            <param name="end">Ending point</param>
+            <returns>The found raycast hit if <see cref="F:SiliconStudio.Xenko.Engine.NavigationRaycastResult.Hit"/> is true</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationComponent.Raycast(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Engine.NavigationQuerySettings)">
+            <summary>
+            Performs a raycast on the navigation mesh to perform line of sight or similar checks.  Starts from the entity's current world position
+            </summary>
+            <param name="end">Ending point</param>
+            <param name="querySettings">Advanced settings to be provided to the navigation mesh query</param>
+            <returns>The found raycast hit if <see cref="F:SiliconStudio.Xenko.Engine.NavigationRaycastResult.Hit"/> is true</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationComponent.Raycast(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3)">
+            <summary>
+            Performs a raycast on the navigation mesh to perform line of sight or similar checks.
+            </summary>
+            <param name="start">Starting point</param>
+            <param name="end">Ending point</param>
+            <returns>The found raycast hit if <see cref="F:SiliconStudio.Xenko.Engine.NavigationRaycastResult.Hit"/> is true</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationComponent.Raycast(SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Core.Mathematics.Vector3,SiliconStudio.Xenko.Engine.NavigationQuerySettings)">
+            <summary>
+            Performs a raycast on the navigation mesh to perform line of sight or similar checks
+            </summary>
+            <param name="start">Starting point</param>
+            <param name="end">Ending point</param>
+            <param name="querySettings">Advanced settings to be provided to the navigation mesh query</param>
+            <returns>The found raycast hit if <see cref="F:SiliconStudio.Xenko.Engine.NavigationRaycastResult.Hit"/> is true</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.NavigationMesh">
+            <summary>
+            A Navigation Mesh, can be used for pathfinding.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationMesh.BoundingBox">
+            <summary>
+            Bounding box used when building
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.NavigationMesh.Layers">
+            <summary>
+            Multiple layers corresponding to multiple agent settings
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.NavigationMesh.NumLayers">
+            <summary>
+            Number of layers
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationMesh.Initialize(SiliconStudio.Xenko.Engine.NavigationMeshBuildSettings,SiliconStudio.Xenko.Engine.NavigationAgentSettings[])">
+            <summary>
+            Used to initialize the navigation mesh so it will allow building tiles
+            This will store the build settings and create the amount of layers corresponding to the number of NavigationAgentSettings
+            </summary>
+            <param name="buildSettings"></param>
+            <param name="agentSettings">Agent setting to use</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationMesh.BuildAllLayers(SiliconStudio.Core.Mathematics.Vector3[],System.Int32[],SiliconStudio.Core.Mathematics.BoundingBox,SiliconStudio.Core.Mathematics.Point)">
+            <summary>
+            Build a single tile for all layers
+            Initialize should have been called before calling this
+            </summary>
+            <param name="inputVertices">Input vertex data for the input mesh</param>
+            <param name="inputIndices">Input index data for the input mesh</param>
+            <param name="boundingBox">Bounding box of the tile</param>
+            <param name="tileCoordinate">Tile coordinate to of the tile to build</param>
+            <returns>A list of built tiles</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationMesh.UpdateTileHash">
+            <summary>
+            Updates <see cref="F:SiliconStudio.Xenko.Engine.NavigationMesh.TileHash"/> to be "unique" to this specific combination of navigation mesh tiles and layers
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.NavigationAgentSettings">
+            <summary>
+            Navigation agent
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationAgentSettings.Height">
+            <summary>
+            Height of the actor
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationAgentSettings.Radius">
+            <summary>
+            Radius of the actor
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationAgentSettings.MaxClimb">
+            <summary>
+            Maximum vertical distance this agent can climb
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationAgentSettings.MaxSlope">
+            <summary>
+            Maximum slope angle this agent can climb (in degrees)
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.NavigationMeshBuildSettings">
+            <summary>
+            Provides settings for the navigation mesh builder to control granularity and error margins 
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationMeshBuildSettings.CellHeight">
+            <summary>
+            The Height of a grid cell in the navigation mesh building steps using heightfields. 
+            A lower number means higher precision on the vertical axis but longer build times
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationMeshBuildSettings.CellSize">
+            <summary>
+            The Width/Height of a grid cell in the navigation mesh building steps using heightfields. 
+            A lower number means higher precision on the horizontal axes but longer build times
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationMeshBuildSettings.TileSize">
+            <summary>
+            Tile size used for Navigation mesh tiles, the final size of a tile is CellSize*TileSize
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationMeshBuildSettings.MinRegionArea">
+            <summary>
+            The minimum number of cells allowed to form isolated island areas
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationMeshBuildSettings.RegionMergeArea">
+            <summary>
+            Any regions with a span count smaller than this value will, if possible, 
+            be merged with larger regions.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationMeshBuildSettings.MaxEdgeLen">
+            <summary>
+            The maximum allowed length for contour edges along the border of the mesh.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationMeshBuildSettings.MaxEdgeError">
+            <summary>
+            The maximum distance a simplfied contour's border edges should deviate from the original raw contour.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationMeshBuildSettings.DetailSamplingDistance">
+            <summary>
+            Sets the sampling distance to use when generating the detail mesh. (For height detail only.)
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationMeshBuildSettings.MaxDetailSamplingError">
+            <summary>
+            The maximum distance the detail mesh surface should deviate from heightfield data. (For height detail only.)
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.NavigationMeshLayer">
+            <summary>
+            Layer containing built tiles for a single <see cref="T:SiliconStudio.Xenko.Engine.NavigationAgentSettings"/>
+            </summary>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.NavigationMeshLayer.Tiles">
+            <summary>
+            Contains all the built tiles mapped to their tile coordinates
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationMeshLayer.FindTile(SiliconStudio.Core.Mathematics.Point)">
+            <summary>
+            Tries to find a built tile inside this layer
+            </summary>
+            <param name="tileCoordinate">The coordinate of the tile</param>
+            <returns>The found tile or null</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationMeshLayer.RemoveLayerTile(SiliconStudio.Core.Mathematics.Point)">
+            <summary>
+            Removes a tile with given coordinate
+            </summary>
+            <param name="tileCoordinate">The coordinate of the tile</param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationMeshLayer.BuildTile(SiliconStudio.Core.Mathematics.Vector3[],System.Int32[],SiliconStudio.Core.Mathematics.BoundingBox,SiliconStudio.Core.Mathematics.Point)">
+            <summary>
+            Build or rebuild a single tile for this layer
+            </summary>
+            <param name="inputVertices">Input vertex data for the input mesh</param>
+            <param name="inputIndices">Input index data for the input mesh</param>
+            <param name="boundingBox">Bounding box of the tile</param>
+            <param name="tileCoordinate">Tile coordinate to of the tile to build</param>
+            <returns>The tile that was built</returns>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.NavigationMeshLayer.BuildTileInternal(SiliconStudio.Core.Mathematics.Vector3[],System.Int32[],SiliconStudio.Core.Mathematics.BoundingBox,SiliconStudio.Core.Mathematics.Point)">
+            <summary>
+            Builds a single tile for a given layer without adding it
+            </summary>
+            <param name="inputVertices">Input vertex data for the input mesh</param>
+            <param name="inputIndices">Input index data for the input mesh</param>
+            <param name="boundingBox">Bounding box of the tile</param>
+            <param name="tileCoordinate">Tile coordinate to of the tile to build</param>
+            <returns>Teh tile that was built</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.NavigationMeshTile">
+            <summary>
+            Tiles contained within <see cref="T:SiliconStudio.Xenko.Engine.NavigationMeshLayer"/>
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationMeshTile.MeshVertices">
+            <summary>
+            Vertices of the navigation mesh, used for visualization
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationMeshTile.Data">
+            <summary>
+            Binary data of the built navigation mesh tile
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.NavigationMeshTile.NavigationMeshTileSerializer">
+            <summary>
+            Serializes individually build tiles inside navigation meshes
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.NavigationQuerySettings">
+            <summary>
+            Provides advanced settings to be passed to navigation mesh queries
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationQuerySettings.Default">
+            <summary>
+            The default settings that are used when querying navigation meshes
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationQuerySettings.FindNearestPolyExtent">
+            <summary>
+            Used as the extend for the find nearest poly bounding box used when scanning for a polygon corresponding to the given starting/ending position. 
+            Making this bigger will allow you to find paths that allow the entity to start further away or higher from the navigation mesh bounds for example
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationQuerySettings.MaxPathPoints">
+            <summary>
+            The maximum number of path points used internally and also the maximum number of output points
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.NavigationRaycastResult">
+            <summary>
+            Result for a raycast query on a navigation mesh
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationRaycastResult.Hit">
+            <summary>
+            true if the raycast hit something
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationRaycastResult.Position">
+            <summary>
+            Position where the ray hit a non-walkable area boundary
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.NavigationRaycastResult.Normal">
+            <summary>
+            Normal of the non-walkable area boundary that was hit
+            </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Engine.Network.ClientRouterMessage">
             <summary>
@@ -1605,6 +1957,34 @@
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Engine.Processors.ModelTransformProcessor"/> class.
             </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.Processors.NavigationProcessor">
+            <summary>
+            Manages the loading of the native side navigation meshes. Will only load one version of the navigation mesh if it is referenced by multiple components
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.Processors.NavigationProcessor.loadedNavigationMeshes">
+            <summary>
+            Maps navigation meshed to their natively loaded counterparts
+            </summary>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Engine.Processors.NavigationProcessor.AssociatedData">
+            <summary>
+            Associated data for navigation mesh components
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.Processors.NavigationProcessor.NavigationMeshInternal.AddReference(System.Object)">
+            <summary>
+            Adds a reference to this object
+            </summary>
+            <param name="reference"></param>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.Processors.NavigationProcessor.NavigationMeshInternal.RemoveReference(System.Object)">
+            <summary>
+             Removes a reference to this object
+            </summary>
+            <param name="reference"></param>
+            <returns>true if the object is no longer referenced</returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Engine.Processors.BackgroundComponentProcessor">
             <summary>
@@ -1731,7 +2111,7 @@
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Games.GameSystemBase" /> class.
             </summary>
             <param name="registry">The registry.</param>
-            <remarks>The GameSystem is expecting the following services to be registered: <see cref="T:SiliconStudio.Xenko.Games.IGame" /> and <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager" />.</remarks>
+            <remarks>The GameSystem is expecting the following services to be registered: <see cref="T:SiliconStudio.Xenko.Games.IGame" /> and <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager" />.</remarks>
         </member>
         <member name="M:SiliconStudio.Xenko.Engine.Processors.ScriptSystem.NextFrame">
             <summary>
@@ -2229,6 +2609,26 @@
             Add a <see cref="P:SiliconStudio.Xenko.Engine.ModelComponent.Model"/> to an <see cref="T:SiliconStudio.Xenko.Engine.Entity"/>, that will be used during rendering.
             </summary>
         </member>
+        <member name="T:SiliconStudio.Xenko.Engine.ModelComponent.MeshInfo">
+            <summary>
+            Per-entity state of each individual mesh of a model.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.ModelComponent.MeshInfo.BlendMatrices">
+            <summary>
+            The current blend matrices of a skinned meshes, transforming from mesh space to world space, for each bone.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.ModelComponent.MeshInfo.BoundingBox">
+            <summary>
+            The meshes current bounding box in world space.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Engine.ModelComponent.MeshInfo.BoundingSphere">
+            <summary>
+            The meshes current sphere box in world space.
+            </summary>
+        </member>
         <member name="M:SiliconStudio.Xenko.Engine.ModelComponent.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Engine.ModelComponent"/> class.
@@ -2257,6 +2657,11 @@
             The materials overriding <see cref="P:SiliconStudio.Xenko.Rendering.Model.Materials"/> ones.
             </value>
             <userdoc>The list of materials to use with the model. This list overrides the default materials of the model.</userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Engine.ModelComponent.MeshInfos">
+            <summary>
+            Gets the current per-entity state for each mesh in the associated model.
+            </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Engine.ModelComponent.IsShadowCaster">
             <summary>
@@ -2521,6 +2926,14 @@
             Specifies the texture sampling method to be used for this sprite
             </userdoc>
         </member>
+        <member name="P:SiliconStudio.Xenko.Engine.SpriteComponent.Swizzle">
+            <summary>
+            Specifies the swizzle method for sampling (how to access and mix the color channels)
+            </summary>
+            <userdoc>
+            Specifies the swizzle method for sampling (how to access and mix the color channels)
+            </userdoc>
+        </member>
         <member name="M:SiliconStudio.Xenko.Engine.SpriteComponent.#ctor">
             <summary>
             Creates a new instance of <see cref="T:SiliconStudio.Xenko.Engine.SpriteComponent"/>
@@ -2629,15 +3042,6 @@
             Then <see cref="F:SiliconStudio.Xenko.Engine.TransformComponent.WorldMatrix"/> will be updated by multiplying <see cref="F:SiliconStudio.Xenko.Engine.TransformComponent.LocalMatrix"/> and parent <see cref="F:SiliconStudio.Xenko.Engine.TransformComponent.WorldMatrix"/> (if any).
             </summary>
         </member>
-        <member name="M:SiliconStudio.Xenko.Engine.TransformComponent.CreateMatrixTRS(SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Quaternion@,SiliconStudio.Core.Mathematics.Vector3@,SiliconStudio.Core.Mathematics.Matrix@)">
-            <summary>
-            Creates a matrix that contains both the X, Y and Z rotation, as well as scaling and translation.
-            </summary>
-            <param name="translation">The translation.</param>
-            <param name="rotation">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
-            <param name="scaling">The scaling.</param>
-            <param name="result">When the method completes, contains the created rotation matrix.</param>
-        </member>
         <member name="T:SiliconStudio.Xenko.Engine.EntityTransformExtensions">
             <summary>
             Extensions for <see cref="T:SiliconStudio.Xenko.Engine.Entity"/> and the <see cref="T:SiliconStudio.Xenko.Engine.TransformComponent"/>.
@@ -2647,7 +3051,6 @@
             <summary>
             Adds a child Entity to the transform component of a parent Entity.
             </summary>
-            <typeparam name="T">Type of the parent Entity receiving the child.</typeparam>
             <param name="parentEntity">The parent Entity.</param>
             <param name="childEntity">The child parent Entity.</param>
             <returns>The this instance.</returns>
@@ -2658,9 +3061,16 @@
             Removes a child Entity to the transform component of a parent Entity. Note that the child entity is still in the <see cref="T:SiliconStudio.Xenko.Engine.SceneInstance"/>.
             In order to remove it from the scene instance, you should call <see cref="!:SceneInstance.Remove"/>
             </summary>
-            <typeparam name="T">Type of the parent Entity to remove the child from.</typeparam>
             <param name="parentEntity">The parent Entity.</param>
             <param name="childEntity">The child Entity.</param>
+            <exception cref="T:System.ArgumentNullException">childEntity</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.EntityTransformExtensions.RemoveChild(SiliconStudio.Xenko.Engine.Entity,System.Guid)">
+            <summary>
+            Removes a child entity from the transform component of a parent Entity.
+            </summary>
+            <param name="parentEntity">The parent entity.</param>
+            <param name="childId">The child id of the child entity.</param>
             <returns>The this instance.</returns>
             <exception cref="T:System.ArgumentNullException">childEntity</exception>
         </member>
@@ -2877,7 +3287,7 @@
             Initializes a new instance of the <see cref="T:SiliconStudio.Xenko.Games.GameSystemBase" /> class.
             </summary>
             <param name="registry">The registry.</param>
-            <remarks>The GameSystem is expecting the following services to be registered: <see cref="T:SiliconStudio.Xenko.Games.IGame" /> and <see cref="T:SiliconStudio.Core.Serialization.Assets.IAssetManager" />.</remarks>
+            <remarks>The GameSystem is expecting the following services to be registered: <see cref="T:SiliconStudio.Xenko.Games.IGame" /> and <see cref="T:SiliconStudio.Core.Serialization.Contents.IContentManager" />.</remarks>
         </member>
         <member name="P:SiliconStudio.Xenko.Engine.SceneSystem.SceneInstance">
             <summary>
@@ -3022,12 +3432,20 @@
             The owner entity.
             </value>
         </member>
+        <member name="P:SiliconStudio.Xenko.Engine.EntityComponent.Id">
+            <summary>
+            The unique identifier of this component.
+            </summary>
+        </member>
         <member name="P:SiliconStudio.Xenko.Engine.EntityComponent.EnsureEntity">
             <summary>
             Gets the entity and throws an exception if the entity is null.
             </summary>
             <value>The entity.</value>
             <exception cref="T:System.InvalidOperationException">Entity on this instance is null</exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Engine.EntityComponent.Serializer.Initialize(SiliconStudio.Core.Serialization.SerializerSelector)">
+            <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Engine.EntityManager">
             <summary>
@@ -3270,7 +3688,6 @@
             Specialized serializer
             </summary>
             <seealso cref="T:SiliconStudio.Xenko.Engine.Entity" />
-            <seealso cref="T:SiliconStudio.Core.Serialization.IDataSerializerInitializer" />
         </member>
         <member name="M:SiliconStudio.Xenko.Engine.Entity.EntitySerializer.Initialize(SiliconStudio.Core.Serialization.SerializerSelector)">
             <inheritdoc/>
@@ -7236,20 +7653,28 @@
         </member>
         <member name="P:SiliconStudio.Xenko.Rendering.Materials.MaterialNormalMapFeature.ScaleAndBias">
             <summary>
-            Gets or sets a value indicating whether to scale by (2,2,2) and bias by (-1,-1,-1) the normal map.
+            Gets or sets a value indicating whether to scale by (2,2) and offset by (-1,-1) the normal map.
             </summary>
-            <value><c>true</c> if scale and bias this normal map; otherwise, <c>false</c>.</value>
+            <value><c>true</c> if scale and offset this normal map; otherwise, <c>false</c>.</value>
             <userdoc>
-            Scale by (2,2,2) and bias by (-1,-1,-1) this normal map.
+            Scale the XY by (2,2) and offset by (-1,-1). Required to unpack unsigned values of [0..1] to signed coordinates of [-1..+1].
             </userdoc>
         </member>
         <member name="P:SiliconStudio.Xenko.Rendering.Materials.MaterialNormalMapFeature.IsXYNormal">
             <summary>
-            Gets or sets a value indicating whether the normal is only stored in XY components and Z is assumed to be 1.0.
+            Gets or sets a value indicating whether the normal is only stored in XY components and Z is assumed to be sqrt(1 - x*x - y*y).
             </summary>
             <value><c>true</c> if this instance is xy normal; otherwise, <c>false</c>.</value>
             <userdoc>
-            Read only xy components and assume z to be = 1. This is used for compressed normals.
+            The Z component of the normal vector will be calculated from X and Y assuming Z = sqrt(1 - x*x - y*y).
+            </userdoc>
+        </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.Materials.MaterialNormalMapFeature.InvertY">
+            <summary>
+            Indicating whether the Y-component of normals should be inverted, to compensate for a flipped tangent space.
+            </summary>
+            <userdoc>
+            Indicating whether the Y-component of normals should be inverted, to compensate for a flipped tangent space. This options depends on your normal maps generation tools.
             </userdoc>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.Materials.MaterialOcclusionMapFeature">
@@ -7634,6 +8059,11 @@
             </summary>
             <param name="texture">The depthStencil texture originally used for render target</param>
             <returns>The texture view which should be used as DepthStencil render target while SRV is also used</returns>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.DynamicEffectInstance.EffectCompilerParameters">
+            <summary>
+            Defines the effect parameters used when compiling this effect.
+            </summary>
         </member>
         <member name="T:SiliconStudio.Xenko.Rendering.FrameResourceGroupLayout">
             <summary>
@@ -8421,11 +8851,6 @@
             Handle used to query logical group information.
             </summary>
         </member>
-        <member name="T:SiliconStudio.Xenko.Rendering.MaterialNull">
-            <summary>
-            Used as a replacement for a null material stored in a <see cref="T:SiliconStudio.Xenko.Engine.ModelComponent"/>, only valid at design time
-            </summary>
-        </member>
         <member name="T:SiliconStudio.Xenko.Rendering.ConstantBufferOffsetReference">
             <summary>
             Handle used to query what's the actual offset of a given variable in a constant buffer, through <see cref="!:ResourceGroupLayout.GetConstantBufferOffset"/>.
@@ -8880,6 +9305,11 @@
         <member name="F:SiliconStudio.Xenko.Rendering.RenderEffect.State">
             <summary>
             Describes what state the effect is in (compiling, error, etc..)
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.RenderEffect.RetryTime">
+            <summary>
+            Describes when to try again after a previous error (UTC).
             </summary>
         </member>
         <member name="F:SiliconStudio.Xenko.Rendering.RenderEffect.PipelineState">
@@ -10280,6 +10710,11 @@
             <value>The UV scale</value>
             <userdoc>The scale to apply to the UV coordinates of the shape. This can be used to tile a texture on it.</userdoc>
         </member>
+        <member name="P:SiliconStudio.Xenko.Rendering.ProceduralModels.PrimitiveProceduralModelBase.LocalOffset">
+            <summary>
+            Gets or sets the local offset that will be applied to the procedural model's vertexes.
+            </summary>
+        </member>
         <member name="P:SiliconStudio.Xenko.Rendering.ProceduralModels.PrimitiveProceduralModelBase.MaterialInstance">
             <summary>
             Gets the material instance.
@@ -10420,13 +10855,13 @@
         </member>
         <member name="P:SiliconStudio.Xenko.Rendering.RendererCoreBase.Content">
             <summary>
-            Gets the <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>.
+            Gets the <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/>.
             </summary>
             <value>The asset manager.</value>
         </member>
         <member name="P:SiliconStudio.Xenko.Rendering.RendererCoreBase.Asset">
             <summary>
-            Gets the <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>.
+            Gets the <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/>.
             </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Rendering.RendererCoreBase.GraphicsDevice">
@@ -11279,6 +11714,11 @@
             If true, associated <see cref="T:SiliconStudio.Xenko.Rendering.Mesh"/> will be rendered.
             </summary>
         </member>
+        <member name="F:SiliconStudio.Xenko.Rendering.ModelNodeFlags.OverrideWorldMatrix">
+            <summary>
+            Used by the physics engine to override the world matrix transform
+            </summary>
+        </member>
         <member name="F:SiliconStudio.Xenko.Rendering.ModelNodeFlags.Default">
             <summary>
             The default flags.
@@ -11390,7 +11830,7 @@
             Index of the transformation node in <see cref="T:SiliconStudio.Xenko.Rendering.Model"/>.
             </summary>
         </member>
-        <member name="P:SiliconStudio.Xenko.Rendering.Mesh.BoundingBox">
+        <member name="F:SiliconStudio.Xenko.Rendering.Mesh.BoundingBox">
             <summary>
             Gets or sets the bounding box encompassing this <see cref="T:SiliconStudio.Xenko.Rendering.Mesh"/>.
             </summary>
@@ -11889,8 +12329,13 @@
             Reverses the winding order of an index buffer. Assumes it is stored in <see cref="F:SiliconStudio.Xenko.Graphics.PrimitiveType.TriangleList"/> format.
             Works on both 32 and 16 bit indices.
             </summary>
-            <param name="vertexBufferBinding">The vertex buffer binding.</param>
-            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Extensions.IndexExtensions.GetReversedWindingOrder(SiliconStudio.Xenko.Rendering.MeshDraw,System.Byte[]@)">
+            <summary>
+            Reverses the winding order of an index buffer. Assumes it is stored in <see cref="F:SiliconStudio.Xenko.Graphics.PrimitiveType.TriangleList"/> format.
+            Works on both 32 and 16 bit indices.
+            </summary>
+            <param name="outBytes">Output of the operation, the indices matching the reversed winding order</param>
         </member>
         <member name="M:SiliconStudio.Xenko.Extensions.TNBExtensions.GenerateTangentBinormal(SiliconStudio.Xenko.Rendering.MeshDraw)">
             <summary>
@@ -11931,11 +12376,6 @@
         <member name="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.sound">
             <summary>
             The underlying <see cref="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.sound"/>
-            </summary>
-        </member>
-        <member name="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.parent">
-            <summary>
-            The parent <see cref="T:SiliconStudio.Xenko.Engine.AudioEmitterComponent"/> to which to controller is associated.
             </summary>
         </member>
         <member name="F:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.InstanceToListener">
@@ -11983,6 +12423,13 @@
             Plays the attached sound in a new instance and let's the engine handle it's disposal.
             This is useful for very fast overlapping sounds, gun shots, machine gun etc. Where you don't care about controlling each sound.
             </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Audio.AudioEmitterSoundController.SetRange(SiliconStudio.Xenko.Audio.PlayRange)">
+            <summary>
+            Sets the range of the sound to play.
+            </summary>
+            <param name="range">a PlayRange structure that describes the starting offset and ending point of the sound to play in seconds.</param>
+            <remarks>This will not be valid if the sound is played with PlayAndForget</remarks>
         </member>
         <member name="T:SiliconStudio.Xenko.Audio.AudioEngineInternalExceptions">
             <summary>
@@ -12146,6 +12593,26 @@
             even if <see cref="T:SiliconStudio.Core.DataMemberIgnoreAttribute"/> is applied on it.
             </summary>
         </member>
+        <member name="T:SiliconStudio.Xenko.Updater.EnterChecker">
+            <summary>
+            Provides a way to perform additional checks when entering an object (typically out of bounds checks).
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Updater.EnterChecker.CanEnter(System.Object)">
+            <summary>
+            Called by <see cref="M:SiliconStudio.Xenko.Updater.UpdateEngine.Run(System.Object,SiliconStudio.Xenko.Updater.CompiledUpdate,System.IntPtr,SiliconStudio.Xenko.Updater.UpdateObjectData[])"/> to perform additional checks when entering an object (typically out of bounds checks).
+            </summary>
+            <param name="obj">The object being entered.</param>
+            <returns>True if checks succeed, false otherwise.</returns>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Updater.ListEnterChecker`1">
+            <summary>
+            Implementation of <see cref="T:SiliconStudio.Xenko.Updater.EnterChecker"/> for <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Updater.ListEnterChecker`1.CanEnter(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="T:SiliconStudio.Xenko.Updater.ListUpdateResolver`1">
             <summary>
             Resolver for <see cref="T:System.Collections.Generic.IList`1"/> in property path.
@@ -12153,6 +12620,14 @@
             <typeparam name="T">The type of list items.</typeparam>
         </member>
         <member name="M:SiliconStudio.Xenko.Updater.ListUpdateResolver`1.ResolveIndexer(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SiliconStudio.Xenko.Updater.UpdatableArrayAccessor`1">
+            <summary>
+            Defines how to get and set an array value for the <see cref="T:SiliconStudio.Xenko.Updater.UpdateEngine"/>.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Updater.UpdatableArrayAccessor`1.CreateEnterChecker">
             <inheritdoc/>
         </member>
         <member name="T:SiliconStudio.Xenko.Updater.UpdatableCustomAccessor">
@@ -12271,6 +12746,9 @@
         <member name="M:SiliconStudio.Xenko.Updater.UpdatableListAccessor`1.SetObject(System.IntPtr,System.Object)">
             <inheritdoc/>
         </member>
+        <member name="M:SiliconStudio.Xenko.Updater.UpdatableListAccessor`1.CreateEnterChecker">
+            <inheritdoc/>
+        </member>
         <member name="T:SiliconStudio.Xenko.Updater.UpdatableMember">
             <summary>
             Describes how to access an object member so that it can be updated by the <see cref="T:SiliconStudio.Xenko.Updater.UpdateEngine"/>.
@@ -12280,6 +12758,12 @@
             <summary>
             Gets the type of the member.
             </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Updater.UpdatableMember.CreateEnterChecker">
+            <summary>
+            Called by <see cref="M:SiliconStudio.Xenko.Updater.UpdateEngine.Compile(System.Type,System.Collections.Generic.List{SiliconStudio.Xenko.Updater.UpdateMemberInfo})"/> to generate additional checks when entering an object (typically out of bound checks).
+            </summary>
+            <returns>The created enter checker (or null if not needed).</returns>
         </member>
         <member name="T:SiliconStudio.Xenko.Updater.UpdatableProperty">
             <summary>
@@ -12414,6 +12898,32 @@
             <summary>
             Encode state of <see cref="M:SiliconStudio.Xenko.Updater.UpdateEngine.Compile(System.Type,System.Collections.Generic.List{SiliconStudio.Xenko.Updater.UpdateMemberInfo})"/> so that it can be easily passed
             to another function (easier to split it in multiple methods).
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Updater.UpdateEngine.ComputeUpdateOperationState.UpdateOperations">
+            <summary>
+            Current list of update operations being built.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Updater.UpdateEngine.ComputeUpdateOperationState.StackPath">
+            <summary>
+            Stack of the current path.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Updater.UpdateEngine.ComputeUpdateOperationState.ParseElementStart">
+            <summary>
+            Current path start index in the string.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Updater.UpdateEngine.ComputeUpdateOperationState.ParseElementEnd">
+            <summary>
+            Current path end index in the string.
+            </summary>
+        </member>
+        <member name="F:SiliconStudio.Xenko.Updater.UpdateEngine.ComputeUpdateOperationState.LastChildMember">
+            <summary>
+            Contains the last node that was just left.
+            Used to call <see cref="M:SiliconStudio.Xenko.Updater.UpdatableMember.CreateEnterChecker"/>.
             </summary>
         </member>
         <member name="M:SiliconStudio.Xenko.Updater.UpdateEngine.Compile(System.Type,System.Collections.Generic.List{SiliconStudio.Xenko.Updater.UpdateMemberInfo})">
@@ -12806,12 +13316,13 @@
                 to get a <code>TcpSocketClient</code> representing the connection for sending and receiving data.
             </summary>
         </member>
-        <member name="M:Sockets.Plugin.TcpSocketListener.StartListeningAsync(System.Int32,Sockets.Plugin.Abstractions.ICommsInterface)">
+        <member name="M:Sockets.Plugin.TcpSocketListener.StartListeningAsync(System.Int32,Sockets.Plugin.Abstractions.ICommsInterface,System.Boolean)">
             <summary>
                 Binds the <code>TcpSocketListener</code> to the specified port on all endpoints and listens for TCP connections.
             </summary>
             <param name="port">The port to listen on.</param>
             <param name="listenOn">The <code>CommsInterface</code> to listen on. If unspecified, all interfaces will be bound.</param>
+            <param name="inheritHandle">Allows handle inheritance. Might be ignored depending on platform.</param>
             <returns></returns>
         </member>
         <member name="M:Sockets.Plugin.TcpSocketListener.StopListeningAsync">
@@ -12966,12 +13477,13 @@
                 clients connect.
             </summary>
         </member>
-        <member name="M:Sockets.Plugin.Abstractions.ITcpSocketListener.StartListeningAsync(System.Int32,Sockets.Plugin.Abstractions.ICommsInterface)">
+        <member name="M:Sockets.Plugin.Abstractions.ITcpSocketListener.StartListeningAsync(System.Int32,Sockets.Plugin.Abstractions.ICommsInterface,System.Boolean)">
             <summary>
                 Binds the <code>TcpSocketListener</code> to the specified port on all endpoints and listens for TCP connections.
             </summary>
             <param name="port">The port to listen on.</param>
             <param name="listenOn">The <code>CommsInterface</code> to listen on. If unspecified, all interfaces will be bound.</param>
+            <param name="inheritHandle">Allows handle inheritance. Might be ignored depending on platform.</param>
             <returns></returns>
         </member>
         <member name="M:Sockets.Plugin.Abstractions.ITcpSocketListener.StopListeningAsync">

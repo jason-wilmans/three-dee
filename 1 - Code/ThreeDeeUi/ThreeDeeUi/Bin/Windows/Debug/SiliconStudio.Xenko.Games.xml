@@ -327,12 +327,12 @@
         </member>
         <member name="P:SiliconStudio.Xenko.Games.GameBase.Content">
             <summary>
-            Gets the <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>.
+            Gets the <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/>.
             </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Games.GameBase.Asset">
             <summary>
-            Gets the <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>.
+            Gets the <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/>.
             </summary>
         </member>
         <member name="P:SiliconStudio.Xenko.Games.GameBase.GameSystems">
@@ -798,7 +798,7 @@
             </summary>
             <param name="registry">The registry.</param>
             <remarks>
-            The GameSystem is expecting the following services to be registered: <see cref="T:SiliconStudio.Xenko.Games.IGame"/> and <see cref="T:SiliconStudio.Core.Serialization.Assets.IAssetManager"/>.
+            The GameSystem is expecting the following services to be registered: <see cref="T:SiliconStudio.Xenko.Games.IGame"/> and <see cref="T:SiliconStudio.Core.Serialization.Contents.IContentManager"/>.
             </remarks>
         </member>
         <member name="P:SiliconStudio.Xenko.Games.GameSystemBase.Game">
@@ -814,7 +814,7 @@
             </summary>
             <value>The services registry.</value>
         </member>
-        <member name="P:SiliconStudio.Xenko.Games.GameSystemBase.Asset">
+        <member name="P:SiliconStudio.Xenko.Games.GameSystemBase.Content">
             <summary>
             Gets the content manager.
             </summary>
@@ -1430,7 +1430,7 @@
         </member>
         <member name="P:SiliconStudio.Xenko.Games.IGame.Content">
             <summary>
-            Gets or sets the <see cref="T:SiliconStudio.Core.Serialization.Assets.ContentManager"/>.
+            Gets or sets the <see cref="T:SiliconStudio.Core.Serialization.Contents.ContentManager"/>.
             </summary>
             <value>The content manager.</value>
         </member>

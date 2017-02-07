@@ -809,6 +809,7 @@
         <member name="P:SiliconStudio.Xenko.Particles.Materials.ParticleMaterialComputeColor.ComputeColor">
             <summary>
             <see cref="T:SiliconStudio.Xenko.Rendering.Materials.IComputeColor"/> allows several channels to be blended together, including textures, vertex streams and fixed values.
+            Emissive Map should be allowed to be None because some particles might not need to render, but be used as parents for other particle systems
             </summary>
             <userdoc>
             Emissive component ignores light and defines a fixed color this particle should use (emit) when rendered.
@@ -3455,6 +3456,11 @@
         <member name="M:SiliconStudio.Xenko.Particles.ParticleSystem.Timeout(System.Single)">
             <summary>
             Disables emission of new particles and sets a time limit on the system. After the time expires, the system stops.
+            </summary>
+        </member>
+        <member name="M:SiliconStudio.Xenko.Particles.ParticleSystem.StopEmitters">
+            <summary>
+            Use to stop emitting new particles, but continue updating existing ones
             </summary>
         </member>
         <member name="M:SiliconStudio.Xenko.Particles.ParticleSystem.GetEmitterByName(System.String)">
