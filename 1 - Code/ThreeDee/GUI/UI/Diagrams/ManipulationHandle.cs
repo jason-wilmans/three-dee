@@ -34,7 +34,7 @@ namespace UI.Diagrams
             HorizontalAlignment = HorizontalAlignment.Left;
             VerticalAlignment = VerticalAlignment.Top;
             
-            SetRadius(20);
+            SetRadius(30);
         }
 
         public void SetRadius(float radius)
@@ -46,42 +46,12 @@ namespace UI.Diagrams
 
             Vector2 middle = new Vector2(0.5f * screenSize.X, 0.5f * screenSize.Y);
 
-            float angle;
-
-            switch (_handlePosition)
-            {
-                case HandlePosition.TopLeft:
-                    angle = 7 / 8.0f;
-                    BackgroundColor = Color.Magenta;
-                    break;
-
-                case HandlePosition.TopRight:
-                    angle = 1 / 8.0f;
-                    BackgroundColor = Color.Blue;
-                    break;
-
-                case HandlePosition.BottomRight:
-                    angle = 3 / 8.0f;
-                    BackgroundColor = Color.Green;
-                    break;
-
-                case HandlePosition.BottomLeft:
-                    angle = 5 / 8.0f;
-                    BackgroundColor = Color.Yellow;
-                    break;
-
-                default:
-                    throw new ArgumentException("Unknown position:", nameof(_handlePosition));
-            }
-
-            angle += 0.5f; // at library starts 0 at the bottom O_o
-
-            var leftOffset = (float)Math.Sin(angle * 2 * Math.PI) * radius;
-            var topOffset = (float)Math.Cos(angle * 2 * Math.PI) * radius;
+            var leftOffset = (float)Math.Sin(_handlePosition.Angle * 2 * Math.PI) * radius;
+            var topOffset = (float)Math.Cos(_handlePosition.Angle * 2 * Math.PI) * radius;
             Margin = new Thickness(middle.X + leftOffset, middle.Y + topOffset, 0, 0);
         }
 
-        public void OnTouchMove(object sender, TouchEventArgs touchEventArgs)
+        public void MoveTo(Vector2 position)
         {
             Vector2 screenSize = new Vector2(
                 _graphicsDevice.Presenter.BackBuffer.Width,
@@ -91,12 +61,9 @@ namespace UI.Diagrams
             var widthOffset = Width / 2;
             var heightOffset = Height / 2;
 
-            var x = touchEventArgs.ScreenPosition.X * screenSize.X - widthOffset;
-            var y = touchEventArgs.ScreenPosition.Y * screenSize.Y - heightOffset;
+            var x = position.X * screenSize.X - widthOffset;
+            var y = position.Y * screenSize.Y - heightOffset;
             Margin = new Thickness(x, y, 0, 0);
-
-            var length = new Vector2(-screenSize.X/2 + x, -screenSize.Y/2 + y).Length();
-            PositionChanged?.Invoke(length);
         }
     }
 
