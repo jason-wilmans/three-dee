@@ -1,0 +1,49 @@
+!Package
+Id: 273fb970-9299-44a9-af51-eca267009b9a
+SerializedVersion: {Assets: 0.0.4}
+Meta:
+    Name: ThreeDee
+    Version: 1.0.0.0
+    Authors: []
+    Owners: []
+    RootNamespace: ThreeDee
+    Dependencies:
+        -   Name: Xenko
+            Version: 1.10.0-alpha01
+            RootAssets: []
+LocalDependencies: []
+Profiles:
+    -   Name: Shared
+        Platform: Shared
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Shared
+            -   Path: UI/Effects
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: a4aced56-4cae-49c3-b12c-5ce678a55545
+                Location: UI/UI.csproj
+                Type: Library
+    -   Name: Windows
+        Platform: Windows
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Windows
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: a9a28ffa-4f3f-4ae3-b04a-96159eed4534
+                Location: ThreeDee.Windows/ThreeDee.Windows.csproj
+                Type: Executable
+ExplicitFolders: []
+Bundles: []
+TemplateFolders: []
+RootAssets:
+    - 148883c3-94cd-401d-b58a-8fc2c6718f07:fonts/title
+    - 3569dae4-1901-4f5d-96e9-2fbeee264095:Diagrams/Elements/DiagramElement
+    - 5126d277-e1f0-40c7-8c16-1302bffaf76c:MainMenu/Material
+    - 58cf9719-8acb-414e-ab5c-076f9f37fcb8:fonts/simple
+    - 90a650d9-5e3c-4aca-ad0a-94b1188b6596:fonts/elements
+    - ab839342-bc26-4fcf-a8ab-a1b0ee2dea5b:Diagrams/Elements/Models/Ellipsoid
+    - b832e21e-b139-47c0-929b-cda3d59ce1c4:Diagrams/Elements/Models/Cuboid
+    - b94cc9ae-f8d8-46c3-8228-ee208e548472:Diagrams/Elements/ElementMaterial
+    - c1cd7b1e-b6f9-4edf-a412-f3d0ce1f3516:MainMenu/Plane
